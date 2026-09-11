@@ -70,6 +70,37 @@ NO se extrapolan; el MÉTODO sí. Este playbook es la capa portable.
   (0) es un dato legítimo. Contar el segundo como defecto convierte un sistema
   honesto en un FAIL permanente → fatiga de alertas.
 
+## Capa de invariantes y veredictos (self-attesting)
+
+La confianza de un sistema empírico NO es "no encontré bug esta semana" — es que cada
+etapa prueba, por ciclo, que pobló lo que promete. Sin esa capa, "¿funciona?" depende de
+la memoria del operador y de sesiones de debug que encuentran el próximo fallo por suerte.
+
+- **La batería por ciclo precede a cualquier métrica de producto.** Un feed de datos no se
+  puede vender ni un edge se puede confiar si el sistema no puede probar que mide lo que
+  dice. Instrumenta la batería ANTES de construir producto encima. Si los datos alimentan
+  una decisión, un contrato (etapa fuente → consumidor → campo prometido → condición → query
+  de prod → NULL≠0) debe atestiguarlo. Ver skill `empirical-system-invariants` (batería
+  + guard `scripts/invariant_guard.py` agnóstico).
+- **Engram como memoria de VEREDICTOS, no de logs.** Persistir los RESULTADOS de checks y
+  findings (veredicto, n, EV, kill/success, dataset_version) como observaciones con
+  `topic_key` estable — nunca el ruido de progreso. Un check nuevo aprendido tras un
+  incidente se registra para que cualquier agente futuro lo cargue. El silo que guarda cada
+  cosa es decisión explícita (Hermes no escribe al engram del proyecto; convención ya
+  documentada).
+- **Hermes MCP como fuente única del estado.** Exponer health/checks/veredictos como
+  recursos MCP para que agentes y dashboards lean el MISMO dato que el sistema usa — nunca
+  una copia que drifta entre capas. (El patrón "MCP como capa de integración" del playbook;
+  acá pasa a ser parte del contrato de datos.)
+- **Auditorías atómicas delegadas** (claude/codex/opencode) con verificación de handle real
+  (query de prod, SHA, valores plausibles) hecha UNO MISMO — nunca self-report. Esto corta el
+  ciclo "sesión de debug que encuentra el próximo phantom wiring": la auditoría corre como
+  tarea acotada y su salida se verifica contra la batería.
+- **Deuda medida, no sospechada.** Una snapshot de prod y una query COUNT convierten una
+  sospecha en un número. Ejemplo real medido: `edge_elo/form/casino/h2h/residual` estaban
+  0/1384 no-null en `rejected_signals` — confirmado por SQL, y el guard lo marca ROJO con
+  exit 1. NUNCA afirmar deuda sin reproducirla uno mismo sobre la DB.
+
 ## La familia de "silencios traidores" (patrones que no rompen nada)
 
 Todos nacieron de bugs reales. Buscarlos en cualquier proyecto:
