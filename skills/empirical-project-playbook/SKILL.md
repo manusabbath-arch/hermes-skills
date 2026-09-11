@@ -168,3 +168,11 @@ sesión.
 - Las plantillas viven en `templates/` — leerlas con `file_path` antes de usar.
 - Si un proyecto nuevo revela un patrón de silencio nuevo, agregarlo a la
   sección "silencios traidores" (patch) — es la parte que crece con la práctica.
+
+## Fuente canónica de esta skill
+
+La fuente de verdad de esta skill es el repo-tap
+`manusabbath-arch/hermes-skills` (skills/empirical-project-playbook).
+Los perfiles locales tienen una COPIA instalada que es la que se carga.
+Al editar, hacelo en el repo (no en la copia instalada), commit + push, y
+re-propaga la skill a los perfiles que la usan. Ver el README del repo tap.
