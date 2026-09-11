@@ -1,0 +1,170 @@
+---
+name: empirical-project-playbook
+description: "Use when building/auditing empirical projects with agents."
+version: 1.0.0
+author: Hermes Agent
+license: MIT
+platforms: [linux, macos, windows]
+metadata:
+  hermes:
+    tags: [empirical, methodology, agent-built, pre-registration, anti-mining, business-analysis, mcp, performance]
+    related_skills: [test-driven-development, systematic-debugging, requesting-code-review, hermes-agent]
+---
+
+# Empirical Project Playbook
+
+Playbook para construir y operar **proyectos empíricos** (trading, ML, growth,
+analytics, automatización con riesgo) usando agentes de IA. Destila el método
+que un proyecto real de prediction-markets construyó contra sus propios
+errores: 25+ patrones de incidente mecanizados, un registry de findings con
+lifecycle, y un norte de decisión único.
+
+**Origen:** polymarket-trading-bot (2026). Los axiomas de mercado (familia X)
+NO se extrapolan; el MÉTODO sí. Este playbook es la capa portable.
+
+## Cuándo usar esta skill
+
+- Arrancar un proyecto nuevo que va a medir algo (edge, conversión, rendimiento,
+  hipótesis de negocio) y decidir con datos.
+- Construir con agentes de IA (Claude Code, Hermes, OpenCode, Codex) y querer
+  que hereden el método sin re-derivar los errores.
+- Agregar una capa de análisis empresarial / integración (MCP, servidores
+  externos, pruebas de rendimiento de sistema) sobre un proyecto existente.
+- Auditar un proyecto que ya acumula datos y no sabe si son útiles.
+
+## Los 3 mandamientos del método
+
+1. **Un juez, un norte.** Una sola métrica de veredicto final por la que se
+   promociona o descarta todo (ej. `EDGE_CONFIRMED` usable-only). Todo lo demás
+   es medio. Si hay muchas métricas tentadoras, elegir UNA explícitamente.
+2. **Presence ≠ utility.** Un feature no está listo cuando corre sin error:
+   está listo cuando una query/log de PRODUCCIÓN responde la pregunta que lo
+   motivó, con valores plausibles en filas post-deploy. "Hay filas" no es "sirve".
+3. **Si es mecanizable, es check que falla el build, no párrafo.** La prosa no
+   frenó un bug que recurrió 6 veces; el script que bloquea el build, sí.
+
+## Flujo de trabajo (cadencia)
+
+1. **Memo ANTES de implementar** trabajo estratégico: claim, evidencia,
+   no-goals, métrica post-deploy, kill criteria. Sin memo no es strategic work.
+   → `docs/analysis/YYYY-MM-DD-<tema>.md` o `docs/plans/`.
+2. **Registry con lifecycle formal**: `PROPOSED → TESTING → SUPPORTED →
+   CONFIRMED` (o `INSUFFICIENT / RETRACTED / SUPERSEDED`). Un guard en código
+   bloquea usar findings `RETRACTED` y redirige los `SUPERSEDED`.
+3. **Shadow → observación → enforce.** Nunca live ni hard gate desde datos de
+   paper. Un flag en observación calcula y loguea "habría hecho X" sin ejecutar.
+4. **Build solo con query de aceptación pre-escrita.** Antes de escribir código,
+   escribir la consulta/log que va a demostrar que el feature sirve.
+5. **Cierre:** memoria de sesión, status del plan, tree limpio o rama pusheada.
+
+## Anti-minería (defensa contra tus propios datos)
+
+- **Pre-registro**: fijar criterios de éxito/fracaso ANTES de ver los datos.
+  Ej: "kill si EV<0 a n≥80; success si EV≥0.05 a n≥80". Un sweet spot minado
+  post-hoc es una hipótesis, no un hallazgo.
+- **Réplica en muestra fresca**: un hallazgo de una sesión se re-mide sobre
+  datos que no participaron en descubrirlo, con corte de frescura estricto.
+- **CI gate anti-drift**: falla el build si un PR toca `docs/analysis/` sin
+  actualizar el registry. Impide que la doc y el estado diverjan.
+- **NULL ≠ 0**: "nunca lo medimos" (NULL) es un defecto; "lo medí y dio cero"
+  (0) es un dato legítimo. Contar el segundo como defecto convierte un sistema
+  honesto en un FAIL permanente → fatiga de alertas.
+
+## La familia de "silencios traidores" (patrones que no rompen nada)
+
+Todos nacieron de bugs reales. Buscarlos en cualquier proyecto:
+
+- Getter que devuelve vacío ante un error sin dejar rastro visible.
+- Writer de DB que escribe y nunca commitea.
+- Gate que no distingue "falló" de "NO CORRIÓ" (ej. `pytest | grep passed || fail`
+  con el intérprete inexistente).
+- Métrica que cuenta solo éxitos usada como denominador → "success: -5046%".
+- Rama de severidad inalcanzable por orden de guardas (todo `>50` es también `>10`).
+- Check cuyo umbral describe el deseo, no el defecto → FAIL permanente.
+- Prune que loguea "N eliminadas" mientras un filtro sin techo temporal
+  protege el 100% de las filas vencidas. Log verde, efecto nulo.
+- Wiring fantasma: `getattr(obj, "x", {})` que nadie asigna. El default
+  "seguro" oculta el bug: nada crashea, nada loguea, el caller opera sobre
+  estado vacío para siempre.
+- Doc que drifta respecto al estado real (flags declarados ON que el .env no
+  tiene; código deployado atrasado respecto a main).
+
+## Estándar de verificación
+
+- **Un fix no está verificado hasta que su test FALLA contra el código previo.**
+  Un test que pasa antes y después no probó nada. Verificar revirtiendo el
+  archivo (`git show HEAD:<f> > <f>`), correr la suite, restaurar.
+- **Gemelos de frontera**: si un test afirma una cota, hace falta un gemelo que
+  pruebe que el fixture efectivamente la roza — si no, pasa por accidente.
+- **Medir al punto de operación real**: todo veredicto es al tamaño/escala en
+  que se midió. Un "sí se puede" a $1 no es una afirmación sobre tamaño operable.
+- **Tests herméticos**: nada de archivos reales del host, red, ni hora del
+  reloj. Todo por `tmp_path` + patch. Un timestamp ISO hardcodeado en una
+  fixture es una bomba de tiempo.
+- **Paths anclados a `__file__`**, nunca al cwd. "Funciona desde la raíz del
+  repo" no es funcionar bajo systemd/ssh.
+
+## Capa de análisis empresarial e integración
+
+Para proyectos que quieren una capa de negocio/analytics encima:
+
+- **MCP como capa de integración**: exponer el estado del sistema como
+  recursos/prompts MCP (ej. health, métricas, veredictos) para que agentes y
+  dashboards lean el MISMO dato que el sistema usa — no una copia que drifta.
+  Ver skill `hermes-agent` → `references/native-mcp.md`.
+- **Servidor externo vs local**: decidir por medición, no por preferencia.
+  Medir latencia, cuota, costo y disponibilidad del proveedor externo contra
+  el costo de operar local. Un proveedor externo que falla en silencio
+  devolviendo datos cacheados es peor que uno local lento pero honesto.
+  Toda decisión de infraestructura se registra con sus números en
+  `templates/infra-decision.md` (mismo espíritu que el pre-registro: criterio
+  antes de ver los datos de rendimiento).
+- **Pruebas de rendimiento de sistema**: medir con números reales por ciclo/
+  por día/cantidad procesada, nunca estimaciones. Detectar costos in-cycle vs
+  CLI: una función de análisis manual y la misma llamada in-cycle NO pueden
+  compartir el default caro (un bootstrap de 5000 réplicas bloquea el loop 348s).
+  Señal de costo in-cycle: los ciclos más lentos caen en múltiplos exactos
+  (200, 400, 600…) = un `_EVERY_N_CYCLES` caro.
+- **Monitoreo con línea base propia**: comparar cada métrica contra SU propia
+  línea base, nunca contra un absoluto. Un canal que colapsa de 8 filas/día a 1
+  no cruza un umbral absoluto pero sí su propia línea base.
+
+## Plantillas
+
+- `templates/pre-registration.md` — memo de pre-registro (claim, evidencia,
+  no-goals, métrica, kill/success criteria).
+- `templates/checks-checklist.md` — checklist de checks mínimos al arrancar un
+  proyecto empírico con agentes.
+- `templates/incident-pattern.md` — formato para registrar un patrón de
+  incidente y decidir si es mecanizable.
+- `templates/infra-decision.md` — memo de decisión de infraestructura (externo
+  vs local, MCP, proveedor) con criterios fijados antes de medir.
+
+## Criterio de adopción (un juez, un norte para la propia skill)
+
+La skill se considera útil si, en la primera semana de un proyecto que la carga:
+1. Produce al menos UN pre-registro en `templates/pre-registration.md` con kill
+   criteria fijados ANTES de ver datos.
+2. Produce al menos UN check mecanizado (de cualquier familia) que falla el build.
+3. Queda registrada una decisión OR — al menos una — en el memo de
+   infraestructura (plantilla `templates/infra-decision.md`).
+
+Si un proyecto no produce ninguna de las tres, la skill no se está aplicando:
+es un documento más que se lee y se olvida (presence ≠ utility, aplicado a la
+propia skill).
+
+## Deuda explícita (errores no mecanizables)
+
+Todo error o hallazgo que NO se pueda mecanizar hoy se registra como deuda
+explícita: fila en `docs/DEBT.md` con fecha, evidencia, y una nota de por qué no
+es check todavía. Regla: nunca "corregir el síntoma" sin dejar rastro — la
+próxima sesión no sabrá que el patrón existe y el agente lo repetirá. La deuda
+se revisa (y se promueve a check si cambió el contexto) en cada cadencia de
+sesión.
+
+## Verificación de la skill
+
+- Cargar con `skill_view(name='empirical-project-playbook')`.
+- Las plantillas viven en `templates/` — leerlas con `file_path` antes de usar.
+- Si un proyecto nuevo revela un patrón de silencio nuevo, agregarlo a la
+  sección "silencios traidores" (patch) — es la parte que crece con la práctica.
