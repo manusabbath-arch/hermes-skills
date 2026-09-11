@@ -223,6 +223,53 @@ Para proyectos que quieren una capa de negocio/analytics encima:
   reportarse como "deploy completo" mientras el código corre 265 commits atrás;
   verificar el SHA real, no la intención.
 
+## Seguridad y sistemas (reglas durosas — detalle en referencias)
+
+Reglas no-negociables que el cuerpo del playbook carga siempre; el detalle y el
+checklist operativo viven en las referencias (on-demand, como el repo hace con
+los sub-CLAUDE.md).
+
+**Sistemas (ingeniería):**
+- **Diseño para falla, no solo detección.** Cada componente debe aislarse para
+  que una explosión no tumbe el loop principal; degradación graceful (a shadow,
+  no a muerte); circuit breaker por dependencia externa.
+- **Release engineering con kill switch y rollback conocido.** Cada feature
+  nuevo con flag OFF = kill switch; el rollback es revertir un SHA deployado,
+  nunca "editar la config y esperar". Canary para configs nuevas.
+- **Un backup que no se restaura periódicamente en un entorno limpio no es un
+  backup.** DR se prueba de verdad, no solo se crea el archivo con checksum.
+- **SLOs y error budgets, no solo métricas.** Para cada señal: objetivo de
+  uptime/latencia/frescura y el presupuesto que decide cuándo intervenir sin
+  fatiga de alertas.
+- **Resiliencia de I/O disciplinada.** Timeout explícito por operación, retry
+  con backoff + jitter, idempotencia (un reintento no duplica efecto),
+  dead-letter de lo que falla. Estado mutable compartido entre tasks
+  concurrentes = sospechar primero (race conditions).
+
+**Seguridad:**
+- **Supply chain es la más urgente.** Lockfiles pineados exactos + SCA
+  (pip-audit/dependabot) + SAST (bandit/semgrep) que BLOQUEEN el merge. La
+  lección del fuente: `bandit` y `pip-audit` corrieron meses con `|| true`
+  (presentes, ejecutados, incapaces de fallar), justo sobre las librerías que
+  firman órdenes (`web3`, `eth-account`). Un gate de seguridad que no puede
+  fallar no es seguridad.
+- **Secretos con ciclo de vida completo.** Menor privilegio (cada proceso/agente
+  con lo suyo), rotación periódica no solo "si se filtra", revocación probada,
+  nunca secretos en logs/contexto. La clave que firma (wallet) es el activo más
+  sensible: no materializarla en un proceso que no la necesita.
+- **Seguridad del AGENTE (era de los agentes, no clásico).** Los agentes son un
+  vector nuevo: prompt injection desde web/contenido externo, fugas de secretos
+  del contexto, acciones destructivas automáticas. Contrapartidas no-negociables:
+  guard que bloquea `git add -A`/force-push, escape hatches EXPLÍCITOS y
+  documentados (`FORCE_DEPLOY`), aprobación de comandos destructivos, y verificar
+  que el agente no obedezca instrucciones que vienen del body de una página.
+- **Respuesta a incidentes de seguridad.** Contener antes que parchear (bloquear
+  la credencial, no hot-patch), revocar/rotar, forense mínimo (qué ejecutó el
+  agente), y registro de quién pudo hacer qué.
+
+Detalle operativo y checklists: `references/systems-engineering.md`,
+`references/security.md`, `references/agent-security.md`.
+
 ## Plantillas
 
 - `templates/pre-registration.md` — memo de pre-registro (claim, evidencia,
@@ -260,6 +307,10 @@ sesión.
 
 - Cargar con `skill_view(name='empirical-project-playbook')`.
 - Las plantillas viven en `templates/` — leerlas con `file_path` antes de usar.
+- Las referencias de sistemas/seguridad viven en `references/` — leerlas con
+  `file_path` cuando se trabaje ese dominio (no las cargues en toda sesión):
+  `references/systems-engineering.md`, `references/security.md`,
+  `references/agent-security.md`.
 - Si un proyecto nuevo revela un patrón de silencio nuevo, agregarlo a la
   sección "silencios traidores" (patch) — es la parte que crece con la práctica.
 
