@@ -13,7 +13,8 @@ plantillas (`templates/`), exactamente como los instala Hermes.
 
 | Skill | Propósito |
 |-------|-----------|
-| `empirical-project-playbook` | Método para proyectos empíricos construidos con agentes: anti-minería, checks que fallan el build, pre-registro, capa de análisis empresarial. Destila las lecciones del polymarket-trading-bot en una capa portable. Plantillas: pre-registro, checklist de checks, patrón de incidente, memo de infraestructura. |
+| `empirical-project-playbook` | Método para proyectos empíricos construidos con agentes: anti-minería, checks que fallan el build, pre-registro, capa de análisis empresarial, y aprendizajes transversales (CI/test, estructura, recolección de datos, know-how). Plantillas: pre-registro, checklist de checks, patrón de incidente, memo de infraestructura. |
+| `hermes-skills-tap-workflow` | Cómo publicar/propagar skills vía tap (este repo como fuente canónica). |
 
 ## Cómo editar y propagar un cambio de skill
 

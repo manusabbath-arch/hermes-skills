@@ -129,6 +129,100 @@ Para proyectos que quieren una capa de negocio/analytics encima:
   línea base, nunca contra un absoluto. Un canal que colapsa de 8 filas/día a 1
   no cruza un umbral absoluto pero sí su propia línea base.
 
+## Aprendizajes transversales por área (destilados del playbook fuente)
+
+### CI / programación y test
+
+- **Un gate que no distingue "falló" de "NO CORRIÓ" culpa a lo primero.**
+  `pytest | grep "passed" || fail` da el mismo resultado con tests rojos que con
+  el intérprete inexistente. Verificar el intérprete ANTES de interpretar la
+  salida. Firmas hermanas: step de CI con `|| true` / `continue-on-error`,
+  `# noqa` varado en la línea de cierre, `mypy` en `stages:[manual]`.
+- **Nunca mergear con CI en rojo.** CI ve bugs que un dry-run en prod no ve
+  (NameError, regresión de versión). Los checks existen por esto.
+- **Versiones de lint pineadas a un solo lugar.** `.pre-commit-config.yaml`
+  pinea `black==25` mientras `requirements-dev.txt` dice `black>=23` → CI y el
+  hook local nunca convergen, reformateos en bucle. Un pin = una fuente.
+- **Characterization tests (golden) ANTES de refactorar un módulo crítico.**
+  Congelar el comportamiento actual (15 tests / 87 casos golden en el fuente),
+  verificado por mutación (alterar un valor lo hace fallar). Un refactor sin
+  esto es ruleta.
+- **El test tiene que cubrir el código que tocaste, no uno viejo.** Un test
+  que no llama a la función refactorizada da cobertura de la versión vieja.
+  Confirmar que el test está en ROJO contra el código ANTES del fix (gemelo de
+  frontera, P8).
+- **No concluir un patrón con 2 muestras cuando la instrumentación puede
+  juntar más en minutos.** Un bug dominante se maldiagnosticó como timeout de
+  red con 2 muestras tempranas; con 351, el 95% era tamaño de frame. Esperar la
+  ventana antes de escribir la conclusión.
+- **Verificar el protocolo real contra el servidor, no contra el mock.** Un WS
+  mal desde el origen no lo agarró ningún test porque los tests mockeaban el
+  protocolo viejo. Probar en vivo con un script chico.
+
+### Estructura y método
+
+- **Doc raíz única, corta (~300 líneas), con reglas por directorio lazy-load.**
+  Cada línea del raíz carga en TODA sesión → bloat = menos precisión + más
+  tokens. Reglas "nunca X / siempre Y" con ejemplos, en orden de prioridad.
+- **Revisión de reglas muertas al tocar la doc:** una regla que ya no describe
+  el sistema real es peor que no tenerla (el agente la obedece y hace daño
+  silencioso). Al editar, verificar que las rutas referenciadas existen y que
+  los verificadores que la prosa declara siguen en CI.
+- **Subagentes solo para tareas atómicas; nunca confiar en su self-report**
+  sin verificar el handle (URL/path/estado) uno mismo.
+- **Worktrees para paralelismo real**; `git add <paths>` nunca `-A`; merge no
+  rebase; recovery por reflog.
+- **Doc fechada** (`docs/analysis/YYYY-MM-DD-*.md`) + INDEX como puerta.
+- **Skills = workflows versionados.** "Salvá lo que hiciste" tras cada tarea
+  no trivial → skill en el repo, no en la cabeza.
+
+### Recolección de datos
+
+- **El recolector debe funcionar SIN depender de ejecutar la acción que mide.**
+  El que-ve-señales tenía que recolectar datos aunque Guard0Cap bloqueara las
+  órdenes → shadow-ledger PRE-GATE (enganche antes de la ejecución), que crece
+  aunque `ordenes=0`.
+- **Un canal de datos sin pipeline de resolución acumula filas que nadie puede
+  juzgar nunca.** El feedback loop (`would_have_won`) se rompe si no hay
+  resolución in-cycle + timer backstop. "¿Quién llama a update_*_outcome()?"
+  desde el día 1.
+- **Etiqueta de dedup ÚNICA por fuente** (`profile_tag`): dos fuentes con el
+  mismo tag se pisan sin avisar; una fuente gemela escribe una fila por tag,
+  inflando `n` ~4x salvo dedupe explícito por entidad. Las queries ad-hoc NO
+  deduplican — usar la herramienta canónica (el `edge_verdict`).
+- **Distinguir 3 estados de un dato:** no-medido (NULL, defecto a corregir),
+  medido-con-valor (dato), medido-y-cero (dato legítimo). Y el veredicto es al
+  TAMAÑO en que se midió.
+- **Un getter de DB que traga excepciones devuelve `[]` en silencio** (converter
+  de tipos, columnas `TIMESTAMP` con ISO). Leer con una conexión NUEVA, no la
+  del pool — la del pool ve su propia transacción sin commit y oculta el bug.
+- **Freshness ≠ retención.** Dos relojes (segundos "¿es seguro usarlo?" vs
+  horas "¿vale la pena tenerlo?"). Confundirlos purga datos legítimos o nunca
+  libera nada. Límite duro LRU + grace period para entradas recién creadas.
+
+### Know-how operativo (transferible)
+
+- **Estado que se lee pero nadie asigna = wiring fantasma** (getattr con
+  default "seguro"): nada crashea, nada loguea, el caller opera sobre vacío
+  para siempre. El trailing-stop NUNCA se activó en prod porque un método
+  portado perdió su atributo interno. Un `grep` del nombre no prueba que la
+  instancia lo tenga — verificar `hasattr` / a qué módulo apunta el import.
+- **Un escalar donde el dominio tiene N entidades** (dict keyed por posición)
+  es la misma clase de error. Si el vecino está keyed y este no, sospechar.
+- **Contador que se computa en el ciclo debe persistir, no vivir solo en un
+  log que rota** — los consumidores concluyen lo contrario de la realidad.
+- **Estructura en memoria keyed por entidad externa necesita purga que corra
+  SOLA** (un loop propio), no que dependa de que cada call-site recuerde
+  desuscribirse. Y se verifica midiendo RSS en PROD durante horas, no con test
+  unitario (la brecha entre lógica y proceso real FUE el bug, ~35MB/h).
+- **Un feature está terminado cuando el dato es verificable en prod con valores
+  plausibles** en una fila post-deploy — no cuando "anda". Medir en prod durante
+  HORAS para fresh/throughput (un reconnect hace todo verse sano 1-2 min).
+- **Después de cualquier push a main: mirar el CI antes de cerrar sesión.**
+- **No concluir ausencia desde un solo path**: un `.env` editado a mano puede
+  reportarse como "deploy completo" mientras el código corre 265 commits atrás;
+  verificar el SHA real, no la intención.
+
 ## Plantillas
 
 - `templates/pre-registration.md` — memo de pre-registro (claim, evidencia,
