@@ -23,6 +23,9 @@ jobs:
       - name: Validate skill manifests and cited paths
         run: python scripts/validate_skills.py
 
+      - name: Verify the numbers this repo's docs assert
+        run: python skills/agent-ready-project/scripts/doc_verify.py --root . --docs README.md
+
       - name: Install test deps
         run: python -m pip install --disable-pip-version-check pytest
 

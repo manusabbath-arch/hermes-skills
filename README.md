@@ -9,6 +9,16 @@ hermes skills tap add manusabbath-arch/hermes-skills
 Layout: cada skill vive en `skills/<nombre>/` con su `SKILL.md` y sus
 plantillas (`templates/`), exactamente como los instala Hermes.
 
+Este tap publica 6 skills, y ese número lo verifica el CI — no la buena memoria
+de quien edite este README:
+
+<!-- verify
+id: skills-count
+kind: files
+target: skills/*/SKILL.md
+expect: 6
+-->
+
 ## Skills
 
 | Skill | Propósito |
@@ -17,6 +27,7 @@ plantillas (`templates/`), exactamente como los instala Hermes.
 | `empirical-system-invariants` | Batería operativa que convierte "¿funciona?" en respuesta mecánica: 5 contratos de datos por ciclo, regla de semáforo ROJO con eslabón exacto, NULL≠0, falla alto. Incluye `scripts/invariant_guard.py` (agnóstico, stdlib, exit code) + plantilla `templates/data-contracts.md`. Capa operativa de `empirical-project-playbook`. |
 | `delta-lakehouse` | ETL/data pipelines: extrae datos estructurados y no estructurados de orígenes heterogéneos, los almacena en un lakehouse Delta (historial de operaciones, time-travel, optimización de almacenado/lectura) y los conecta a entrenamiento de modelos IA / agentes. Stack validado: deltalake + duckdb + pyarrow. Plantilla: `templates/ingesta-plantilla.md`. |
 | `data-medallion-architecture` | Diseño punta a punta de arquitectura de datos: elegir la FUENTE (API/DB/SFTP), armar la capa medallion Bronze→Silver→Gold (ingesta, transformación, almacenamiento en Delta lakehouse/DW), y llegar a CONSUMO (AI/ML/MCP/análisis) y dashboards de escenarios hipotéticos. Patrones de diseño y decisión de fuente. Plantilla: `templates/scenario-dashboard.md`. |
+| `agent-ready-project` | Arnés para proyectos construidos con agentes de IA (cualquier codebase, no solo data): loop de validación no eludible, prender checks sobre código sucio con baseline de trinquete, doc que verifica sus propios números, deuda de lint medida en vez de barrida, guards en todas las superficies, y los modos de falla propios del código de agente. Script: `scripts/doc_verify.py`. Plantillas: checklist del arnés, spec del bloque verify. |
 | `hermes-skills-tap-workflow` | Cómo publicar/propagar skills vía tap (este repo como fuente canónica). |
 
 ## Cómo editar y propagar un cambio de skill

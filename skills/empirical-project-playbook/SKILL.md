@@ -32,6 +32,15 @@ NO se extrapolan; el MÉTODO sí. Este playbook es la capa portable.
   externos, pruebas de rendimiento de sistema) sobre un proyecto existente.
 - Auditar un proyecto que ya acumula datos y no sabe si son útiles.
 
+## Relación con el arnés de construcción
+
+Este playbook es el MÉTODO (qué medir, cómo no engañarse, cuándo matar una
+hipótesis). El **arnés** que hace que el código escrito por agentes sea confiable
+—loop de validación, guards en todas las superficies, baselines con trinquete,
+doc que verifica sus números, modos de falla propios del agente— vive en la skill
+`agent-ready-project`, y aplica aunque el proyecto no mida nada. Cargar las dos
+cuando un proyecto empírico se construye con agentes.
+
 ## Los 3 mandamientos del método
 
 1. **Un juez, un norte.** Una sola métrica de veredicto final por la que se
