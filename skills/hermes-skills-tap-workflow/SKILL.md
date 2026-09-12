@@ -96,3 +96,11 @@ cargan. Un cambio al repo NO llega solo a los perfiles.
   en cada perfil que la use, o el update no la va a propagar.
 - **Público vs privado**: skills son texto. Público facilita compartir; privado
   si es conocimiento propietario. Decidir explícitamente.
+- **`hermes skills install` puede fallar con "Could not fetch from any source" aunque
+  `inspect` resuelva y la skill esté commiteada.** (Visto 2026-09-11 con
+  `data-medallion-architecture`; las dos anteriores instalaron bien.) El install resuelve
+  vía skills.sh externo y es frágil a eso, no al contenido del repo. Workaround: propagación
+  MANUAL — `mkdir -p ~/.hermes/skills/<name>` (y en cada `~/.hermes/profiles/<p>/skills/`),
+  `cp -r <repo>/skills/<name>/SKILL.md <repo>/skills/<name>/templates …/`, preservando
+  templates. Verificar con `ls` en el perfil. No reintentar el install en loop contra el
+  mismo error de resolución.
