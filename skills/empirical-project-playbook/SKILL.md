@@ -101,6 +101,76 @@ la memoria del operador y de sesiones de debug que encuentran el próximo fallo 
   0/1384 no-null en `rejected_signals` — confirmado por SQL, y el guard lo marca ROJO con
   exit 1. NUNCA afirmar deuda sin reproducirla uno mismo sobre la DB.
 
+## Capa de data-engineering y lakehouse (para entrenar IA / conectar agentes)
+
+Para transformar los datos operativos en un activo reutilizable para ML y agentes: un
+**lakehouse Delta** (diseño data-lake de Delta Lake) resuelve el almacenado de estructurado
++ no estructurado, el historial de operaciones (writes/updates), time-travel, y lectura
+directa por engines y modelos/agentes.
+
+**Stack (validado end-to-end, 2026 — los comandos de abajo corren sobre este stack):**
+- `deltalake` (delta-rs, Python puro) — tablas Delta con `history()`/time-travel.
+- `duckdb` — SQL sobre Delta (`delta_scan`), ETL/analytics; escribe parquet.
+- `pyarrow` — conversión universal formato ↔ Arrow; `pa.Table.from_pylist` para ingesta.
+- Sin pandas para el ingesta (pyarrow evita la dependencia; usar pandas solo si el proyecto
+  ya lo tiene).
+
+**Flujo canónico (extract → lake → tablas delta → agentes/ML):**
+1. **Extract de orígenes heterogéneos** (JSONL, CSV, API/WS, DB): normalizar a `pa.Table`.
+   No estructurado (eventos JSON, payloads de API, texto) viaja como columna/variante o
+   `VARIANT` (DuckDB) o tipo list/struct (Arrow) — no hay que forzarlo a columnas planas.
+2. **Escritura a tabla Delta** — `write_deltalake(path, arrow_table)` → version 0; cada
+   escritura posterior crea una NUEVA versión con `history()` que registra `operation`
+   (WRITE/OVERWRITE/README/…), timestamp y `operationMetrics` (rows, num_files).
+3. **Seguimiento de operaciones (writes/updates):** el historial de Delta es el rastro
+   auditable de cada cambio. Para upsert por PK, el patrón canónico en delta-py es
+   read + union + dedup + `overwrite` (validado: el row nuevo de una PK gana); `history()`
+   muestra el commit. Evitar mezclar `merge()` automático con DuckDB en la misma tabla sin
+   probar — DuckDB reescribe parquet plano, delta-py mantiene el log.
+4. **Time-travel** — `DeltaTable(path, version=N)` revierte a una versión histórica: sirve
+   para reproducir el dataset exacto que entrenó un modelo o el estado que vio un agente.
+5. **Consumo por ML/agentes** — DuckDB conecta a Delta con una conexión en memoria (barata,
+   sin servidor); una tabla Delta se lee igual por `deltalake`, `duckdb`, `polars`, Spark.
+   Un agente de IA consume la MISMA tabla que el sistema escribe — nunca una copia que
+   drifta (mismo principio que MCP-fuente-única).
+
+**Optimización de almacenado/lectura:**
+- **Particionar por la columna de corte** (ej. día/liga) → lecturas solo tocan los partfiles
+  relevantes (`write_deltalake(..., partition_by=[...])`).
+- **Tipos Arrow compactos** (int64, bool, double) en vez de objetos/str sueltos — pyarrow
+  los deja nativos desde el ingesta.
+- **VACUUM + compaction** para tablas que acumulan muchas versiones: borra partfiles viejos
+  (`DeltaTable.vacuum()`) y compacta (`ZORDER`/compaction) — el historial infinito costaría
+  lectura. Regla NULL≠0 aplica: no vacuar en caliente lo que un agente puede necesitar
+  reproducir; fijar retención explícita.
+- **Medir en prod durante horas** el tamaño/costo de lectura por ciclo, no en unit tests.
+
+**Orígenes de extracción (conectables):**
+- WS/API (datos en vivo) → normalizar a Arrow en el ingesta.
+- SQLite/Postgres/CSV/JSONL → DuckDB para `delta_scan`/`COPY`, o pyarrow para directo.
+- Objetos remotas (S3/GCS/Azure): `write_deltalake` y `DeltaTable` aceptan URIs de object
+  storage (configurar credenciales por storage_options) — no es local-only.
+
+**Prácticas (heredadas del playbook):**
+- **Presence ≠ utility:** una tabla Delta "anda" no es suficiente — que una query DE
+  PRODUCCIÓN la lea con valores plausibles post-deploy es la aceptación.
+- **Conexión nueva/una conexión de lectura** para agentes y análisis, nunca una copia que
+  drifta.
+- **Los tests herméticos** para el ingesta: `tmp_path` + pyarrow/delta en memoria/disco
+  temporal; nunca archivos reales del host.
+- **Medir al punto de operación real:** un lake que corre a 1K filas y uno a 1M/día son
+  problemas distintos; el costo se decide midiendo, no por preferencia.
+
+**Verificación del stack (instalación):**
+- En un venv: `pip install deltalake duckdb pyarrow`.
+- Confirmar import + que Delta escribe/lee + DuckDB hace `delta_scan` (ver flujo arriba).
+- PEP 668 (Debian/Ubuntu) exige venv: `python3 -m venv .lhenv && .lhenv/bin/pip install ...`.
+
+**Para proyectos futuros:** este stack Delta + DuckDB + pyarrow es la columna vertebral de
+la capa de análisis empresarial declarada por el usuario — el lakehouse es donde los datos
+de predicción/mercados y sus métricas se vuelven un dataset versionado que entrenadores de
+modelos y agentes consumen directamente.
+
 ## La familia de "silencios traidores" (patrones que no rompen nada)
 
 Todos nacieron de bugs reales. Buscarlos en cualquier proyecto:
