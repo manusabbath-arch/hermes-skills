@@ -1,6 +1,6 @@
 ---
 name: hermes-skills-tap-workflow
-description: "Use when publishing Hermes skills via a GitHub tap repo."
+description: "Use when authoring, publishing, or propagating Hermes or Claude Code skills through a GitHub tap repo - editing a skill at its canonical source, installing it into profiles, keeping installed copies from drifting, and avoiding known install pitfalls."
 version: 1.0.0
 author: Hermes Agent
 license: MIT
@@ -31,7 +31,7 @@ repo/
 └── skills/
     └── <skill-name>/
         ├── SKILL.md
-        └── templates/...        # referencias/scripts/templates opcional
+        └── templates/...        # references/ y scripts/ son opcionales
 ```
 
 - Cada skill es un subdirectorio de `skills/` con su `SKILL.md`.
@@ -82,6 +82,33 @@ cargan. Un cambio al repo NO llega solo a los perfiles.
    - `hermes skills install <owner>/<repo>/skills/<name>` (default), o
    - propagación manual: copiar la carpeta de la skill sobre el `skills/` del
      perfil, preservando `templates/`.
+
+### La copia es el bug; el symlink es el fix
+
+Para un tap PROPIO que se edita seguido, la copia instalada es deuda: cada push
+exige re-instalar en cada perfil, y si no se hace, la copia drifta en silencio —
+el mismo patrón "doc que drifta respecto al estado real" que el playbook enseña
+a cazar. Un symlink elimina el paso: el cambio en el repo ES el cambio en el
+perfil.
+
+```bash
+for s in /ruta/al/tap/skills/*/; do
+  n=$(basename "$s")
+  ln -sfn "$s" ~/.claude/skills/$n     # Claude Code
+  ln -sfn "$s" ~/.hermes/skills/$n     # Hermes (perfil default)
+done
+```
+
+Ambos loaders resuelven symlinks (verificado 2026-09-11: Hermes ya tenía 28
+skills enganchadas así, y Claude Code levantó las descriptions editadas en vivo,
+sin re-instalar). Reservar el install por copia para consumidores externos del
+tap, que sí quieren una versión congelada.
+
+**Evidencia de que la copia falla sola:** el día que se publicó este tap, 2 de 5
+skills (incluida la insignia `empirical-project-playbook`) nunca llegaron al
+perfil default — el repo decía que estaban publicadas y el perfil no las tenía.
+Nadie lo notó porque nada falla: la skill simplemente no se carga nunca.
+Presence ≠ utility, aplicado a la propagación.
 
 ## Pitfalls
 

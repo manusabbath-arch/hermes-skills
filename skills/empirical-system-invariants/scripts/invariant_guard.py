@@ -86,11 +86,11 @@ def run_contract(contract, db_path=None):
                 report.append(f"[ROJO] {etapa}/{campo}: check not_null_ratio sin query")
                 failures += 1
                 continue
-            if not db_path or not _connect_db(db_path):
+            conn = _connect_db(db_path)
+            if conn is None:
                 report.append(f"[ROJO] {etapa}/{campo}: no hay DB para resolver la query")
                 errores += 1
                 continue
-            conn = _connect_db(db_path)
             try:
                 row = _query_one(conn, query)
             except Exception as e:  # noqa: BLE001 — un guard nunca traga un fallo de DB sin marcarlo
@@ -116,14 +116,15 @@ def run_contract(contract, db_path=None):
             null_es_defecto = c.get("null_es_defecto", True)
             expected = f"ratio={ratio:.3f} (min {min_ratio:.3f})" if total else "sin filas post-deploy"
 
+            # Sin filas post-deploy no hay nada que atestiguar: ninguna variante da verde.
+            if not total:
+                report.append(f"[ROJO] {etapa}/{campo}: no hay filas post-deploy para medir ({expected})")
+                errores += 1
+                continue
+
             if c.get("nulo_es_0", False):
                 # El dato legitimo se guarda como NULL/0 — no contar como defecto.
                 report.append(f"[OK] {etapa}/{campo}: nulo es 0 (dato legitimo), {expected}")
-                continue
-
-            if total == 0:
-                report.append(f"[ROJO] {etapa}/{campo}: no hay filas post-deploy para medir ({expected})")
-                errores += 1
                 continue
 
             if ratio >= min_ratio:

@@ -1,0 +1,33 @@
+name: validate
+
+# No `continue-on-error`, no `|| true`, no `|| echo`. A gate that cannot fail
+# is not a gate - that lesson is in empirical-project-playbook, and this repo
+# has to live by it.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate skill manifests and cited paths
+        run: python scripts/validate_skills.py
+
+      - name: Install test deps
+        run: python -m pip install --disable-pip-version-check pytest
+
+      - name: Verify the interpreter ran (a gate must tell "failed" from "never ran")
+        run: python -m pytest --version
+
+      - name: Run shipped script tests
+        run: python -m pytest skills -q

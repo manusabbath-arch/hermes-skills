@@ -21,16 +21,48 @@ plantillas (`templates/`), exactamente como los instala Hermes.
 
 ## Cómo editar y propagar un cambio de skill
 
-1. Editar la skill en este repo (`skills/<nombre>/`).
-2. Commit + push a `main`.
-3. Re-instalar la skill desde el tap en cada perfil local que la usa:
-   ```
-   hermes skills install <repo>/<ruta>          # perfil default
-   hermes --profile <nombre> skills install <repo>/<ruta>
-   ```
-   (o propagar los archivos manualmente al `skills/` del perfil,
-   preservando `templates/`.)
+Editar la skill en este repo (`skills/<nombre>/`), commit + push a `main`. El CI
+(`.github/workflows/validate.yml`) valida manifests, rutas citadas y tests antes
+de mergear.
 
-El tap es la FUENTE canónica (para instalación y search); la copia instalada en
-cada perfil es la que se carga. Un cambio al repo solo llega a los perfiles si
-se re-instala la skill — no se propaga solo.
+### Propagación: symlink, no copia (recomendado)
+
+Una copia instalada drifta respecto al tap y hay que re-instalarla a mano en cada
+perfil. Un symlink no: el cambio en el repo es el cambio en el perfil, sin paso
+intermedio.
+
+```bash
+for s in /ruta/al/tap/skills/*/; do
+  n=$(basename "$s")
+  ln -sfn "$s" ~/.claude/skills/$n     # Claude Code
+  ln -sfn "$s" ~/.hermes/skills/$n     # Hermes (perfil default)
+done
+```
+
+Ambos loaders resuelven symlinks (Hermes ya tiene 28 skills enganchadas así).
+
+### Instalación por copia (`hermes skills install`)
+
+Sigue funcionando y es lo correcto para consumidores externos del tap. Pero la
+copia **no se propaga sola**: un cambio al repo solo llega al perfil si se
+re-instala.
+
+```
+hermes skills install <repo>/<ruta>                   # perfil default
+hermes --profile <nombre> skills install <repo>/<ruta>
+```
+
+## Checks del repo
+
+El playbook que este tap publica dice: *"si es mecanizable, es check que falla el
+build, no párrafo"*. El repo se aplica su propia regla.
+
+```bash
+python3 scripts/validate_skills.py   # manifests, descriptions, rutas citadas
+python3 -m pytest skills -q          # tests de los scripts publicados
+```
+
+`validate_skills.py` falla el build si una skill pierde el frontmatter, si el
+`name` no coincide con el directorio, si la `description` es un stub que no
+dispara con nada, si el SKILL.md pasa las 500 líneas, o si el cuerpo cita una
+plantilla/referencia que no existe.

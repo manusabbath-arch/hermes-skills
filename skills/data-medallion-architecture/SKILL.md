@@ -1,6 +1,6 @@
 ---
 name: data-medallion-architecture
-description: "Use when designing an end-to-end data architecture: choosing a source, building a medallion (bronze-silver-gold) lakehouse pipeline, and turning it into hypothetical-scenario dashboards and AI/ML/MCP consumption."
+description: "Use when designing an end-to-end data architecture: choosing a source (API, database, SFTP), building a medallion bronze-silver-gold lakehouse pipeline, and turning it into hypothetical-scenario dashboards and AI/ML/MCP consumption. Covers source-selection tradeoffs and layer design patterns."
 version: 1.0.0
 author: Hermes Agent
 license: MIT
@@ -84,7 +84,8 @@ preferencia:
 - **Latencia, cuota, costo, disponibilidad.**
 - **Formato:** estructurado (DB/CSV) vs no estructurado (JSONL/payloads). Ambos entran — el
   no estructurado viaja como columna list/struct/variante, no forzado a plano.
-- Registrar la decisión en `templates/infra-decision.md` (mismo espíritu que el playbook:
+- Registrar la decisión en `empirical-project-playbook/templates/infra-decision.md`
+  (mismo espíritu que el playbook:
   criterio antes de ver los datos).
 
 ## De una fuente a escenarios hipotéticos → dashboard
