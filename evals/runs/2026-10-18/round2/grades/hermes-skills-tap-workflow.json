@@ -1,0 +1,9 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "Ambas explican que la copia instalada no se sincroniza sola; A pide re-instalar y B propone update o reinstalar."},
+{"pedido": 1, "criterio": 2, "A": true, "B": false, "nota": "A recomienda el symlink perfil->repo de forma explícita; B no menciona symlink."},
+{"pedido": 2, "criterio": 1, "A": true, "B": false, "nota": "A exige que name coincida con el directorio; B pide frontmatter con name pero no dice que tenga que coincidir con el directorio."},
+{"pedido": 2, "criterio": 2, "A": true, "B": false, "nota": "A corre validate_skills.py y pytest antes del push; B no corre checks del repo."},
+{"pedido": 2, "criterio": 3, "A": true, "B": false, "nota": "A actualiza la fila del README y el conteo verificado; B solo menciona registrar la skill en un índice, sin conteo."},
+{"pedido": 3, "criterio": 1, "A": true, "B": true, "nota": "Ambas ofrecen copia manual desde el repo (A también symlink; B clona y copia)."},
+{"pedido": 3, "criterio": 2, "A": true, "B": false, "nota": "A dice explícitamente que no se reintente en loop y que se verifique con ls; B no lo dice y verifica con hermes skills list."}
+]

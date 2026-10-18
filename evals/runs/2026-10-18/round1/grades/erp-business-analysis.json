@@ -1,0 +1,12 @@
+[
+{"pedido": 1, "criterio": 1, "A": false, "B": true, "nota": "B lee el período del preámbulo y no del nombre y lo declara; A solo habla de anotar la fecha de corte como supuesto."},
+{"pedido": 1, "criterio": 2, "A": true, "B": true, "nota": "Ambos comparan el mismo tramo de días o normalizan/anualizan antes de comparar."},
+{"pedido": 1, "criterio": 3, "A": false, "B": true, "nota": "B explicita agregar suma de ventas / suma de stock sin promediar ratios; A no lo aborda."},
+{"pedido": 1, "criterio": 4, "A": false, "B": true, "nota": "B declara la razón social y cierra con sello de procedencia; A no menciona ninguno."},
+{"pedido": 2, "criterio": 1, "A": false, "B": true, "nota": "B pone primero detalle vs total del mismo archivo; A solo lista totales mal sumados como causa posible, sin ese chequeo explícito."},
+{"pedido": 2, "criterio": 2, "A": true, "B": true, "nota": "Ambos anotan fecha y hora del export y las comparan con el estado posterior del ERP."},
+{"pedido": 2, "criterio": 3, "A": false, "B": true, "nota": "B busca moneda o unidad si el cociente es redondo; A no."},
+{"pedido": 2, "criterio": 4, "A": false, "B": false, "nota": "Ninguno atribuye al ERP sin evidencia, pero ninguno menciona retractar y propagar una corrección."},
+{"pedido": 3, "criterio": 1, "A": false, "B": true, "nota": "B incluye informe exacto, período, entidad, código, .csv/.xlsx nunca .xls y cifra de control; a A le faltan entidad, prohibir .xls y cifra de control."},
+{"pedido": 3, "criterio": 2, "A": false, "B": true, "nota": "B entrega un pedido estructurado equivalente a la plantilla; A solo describe un mensaje genérico."}
+]

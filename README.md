@@ -21,6 +21,10 @@ expect: 7
 
 ## Skills
 
+Cada skill se midió con y sin ella cargada, por un evaluador ciego: **58/58 criterios con
+skill contra 20/58 sin skill** (Sonnet, 21 pedidos). Método, resultados por skill y lo
+que la medición NO prueba: [`EVALS.md`](EVALS.md).
+
 | Skill | Propósito |
 |-------|-----------|
 | `empirical-project-playbook` | Método para proyectos empíricos construidos con agentes: anti-minería, checks que fallan el build, pre-registro, capa de análisis empresarial, capa de invariantes y veredictos (self-attesting), capa de data-engineering y lakehouse (ETL→Delta→ML/agentes), y aprendizajes transversales (CI/test, estructura, recolección de datos, know-how). Plantillas: pre-registro, checklist de checks, patrón de incidente, memo de infraestructura. |

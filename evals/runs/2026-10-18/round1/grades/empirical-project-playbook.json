@@ -1,0 +1,9 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "Ambas lo tratan explícitamente como hipótesis o hallazgo exploratorio con riesgo de sobreajuste por haber probado muchos cortes."},
+{"pedido": 1, "criterio": 2, "A": true, "B": false, "nota": "A pide pre-registro con kill/success numéricos y réplica en muestra fresca; B pide holdout, pero no fija criterios de kill/success antes de validar."},
+{"pedido": 1, "criterio": 3, "A": true, "B": false, "nota": "A pide shadow y observación antes de enforce; B ofrece paper trading o tamaño mínimo como alternativas, lo que permite ir directo a live con poco capital."},
+{"pedido": 2, "criterio": 1, "A": true, "B": false, "nota": "A pide correr una query de producción sobre filas post-deploy y verificar que los valores sean plausibles; B habla de uso y métricas, pero no de esa query."},
+{"pedido": 2, "criterio": 2, "A": true, "B": false, "nota": "A señala que la query de aceptación debió existir antes de construir; B solo menciona criterios de aceptación originales y no pregunta por esa query."},
+{"pedido": 3, "criterio": 1, "A": true, "B": true, "nota": "A propone un check que falla el build en CI; B propone un test de regresión que hace saltar el CI en lugar de sumar otra nota al README."},
+{"pedido": 3, "criterio": 2, "A": true, "B": false, "nota": "A lo registra como deuda en DEBT.md con fecha y evidencia; B abre un issue con dueño y fecha, pero sin evidencia y sin plantearlo como el caso no mecanizable."}
+]

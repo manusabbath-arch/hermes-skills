@@ -29,6 +29,13 @@ jobs:
       - name: Phantom wiring audit over the tap's own code
         run: python skills/agent-ready-project/scripts/phantom_wiring.py scripts skills
 
+      - name: Published eval tables match the raw grades
+        run: |
+          for r in evals/runs/2026-10-18/round1 evals/runs/2026-10-18/round2; do
+            python scripts/eval_report.py --grades "$r/grades" --key evals/runs/2026-10-18/key.json > /tmp/results.md
+            diff -u "$r/results.md" /tmp/results.md
+          done
+
       - name: Install test deps
         # El stack que delta-lakehouse y data-medallion-architecture declaran
         # validado: sus tests corren el código del SKILL.md con estas versiones.

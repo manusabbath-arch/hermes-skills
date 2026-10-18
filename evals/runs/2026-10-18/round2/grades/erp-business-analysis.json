@@ -1,0 +1,12 @@
+[
+{"pedido": 1, "criterio": 1, "A": false, "B": true, "nota": "B dice leer el período del preámbulo y no del nombre y declararlo; A solo menciona fecha de corte y deduce el período del calendario."},
+{"pedido": 1, "criterio": 2, "A": true, "B": true, "nota": "Ambos comparan el mismo tramo calendario o anualizan antes de comparar 2026 YTD contra 2025."},
+{"pedido": 1, "criterio": 3, "A": false, "B": true, "nota": "B explicita totales agregados y nunca promedio de ratios; A no aborda el tema."},
+{"pedido": 1, "criterio": 4, "A": false, "B": true, "nota": "B declara la razón social y cierra con sello de procedencia (archivo, sha256, filas); A no hace ninguna de las dos cosas."},
+{"pedido": 2, "criterio": 1, "A": false, "B": true, "nota": "B arranca comparando el detalle con el total del propio archivo; A compara cliente por cliente contra el ERP y solo lista los totales mal sumados como una causa posible."},
+{"pedido": 2, "criterio": 2, "A": true, "B": true, "nota": "Ambos revisan la fecha y hora del export frente a la consulta al ERP."},
+{"pedido": 2, "criterio": 3, "A": false, "B": true, "nota": "B dice explícitamente que un cociente redondo apunta a moneda o unidad; A solo menciona el tipo de cambio de forma genérica."},
+{"pedido": 2, "criterio": 4, "A": false, "B": true, "nota": "B no publica la atribución sin evidencia y dice retractar en todos los lugares donde se citó; A evita atribuir pero no menciona retractar ni propagar."},
+{"pedido": 3, "criterio": 1, "A": false, "B": true, "nota": "B especifica informe, período, entidad, código de producto, .csv/.xlsx nunca .xls y cifra de control; a A le faltan la entidad, la exclusión de .xls y la cifra de control."},
+{"pedido": 3, "criterio": 2, "A": false, "B": true, "nota": "B arma un pedido estructurado equivalente a la plantilla (informe, parámetros, formato, verificación); A solo da una lista informal."}
+]

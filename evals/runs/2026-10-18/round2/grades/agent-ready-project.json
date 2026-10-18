@@ -1,0 +1,12 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": false, "nota": "A señala que no distingue fallo de intérprete roto y agrega `python -m pytest --version` antes; B critica el pipe pero no menciona el intérprete ni agrega ese paso."},
+{"pedido": 1, "criterio": 2, "A": true, "B": true, "nota": "Ambos quitan el `|| true` y explican que así el check nunca puede fallar (A: 'incapaz de fallar'; B: 'anula el check: nunca falla')."},
+{"pedido": 1, "criterio": 3, "A": true, "B": false, "nota": "A usa baseline sin suprimir familias; B filtra con `-ll -ii` y deja fuera clases enteras de hallazgos de severidad/confianza baja."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Ambos proponen congelar la deuda con una baseline y fallar solo con violaciones nuevas (B vía `--add-noqa`/baseline file)."},
+{"pedido": 2, "criterio": 2, "A": true, "B": false, "nota": "A indexa por archivo + regla + símbolo y no por línea; B no dice nada sobre la identidad de las entradas."},
+{"pedido": 2, "criterio": 3, "A": true, "B": false, "nota": "A reporta las claves stale para que la deuda solo baje; B no menciona claves stale."},
+{"pedido": 3, "criterio": 1, "A": true, "B": false, "nota": "A propone un worktree y una rama `<agente>/<tema>` y deja el árbol principal solo para integrar; B propone worktree/rama por agente pero no reserva el árbol principal para integración."},
+{"pedido": 3, "criterio": 2, "A": true, "B": false, "nota": "A advierte sobre HEAD detached, pone `git switch -c` como primer paso y propone una guarda equivalente; B no lo menciona."},
+{"pedido": 3, "criterio": 3, "A": true, "B": false, "nota": "A exige commits con pathspec y prohíbe `--amend` sobre commits ajenos; B no trata ninguno de los dos puntos."},
+{"pedido": 3, "criterio": 4, "A": true, "B": false, "nota": "A da a cada agente una guarda física y mide la cobertura con un comando; B no propone ninguna de las dos cosas."}
+]

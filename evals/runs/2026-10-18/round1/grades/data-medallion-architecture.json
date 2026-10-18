@@ -1,0 +1,10 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": false, "nota": "A define una ingesta distinta por fuente (API incremental con cursor, paginación y reintentos; Postgres por snapshot o CDC con updated_at; SFTP copiando el archivo original); B solo dice que hay que comparar las fuentes y no elige la forma de ingesta de ninguna."},
+{"pedido": 1, "criterio": 2, "A": true, "B": true, "nota": "Las dos separan explícitamente Bronze (crudo, append), Silver (tipado, deduplicado) y Gold (agregados para consumo)."},
+{"pedido": 1, "criterio": 3, "A": true, "B": true, "nota": "A propone una tabla de supuestos de escenario aplicada sobre Gold; B arma los escenarios como la misma query de Gold con parámetros explícitos (descuento, volumen) y fija la pregunta de negocio."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Las dos explican que Bronze conserva el crudo para reprocesar y auditar y que la limpieza va en Silver."},
+{"pedido": 2, "criterio": 2, "A": false, "B": false, "nota": "Ninguna menciona el time-travel ni el historial de versiones de Delta."},
+{"pedido": 3, "criterio": 1, "A": false, "B": true, "nota": "A usa DuckDB con Parquet, sin deltalake; B usa deltalake, duckdb y pyarrow."},
+{"pedido": 3, "criterio": 2, "A": false, "B": true, "nota": "A escribe archivos Parquet sueltos, no tablas Delta; B escribe tres tablas Delta separadas, cada una con su responsabilidad."},
+{"pedido": 3, "criterio": 3, "A": false, "B": false, "nota": "A solo verifica que Silver no tenga duplicados y B solo imprime Gold; ninguna comprueba que Gold tenga valores plausibles."}
+]
