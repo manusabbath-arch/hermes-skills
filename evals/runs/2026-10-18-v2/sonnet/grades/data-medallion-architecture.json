@@ -1,0 +1,17 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "Ambas diferencian la ingesta por fuente: API incremental por cursor, Postgres snapshot/CDC, SFTP con copia y checksum/hash."},
+{"pedido": 1, "criterio": 2, "A": true, "B": true, "nota": "Ambas asignan Bronze crudo (A append-only, B inmutable sin tocar), Silver tipado y deduplicado, y Gold agregado de consumo."},
+{"pedido": 1, "criterio": 3, "A": true, "B": true, "nota": "A conecta Gold con escenarios como query parametrizada con supuestos explícitos; B usa una tabla de parámetros de escenarios base/optimista/pesimista sobre Gold."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Ambas explican que Bronze sirve para reprocesar y auditar y que la limpieza va después, en Silver."},
+{"pedido": 2, "criterio": 2, "A": true, "B": false, "nota": "A menciona el time-travel de Delta; B no menciona time-travel ni historial de Delta."},
+{"pedido": 3, "criterio": 1, "A": true, "B": false, "nota": "A usa deltalake + duckdb + pyarrow; B usa PySpark, otro stack."},
+{"pedido": 3, "criterio": 2, "A": true, "B": true, "nota": "Ambas escriben Bronze, Silver y Gold como tablas Delta separadas, cada una con su responsabilidad."},
+{"pedido": 3, "criterio": 3, "A": true, "B": false, "nota": "A relee Gold y comprueba con un assert que los precios sean plausibles; B no verifica Gold."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Ambas proponen una ingesta idempotente por checksum/hash SHA-256 y conservan el crudo en Bronze."},
+{"pedido": 4, "criterio": 2, "A": true, "B": true, "nota": "Ambas deduplican en Silver por clave de negocio."},
+{"pedido": 4, "criterio": 3, "A": true, "B": true, "nota": "A cuadra el total de Gold contra el proveedor o el sistema origen; B compara los totales por archivo contra Gold y alerta si no coinciden."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambas rechazan el 0 y usan NULL, porque un 0 se sumaría como dato real."},
+{"pedido": 5, "criterio": 2, "A": true, "B": true, "nota": "A cuenta y reporta los NULL por campo; B agrega una columna de calidad para auditar cuántos casos hay y alerta si el porcentaje es alto."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambas responden de forma directa y correcta sobre las diferencias entre CSV y Parquet."},
+{"pedido": 6, "criterio": 2, "A": false, "B": true, "nota": "A mete Bronze y Delta Lake, herramientas del dominio que no se pidieron; B solo menciona Silver y Gold de pasada como ejemplo, sin agregar procesos ni herramientas."}
+]

@@ -1,0 +1,19 @@
+[
+{"pedido": 1, "criterio": 1, "A": false, "B": true, "nota": "A explica el problema del pipe pero no agrega un paso que verifique el intérprete; B señala lo del intérprete inexistente y agrega `python -m pytest --version`."},
+{"pedido": 1, "criterio": 2, "A": true, "B": true, "nota": "Las dos quitan el `|| true` y explican que bandit así nunca puede fallar; B además propone un escape hatch con nombre."},
+{"pedido": 1, "criterio": 3, "A": true, "B": true, "nota": "Ninguna suprime familias enteras: las dos proponen baseline o excepciones puntuales."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Las dos proponen una baseline con trinquete que falla solo con violaciones nuevas."},
+{"pedido": 2, "criterio": 2, "A": true, "B": true, "nota": "A usa archivo + regla + hash de la línea y descarta el número de línea, que es equivalente; B usa archivo + regla + símbolo."},
+{"pedido": 2, "criterio": 3, "A": false, "B": true, "nota": "A solo limita el conteo total y no reporta claves stale; B reporta las stale de forma explícita."},
+{"pedido": 3, "criterio": 1, "A": false, "B": true, "nota": "A propone worktree y rama por agente, pero no por sesión ni deja el árbol principal solo para integrar; B cumple las dos cosas."},
+{"pedido": 3, "criterio": 2, "A": false, "B": true, "nota": "A no menciona HEAD detached; B lo advierte, pone `git switch -c` como primer paso y propone un guard equivalente."},
+{"pedido": 3, "criterio": 3, "A": false, "B": true, "nota": "A no habla de pathspec ni de `--amend`; B pide las dos cosas."},
+{"pedido": 3, "criterio": 4, "A": false, "B": true, "nota": "A no propone guardas por agente; B propone un guard por agente y medir la cobertura con un comando."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Las dos explican que el '0 problemas' salió de no revisar nada."},
+{"pedido": 4, "criterio": 2, "A": true, "B": true, "nota": "Las dos piden que se informe cuántos archivos revisó y que cero revisados sea rojo."},
+{"pedido": 4, "criterio": 3, "A": true, "B": true, "nota": "A pide un test con directorio vacío o inexistente que tiene que fallar; B propone auditar vaciando el universo de este check y de los demás."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Las dos piden verificar uno mismo el PR y el CI con `gh pr view` y `gh pr checks`; B también pide el SHA."},
+{"pedido": 5, "criterio": 2, "A": false, "B": true, "nota": "A no habla de delegar solo tareas atómicas; B lo recomienda y deja el diseño en la sesión principal."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Las dos responden directo con el rename del editor; B atribuye por error F2 a PyCharm, pero lo central es correcto."},
+{"pedido": 6, "criterio": 2, "A": true, "B": true, "nota": "Ninguna agrega procesos del dominio de la skill; solo sugieren correr tests o linter, que es razonable."}
+]

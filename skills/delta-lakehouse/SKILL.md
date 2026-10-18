@@ -1,6 +1,6 @@
 ---
 name: delta-lakehouse
-description: "Use when building an ETL or data pipeline, or storing structured and unstructured data in a Delta lakehouse for ML training or AI agent consumption. Covers extraction from heterogeneous sources, Delta tables with operation history and time travel, upsert patterns, partitioning, vacuum and compaction, using deltalake + duckdb + pyarrow."
+description: "Use when building an ETL or data pipeline, or storing structured and unstructured data in a Delta lakehouse for ML training or AI agent consumption. Covers extraction from heterogeneous sources, Delta tables with operation history and time travel, upsert patterns, partitioning, vacuum and compaction, retention, reading Delta offline, using deltalake + duckdb + pyarrow. Not for designing bronze/silver/gold layers or per-source ingest: use data-medallion-architecture."
 version: 1.0.0
 author: Hermes Agent
 license: MIT
@@ -20,6 +20,10 @@ resuelve el almacenado de estructurado + no estructurado, el historial de operac
 **Origen:** un sistema de trading (2026) con datos operativos que vivían en
 SQLite/JSON/logs no versionados, imposibles de reproducir para entrenar un modelo o
 auditar qué estado vio un agente.
+
+## Cuándo NO aplicarla
+
+Si el pedido es una pregunta puntual de lectura o escritura de datos (cómo leer un CSV con pandas), se responde **solo eso**, directo y sin agregar procesos, chequeos ni advertencias de esta skill que nadie pidió: esta skill aplica a guardar y operar tablas Delta. Diseñar capas Bronze/Silver/Gold, ingesta por tipo de fuente o deduplicación: `data-medallion-architecture`.
 
 ## Stack (validado end-to-end 2026)
 

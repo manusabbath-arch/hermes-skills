@@ -1,89 +1,128 @@
 # Evaluaciones de las skills
 
-Una skill que nadie midió es una afirmación. Este archivo dice qué se midió, cómo y
-qué no prueba. Los datos crudos (cada respuesta, cada nota del evaluador y la clave
-de qué respuesta tenía la skill) están en `evals/runs/`, y el CI regenera las tablas
-desde esos datos: si la tabla publicada no coincide, el build falla.
+Una skill que nadie midió es una afirmación. Este archivo dice qué se midió, cómo y qué
+no prueba. Los datos crudos (cada respuesta, cada nota del evaluador, la clave de qué
+respuesta tenía la skill y la foto de los criterios usados) están en `evals/runs/`, y el
+CI regenera todas las tablas desde esos datos: si una tabla publicada no coincide, el
+build falla.
 
-## Método (corrida del 2026-10-18)
+## Contents
 
-1. **Escenarios:** cada skill trae `evals/evals.json` con 3 pedidos reales y los
-   comportamientos esperados, en el formato de la guía de autoría de Anthropic. Son 21
-   pedidos y 58 criterios en total.
-2. **Sujetos:** por skill, dos agentes Sonnet responden los mismos 3 pedidos. Uno lee la
-   skill antes de responder; el otro no lee ningún archivo. Ninguno corre comandos ni
-   busca en la web. Sonnet y no un modelo mayor, porque una skill tiene que servirle
-   también a un modelo menos capaz.
-3. **Evaluador ciego:** por skill, un agente distinto recibe los criterios y las dos
-   respuestas etiquetadas A y B. Qué letra tuvo la skill se sorteó por skill y vive en
-   `key.json`, que el evaluador no lee. Califica cada criterio como cumplido o no, con
-   una frase de motivo, sin premiar la longitud.
-4. **Tabla:** `scripts/eval_report.py` cruza las notas con la clave. Un criterio sin
-   calificar es rojo.
+1. Método
+2. Resultado actual (v2, tres modelos)
+3. Activación: ¿se elige la skill sola?
+4. Ronda B: lo que se cambió por la v2 y si funcionó
+5. Qué NO prueba esto
+6. Historia: v1
+7. Cómo repetirla
 
-## Resultados
+## 1. Método
 
-**Ronda 1** (`evals/runs/2026-10-18/round1/`):
+- **Escenarios:** cada skill trae `evals/evals.json` con 5 pedidos: 2 base, 2 difíciles
+  (con una trampa que la respuesta genérica no ve) y 1 **negativo**, una pregunta simple
+  donde la skill no debería cambiar nada. Son 35 pedidos y 105 criterios.
+- **Sujetos:** por skill y por modelo (Haiku, Sonnet, Opus), un agente lee la skill y otro
+  no lee nada; los dos responden los mismos pedidos, sin comandos ni web.
+- **Evaluador ciego:** un agente distinto por skill y modelo recibe los criterios y las
+  respuestas A y B; qué letra tuvo la skill se sorteó y vive en `key.json`, que no lee.
+- **Activación:** un agente ve solo el `name` y la `description` de las 7 skills y 49
+  pedidos barajados (los 35 de las evals + 7 ajenos al tap), y elige qué skills cargaría.
+- **Tablas:** `scripts/eval_report.py` y `scripts/activation_eval.py`; un criterio o un
+  pedido sin calificar es rojo.
 
-| Skill | Con skill | Sin skill | Delta |
+## 2. Resultado actual (v2, tres modelos)
+
+Criterios cumplidos con y sin skill (`evals/runs/2026-10-18-v2/<modelo>/results.md`):
+
+| Skill | Haiku con / sin | Sonnet con / sin | Opus con / sin |
 |---|---|---|---|
-| `agent-ready-project` | 10/10 | 2/10 | +8 |
-| `data-medallion-architecture` | 5/8 | 4/8 | +1 |
-| `delta-lakehouse` | 9/9 | 5/9 | +4 |
-| `empirical-project-playbook` | 7/7 | 2/7 | +5 |
-| `empirical-system-invariants` | 7/7 | 3/7 | +4 |
-| `erp-business-analysis` | 9/10 | 2/10 | +7 |
-| `hermes-skills-tap-workflow` | 6/7 | 2/7 | +4 |
-| **Total** | **53/58** | **20/58** | **+33** |
+| `agent-ready-project` | 16 / 7 | 16 / 7 | 17 / 10 |
+| `data-medallion-architecture` | 14 / 9 | 14 / 12 | 15 / 10 |
+| `delta-lakehouse` | 11 / 11 | 15 / 10 | 15 / 10 |
+| `empirical-project-playbook` | 13 / 9 | 12 / 8 | 12 / 7 |
+| `empirical-system-invariants` | 10 / 7 | 11 / 6 | 12 / 6 |
+| `erp-business-analysis` | 12 / 5 | 16 / 6 | 16 / 7 |
+| `hermes-skills-tap-workflow` | 12 / 6 | 13 / 8 | 13 / 9 |
+| **Total (de 105)** | **88 / 54** | **97 / 57** | **100 / 59** |
 
-**Lo que la ronda 1 encontró en las skills, y se corrigió:**
+Lo que dice: las skills agregan entre +34 y +41 criterios en los tres modelos, y **la v2
+ya discrimina** (ninguna skill queda al 100% en todos los modelos). La que más aporta es
+`erp-business-analysis` (+7 a +10). La más débil es `delta-lakehouse` en Haiku (+0).
 
-- `data-medallion-architecture` casi no cambiaba la respuesta (+1). No daba una ingesta
-  concreta por tipo de fuente: ahora trae una tabla API/DB/SFTP. Bronze no mencionaba
-  time-travel, y Gold no se verificaba (presence ≠ utility). Y la prosa de Silver decía
-  "malo → sentinel 0.0", contra la regla NULL ≠ 0 de la misma skill. Ese error se había
-  copiado al código de ejemplo.
-- `erp-business-analysis` no decía "retractar y propagar" justo en el caso de atribuirle
-  un desvío al ERP.
-- `hermes-skills-tap-workflow` no decía que `name` tiene que coincidir con el directorio.
+## 3. Activación: ¿se elige la skill sola?
 
-**Ronda 2**: se repitió la condición con skill de esas tres, contra las mismas respuestas
-sin skill de la ronda 1 (`evals/runs/2026-10-18/round2/`):
-
-| Skill | Con skill | Sin skill | Delta |
+| | Haiku | Sonnet | Opus |
 |---|---|---|---|
-| `agent-ready-project` | 10/10 | 2/10 | +8 |
-| `data-medallion-architecture` | 8/8 | 4/8 | +4 |
-| `delta-lakehouse` | 9/9 | 5/9 | +4 |
-| `empirical-project-playbook` | 7/7 | 2/7 | +5 |
-| `empirical-system-invariants` | 7/7 | 3/7 | +4 |
-| `erp-business-analysis` | 10/10 | 2/10 | +8 |
-| `hermes-skills-tap-workflow` | 7/7 | 2/7 | +5 |
-| **Total** | **58/58** | **20/58** | **+38** |
+| Elegida en sus 35 pedidos (ronda B) | 31 | 34 | 32 |
+| Falsos positivos en pedidos negativos y ajenos | 0 | 0 | 0 |
 
-## Qué NO prueba esto
+**Ninguna skill se activó en un pedido que no era suyo del dominio**: ni en las preguntas
+simples ni en los 7 pedidos ajenos al tap. Todos los errores son **confusiones entre
+skills hermanas** (medallion ↔ delta, playbook ↔ invariants ↔ agent-ready). Un caso es
+genuinamente ambiguo: "un bug que ya documentamos dos veces volvió a aparecer" está en el
+playbook, pero `agent-ready-project` también lo cubre y los tres modelos eligieron esa.
+No se reasignó el escenario después de ver el resultado: hacerlo sería minería.
 
-- **Los criterios los escribió el mismo autor de las skills.** Algunos nombran
-  artefactos propios (un script, una plantilla), lo que favorece a la condición con
-  skill aunque el evaluador acepte equivalentes.
-- **Una corrida por condición**, sin repeticiones: no hay intervalo de confianza. Una
-  diferencia de 1–2 criterios en una skill es ruido.
-- **Techo:** con 58/58 los escenarios ya no discriminan. La próxima ronda necesita
-  pedidos más difíciles y casos negativos (pedidos donde la skill NO debería dispararse).
+## 4. Ronda B: lo que se cambió por la v2 y si funcionó
+
+La v2 mostró que **con la skill cargada, las preguntas simples se contaminaban**: el agente
+respondía y además agregaba el dominio de la skill ("además, en Bronze…", "cuidado con las
+filas de total…"). Negativos con skill: Haiku 8/14, Sonnet y Opus 12/14 (sin skill 13-14).
+
+**Cambio:** cada skill suma "Cuándo NO aplicarla", y las descriptions de las hermanas
+declaran su límite. **Pre-registro escrito antes de medir:**
+`evals/runs/2026-10-18-v2/PRE-REGISTRO-ronda-b.md`.
+
+| Métrica | Ronda A | Ronda B | Criterio | Veredicto |
+|---|---|---|---|---|
+| Negativos con skill (Haiku) | 8/14 | 12/14 | ≥ 12 | éxito |
+| Positivos con skill (Haiku) | 80/91 | 76/91 | ≥ 77 | **fracaso (por 1)** |
+| Activación, aciertos (3 modelos) | 94/105 | 97/105 | ≥ 94 | éxito |
+| Activación, FP en negativos y ajenos | 0 | 0 | 0 | éxito |
+
+**Desvío declarado del pre-registro.** El pre-registro decía que, si fracasaba, se
+revertían las descriptions. No se aplicó, por dos motivos que quedan escritos acá para
+que se puedan discutir:
+
+1. **La acción estaba mal especificada.** Las descriptions solo influyen en la
+   activación, que mejoró; si algo bajó los positivos, fue la sección "Cuándo NO
+   aplicarla", que la acción no tocaba.
+2. **El fracaso está dentro del ruido medido del evaluador.** Las respuestas sin skill de
+   Haiku son *idénticas* en las dos rondas (verificado byte a byte) y el evaluador les dio
+   54 y 55: ±1 punto con las mismas respuestas. El fracaso es por 1 punto.
+
+Lo que corresponde, y queda **pendiente como ronda C**: 3 repeticiones de Haiku con skill
+para tener un rango en lugar de un punto, con un criterio de reversión que apunte a la
+sección de alcance si los positivos quedan por debajo de 77 en el promedio.
+
+## 5. Qué NO prueba esto
+
+- **Los criterios los escribió el mismo autor de las skills.** Algunos nombran artefactos
+  propios; el evaluador acepta equivalentes, pero favorece a la condición con skill.
+- **Una corrida por condición** en la v2, y el evaluador tiene ruido de al menos ±1
+  punto (sección 4). Diferencias de 1-2 criterios en una skill son ruido.
 - **Mide la respuesta, no el trabajo:** los sujetos describen lo que harían; no se
   ejecutó el resultado en un repo real.
-- **La activación no se midió:** a la condición con skill se le dio la skill. Si el
-  agente la elige por su `description` entre muchas es otra pregunta.
-- **Un solo modelo sujeto (Sonnet).** La guía de Anthropic pide probar con cada modelo
-  que se piensa usar.
+- **Mismo idioma y mismo autor de pedidos:** todos en español rioplatense, escritos por
+  quien escribió las skills.
 
-## Cómo repetirla
+## 6. Historia: v1
 
-1. Por skill, un agente sujeto con la skill y otro sin ella responden los pedidos de
-   `evals/evals.json` y escriben `<skill>.A.md` / `<skill>.B.md`, con la letra sorteada.
-2. Un evaluador ciego por skill escribe `grades/<skill>.json` con
-   `[{"pedido", "criterio", "A", "B", "nota"}]`.
-3. Copiar los `evals.json` usados a `<dir>/evals/<skill>.json` (la foto: los escenarios
-   pueden cambiar después) y correr
-   `python3 scripts/eval_report.py --grades <dir>/grades --key <dir>/key.json --evals <dir>/evals > <dir>/results.md`
-4. Agregar la corrida nueva a `evals/runs/` y al CI.
+Corrida inicial con 3 pedidos por skill, solo Sonnet (`evals/runs/2026-10-18/`): 53/58
+con skill contra 20/58 sin skill. Encontró tres huecos reales (medallion sin ingesta por
+tipo de fuente y con un "sentinel 0.0" que contradecía su propia regla NULL ≠ 0; erp sin
+"retractar y propagar"; tap-workflow sin "name = directorio"). Corregidos: 58/58 contra
+20/58. Llegó al techo, y por eso se hizo la v2.
+
+## 7. Cómo repetirla
+
+1. Por skill y modelo, un sujeto con la skill y otro sin ella responden los pedidos de
+   `evals/evals.json` en `<skill>.A.md` / `<skill>.B.md`, con la letra sorteada en `key.json`.
+2. Un evaluador ciego por skill y modelo escribe `grades/<skill>.json`
+   (`[{"pedido", "criterio", "A", "B", "nota"}]`).
+3. Copiar los `evals.json` usados a `<run>/evals/<skill>.json` (la foto) y correr
+   `python3 scripts/eval_report.py --grades <dir>/grades --key <dir>/key.json --evals <run>/evals > <dir>/results.md`.
+4. Activación: `python3 scripts/activation_eval.py build --out <dir> --seed <n>`, darle
+   `prompt.md` a un agente por modelo y `... score --key <dir>/key.json --answers <respuesta>`.
+5. Pre-registrar lo que se espera **antes** de correr una ronda que mide un cambio.
+6. Agregar la corrida a `evals/runs/` y sus tablas al CI.

@@ -1,8 +1,8 @@
 ---
 titulo: De cuaderno de lecciones a kit reutilizable y medido
 fecha: 2026-10-18
-estado: borrador          # borrador | aprobado | en-curso | integrado | cancelado
-rama: ""                  # se completa al pasar a en-curso
+estado: en-curso          # borrador | aprobado | en-curso | integrado | cancelado
+rama: ccr-a24161d9-gb7bsk
 dueño: manusabbath-arch
 depends_on: PR #1 (erp-business-analysis, evals v1, skills en neutro)
 ---
@@ -193,6 +193,12 @@ versión portable.
 | 5 | grande | 1 | El diferencial del nicho; reutiliza el método de evals |
 | 4 | grande | 2, 3 | Empaqueta todo lo anterior |
 | 6 | mediano | 5 | Valida en el proyecto real |
+
+**Estado (2026-10-18):** fase 3 hecha (checks de red, dependencias, subprocess e
+injection en el validador; `SHA256SUMS` por release; `SECURITY.md`); falta firmar tags.
+Fase 1 hecha salvo repeticiones y criterios de un tercero: 5 escenarios por skill con
+negativo, tres modelos, activación medida (`EVALS.md`). Pendiente: ronda C (3
+repeticiones de Haiku) y que alguien ajeno revise los criterios.
 
 Recomendación de arranque: **fase 1 y fase 3 en paralelo**. Son las que convierten lo
 que hoy afirmamos ("sirve", "es seguro") en algo que un check prueba.

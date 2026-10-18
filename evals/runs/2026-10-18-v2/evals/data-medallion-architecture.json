@@ -1,0 +1,72 @@
+[
+  {
+    "skills": [
+      "data-medallion-architecture"
+    ],
+    "query": "Tenemos ventas en una API REST, el maestro de clientes en Postgres y un CSV diario por SFTP. Diseñá la arquitectura de datos para un dashboard de escenarios.",
+    "files": [],
+    "expected_behavior": [
+      "Elige y justifica la forma de ingesta por fuente (API, DB, SFTP) en vez de tratarlas igual",
+      "Asigna roles separados a Bronze (crudo, append), Silver (limpio, tipado, deduplicado) y Gold (agregados de consumo)",
+      "Conecta Gold al dashboard de escenarios hipotéticos con supuestos explícitos"
+    ]
+  },
+  {
+    "skills": [
+      "data-medallion-architecture"
+    ],
+    "query": "¿Puedo limpiar y deduplicar directamente al ingestar, así me ahorro la capa Bronze?",
+    "files": [],
+    "expected_behavior": [
+      "Explica que Bronze guarda el crudo para poder reprocesar y auditar, y que la limpieza va en Silver",
+      "Menciona time-travel/historial de Delta como parte del valor de conservar el crudo"
+    ]
+  },
+  {
+    "skills": [
+      "data-medallion-architecture"
+    ],
+    "query": "Armame el código para pasar un CSV de ventas por Bronze, Silver y Gold usando el stack que recomienda la skill.",
+    "files": [],
+    "expected_behavior": [
+      "Usa el stack validado de la skill (deltalake + duckdb + pyarrow) en vez de inventar otro",
+      "Escribe cada capa como tabla Delta separada con su responsabilidad",
+      "Incluye una verificación de que Gold se lee con valores plausibles (presence ≠ utility)"
+    ]
+  },
+  {
+    "skills": [
+      "data-medallion-architecture"
+    ],
+    "query": "El proveedor reenvió por SFTP el mismo CSV dos veces y el total de Gold se duplicó. ¿Cómo lo arreglamos?",
+    "files": [],
+    "expected_behavior": [
+      "Hace la ingesta idempotente por checksum o identidad del archivo, conservando el crudo en Bronze",
+      "Deduplica en Silver por clave primaria, no en la ingesta",
+      "Propone verificar el total de Gold contra una fuente independiente para detectar duplicaciones"
+    ]
+  },
+  {
+    "skills": [
+      "data-medallion-architecture"
+    ],
+    "query": "Un campo de precio a veces viene 'n/d'. ¿Lo pongo en 0 en Silver para que no rompan los promedios?",
+    "files": [],
+    "expected_behavior": [
+      "Rechaza el 0: lo que no parsea queda NULL, porque un 0 inventado se suma como dato real",
+      "Propone contar y reportar los NULL por campo"
+    ]
+  },
+  {
+    "skills": [
+      "data-medallion-architecture"
+    ],
+    "query": "¿Qué diferencia hay entre CSV y Parquet?",
+    "files": [],
+    "expected_behavior": [
+      "Responde la pregunta concreta de forma directa y correcta",
+      "No agrega procesos, chequeos ni herramientas del dominio de la skill que el pedido no pide"
+    ],
+    "negativo": true
+  }
+]

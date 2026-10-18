@@ -1,0 +1,74 @@
+[
+  {
+    "skills": [
+      "erp-business-analysis"
+    ],
+    "query": "Te paso el export 'Ventas 2026 YTD.csv' del ERP; calculame la rotación de stock por producto y compará contra 2025.",
+    "files": [],
+    "expected_behavior": [
+      "Lee el período del preámbulo del export y no del nombre del archivo, y lo declara",
+      "Normaliza por días antes de comparar períodos de distinto largo",
+      "Calcula rotación agregando (ventas totales / stock), no promediando ratios por producto",
+      "Declara la razón social bajo la que corrió y cierra con un sello de procedencia (`scripts/provenance_seal.py`)"
+    ]
+  },
+  {
+    "skills": [
+      "erp-business-analysis"
+    ],
+    "query": "El total de deuda que sacamos del export no coincide con lo que muestra el ERP; parece que el ERP está desactualizado.",
+    "files": [],
+    "expected_behavior": [
+      "Compara el archivo contra sí mismo (detalle vs total) antes de culpar al ERP",
+      "Revisa período y hora del export frente a la base viva",
+      "Si el cociente del desvío es un número redondo, busca moneda o unidad",
+      "No publica la atribución al ERP sin evidencia; si hay que corregir, retracta y propaga"
+    ]
+  },
+  {
+    "skills": [
+      "erp-business-analysis"
+    ],
+    "query": "Necesito el margen por producto de 2025; pedile al cliente el export que haga falta.",
+    "files": [],
+    "expected_behavior": [
+      "Arma el pedido con informe exacto, parámetros (período, entidad, código de producto), formato .csv/.xlsx (nunca .xls) y cifra de control",
+      "Usa o sigue `templates/export-request.md`"
+    ]
+  },
+  {
+    "skills": [
+      "erp-business-analysis"
+    ],
+    "query": "Sumé el export 'Ventas por vendedor y marca 2026' y me da exactamente el doble que el informe de Estadística del ERP.",
+    "files": [],
+    "expected_behavior": [
+      "Sospecha de una fila de total o subtotal que sobrevivió a la suma",
+      "Pide imprimir el encabezado de cada export y cruzar por nombre de columna, no por posición",
+      "Propone contrastar las filas leídas contra las líneas del archivo"
+    ]
+  },
+  {
+    "skills": [
+      "erp-business-analysis"
+    ],
+    "query": "La deuda de un cliente difiere $290.000 entre el export de la mañana y el de la tarde. ¿Hay una partición entre las dos razones sociales?",
+    "files": [],
+    "expected_behavior": [
+      "Antes de concluir partición, revisa la hora de cada export y los movimientos cargados entre una y otra",
+      "Declara bajo qué razón social corrió cada export"
+    ]
+  },
+  {
+    "skills": [
+      "erp-business-analysis"
+    ],
+    "query": "¿Qué fórmula de Excel uso para sumar una columna?",
+    "files": [],
+    "expected_behavior": [
+      "Responde la pregunta concreta de forma directa y correcta",
+      "No agrega procesos, chequeos ni herramientas del dominio de la skill que el pedido no pide"
+    ],
+    "negativo": true
+  }
+]

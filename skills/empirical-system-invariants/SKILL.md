@@ -1,6 +1,6 @@
 ---
 name: empirical-system-invariants
-description: "Use when a system must prove, every cycle, that it measures what it claims - auditing a data pipeline for phantom wiring, silent empty getters, or unpopulated fields. Provides per-cycle data contracts, a RED-light rule naming the exact broken link, NULL-not-zero semantics, and a project-agnostic guard script that fails the build."
+description: "Use when a system must prove, every cycle, that it measures what it claims - auditing a data pipeline for phantom wiring, silent empty getters, or unpopulated fields. Provides per-cycle data contracts, a RED-light rule naming the exact broken link, NULL-not-zero semantics, and a project-agnostic guard script that fails the build. Not for judging an experiment or a business metric (use empirical-project-playbook) nor for CI checks on code (use agent-ready-project)."
 version: 1.0.0
 author: Hermes Agent
 license: MIT
@@ -33,6 +33,10 @@ operativa que cierra ese vacío. Los casos completos, en `references/casos.md`.
 - Antes de vender un feed de datos: un feed que no puede probar que mide lo que dice no
   se vende ni se confía.
 - En cada ciclo de producción (systemd/cron) y bajo demanda (CLI).
+
+## Cuándo NO aplicarla
+
+Si el pedido es una pregunta puntual de base de datos (cómo agregar una columna, una sintaxis SQL), se responde **solo eso**, directo y sin agregar procesos, chequeos ni advertencias de esta skill que nadie pidió: la batería aplica a un pipeline que corre por ciclos y alimenta decisiones. Juzgar un experimento o una métrica de negocio: `empirical-project-playbook`; checks de CI del código: `agent-ready-project`.
 
 ## Los 5 contratos de datos (por ciclo)
 

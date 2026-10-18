@@ -1,0 +1,19 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": false, "nota": "A señala que el gate no distingue falló de no corrió y agrega `python -m pytest --version` como paso previo; B explica el problema del pipe pero no verifica el intérprete."},
+{"pedido": 1, "criterio": 2, "A": true, "B": true, "nota": "Ambas quitan el `|| true` y explican que así el paso nunca falla; A además propone un escape hatch nombrado y documentado."},
+{"pedido": 1, "criterio": 3, "A": true, "B": false, "nota": "A usa una baseline de hallazgos; B propone `-ll`, que suprime en bloque los hallazgos de severidad baja."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Ambas proponen una baseline que falla solo con violaciones nuevas y que solo puede bajar."},
+{"pedido": 2, "criterio": 2, "A": true, "B": false, "nota": "A indexa por archivo+regla y rechaza explícitamente el número de línea; B no dice cómo indexar la baseline (hasta sugiere comparar conteos)."},
+{"pedido": 2, "criterio": 3, "A": true, "B": false, "nota": "A reporta las claves stale; B dice que la baseline solo puede achicarse, pero no reporta las stale."},
+{"pedido": 3, "criterio": 1, "A": true, "B": false, "nota": "A propone un worktree y una rama `<agente>/<tema>` por sesión, con el árbol principal solo para integrar; B no reserva el árbol principal para integrar."},
+{"pedido": 3, "criterio": 2, "A": false, "B": false, "nota": "A menciona HEAD detached y `git switch -c`, pero no advierte que lo cause el worktree de la herramienta ni propone una guarda como worktree_guard.py; B no lo menciona."},
+{"pedido": 3, "criterio": 3, "A": true, "B": false, "nota": "A pide commits con pathspec y prohíbe `--amend` sobre commits ajenos; B no lo menciona."},
+{"pedido": 3, "criterio": 4, "A": true, "B": false, "nota": "A propone una guarda física por agente y medir la cobertura con un comando; B no lo hace."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Ambas explican que el check aprobó sin revisar nada."},
+{"pedido": 4, "criterio": 2, "A": true, "B": true, "nota": "Ambas piden imprimir el denominador y que cero revisados sea rojo."},
+{"pedido": 4, "criterio": 3, "A": true, "B": false, "nota": "A propone auditar vaciando el universo a propósito; B propone un fixture con errores conocidos, que es otra cosa."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambas exigen verificar uno mismo el PR y el estado del CI; A incluye además el SHA."},
+{"pedido": 5, "criterio": 2, "A": true, "B": false, "nota": "A recomienda subagentes solo para tareas atómicas y deja el diseño en la sesión principal; B no lo dice."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambas responden de forma directa y correcta (rename del IDE, rope o a mano con cuidado del alcance)."},
+{"pedido": 6, "criterio": 2, "A": true, "B": true, "nota": "Ninguna agrega procesos de la skill; sugerir correr tests y un linter es razonable para un rename."}
+]

@@ -35,6 +35,10 @@ necesita el arnés igual.
 - Prender un check nuevo sobre un codebase que ya viola la regla.
 - Diagnosticar por qué "los tests pasan" y aun así llegan bugs a producción.
 
+## Cuándo NO aplicarla
+
+Si el pedido es una pregunta puntual de programación (cómo renombrar algo, qué hace una función, una sintaxis), se responde **solo eso**, directo y sin agregar procesos, chequeos ni advertencias de esta skill que nadie pidió: el arnés aplica cuando se arma, endurece o diagnostica el *proceso* con que agentes escriben código.
+
 ## La tesis
 
 Un agente produce código a una velocidad que la revisión humana no sigue. Lo que

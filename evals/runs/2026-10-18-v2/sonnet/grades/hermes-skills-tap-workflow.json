@@ -1,0 +1,15 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "Ambas explican que la instalación es una copia que no se actualiza sola y que hay que re-instalar."},
+{"pedido": 1, "criterio": 2, "A": true, "B": false, "nota": "A recomienda symlink del perfil al repo; B no menciona symlink."},
+{"pedido": 2, "criterio": 1, "A": true, "B": false, "nota": "A exige que name sea igual a la carpeta; B lo deja ambiguo ('o con la convención del repo')."},
+{"pedido": 2, "criterio": 2, "A": true, "B": false, "nota": "A nombra validate_skills.py y pytest antes del push; B solo dice 'validaciones del repo, si existen'."},
+{"pedido": 2, "criterio": 3, "A": true, "B": true, "nota": "Ambas indican actualizar el README y su contador de skills."},
+{"pedido": 3, "criterio": 1, "A": true, "B": true, "nota": "Ambas ofrecen copia manual desde el repo como alternativa (A también symlink)."},
+{"pedido": 3, "criterio": 2, "A": true, "B": false, "nota": "A dice no reintentar en loop y verificar con ls; B no dice eso y verifica con hermes skills list."},
+{"pedido": 4, "criterio": 1, "A": true, "B": false, "nota": "A explica el bloque verify skills-count del README; B habla genéricamente de un número en los docs sin el bloque verify."},
+{"pedido": 4, "criterio": 2, "A": true, "B": true, "nota": "Ambas indican agregar la skill nueva a la tabla del README (B con 'listas o tablas')."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambas explican que name y carpeta tienen que coincidir."},
+{"pedido": 5, "criterio": 2, "A": true, "B": true, "nota": "Ambas recomiendan carpeta en minúsculas con guiones."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambas responden directo con gh repo create y la vía web."},
+{"pedido": 6, "criterio": 2, "A": true, "B": true, "nota": "Ninguna agrega procesos del dominio del tap."}
+]

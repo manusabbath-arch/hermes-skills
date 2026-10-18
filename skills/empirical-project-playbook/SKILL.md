@@ -1,6 +1,6 @@
 ---
 name: empirical-project-playbook
-description: "Use when starting, building, or auditing an empirical/data-driven project with AI agents - anything that measures something (edge, conversion, performance, a business hypothesis) and decides with data. Covers pre-registration and kill criteria, anti-mining defenses, presence-vs-utility acceptance, shadow-mode rollout, mechanized build-failing checks, the 'treacherous silence' bug family, verification standards, and security/systems rules."
+description: "Use when starting, building, or auditing an empirical/data-driven project with AI agents - anything that measures something (edge, conversion, performance, a business hypothesis) and decides with data. Covers pre-registration and kill criteria, anti-mining defenses, presence-vs-utility acceptance, shadow-mode rollout, mechanized build-failing checks, the 'treacherous silence' bug family, verification standards, and security/systems rules. Also for a metric or dashboard number that looks impossible (a negative success rate, a denominator that counts the wrong set) and for small-sample A/B results."
 version: 1.0.0
 author: Hermes Agent
 license: MIT
@@ -33,6 +33,10 @@ sí. Los casos completos, en `references/casos.md`.
 - Agregar una capa de análisis empresarial / integración (MCP, servidores
   externos, pruebas de rendimiento de sistema) sobre un proyecto existente.
 - Auditar un proyecto que ya acumula datos y no sabe si son útiles.
+
+## Cuándo NO aplicarla
+
+Si el pedido es una pregunta conceptual (qué es un p-valor, cómo se calcula una media), se responde **solo eso**, directo y sin agregar procesos, chequeos ni advertencias de esta skill que nadie pidió: el método aplica al *decidir* algo con datos: lanzar, escalar, matar una hipótesis, juzgar una métrica. Contratos de datos por ciclo de un pipeline: `empirical-system-invariants`; checks y CI del código: `agent-ready-project`.
 
 ## Relación con el arnés de construcción
 

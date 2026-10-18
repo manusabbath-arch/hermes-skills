@@ -1,0 +1,16 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": false, "nota": "A lista etapa fuente, consumidora, campo, condición y query de prod; B propone perfilar y rastrear, sin contrato por etapa."},
+{"pedido": 1, "criterio": 2, "A": true, "B": false, "nota": "A declara por campo NULL defecto vs 0 legítimo y trata como defecto el campo sin no-nulos post-deploy, con guard que falla; B cuenta nulos y ceros sin esa declaración ni el rojo."},
+{"pedido": 1, "criterio": 3, "A": true, "B": false, "nota": "A propone un guard por ciclo que falla con exit 1; B solo menciona una consulta o test que alerte, sin exit code."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Las dos separan 0 (dato) de NULL (no cargado) y cambian la regla para fallar por NULL en vez de silenciarla."},
+{"pedido": 2, "criterio": 2, "A": true, "B": true, "nota": "A habla de fatiga de alertas que hace ignorar un rojo verdadero; B dice que el ruido enseña a ignorar las alarmas."},
+{"pedido": 3, "criterio": 1, "A": true, "B": true, "nota": "Las dos rechazan tragar la excepción: loguean, alertan y nunca hacen pass."},
+{"pedido": 3, "criterio": 2, "A": false, "B": false, "nota": "A deja el ciclo en ROJO pero no loguea el eslabón con valor esperado vs real; B usa un estado 'no evaluado' en vez de ROJO y tampoco loguea esperado vs real."},
+{"pedido": 4, "criterio": 1, "A": false, "B": false, "nota": "Las dos distinguen el 0 por defecto de NULL, pero ninguna propone medir contando = 0 contra IS NULL."},
+{"pedido": 4, "criterio": 2, "A": true, "B": false, "nota": "A pide declarar en el contrato si el 0 es legítimo para margen; B propone pasar la columna a NULL, sin contrato."},
+{"pedido": 4, "criterio": 3, "A": true, "B": false, "nota": "A pregunta si existe código que escriba margen; B revisa fuente, transformación y carga pero no verifica que el código escritor exista y corra."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Las dos explican que el silencio no distingue 'no había nada' de 'no corrió' o 'falló'."},
+{"pedido": 5, "criterio": 2, "A": false, "B": false, "nota": "Las dos proponen loguear siempre el conteo, pero ninguna pone explícitamente en ROJO el ciclo que no procesó lo que debía (B solo habla de advertencia o heartbeat)."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Las dos responden directo y bien con ALTER TABLE ADD COLUMN."},
+{"pedido": 6, "criterio": 2, "A": true, "B": true, "nota": "Ninguna agrega guards, contratos ni procesos de invariantes; solo notas estándar de Postgres."}
+]

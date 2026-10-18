@@ -1,0 +1,16 @@
+[
+{"pedido": 1, "criterio": 1, "A": false, "B": true, "nota": "B lista por etapa fuente, consumidor, campo y query de prod; A solo mide nulos por columna sin contratos por etapa."},
+{"pedido": 1, "criterio": 2, "A": false, "B": false, "nota": "B marca ROJO el campo NULL post-deploy pero no declara NULL distinto de 0 por campo; A no habla de post-deploy ni de ROJO."},
+{"pedido": 1, "criterio": 3, "A": false, "B": false, "nota": "Ninguna propone un guard que falle con exit code; A solo menciona un check con umbral, sin exit code."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Ambas distinguen 0 válido de NULL y proponen cambiar la regla/contrato en vez de silenciar."},
+{"pedido": 2, "criterio": 2, "A": false, "B": false, "nota": "Ninguna menciona fatiga de alertas ni que un rojo permanente esconde los rojos reales."},
+{"pedido": 3, "criterio": 1, "A": true, "B": true, "nota": "Ambas rechazan silenciar la excepción."},
+{"pedido": 3, "criterio": 2, "A": false, "B": true, "nota": "B loguea el eslabón con esperado vs real y deja ROJO; A loguea traceback y marca degradado, sin esperado vs real."},
+{"pedido": 4, "criterio": 1, "A": false, "B": false, "nota": "Ninguna propone contar = 0 contra IS NULL por separado; B solo cuenta no nulos y distintos de 0."},
+{"pedido": 4, "criterio": 2, "A": false, "B": true, "nota": "B pide declarar en el contrato si el 0 es valor medido; A no menciona contrato."},
+{"pedido": 4, "criterio": 3, "A": false, "B": true, "nota": "B verifica explícitamente que el código que escribe margen existe y se ejecuta; A solo busca la asignación en el loader."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambas señalan que el silencio no distingue cero procesados de no corrió o falló."},
+{"pedido": 5, "criterio": 2, "A": false, "B": false, "nota": "Ambas proponen loguear siempre el conteo, pero ninguna pone en ROJO el ciclo que no procesó lo debido (A solo alerta por falta de log de fin)."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambas responden correctamente con ALTER TABLE ADD COLUMN."},
+{"pedido": 6, "criterio": 2, "A": true, "B": false, "nota": "B agrega la recomendación de contrato de campo NULL/defecto que no se pidió; A se mantiene en la pregunta."}
+]

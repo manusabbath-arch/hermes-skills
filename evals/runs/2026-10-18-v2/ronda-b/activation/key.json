@@ -1,0 +1,247 @@
+{
+ "1": {
+  "expected": "data-medallion-architecture",
+  "kind": "positivo",
+  "owner": "data-medallion-architecture"
+ },
+ "2": {
+  "expected": "erp-business-analysis",
+  "kind": "positivo",
+  "owner": "erp-business-analysis"
+ },
+ "3": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "agent-ready-project"
+ },
+ "4": {
+  "expected": null,
+  "kind": "ajeno",
+  "owner": null
+ },
+ "5": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "empirical-project-playbook"
+ },
+ "6": {
+  "expected": "empirical-system-invariants",
+  "kind": "positivo",
+  "owner": "empirical-system-invariants"
+ },
+ "7": {
+  "expected": "data-medallion-architecture",
+  "kind": "positivo",
+  "owner": "data-medallion-architecture"
+ },
+ "8": {
+  "expected": null,
+  "kind": "ajeno",
+  "owner": null
+ },
+ "9": {
+  "expected": "empirical-project-playbook",
+  "kind": "positivo",
+  "owner": "empirical-project-playbook"
+ },
+ "10": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "erp-business-analysis"
+ },
+ "11": {
+  "expected": "empirical-system-invariants",
+  "kind": "positivo",
+  "owner": "empirical-system-invariants"
+ },
+ "12": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "hermes-skills-tap-workflow"
+ },
+ "13": {
+  "expected": "data-medallion-architecture",
+  "kind": "positivo",
+  "owner": "data-medallion-architecture"
+ },
+ "14": {
+  "expected": "agent-ready-project",
+  "kind": "positivo",
+  "owner": "agent-ready-project"
+ },
+ "15": {
+  "expected": "delta-lakehouse",
+  "kind": "positivo",
+  "owner": "delta-lakehouse"
+ },
+ "16": {
+  "expected": "agent-ready-project",
+  "kind": "positivo",
+  "owner": "agent-ready-project"
+ },
+ "17": {
+  "expected": "erp-business-analysis",
+  "kind": "positivo",
+  "owner": "erp-business-analysis"
+ },
+ "18": {
+  "expected": "empirical-system-invariants",
+  "kind": "positivo",
+  "owner": "empirical-system-invariants"
+ },
+ "19": {
+  "expected": null,
+  "kind": "ajeno",
+  "owner": null
+ },
+ "20": {
+  "expected": "hermes-skills-tap-workflow",
+  "kind": "positivo",
+  "owner": "hermes-skills-tap-workflow"
+ },
+ "21": {
+  "expected": "hermes-skills-tap-workflow",
+  "kind": "positivo",
+  "owner": "hermes-skills-tap-workflow"
+ },
+ "22": {
+  "expected": "data-medallion-architecture",
+  "kind": "positivo",
+  "owner": "data-medallion-architecture"
+ },
+ "23": {
+  "expected": "empirical-project-playbook",
+  "kind": "positivo",
+  "owner": "empirical-project-playbook"
+ },
+ "24": {
+  "expected": null,
+  "kind": "ajeno",
+  "owner": null
+ },
+ "25": {
+  "expected": "empirical-project-playbook",
+  "kind": "positivo",
+  "owner": "empirical-project-playbook"
+ },
+ "26": {
+  "expected": "agent-ready-project",
+  "kind": "positivo",
+  "owner": "agent-ready-project"
+ },
+ "27": {
+  "expected": "erp-business-analysis",
+  "kind": "positivo",
+  "owner": "erp-business-analysis"
+ },
+ "28": {
+  "expected": "empirical-project-playbook",
+  "kind": "positivo",
+  "owner": "empirical-project-playbook"
+ },
+ "29": {
+  "expected": null,
+  "kind": "ajeno",
+  "owner": null
+ },
+ "30": {
+  "expected": "empirical-system-invariants",
+  "kind": "positivo",
+  "owner": "empirical-system-invariants"
+ },
+ "31": {
+  "expected": "empirical-system-invariants",
+  "kind": "positivo",
+  "owner": "empirical-system-invariants"
+ },
+ "32": {
+  "expected": "delta-lakehouse",
+  "kind": "positivo",
+  "owner": "delta-lakehouse"
+ },
+ "33": {
+  "expected": "hermes-skills-tap-workflow",
+  "kind": "positivo",
+  "owner": "hermes-skills-tap-workflow"
+ },
+ "34": {
+  "expected": null,
+  "kind": "ajeno",
+  "owner": null
+ },
+ "35": {
+  "expected": null,
+  "kind": "ajeno",
+  "owner": null
+ },
+ "36": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "data-medallion-architecture"
+ },
+ "37": {
+  "expected": "hermes-skills-tap-workflow",
+  "kind": "positivo",
+  "owner": "hermes-skills-tap-workflow"
+ },
+ "38": {
+  "expected": "delta-lakehouse",
+  "kind": "positivo",
+  "owner": "delta-lakehouse"
+ },
+ "39": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "delta-lakehouse"
+ },
+ "40": {
+  "expected": "hermes-skills-tap-workflow",
+  "kind": "positivo",
+  "owner": "hermes-skills-tap-workflow"
+ },
+ "41": {
+  "expected": "agent-ready-project",
+  "kind": "positivo",
+  "owner": "agent-ready-project"
+ },
+ "42": {
+  "expected": "delta-lakehouse",
+  "kind": "positivo",
+  "owner": "delta-lakehouse"
+ },
+ "43": {
+  "expected": "data-medallion-architecture",
+  "kind": "positivo",
+  "owner": "data-medallion-architecture"
+ },
+ "44": {
+  "expected": "erp-business-analysis",
+  "kind": "positivo",
+  "owner": "erp-business-analysis"
+ },
+ "45": {
+  "expected": "erp-business-analysis",
+  "kind": "positivo",
+  "owner": "erp-business-analysis"
+ },
+ "46": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "empirical-system-invariants"
+ },
+ "47": {
+  "expected": "agent-ready-project",
+  "kind": "positivo",
+  "owner": "agent-ready-project"
+ },
+ "48": {
+  "expected": "empirical-project-playbook",
+  "kind": "positivo",
+  "owner": "empirical-project-playbook"
+ },
+ "49": {
+  "expected": "delta-lakehouse",
+  "kind": "positivo",
+  "owner": "delta-lakehouse"
+ }
+}

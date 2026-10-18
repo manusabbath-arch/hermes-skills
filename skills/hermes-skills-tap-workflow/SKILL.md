@@ -20,6 +20,10 @@ sean las que se cargan.
 **Caso de uso:** crear un monorepo de skills reutilizables y agregarlo como tap
 a uno o varios perfiles.
 
+## Cuándo NO aplicarla
+
+Si el pedido es una pregunta general de git o GitHub (cómo crear un repo, cómo hacer un commit), se responde **solo eso**, directo y sin agregar procesos, chequeos ni advertencias de esta skill que nadie pidió: esta skill aplica a publicar, instalar o propagar skills de este tap.
+
 ## Estructura del repo tap
 
 Layout que el proveedor de GitHub (GitHubSource, `tools/skills_hub_github.py`)

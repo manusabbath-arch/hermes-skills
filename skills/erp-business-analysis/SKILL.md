@@ -41,6 +41,10 @@ errores no tiran excepción, producen una tabla que se lleva a una reunión.
 - Al consultar la base de datos que sirve al ERP en vivo.
 - Al montar un repo donde varios agentes analizan el mismo negocio.
 
+## Cuándo NO aplicarla
+
+Si el pedido es una pregunta puntual de planillas o fórmulas (cómo sumar una columna en Excel), se responde **solo eso**, directo y sin agregar procesos, chequeos ni advertencias de esta skill que nadie pidió: las reglas aplican cuando se lee un export o la base del ERP para publicar una cifra.
+
 ## La tesis
 
 El error caro en análisis de negocio **no rompe nada**. Un `row[4]` que en un

@@ -1,0 +1,30 @@
+{
+ "agent-ready-project": {
+  "with_skill": "B",
+  "without_skill": "A"
+ },
+ "data-medallion-architecture": {
+  "with_skill": "A",
+  "without_skill": "B"
+ },
+ "delta-lakehouse": {
+  "with_skill": "A",
+  "without_skill": "B"
+ },
+ "empirical-project-playbook": {
+  "with_skill": "B",
+  "without_skill": "A"
+ },
+ "empirical-system-invariants": {
+  "with_skill": "A",
+  "without_skill": "B"
+ },
+ "erp-business-analysis": {
+  "with_skill": "B",
+  "without_skill": "A"
+ },
+ "hermes-skills-tap-workflow": {
+  "with_skill": "A",
+  "without_skill": "B"
+ }
+}

@@ -1,0 +1,17 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "Ambas proponen tabla Delta para ventas y una tabla Delta de metadatos con rutas de los PDFs."},
+{"pedido": 1, "criterio": 2, "A": false, "B": true, "nota": "A supone Databricks/Spark; B usa deltalake + pyarrow + duckdb explícitamente."},
+{"pedido": 1, "criterio": 3, "A": true, "B": true, "nota": "A menciona time travel y registrar la versión usada; B usa history() y version=N para reproducir."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Ambas diagnostican archivos chicos y proponen compactar/OPTIMIZE."},
+{"pedido": 2, "criterio": 2, "A": false, "B": true, "nota": "A fija 7 días pero no advierte sobre perder reproducibilidad; B exige retención explícita y advierte que borra el time travel."},
+{"pedido": 2, "criterio": 3, "A": false, "B": true, "nota": "Solo B propone medir el tiempo de lectura antes y después."},
+{"pedido": 3, "criterio": 1, "A": false, "B": true, "nota": "A habla de una capa gold curada sin abordar el drift; B exige leer la misma tabla, no una copia."},
+{"pedido": 3, "criterio": 2, "A": false, "B": true, "nota": "A nombra DuckDB solo como una opción más entre motores; B propone DuckDB sobre Delta de forma explícita."},
+{"pedido": 3, "criterio": 3, "A": true, "B": true, "nota": "A pide un set de preguntas con respuesta conocida antes de habilitarlo; B pide probar con preguntas reales y verificar que los valores sean plausibles."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Ambas explican que vacuum borró los archivos del time travel y que solo se recupera fuera de Delta."},
+{"pedido": 4, "criterio": 2, "A": true, "B": true, "nota": "Ambas proponen una retención explícita acorde a la necesidad de reproducir."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambas identifican que la extensión delta se descarga y falla sin red."},
+{"pedido": 5, "criterio": 2, "A": true, "B": true, "nota": "A propone preinstalar la extensión; B propone leer vía Arrow con QueryBuilder o preinstalarla."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambas responden directo con pd.read_csv."},
+{"pedido": 6, "criterio": 2, "A": true, "B": true, "nota": "Ninguna agrega procesos ni herramientas del dominio de la skill."}
+]

@@ -1,0 +1,19 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": false, "nota": "A dice explícitamente que lee el período del preámbulo y no del nombre; B asume el período por el nombre YTD."},
+{"pedido": 1, "criterio": 2, "A": true, "B": false, "nota": "A normaliza por días o anualiza; B compara por mismo corte de meses, sin normalizar por días."},
+{"pedido": 1, "criterio": 3, "A": true, "B": false, "nota": "A agrega por suma y advierte no promediar ratios; B no lo menciona."},
+{"pedido": 1, "criterio": 4, "A": false, "B": false, "nota": "Ninguna declara la razón social de corrida ni cierra con sello de procedencia."},
+{"pedido": 2, "criterio": 1, "A": true, "B": false, "nota": "A compara primero detalle vs total del propio export; B solo revisa duplicados/total dentro del detalle, no como primer paso de autocomparación."},
+{"pedido": 2, "criterio": 2, "A": true, "B": true, "nota": "Ambas revisan período/hora del export frente al ERP."},
+{"pedido": 2, "criterio": 3, "A": false, "B": false, "nota": "Ninguna menciona que un cociente redondo apunte a moneda o unidad."},
+{"pedido": 2, "criterio": 4, "A": true, "B": false, "nota": "A no atribuye al ERP sin fuente independiente y menciona la retractación; B no habla de no publicar ni de retractar."},
+{"pedido": 3, "criterio": 1, "A": true, "B": false, "nota": "A pide informe, período, entidad, código de producto, .csv/.xlsx no .xls y cifra de control; B no indica formato ni cifra de control."},
+{"pedido": 3, "criterio": 2, "A": false, "B": false, "nota": "Ninguna usa ni sigue la plantilla de pedido de export ni un equivalente explícito."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Ambas sospechan una fila de total o subtotal incluida en la suma."},
+{"pedido": 4, "criterio": 2, "A": true, "B": false, "nota": "A revisa encabezados y cruza por nombre de columna; B no."},
+{"pedido": 4, "criterio": 3, "A": false, "B": false, "nota": "Ninguna propone contrastar las filas leídas contra las líneas del archivo."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambas buscan movimientos cargados entre la hora de un export y la del otro antes de concluir."},
+{"pedido": 5, "criterio": 2, "A": true, "B": false, "nota": "A confirma la entidad de cada export; B no declara bajo qué razón social corrió cada uno."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambas dan =SUMA(rango) correctamente."},
+{"pedido": 6, "criterio": 2, "A": false, "B": true, "nota": "A agrega advertencias del dominio (fila de total que duplica, vendedor, replace x100); B solo agrega variantes generales de Excel."}
+]

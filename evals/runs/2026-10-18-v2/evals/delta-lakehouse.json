@@ -1,0 +1,72 @@
+[
+  {
+    "skills": [
+      "delta-lakehouse"
+    ],
+    "query": "Necesito guardar PDFs de facturas y la tabla de ventas en un lakehouse para entrenar un modelo después.",
+    "files": [],
+    "expected_behavior": [
+      "Propone Delta Lake para lo estructurado y una estrategia para no estructurado (rutas/metadatos en tabla Delta)",
+      "Usa el stack validado (deltalake + duckdb + pyarrow)",
+      "Menciona historial de operaciones/time-travel para reproducir el dataset de entrenamiento"
+    ]
+  },
+  {
+    "skills": [
+      "delta-lakehouse"
+    ],
+    "query": "Las lecturas de mi tabla Delta se pusieron lentas después de meses de upserts diarios.",
+    "files": [],
+    "expected_behavior": [
+      "Diagnostica archivos chicos/fragmentación y propone compaction/optimize",
+      "Trata vacuum con retención explícita, advirtiendo que vacuar en caliente rompe la reproducibilidad (NULL ≠ 0 aplicado a retención)",
+      "Propone medir antes y después en vez de suponer la mejora"
+    ]
+  },
+  {
+    "skills": [
+      "delta-lakehouse"
+    ],
+    "query": "Quiero que un agente consulte las tablas del lakehouse para responder preguntas de negocio.",
+    "files": [],
+    "expected_behavior": [
+      "Hace que el agente lea la MISMA tabla que el sistema escribe, no una copia que drifta",
+      "Propone lectura vía duckdb sobre Delta",
+      "Pide una query de aceptación con valores plausibles antes de darlo por hecho"
+    ]
+  },
+  {
+    "skills": [
+      "delta-lakehouse"
+    ],
+    "query": "Corrí vacuum con retención 0 para ahorrar espacio y ahora no puedo reproducir el dataset de entrenamiento de hace un mes.",
+    "files": [],
+    "expected_behavior": [
+      "Explica que vacuum borró los archivos que necesitaba el time-travel y que esas versiones no se recuperan desde Delta",
+      "Propone una política de retención explícita para que no vuelva a pasar"
+    ]
+  },
+  {
+    "skills": [
+      "delta-lakehouse"
+    ],
+    "query": "En el servidor sin internet, duckdb falla con 'Failed to download extension delta'. ¿Qué hago?",
+    "files": [],
+    "expected_behavior": [
+      "Identifica que delta_scan necesita descargar la extensión delta",
+      "Propone leer la tabla sin red (vía Arrow con deltalake, por ejemplo QueryBuilder) o preinstalar la extensión"
+    ]
+  },
+  {
+    "skills": [
+      "delta-lakehouse"
+    ],
+    "query": "¿Cómo leo un CSV con pandas?",
+    "files": [],
+    "expected_behavior": [
+      "Responde la pregunta concreta de forma directa y correcta",
+      "No agrega procesos, chequeos ni herramientas del dominio de la skill que el pedido no pide"
+    ],
+    "negativo": true
+  }
+]

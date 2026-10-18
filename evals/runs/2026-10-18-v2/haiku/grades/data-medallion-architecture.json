@@ -1,0 +1,17 @@
+[
+{"pedido": 1, "criterio": 1, "A": false, "B": true, "nota": "A elige formas distintas por fuente pero casi sin justificar; B justifica cada una (snapshot porque es chico y ve borrados, cursor con backoff, checksum)."},
+{"pedido": 1, "criterio": 2, "A": true, "B": true, "nota": "Ambas separan Bronze crudo append-only, Silver tipado/deduplicado y Gold agregado."},
+{"pedido": 1, "criterio": 3, "A": true, "B": true, "nota": "A modela dim_escenario con supuestos versionados; B declara la pregunta de negocio y escenarios parametrizados de precio y costo."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Ambas explican que el crudo permite reprocesar y auditar, y que la limpieza va en Silver."},
+{"pedido": 2, "criterio": 2, "A": false, "B": true, "nota": "Solo B menciona time-travel."},
+{"pedido": 3, "criterio": 1, "A": false, "B": true, "nota": "A usa pandas y Parquet; B usa deltalake, duckdb y pyarrow."},
+{"pedido": 3, "criterio": 2, "A": false, "B": true, "nota": "A escribe Parquet suelto, no Delta; B escribe tres tablas Delta separadas."},
+{"pedido": 3, "criterio": 3, "A": false, "B": true, "nota": "A no verifica Gold; B relee Gold y verifica que cierre contra Silver y que los valores no sean negativos."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Ambas hacen Bronze idempotente por hash/checksum del archivo conservando el crudo."},
+{"pedido": 4, "criterio": 2, "A": true, "B": true, "nota": "Ambas deduplican en Silver por id_venta/PK."},
+{"pedido": 4, "criterio": 3, "A": true, "B": true, "nota": "A compara contra el ERP o el proveedor; B contra la cifra que informa el proveedor."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambas rechazan el 0 y convierten a NULL, explicando que distorsiona los promedios."},
+{"pedido": 5, "criterio": 2, "A": true, "B": true, "nota": "A cuenta los n/d por día y lo reporta al proveedor; B cuenta NULL por campo y alerta."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambas explican correctamente texto por filas sin tipos frente a binario columnar tipado y comprimido."},
+{"pedido": 6, "criterio": 2, "A": false, "B": false, "nota": "A agrega el uso en Bronze/Silver/Gold y B además Delta y time-travel, contenido del dominio que no se pidió."}
+]

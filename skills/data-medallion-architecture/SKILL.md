@@ -1,6 +1,6 @@
 ---
 name: data-medallion-architecture
-description: "Use when designing an end-to-end data architecture: choosing a source (API, database, SFTP), building a medallion bronze-silver-gold lakehouse pipeline, and turning it into hypothetical-scenario dashboards and AI/ML/MCP consumption. Covers source-selection tradeoffs and layer design patterns."
+description: "Use when designing an end-to-end data architecture: choosing a source (API, database, SFTP), building a medallion bronze-silver-gold lakehouse pipeline, and turning it into hypothetical-scenario dashboards and AI/ML/MCP consumption. Covers source-selection tradeoffs, ingest per source type (API, DB, SFTP), idempotent re-deliveries, deduplication and NULL handling in Silver, and layer design patterns. Not for operating an existing Delta table (vacuum, optimize, time travel): use delta-lakehouse."
 version: 1.0.0
 author: Hermes Agent
 license: MIT
@@ -21,6 +21,10 @@ ad-hoc.
 **Origen:** extensión del stack `delta-lakehouse` (2026). El lakehouse resuelve el
 almacenado; esta skill resuelve el DISEÑO: qué va en cada capa, cómo elegir fuente, y cómo
 llegar de una fuente cruda a un dashboard de escenarios hipotéticos.
+
+## Cuándo NO aplicarla
+
+Si el pedido es una pregunta puntual de formatos o herramientas (CSV vs Parquet, cómo leer un archivo), se responde **solo eso**, directo y sin agregar procesos, chequeos ni advertencias de esta skill que nadie pidió: esta skill aplica al *diseñar* un pipeline de punta a punta. Operaciones sobre una tabla Delta existente (vacuum, optimize, time-travel, lectura sin red): `delta-lakehouse`.
 
 ## Stack (validado end-to-end sobre deltalake 1.6 + duckdb 1.5 + pyarrow)
 

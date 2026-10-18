@@ -1,0 +1,17 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "Ambas proponen tablas Delta y guardar PDFs con ruta/hash (o binario) en una tabla Delta."},
+{"pedido": 1, "criterio": 2, "A": false, "B": false, "nota": "A usa deltalake y Arrow pero no menciona duckdb; B no nombra el stack."},
+{"pedido": 1, "criterio": 3, "A": true, "B": true, "nota": "Ambas registran la version de Delta para reproducir el dataset (A con DeltaTable(path, version=N))."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Ambas diagnostican archivos chicos y proponen compactar (optimize.compact / OPTIMIZE)."},
+{"pedido": 2, "criterio": 2, "A": false, "B": false, "nota": "Ambas dan retencion explicita pero ninguna advierte en este pedido que vacuum rompe la reproducibilidad."},
+{"pedido": 2, "criterio": 3, "A": false, "B": true, "nota": "A solo propone medir primero; B pide medir antes y despues con las mismas consultas."},
+{"pedido": 3, "criterio": 1, "A": true, "B": false, "nota": "A lee explicitamente las tablas que el sistema escribe, nunca copias; B propone tablas gold curadas."},
+{"pedido": 3, "criterio": 2, "A": true, "B": false, "nota": "A lee Delta y la consulta desde DuckDB; B no menciona duckdb."},
+{"pedido": 3, "criterio": 3, "A": true, "B": true, "nota": "A valida contra una query conocida y B contra preguntas con respuestas esperadas antes de usarlo."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Ambas explican que vacuum borro los archivos y esas versiones no se pueden leer desde Delta."},
+{"pedido": 4, "criterio": 2, "A": true, "B": true, "nota": "A propone retencion explicita de 30 dias y dry_run; B una retencion minima de 7 dias sin desactivar la validacion."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambas identifican que falla la descarga de la extension delta (A menciona delta_scan)."},
+{"pedido": 5, "criterio": 2, "A": true, "B": true, "nota": "Ambas proponen preinstalar la extension o leer con deltalake sin red."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambas muestran pd.read_csv correctamente."},
+{"pedido": 6, "criterio": 2, "A": false, "B": true, "nota": "A agrega la preferencia de pyarrow y write_deltalake del lakehouse; B se limita a pandas."}
+]

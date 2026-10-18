@@ -1,0 +1,17 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "Ambas detallan una ingesta distinta y justificada para API, Postgres y SFTP."},
+{"pedido": 1, "criterio": 2, "A": true, "B": true, "nota": "Ambas separan Bronze crudo/append, Silver tipado y deduplicado, Gold agregado para consumo."},
+{"pedido": 1, "criterio": 3, "A": true, "B": true, "nota": "A define escenarios parametrizados con supuestos sobre Gold; B usa una tabla de supuestos versionada que el dashboard lee desde Gold."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Ambas explican que Bronze permite reprocesar y auditar y que la limpieza va en Silver."},
+{"pedido": 2, "criterio": 2, "A": true, "B": false, "nota": "A menciona el historial/time-travel de Delta; B no lo menciona."},
+{"pedido": 3, "criterio": 1, "A": true, "B": false, "nota": "A usa deltalake + duckdb + pyarrow; B usa solo DuckDB con Parquet."},
+{"pedido": 3, "criterio": 2, "A": true, "B": false, "nota": "A escribe tres tablas Delta separadas; B escribe archivos Parquet, no Delta."},
+{"pedido": 3, "criterio": 3, "A": true, "B": false, "nota": "A comprueba con un assert que Gold tenga filas y ventas no negativas; B no verifica Gold."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Ambas proponen una ingesta idempotente por SHA-256 sin borrar el crudo de Bronze."},
+{"pedido": 4, "criterio": 2, "A": true, "B": true, "nota": "Ambas deduplican en Silver por id_venta."},
+{"pedido": 4, "criterio": 3, "A": true, "B": false, "nota": "A cierra el total contra una fuente independiente; B solo compara contra el histórico propio, que no es una fuente independiente."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambas rechazan el 0, proponen NULL y explican que el 0 se suma como dato real."},
+{"pedido": 5, "criterio": 2, "A": true, "B": true, "nota": "A cuenta los NULL por campo y los reporta; B mide el porcentaje de NULL, alerta y lo muestra en Gold."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambas responden de forma directa y correcta."},
+{"pedido": 6, "criterio": 2, "A": true, "B": true, "nota": "Ninguna agrega procesos ni chequeos; A solo menciona al pasar que Delta usa Parquet."}
+]

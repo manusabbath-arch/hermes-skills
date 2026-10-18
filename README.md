@@ -21,9 +21,10 @@ expect: 7
 
 ## Skills
 
-Cada skill se midió con y sin ella cargada, por un evaluador ciego: **58/58 criterios con
-skill contra 20/58 sin skill** (Sonnet, 21 pedidos). Método, resultados por skill y lo
-que la medición NO prueba: [`EVALS.md`](EVALS.md).
+Cada skill se midió con y sin ella cargada, por un evaluador ciego, en Haiku, Sonnet y
+Opus: con skill se cumplen **88, 97 y 100 de 105 criterios**, contra **54, 57 y 59** sin
+skill. Ninguna skill se activó en pedidos ajenos a su dominio. Método, resultados por skill,
+el pre-registro de cada cambio y lo que la medición NO prueba: [`EVALS.md`](EVALS.md).
 
 | Skill | Propósito |
 |-------|-----------|
