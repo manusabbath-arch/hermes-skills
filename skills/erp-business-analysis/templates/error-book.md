@@ -9,6 +9,13 @@ por forma, para que la próxima retracción se detecte en horas y no en semanas.
 validación fechada, que tiene la medición. Esto es el índice **por forma de error**.
 Si este libro contradice a su validación, manda la validación.
 
+## Contents
+
+- Checklist antes de publicar una cifra
+- Tipos 1–8: forma, cómo se frena, entradas
+- Formato de una entrada
+- Límites
+
 ---
 
 ## Checklist antes de publicar una cifra

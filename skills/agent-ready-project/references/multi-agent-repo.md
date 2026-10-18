@@ -6,6 +6,18 @@ Qwen Code, Kimi Code, Antigravity) escribiendo el mismo repo, en Windows, con
 `core.autocrlf=true` y un pre-commit que corre la suite. Cada punto tiene el
 incidente medido que lo originó.
 
+## Contents
+
+1. Aislamiento: un worktree y una rama por sesión
+2. Worktree que crea la herramienta: HEAD detached
+3. Commits con dos sesiones vivas
+4. Locks, stat-cache y fin de línea
+5. Guardas por consumidor, cobertura medida
+6. Agentes que se hablan entre sí
+7. Sesiones sin shell y el punto de recogida
+8. Identidad de quién commitea
+9. Tests bajo contención
+
 ## 1. Aislamiento: un worktree y una rama por sesión
 
 - `git worktree add -b <agente>/<tema> ../<repo>-<agente> main`. El prefijo es el

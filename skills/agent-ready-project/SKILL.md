@@ -1,6 +1,6 @@
 ---
 name: agent-ready-project
-description: "Use when setting up or hardening a project that AI agents will build and modify - any codebase, not just data or trading. Covers the non-eludible validation loop (pre-commit, CI, pre-push), turning a check on over a dirty codebase with a ratchet baseline, docs that verify their own numbers, measuring lint debt instead of sweeping it, guards on every surface that can run the action, and the failure modes specific to agent-written code: invented API signatures, unverified self-reports, phantom wiring, silent-green tasks. Also covers empty-green checks that approve over zero items, plans that declare how they fail, and several agents sharing one repo: worktree per session, detached HEAD, concurrent commits, per-agent guard coverage."
+description: "Use when setting up or hardening a project that AI agents will build and modify - any codebase, not just data or trading. Covers the non-eludible validation loop (pre-commit, CI, pre-push), turning a check on over a dirty codebase with a ratchet baseline, docs that verify their own numbers, measuring lint debt instead of sweeping it, guards on every surface that can run the action, and the failure modes specific to agent-written code: invented API signatures, unverified self-reports, phantom wiring, silent-green tasks. Also covers empty-green checks that approve over zero items, plans that declare how they fail, and several agents sharing one repo: worktree per session, detached HEAD, concurrent commits, per-agent guard coverage, and long-running work across sessions (feature list, progress file, separate evaluator)."
 version: 1.0.0
 author: Hermes Agent
 license: MIT
@@ -283,6 +283,67 @@ check, estaban **42 de 42** completas. **El documento no obliga; el check sí.**
 La vía liviana existe a propósito: un cambio que cabe en un commit con su test no
 lleva plan. Pedir el spec entero para una línea llena la sección de relleno.
 
+## Trabajo que cruza sesiones: el arnés de larga duración
+
+Cada sesión arranca sin memoria de la anterior. Anthropic ("Effective harnesses
+for long-running agents") y NG llegaron a lo mismo: el estado vive en archivos del
+repo, no en el contexto.
+
+- **Lista de features en JSON, todas arrancan fallando.** Cada entrada: categoría,
+  comportamiento visible para el usuario, pasos para verificarlo y `passes: false`.
+  El agente **solo** puede cambiar `passes`; borrar o editar entradas está prohibido
+  (ocultaría lo que falta). JSON y no Markdown porque el modelo lo pisa menos.
+  Es el freno contra "el agente declara terminado el proyecto entero antes de
+  tiempo".
+- **Archivo de progreso + `init.sh`.** El progreso dice qué hizo cada sesión;
+  `init.sh` levanta el entorno y corre una prueba punta a punta. Así nadie gasta
+  tokens re-descubriendo cómo se corre la app.
+- **Rutina de arranque fija:** confirmar el directorio, leer `git log` y el
+  progreso, elegir **una** feature pendiente, correr `init.sh` y la prueba base
+  **antes** de tocar nada (atrapa lo que dejó roto la sesión anterior).
+- **Una feature por sesión, y se cierra limpio:** commit descriptivo, progreso
+  actualizado, código mergeable. Las sesiones que intentaron todo junto se quedaron
+  sin contexto a mitad de camino y dejaron features a medias sin documentar.
+- **`passes: true` solo tras probar como usuario** (navegador, punta a punta). El
+  test unitario o el `curl` en verde no detectaron fallas que el uso real sí.
+
+## Separar al que hace del que juzga
+
+Un agente que evalúa su propio trabajo comparte sus puntos ciegos. En el arnés de
+tres agentes de Anthropic (planner → generator → evaluator), el evaluador por
+default **encontraba problemas reales y se convencía de aprobar igual**. Lo que
+funcionó:
+
+- **Evaluador separado, calibrado con sus logs:** leer dónde su juicio diverge del
+  humano y ajustar el prompt, varias rondas; ejemplos con puntajes desglosados para
+  que no derive. Es más fácil volver escéptico a un evaluador que autocrítico a un
+  generador.
+- **Contrato antes de cada tramo:** el generador propone qué es "terminado" y cómo
+  se verifica; el evaluador lo revisa hasta acordar. Es el mismo principio que
+  "criterio con su control" de la sección anterior.
+- **El evaluador interactúa con el sistema vivo** (Playwright sobre la app, la
+  API, el estado de la base), no lee el diff.
+- **El planner se queda en alto nivel:** un spec que fija detalles técnicos temprano
+  propaga sus errores a toda la implementación.
+- **Costo medido, no supuesto:** una corrida sola costó $9 en 20 min y su función
+  central no andaba; el arnés completo, $200 en 6 h, y funcionaba. El evaluador vale
+  su costo solo cuando la tarea está más allá de lo que el modelo hace bien solo.
+
+## Cada pieza del arnés es una suposición sobre el modelo
+
+Un reset de contexto, un contrato por tramo, un evaluador: cada uno existe porque
+el modelo **no podía** algo. Con modelos nuevos esas suposiciones envejecen y la
+pieza se vuelve peso muerto (los resets que un modelo necesitaba, el siguiente ya
+no). Reglas:
+
+- **Escribir al lado de cada pieza la suposición que la justifica** y la medición
+  que la probó.
+- **Re-medir al cambiar de modelo, sacando una pieza por vez.** La simplificación
+  radical de una sola vez no igualó al arnés original; de a una pieza, sí.
+- **El cambio del arnés es un cambio de código:** un default de configuración, un
+  prompt o un header de caché pueden degradar al agente igual que un bug. Va con
+  su eval antes y después, como cualquier otro cambio.
+
 ## Disciplina de diagnóstico
 
 - **Ante un check en rojo, leer su METADATA antes que su mensaje.** El mensaje
@@ -324,6 +385,16 @@ lleva plan. Pedir el spec entero para una línea llena la sección de relleno.
 - **Corta (~300 líneas) y con reglas por directorio lazy-load.** Cada línea del
   raíz carga en TODA sesión: bloat = menos precisión y más tokens. El detalle vive
   en `<dir>/CLAUDE.md` que se carga solo cuando se toca ese directorio.
+- **Un mapa, no un manual.** OpenAI ("Harness engineering", feb 2026) probó primero
+  un archivo de instrucciones grande: desplazaba a la tarea, envejecía rápido y no
+  se podía chequear. Lo reemplazó por un `AGENTS.md` de ~100 líneas que apunta a
+  las fuentes de verdad versionadas (docs de diseño, planes, mapas). Lo que el
+  agente no puede leer desde el repo, para él no existe.
+- **Un mismo repo, varios agentes:** si conviven `AGENTS.md` y `CLAUDE.md`, uno es
+  la fuente y el otro apunta a él; dos textos paralelos derivan.
+- **Mensajes de error escritos para el agente.** Un lint o un check propio que
+  falla dice qué hacer para arreglarlo (la regla, el archivo, la alternativa
+  válida), no solo qué está mal: es la instrucción que el agente sí lee.
 - **Reglas "nunca X / siempre Y", con ejemplo, en orden de prioridad.**
 - **El piso realista no es un número.** Recortar por debajo del contenido
   operativo vivo (runbook, reglas no negociables, tablas que un script parsea)

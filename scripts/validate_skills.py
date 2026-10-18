@@ -17,6 +17,12 @@ Verifies, for every skills/<name>/:
   - no `|| true` / `continue-on-error` inside shipped scripts (a gate that
     cannot fail is not a gate)
   - shipped Python compiles
+  - rules from Anthropic's skill authoring guide: `name` is lowercase/digits/
+    hyphens, <=64 chars, without the reserved words "anthropic"/"claude";
+    `description` carries no XML tags; a references/ or templates/ .md longer
+    than 100 lines opens with a table of contents (an agent previews long files
+    with `head`); references/ files do not cite other references/ files (keep
+    them one level deep from SKILL.md, or the agent reads them partially)
 
 Exit codes: 0 all green, 1 at least one RED. Paths anchored to __file__.
 """
@@ -37,6 +43,14 @@ MAX_DESCRIPTION_CHARS = 1024
 MAX_SKILL_LINES = 500
 
 # A description made only of these words triggers on nothing a user would type.
+NAME_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+MAX_NAME_CHARS = 64
+RESERVED_NAME_WORDS = ("anthropic", "claude")
+XML_TAG = re.compile(r"</?[A-Za-z][\w-]*[^>]*>")
+TOC_THRESHOLD_LINES = 100
+TOC_HEADING = re.compile(r"^#{2,3} (Contents|Contenido|Índice)\s*$", re.M | re.I)
+TOC_WINDOW_LINES = 30
+
 STUB_PATTERN = re.compile(
     r"^use when [\w/\- ]{0,40}(projects?|skills?|agents?|repos?)\.?$", re.I
 )
@@ -101,7 +115,20 @@ def check_skill(skill_dir: Path) -> list[str]:
             "(el loader indexa por directorio)"
         )
 
+    fm_name = fm.get("name", "")
+    if fm_name:
+        if len(fm_name) > MAX_NAME_CHARS or not NAME_PATTERN.match(fm_name):
+            errors.append(
+                f"{name}: name='{fm_name}' debe ser minúsculas/dígitos/guiones, "
+                f"<= {MAX_NAME_CHARS} chars"
+            )
+        for word in RESERVED_NAME_WORDS:
+            if word in fm_name:
+                errors.append(f"{name}: name contiene la palabra reservada '{word}'")
+
     desc = fm.get("description", "")
+    if desc and XML_TAG.search(desc):
+        errors.append(f"{name}: description con tag XML '{XML_TAG.search(desc).group(0)}'")
     if desc:
         if len(desc) < MIN_DESCRIPTION_CHARS:
             errors.append(
@@ -134,6 +161,25 @@ def check_skill(skill_dir: Path) -> list[str]:
             if not (SKILLS_DIR / prefix / rel).exists():
                 errors.append(f"{name}: el cuerpo cita `{prefix}/{rel}` y no existe en este tap")
         # prefijo desconocido = skill externa al tap, no verificable acá.
+
+    for sub in ("references", "templates"):
+        for doc in sorted((skill_dir / sub).glob("*.md")):
+            doc_text = doc.read_text(encoding="utf-8")
+            n_doc = doc_text.count("\n") + 1
+            head = "\n".join(doc_text.splitlines()[:TOC_WINDOW_LINES])
+            if n_doc > TOC_THRESHOLD_LINES and not TOC_HEADING.search(head):
+                errors.append(
+                    f"{name}: {sub}/{doc.name} tiene {n_doc} líneas y no abre con "
+                    f"'## Contents' en sus primeras {TOC_WINDOW_LINES} (>{TOC_THRESHOLD_LINES} "
+                    "líneas: el agente lo previsualiza con head y no ve el resto)"
+                )
+            if sub == "references":
+                for _prefix, rel in cited_paths(doc_text):
+                    if rel.startswith("references/"):
+                        errors.append(
+                            f"{name}: references/{doc.name} cita `{rel}`: las referencias "
+                            "van a un solo nivel de SKILL.md"
+                        )
 
     for script in skill_dir.rglob("*.py"):
         if "tests" in script.parts:
