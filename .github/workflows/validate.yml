@@ -32,7 +32,7 @@ jobs:
       - name: Published eval tables match the raw grades
         run: |
           for r in evals/runs/2026-10-18/round1 evals/runs/2026-10-18/round2; do
-            python scripts/eval_report.py --grades "$r/grades" --key evals/runs/2026-10-18/key.json > /tmp/results.md
+            python scripts/eval_report.py --grades "$r/grades" --key evals/runs/2026-10-18/key.json --evals evals/runs/2026-10-18/evals > /tmp/results.md
             diff -u "$r/results.md" /tmp/results.md
           done
 

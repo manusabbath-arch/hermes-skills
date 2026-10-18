@@ -83,5 +83,7 @@ sin skill de la ronda 1 (`evals/runs/2026-10-18/round2/`):
    `evals/evals.json` y escriben `<skill>.A.md` / `<skill>.B.md`, con la letra sorteada.
 2. Un evaluador ciego por skill escribe `grades/<skill>.json` con
    `[{"pedido", "criterio", "A", "B", "nota"}]`.
-3. `python3 scripts/eval_report.py --grades <dir>/grades --key <dir>/key.json > <dir>/results.md`
+3. Copiar los `evals.json` usados a `<dir>/evals/<skill>.json` (la foto: los escenarios
+   pueden cambiar después) y correr
+   `python3 scripts/eval_report.py --grades <dir>/grades --key <dir>/key.json --evals <dir>/evals > <dir>/results.md`
 4. Agregar la corrida nueva a `evals/runs/` y al CI.

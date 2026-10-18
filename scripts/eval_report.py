@@ -13,7 +13,11 @@ este script. Salida: una tabla Markdown por skill con criterios cumplidos con y 
 skill, y el delta. Una skill sin notas, o con criterios sin calificar, es ROJO: un
 reporte que no midió algo no puede mostrarlo como medido.
 
-Uso:  python3 scripts/eval_report.py --grades <dir> --key <key.json>
+Los criterios se leen de --evals (la foto de los evals.json que usó la corrida),
+no de los evals.json actuales: si los escenarios cambian después, una corrida vieja
+sigue midiéndose contra lo que se le preguntó.
+
+Uso:  python3 scripts/eval_report.py --grades <dir> --key <key.json> --evals <dir>
 Exit: 0 tabla completa, 1 faltan notas o criterios.
 """
 from __future__ import annotations
@@ -23,21 +27,19 @@ import json
 import sys
 from pathlib import Path
 
-REPO = Path(__file__).resolve().parent.parent
 
-
-def expected_counts(skill: str) -> list[int]:
-    evals = json.loads((REPO / "skills" / skill / "evals" / "evals.json").read_text(encoding="utf-8"))
+def expected_counts(evals_dir: Path, skill: str) -> list[int]:
+    evals = json.loads((evals_dir / f"{skill}.json").read_text(encoding="utf-8"))
     return [len(e["expected_behavior"]) for e in evals]
 
 
-def score(skill: str, grades: list[dict], key: dict) -> tuple[int, int, int, list[str]]:
+def score(skill: str, grades: list[dict], key: dict, evals_dir: Path) -> tuple[int, int, int, list[str]]:
     """(cumplidos con skill, cumplidos sin skill, total, problemas)."""
     w, wo = key["with_skill"], key["without_skill"]
     problems: list[str] = []
     seen = {(g["pedido"], g["criterio"]): g for g in grades}
     total = with_ok = without_ok = 0
-    for p, n in enumerate(expected_counts(skill), 1):
+    for p, n in enumerate(expected_counts(evals_dir, skill), 1):
         for c in range(1, n + 1):
             g = seen.get((p, c))
             if g is None or not isinstance(g.get(w), bool) or not isinstance(g.get(wo), bool):
@@ -53,6 +55,7 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--grades", type=Path, required=True)
     ap.add_argument("--key", type=Path, required=True)
+    ap.add_argument("--evals", type=Path, required=True, help="foto de los evals.json de la corrida")
     args = ap.parse_args(argv)
     keys = json.loads(args.key.read_text(encoding="utf-8"))
 
@@ -63,7 +66,7 @@ def main(argv: list[str] | None = None) -> int:
         if not f.is_file():
             problems.append(f"{skill}: sin archivo de notas")
             continue
-        w, wo, t, probs = score(skill, json.loads(f.read_text(encoding="utf-8")), keys[skill])
+        w, wo, t, probs = score(skill, json.loads(f.read_text(encoding="utf-8")), keys[skill], args.evals)
         problems += probs
         tw, two, tt = tw + w, two + wo, tt + t
         rows.append(f"| `{skill}` | {w}/{t} | {wo}/{t} | {w - wo:+d} |")
