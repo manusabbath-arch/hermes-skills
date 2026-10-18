@@ -33,5 +33,40 @@
       "Escribe cada capa como tabla Delta separada con su responsabilidad",
       "Incluye una verificación de que Gold se lee con valores plausibles (presence ≠ utility)"
     ]
+  },
+  {
+    "skills": [
+      "data-medallion-architecture"
+    ],
+    "query": "El proveedor reenvió por SFTP el mismo CSV dos veces y el total de Gold se duplicó. ¿Cómo lo arreglamos?",
+    "files": [],
+    "expected_behavior": [
+      "Hace la ingesta idempotente por checksum o identidad del archivo, conservando el crudo en Bronze",
+      "Deduplica en Silver por clave primaria, no en la ingesta",
+      "Propone verificar el total de Gold contra una fuente independiente para detectar duplicaciones"
+    ]
+  },
+  {
+    "skills": [
+      "data-medallion-architecture"
+    ],
+    "query": "Un campo de precio a veces viene 'n/d'. ¿Lo pongo en 0 en Silver para que no rompan los promedios?",
+    "files": [],
+    "expected_behavior": [
+      "Rechaza el 0: lo que no parsea queda NULL, porque un 0 inventado se suma como dato real",
+      "Propone contar y reportar los NULL por campo"
+    ]
+  },
+  {
+    "skills": [
+      "data-medallion-architecture"
+    ],
+    "query": "¿Qué diferencia hay entre CSV y Parquet?",
+    "files": [],
+    "expected_behavior": [
+      "Responde la pregunta concreta de forma directa y correcta",
+      "No agrega procesos, chequeos ni herramientas del dominio de la skill que el pedido no pide"
+    ],
+    "negativo": true
   }
 ]

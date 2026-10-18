@@ -35,5 +35,40 @@
       "Pide commits con pathspec y nunca `--amend` sobre un commit ajeno",
       "Propone que cada agente tenga su guarda física (p. ej. `scripts/prod_write_guard.py`) y que la cobertura se mida con un comando"
     ]
+  },
+  {
+    "skills": [
+      "agent-ready-project"
+    ],
+    "query": "Nuestro check `validar` imprime '0 problemas' y sale con 0. Un agente renombró el directorio que escanea y nadie lo notó en semanas. ¿Qué cambiamos?",
+    "files": [],
+    "expected_behavior": [
+      "Explica que el check no miró nada y por eso dio verde (verde vacío)",
+      "Pide que el mensaje lleve su denominador (cuántos archivos o elementos revisó) y que cero revisados sea rojo",
+      "Propone auditar los checks vaciando su universo a propósito y verificando que se pongan en rojo"
+    ]
+  },
+  {
+    "skills": [
+      "agent-ready-project"
+    ],
+    "query": "Un subagente me reportó 'PR creado y tests en verde'. ¿Lo doy por terminado?",
+    "files": [],
+    "expected_behavior": [
+      "No acepta el reporte del subagente sin verificar el handle real (URL del PR, SHA, estado del CI) uno mismo",
+      "Recomienda delegar en subagentes solo tareas atómicas y dejar el contexto de diseño en la sesión principal"
+    ]
+  },
+  {
+    "skills": [
+      "agent-ready-project"
+    ],
+    "query": "¿Cómo renombro una variable local en una función de Python?",
+    "files": [],
+    "expected_behavior": [
+      "Responde la pregunta concreta de forma directa y correcta",
+      "No agrega procesos, chequeos ni herramientas del dominio de la skill que el pedido no pide"
+    ],
+    "negativo": true
   }
 ]

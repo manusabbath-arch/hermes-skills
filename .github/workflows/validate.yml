@@ -44,5 +44,10 @@ jobs:
       - name: Verify the interpreter ran (a gate must tell "failed" from "never ran")
         run: python -m pytest --version
 
-      - name: Run shipped script tests
-        run: python -m pytest skills -q
+      - name: Run shipped script and repo tests
+        run: python -m pytest skills scripts -q
+
+      - name: Checksum manifest round-trips (what a release would publish)
+        run: |
+          python scripts/release_manifest.py > /tmp/SHA256SUMS
+          python scripts/release_manifest.py --check /tmp/SHA256SUMS

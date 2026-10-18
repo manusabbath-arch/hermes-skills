@@ -35,5 +35,40 @@
       "Arma el pedido con informe exacto, parámetros (período, entidad, código de producto), formato .csv/.xlsx (nunca .xls) y cifra de control",
       "Usa o sigue `templates/export-request.md`"
     ]
+  },
+  {
+    "skills": [
+      "erp-business-analysis"
+    ],
+    "query": "Sumé el export 'Ventas por vendedor y marca 2026' y me da exactamente el doble que el informe de Estadística del ERP.",
+    "files": [],
+    "expected_behavior": [
+      "Sospecha de una fila de total o subtotal que sobrevivió a la suma",
+      "Pide imprimir el encabezado de cada export y cruzar por nombre de columna, no por posición",
+      "Propone contrastar las filas leídas contra las líneas del archivo"
+    ]
+  },
+  {
+    "skills": [
+      "erp-business-analysis"
+    ],
+    "query": "La deuda de un cliente difiere $290.000 entre el export de la mañana y el de la tarde. ¿Hay una partición entre las dos razones sociales?",
+    "files": [],
+    "expected_behavior": [
+      "Antes de concluir partición, revisa la hora de cada export y los movimientos cargados entre una y otra",
+      "Declara bajo qué razón social corrió cada export"
+    ]
+  },
+  {
+    "skills": [
+      "erp-business-analysis"
+    ],
+    "query": "¿Qué fórmula de Excel uso para sumar una columna?",
+    "files": [],
+    "expected_behavior": [
+      "Responde la pregunta concreta de forma directa y correcta",
+      "No agrega procesos, chequeos ni herramientas del dominio de la skill que el pedido no pide"
+    ],
+    "negativo": true
   }
 ]

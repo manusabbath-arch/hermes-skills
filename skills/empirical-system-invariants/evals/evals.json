@@ -32,5 +32,40 @@
       "Rechaza tragar la excepción (falla alto, nunca swallow)",
       "Propone loguear el eslabón con valor esperado vs real y dejar el ciclo en ROJO"
     ]
+  },
+  {
+    "skills": [
+      "empirical-system-invariants"
+    ],
+    "query": "El campo `margen` tiene 0 en las 4.548 filas de la tabla. ¿Es un dato o falta cargarlo?",
+    "files": [],
+    "expected_behavior": [
+      "Distingue cero guardado de NULL y propone medirlo (contar = 0 contra IS NULL)",
+      "Pide que el contrato declare si ese 0 es defecto o dato legítimo",
+      "Propone verificar si el código que debía escribir el campo existe y corre"
+    ]
+  },
+  {
+    "skills": [
+      "empirical-system-invariants"
+    ],
+    "query": "Nuestro job nocturno loguea 'procesados N' solo cuando N > 0. Anoche no logueó nada. ¿Está bien?",
+    "files": [],
+    "expected_behavior": [
+      "Señala que el silencio no distingue 'no había nada' de 'no corrió' o 'falló'",
+      "Propone loguear siempre el conteo y poner en ROJO el ciclo que no procesó lo que debía"
+    ]
+  },
+  {
+    "skills": [
+      "empirical-system-invariants"
+    ],
+    "query": "¿Cómo agrego una columna a una tabla en Postgres?",
+    "files": [],
+    "expected_behavior": [
+      "Responde la pregunta concreta de forma directa y correcta",
+      "No agrega procesos, chequeos ni herramientas del dominio de la skill que el pedido no pide"
+    ],
+    "negativo": true
   }
 ]
