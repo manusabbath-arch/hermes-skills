@@ -23,11 +23,15 @@ Verifies, for every skills/<name>/:
     than 100 lines opens with a table of contents (an agent previews long files
     with `head`); references/ files do not cite other references/ files (keep
     them one level deep from SKILL.md, or the agent reads them partially)
+  - evals/evals.json exists with >= 3 scenarios in the guide's format
+    ({skills, query, files, expected_behavior}): "build evaluations first" -
+    a skill without them has never been shown to change what an agent does
 
 Exit codes: 0 all green, 1 at least one RED. Paths anchored to __file__.
 """
 from __future__ import annotations
 
+import json
 import py_compile
 import re
 import sys
@@ -50,6 +54,8 @@ XML_TAG = re.compile(r"</?[A-Za-z][\w-]*[^>]*>")
 TOC_THRESHOLD_LINES = 100
 TOC_HEADING = re.compile(r"^#{2,3} (Contents|Contenido|Índice)\s*$", re.M | re.I)
 TOC_WINDOW_LINES = 30
+MIN_EVALS = 3
+MIN_EXPECTED_BEHAVIORS = 2
 
 STUB_PATTERN = re.compile(
     r"^use when [\w/\- ]{0,40}(projects?|skills?|agents?|repos?)\.?$", re.I
@@ -90,6 +96,34 @@ def cited_paths(body: str) -> set[tuple[str | None, str]]:
         rel = full[len(prefix) + 1:] if prefix else full
         found.add((prefix, rel))
     return found
+
+
+def check_evals(skill_dir: Path) -> list[str]:
+    name = skill_dir.name
+    path = skill_dir / "evals" / "evals.json"
+    if not path.is_file():
+        return [f"{name}: falta evals/evals.json (>= {MIN_EVALS} escenarios: query + expected_behavior)"]
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return [f"{name}: evals/evals.json no es JSON válido ({exc})"]
+    if not isinstance(data, list) or len(data) < MIN_EVALS:
+        n = len(data) if isinstance(data, list) else 0
+        return [f"{name}: evals/evals.json tiene {n} escenario(s), mínimo {MIN_EVALS}"]
+    errors = []
+    for i, ev in enumerate(data):
+        where = f"{name}: evals[{i}]"
+        if not isinstance(ev, dict):
+            errors.append(f"{where} no es un objeto")
+            continue
+        if name not in (ev.get("skills") or []):
+            errors.append(f"{where}.skills no incluye '{name}'")
+        if not str(ev.get("query", "")).strip():
+            errors.append(f"{where}.query vacío")
+        eb = ev.get("expected_behavior")
+        if not isinstance(eb, list) or len([b for b in eb if str(b).strip()]) < MIN_EXPECTED_BEHAVIORS:
+            errors.append(f"{where}.expected_behavior con menos de {MIN_EXPECTED_BEHAVIORS} criterios")
+    return errors
 
 
 def check_skill(skill_dir: Path) -> list[str]:
@@ -161,6 +195,8 @@ def check_skill(skill_dir: Path) -> list[str]:
             if not (SKILLS_DIR / prefix / rel).exists():
                 errors.append(f"{name}: el cuerpo cita `{prefix}/{rel}` y no existe en este tap")
         # prefijo desconocido = skill externa al tap, no verificable acá.
+
+    errors.extend(check_evals(skill_dir))
 
     for sub in ("references", "templates"):
         for doc in sorted((skill_dir / sub).glob("*.md")):

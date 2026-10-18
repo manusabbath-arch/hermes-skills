@@ -1,0 +1,36 @@
+[
+  {
+    "skills": [
+      "empirical-project-playbook"
+    ],
+    "query": "Encontré en los datos que la estrategia gana cuando el precio está entre 0.30 y 0.42. ¿La activo en producción?",
+    "files": [],
+    "expected_behavior": [
+      "Trata el rango como hipótesis minada post-hoc, no como hallazgo",
+      "Pide pre-registro con criterios de kill/success fijados antes y réplica en muestra fresca",
+      "Propone shadow/observación antes de enforce, no ir directo a live"
+    ]
+  },
+  {
+    "skills": [
+      "empirical-project-playbook"
+    ],
+    "query": "El feature nuevo ya está deployado y no tira errores. ¿Lo cerramos?",
+    "files": [],
+    "expected_behavior": [
+      "Aplica presence ≠ utility: pide una query de producción con valores plausibles en filas post-deploy",
+      "Pregunta por la query de aceptación que debía existir antes de construirlo"
+    ]
+  },
+  {
+    "skills": [
+      "empirical-project-playbook"
+    ],
+    "query": "Un bug que ya documentamos dos veces en el README volvió a aparecer.",
+    "files": [],
+    "expected_behavior": [
+      "Propone convertir el patrón en un check que falla el build en vez de más prosa",
+      "Si no es mecanizable, pide registrarlo como deuda explícita con fecha y evidencia"
+    ]
+  }
+]

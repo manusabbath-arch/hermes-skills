@@ -31,8 +31,24 @@ repo/
 └── skills/
     └── <skill-name>/
         ├── SKILL.md
+        ├── evals/evals.json     # >= 3 escenarios; el validador lo exige
         └── templates/...        # references/ y scripts/ son opcionales
 ```
+
+**Antes del push, los checks del repo** (los mismos que corre el CI y que
+bloquean el merge):
+
+```bash
+python3 scripts/validate_skills.py          # frontmatter, rutas citadas, reglas de autoría, evals
+python3 -m pytest skills -q                 # tests de los scripts publicados
+python3 skills/agent-ready-project/scripts/doc_verify.py --root . --docs README.md
+```
+
+Una skill nueva suma su fila al README y sube el conteo del bloque `verify`
+`skills-count`: si no, `doc_verify` falla. Sus `evals/evals.json` son pedidos
+reales con el comportamiento esperado (formato de la guía de autoría de
+Anthropic): se escriben antes que la prosa y se corren con un agente que tenga
+la skill cargada, comparando contra el mismo pedido sin la skill.
 
 - Cada skill es un subdirectorio de `skills/` con su `SKILL.md`.
 - El path default del tap es `skills/` (el `add` lo usa por defecto).

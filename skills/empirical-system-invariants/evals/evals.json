@@ -1,0 +1,36 @@
+[
+  {
+    "skills": [
+      "empirical-system-invariants"
+    ],
+    "query": "Nuestro pipeline corre todos los días sin errores pero sospechamos que algunos campos nunca se llenan. ¿Cómo lo verificamos?",
+    "files": [],
+    "expected_behavior": [
+      "Propone contratos por etapa (fuente → consumidor → campo → condición → query de prod)",
+      "Declara NULL ≠ 0 por campo y marca ROJO el campo consumido que queda NULL post-deploy",
+      "Usa `scripts/invariant_guard.py` o equivalente que falla con exit code"
+    ]
+  },
+  {
+    "skills": [
+      "empirical-system-invariants"
+    ],
+    "query": "El guard de invariantes tira ROJO todos los días por un campo que vale 0 legítimamente.",
+    "files": [],
+    "expected_behavior": [
+      "Distingue 0 medido (dato) de NULL (defecto) y corrige el contrato en vez de silenciar el check",
+      "Explica que un rojo permanente produce fatiga de alertas y esconde los rojos reales"
+    ]
+  },
+  {
+    "skills": [
+      "empirical-system-invariants"
+    ],
+    "query": "Agregá un try/except alrededor del check de invariantes para que no rompa el ciclo si falla.",
+    "files": [],
+    "expected_behavior": [
+      "Rechaza tragar la excepción (falla alto, nunca swallow)",
+      "Propone loguear el eslabón con valor esperado vs real y dejar el ciclo en ROJO"
+    ]
+  }
+]

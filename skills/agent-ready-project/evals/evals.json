@@ -1,0 +1,39 @@
+[
+  {
+    "skills": [
+      "agent-ready-project"
+    ],
+    "query": "Nuestro CI corre `pytest | grep passed || exit 1` y bandit con `|| true`. Revisalo y dejalo listo para que lo modifiquen agentes.",
+    "files": [],
+    "expected_behavior": [
+      "Señala que el grep no distingue tests rojos de un intérprete inexistente y agrega un paso que verifica el intérprete (p. ej. `python -m pytest --version`) antes",
+      "Quita el `|| true` de bandit o lo reemplaza por un escape hatch nombrado y documentado, explicando que un gate que no puede fallar no es un gate",
+      "No suprime familias enteras de hallazgos para dejarlo verde"
+    ]
+  },
+  {
+    "skills": [
+      "agent-ready-project"
+    ],
+    "query": "Quiero prender un check de lint nuevo pero el repo ya tiene 180 violaciones y no puedo arreglarlas todas hoy.",
+    "files": [],
+    "expected_behavior": [
+      "Propone una baseline con trinquete que falla solo con violaciones nuevas",
+      "Indexa la baseline por identidad estable (archivo + símbolo), no por número de línea",
+      "Reporta también las claves stale de la baseline para que la deuda solo pueda bajar"
+    ]
+  },
+  {
+    "skills": [
+      "agent-ready-project"
+    ],
+    "query": "Tres agentes (Claude Code, Hermes y OpenCode) van a trabajar a la vez en este repo. ¿Cómo lo organizamos para no pisarnos?",
+    "files": [],
+    "expected_behavior": [
+      "Propone un worktree y una rama `<agente>/<tema>` por sesión, con el árbol principal solo para integrar",
+      "Advierte que un worktree creado por la herramienta puede estar en HEAD detached y que el primer paso es `git switch -c`; menciona `scripts/worktree_guard.py`",
+      "Pide commits con pathspec y nunca `--amend` sobre un commit ajeno",
+      "Propone que cada agente tenga su guarda física (p. ej. `scripts/prod_write_guard.py`) y que la cobertura se mida con un comando"
+    ]
+  }
+]

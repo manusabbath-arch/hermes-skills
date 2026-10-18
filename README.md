@@ -27,8 +27,8 @@ expect: 7
 | `empirical-system-invariants` | Batería operativa que convierte "¿funciona?" en respuesta mecánica: 5 contratos de datos por ciclo, regla de semáforo ROJO con eslabón exacto, NULL≠0, falla alto. Incluye `scripts/invariant_guard.py` (agnóstico, stdlib, exit code) + plantilla `templates/data-contracts.md`. Capa operativa de `empirical-project-playbook`. |
 | `delta-lakehouse` | ETL/data pipelines: extrae datos estructurados y no estructurados de orígenes heterogéneos, los almacena en un lakehouse Delta (historial de operaciones, time-travel, optimización de almacenado/lectura) y los conecta a entrenamiento de modelos IA / agentes. Stack validado: deltalake + duckdb + pyarrow. Plantilla: `templates/ingesta-plantilla.md`. |
 | `data-medallion-architecture` | Diseño punta a punta de arquitectura de datos: elegir la FUENTE (API/DB/SFTP), armar la capa medallion Bronze→Silver→Gold (ingesta, transformación, almacenamiento en Delta lakehouse/DW), y llegar a CONSUMO (AI/ML/MCP/análisis) y dashboards de escenarios hipotéticos. Patrones de diseño y decisión de fuente. Plantilla: `templates/scenario-dashboard.md`. |
-| `agent-ready-project` | Arnés para proyectos construidos con agentes de IA (cualquier codebase, no solo data): loop de validación no eludible, prender checks sobre código sucio con baseline de trinquete, doc que verifica sus propios números, deuda de lint medida en vez de barrida, guards en todas las superficies, checks en verde vacío, planes que declaran cómo fallan, varios agentes sobre el mismo repo (worktrees, commits concurrentes, guardas por consumidor), trabajo que cruza sesiones (lista de features, progreso, evaluador separado), y los modos de falla propios del código de agente. Script: `scripts/doc_verify.py`. Plantillas: checklist del arnés, spec del bloque verify. |
-| `erp-business-analysis` | Analizar un negocio real desde su ERP (exports `.xls/.xlsx/.csv` o la base productiva en solo lectura) sin publicar cifras plausibles y falsas: las ocho formas del error (libro de errores), sello de procedencia, canario contra fuente independiente, `0.00` ≠ dato, varias razones sociales, período y hora del export, moneda y `DECIMAL`, retracciones que se propagan, decisiones con dueño, datos de terceros. Script: `scripts/provenance_seal.py`. Plantillas: libro de errores, nota de validación, pedido de export, nota de decisión. |
+| `agent-ready-project` | Arnés para proyectos construidos con agentes de IA (cualquier codebase, no solo data): loop de validación no eludible, prender checks sobre código sucio con baseline de trinquete, doc que verifica sus propios números, deuda de lint medida en vez de barrida, guards en todas las superficies, checks en verde vacío, planes que declaran cómo fallan, varios agentes sobre el mismo repo (worktrees, commits concurrentes, guardas por consumidor), trabajo que cruza sesiones (lista de features, progreso, evaluador separado), y los modos de falla propios del código de agente. Scripts: `doc_verify.py`, `phantom_wiring.py`, `prod_write_guard.py` (hook de solo-lectura contra producción), `worktree_guard.py`. Referencias: varios agentes en un repo, diagnóstico y revisión. Plantillas: checklist del arnés, spec del bloque verify. |
+| `erp-business-analysis` | Analizar un negocio real desde su ERP (exports `.xls/.xlsx/.csv` o la base productiva en solo lectura) sin publicar cifras plausibles y falsas: las ocho formas del error (libro de errores), sello de procedencia, canario contra fuente independiente, `0.00` ≠ dato, varias razones sociales, período y hora del export, moneda y `DECIMAL`, retracciones que se propagan, decisiones con dueño, datos de terceros. Scripts: `provenance_seal.py`, `doc_lifecycle.py` (retracciones y decisiones). Plantillas: libro de errores, nota de validación, pedido de export, nota de decisión. |
 | `hermes-skills-tap-workflow` | Cómo publicar/propagar skills vía tap (este repo como fuente canónica). |
 
 ## Cómo editar y propagar un cambio de skill
@@ -72,6 +72,7 @@ build, no párrafo"*. El repo se aplica su propia regla.
 ```bash
 python3 scripts/validate_skills.py   # manifests, descriptions, rutas citadas
 python3 -m pytest skills -q          # tests de los scripts publicados
+python3 skills/agent-ready-project/scripts/phantom_wiring.py scripts skills
 ```
 
 `validate_skills.py` falla el build si una skill pierde el frontmatter, si el
@@ -81,4 +82,5 @@ plantilla/referencia que no existe. También aplica las reglas de la guía
 oficial de autoría de skills de Anthropic: `name` en minúsculas/guiones sin
 "anthropic"/"claude", `description` sin tags XML, índice (`## Contents`) en
 toda referencia/plantilla de más de 100 líneas, y referencias a un solo nivel
-de `SKILL.md`.
+de `SKILL.md`. Y cada skill trae `evals/evals.json` con al menos 3 escenarios
+(pedido, comportamiento esperado) para probarla con un agente real.
