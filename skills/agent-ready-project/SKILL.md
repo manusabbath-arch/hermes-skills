@@ -204,6 +204,11 @@ Lo mínimo que un proyecto construido por agentes bloquea:
 - Deploy sin `DRY_RUN` / sin confirmación.
 - Comandos destructivos (`rm -rf`, `DROP`, `truncate`) fuera de un directorio
   temporal.
+- Escrituras contra producción: `scripts/prod_write_guard.py` es un hook
+  PreToolUse (exit 2 = bloquear) que corta SQL que modifica vía los clientes
+  declarados y escrituras sobre rutas protegidas. Parsea el payload como JSON —en
+  NG un `sed` codicioso dejaba pasar escrituras con el payload de Hermes— y
+  bloquea si no puede leer la entrada.
 
 Y la contrapartida específica de la era de los agentes: **verificar que el agente
 no obedezca instrucciones que vienen del contenido que está leyendo** (prompt
@@ -228,7 +233,8 @@ produce sistemáticamente:
   **afirmando que el wiring estaba conectado**, porque el código se escribió con
   esa intención — la intención nunca se ejercitó end-to-end. Un `grep` del nombre
   no prueba que la instancia lo tenga: verificar `hasattr` sobre la instancia
-  real, o a qué módulo apunta el import del call-site.
+  real, o a qué módulo apunta el import del call-site. Detector estático:
+  `scripts/phantom_wiring.py` (AST, con denominador; un `.py` ilegible es rojo).
 - **Tarea periódica silencio-verde.** La función solo loguea en la rama con datos:
   `if count > 0: log(...)`. Puede pasar días sin procesar nada y nadie se entera.
   **Log incondicional con el conteo, siempre.**
@@ -258,8 +264,9 @@ en `references/multi-agent-repo.md`:
   solo de integración. Integrar con `rebase` de la rama privada → compuerta →
   `merge --ff-only`. El push lo decide una persona.
 - **Un worktree creado por la herramienta puede nacer en HEAD detached:** un commit
-  ahí sale con exit 0 y no queda en ninguna rama. Primer paso: `git switch -c`. Un
-  check pone rojo el detached con commits que ninguna rama alcanza.
+  ahí sale con exit 0 y no queda en ninguna rama. Primer paso: `git switch -c`.
+  `scripts/worktree_guard.py` pone rojo el detached con commits que ninguna rama
+  alcanza.
 - **Commit siempre con pathspec; nunca `--amend` sobre un commit ajeno.** Un commit
   sin pathspec arrastró 29 borrados preparados por otra sesión.
 - **Cada consumidor tiene su guarda física, y la cobertura sale de un comando** que
@@ -345,6 +352,10 @@ no). Reglas:
   su eval antes y después, como cualquier otro cambio.
 
 ## Disciplina de diagnóstico
+
+Sin causa raíz no hay arreglo; tres arreglos fallidos seguidos = parar y volver a
+mirar. Las cuatro fases y cómo recibir una revisión (verificar antes de aplicar,
+rebatir con evidencia) están en `references/diagnosis-and-review.md`.
 
 - **Ante un check en rojo, leer su METADATA antes que su mensaje.** El mensaje
   resume; la metadata dice cuál sumando se movió, que es lo único que separa
@@ -436,7 +447,16 @@ Si no pasó ninguna de las tres, es un documento más que se lee y se olvida.
 - `templates/verify-block.md` — especificación del bloque `<!-- verify -->`.
 - `scripts/doc_verify.py` — verificador de bloques `verify` (stdlib, agnóstico,
   exit code). Uso: `python3 doc_verify.py --root . --docs README.md docs/`.
-- `scripts/tests/` — tests herméticos del verificador.
+- `scripts/phantom_wiring.py` — detector de wiring fantasma. Uso:
+  `python3 phantom_wiring.py src/`.
+- `scripts/prod_write_guard.py` — hook PreToolUse de solo-lectura contra
+  producción, un script para Claude Code, Hermes y Antigravity. Config JSON con
+  `sql_clients` y `protected_paths` (`--config` o `PROD_GUARD_CONFIG`).
+- `scripts/worktree_guard.py` — rojo si un worktree detached tiene commits que
+  ninguna rama alcanza. Uso: `python3 worktree_guard.py --repo . --base main`.
+- `scripts/tests/` — tests herméticos de los cuatro scripts.
+- `references/diagnosis-and-review.md` — diagnóstico en cuatro fases y cómo
+  recibir una revisión.
 - `references/multi-agent-repo.md` — varios agentes sobre el mismo repo:
   worktrees, commits concurrentes, locks/EOL, guardas por consumidor, agentes que
   se hablan, sesiones sin shell, tests bajo contención.

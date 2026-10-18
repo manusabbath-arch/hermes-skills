@@ -190,8 +190,8 @@ producto si se puede elegir columnas), **qué formato** (`.csv`/`.xlsx`, nunca
   conserva, con la marca bien visible. Una advertencia "solo arriba" no alcanza:
   un `grep` devolvía la cifra falsa sin la advertencia pegada.
 - **Frontmatter de dependencias:** `retractado`, `superseded_by`, `depends_on`,
-  `estado: stale`. Un chequeo pone rojo el documento que deriva de uno retractado
-  (no el que lo cita para retractarlo).
+  `estado: stale`. `scripts/doc_lifecycle.py` pone rojo el documento que deriva
+  de uno retractado (no el que lo cita para retractarlo).
 - **Al retractar, `grep` todo el árbol** por la atribución vieja (panel, índice,
   known-issues). Una corrección local deja la versión falsa viva en otro lado.
 - **El documento a medio actualizar es peor que el viejo**, porque parece vigente:
@@ -203,7 +203,8 @@ producto si se puede elegir columnas), **qué formato** (`.csv`/`.xlsx`, nunca
   (`abierta | decidida | rechazada | superada`), `dueño` y una forma de saber
   cuándo volver a mirarla: `fecha_limite` **o** `disparador_revision` (un evento).
   **Nunca inventar una fecha** para llenar el campo.
-- Un chequeo pone rojo la decisión abierta sin dueño o sin disparador.
+- `scripts/doc_lifecycle.py` pone rojo la decisión abierta sin dueño o sin
+  disparador, y la cerrada que prometió una métrica y no reportó el resultado.
 - **Con una decisión `abierta`, el agente prepara y pregunta; no implementa
   suponiendo la respuesta.** Deja listo qué hay que saber y de quién.
 - Una decisión escrita sobre una foto vieja (stock del 01/07, una sola entidad)
@@ -256,7 +257,10 @@ La skill se está aplicando si, en la primera semana:
 - `scripts/provenance_seal.py` — sello de procedencia con guardas (entidad
   obligatoria, cero filas, techo de `.xls`, período esperado). Uso:
   `python3 provenance_seal.py export.csv --entity SAS --encoding cp1252 --delimiter ";" --skip-regex TOTAL`.
-- `scripts/tests/` — tests herméticos del sello.
+- `scripts/doc_lifecycle.py` — retracciones que se propagan y decisiones con
+  dueño, sobre el frontmatter de las plantillas. Uso:
+  `python3 doc_lifecycle.py validaciones/ decisiones/ informes/`.
+- `scripts/tests/` — tests herméticos de los dos scripts.
 
 ## Fuente canónica
 
