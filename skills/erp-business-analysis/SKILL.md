@@ -19,9 +19,8 @@ ven bien. Es el método para la pregunta *"¿cuánto vendimos / ganamos / nos de
 tenemos parado?"* cuando la fuente es un sistema contable que nadie diseñó para
 análisis.
 
-**Origen:** proyecto NG (2026), una distribuidora mayorista con un ERP legado
-(DB2), dos razones sociales operando la misma operación física, ~60 exports
-distintos y seis agentes (Claude Code, Hermes, OpenCode, Qwen, Kimi, Antigravity)
+**Origen:** una distribuidora mayorista (2026) con un ERP legado, dos razones
+sociales operando la misma operación física, ~60 exports distintos y seis agentes
 trabajando el mismo repo. En tres semanas el proyecto **retractó sus propias
 cifras** decenas de veces; cada regla de acá nació de una de esas retracciones.
 El libro de errores del proyecto es la columna vertebral de esta skill.
@@ -88,7 +87,7 @@ Mantener en el proyecto un **libro de errores** propio con esta misma estructura
    nuestro, y viajó dos días hasta el panel. *Freno:* comparar el archivo contra sí
    mismo **antes** de culpar a la fuente; sello de procedencia en cada cifra.
 8. **La premisa de negocio errada.** El análisis era correcto dado un supuesto
-   que el dueño o la medición siguiente invierte ("Pantene sin rotación" estaba
+   que el dueño o la medición siguiente invierte (una marca "sin rotación" estaba
    pausado, no muerto). *Freno:* separar lo **declarado por el dueño** (manda) de lo
    **medido** (se revisa), y fechar las premisas.
 
@@ -152,10 +151,10 @@ Mantener en el proyecto un **libro de errores** propio con esta misma estructura
   declarado, hora del export, sha256, filas leídas/descartadas. Lo genera
   `scripts/provenance_seal.py` (stdlib, exit 1 si una guarda está roja). Un
   chequeo verifica que los sha citados por informes publicados **resuelvan** a un
-  archivo (en NG, 20 de 107 no resolvían y nadie lo veía).
+  archivo (en el proyecto fuente, 20 de 107 no resolvían y nadie lo veía).
 - **Regla del canario:** un total nuevo se cruza contra una **fuente
   independiente** del mismo hecho (otro informe, la base, el banco) dentro de una
-  tolerancia chica (NG exige ≤0,15%) **antes** de darlo por bueno o de reemplazar
+  tolerancia chica (el proyecto fuente exige ≤0,15%) **antes** de darlo por bueno o de reemplazar
   un proceso manual.
 - **El export cierra consigo mismo:** detalle vs total del mismo archivo. Es el
   chequeo barato que habría frenado el `abs()` del tipo 7.
@@ -257,6 +256,7 @@ La skill se está aplicando si, en la primera semana:
 - `scripts/provenance_seal.py` — sello de procedencia con guardas (entidad
   obligatoria, cero filas, techo de `.xls`, período esperado). Uso:
   `python3 provenance_seal.py export.csv --entity SAS --encoding cp1252 --delimiter ";" --skip-regex TOTAL`.
+- `references/casos.md` — el proyecto de origen y los incidentes completos.
 - `scripts/doc_lifecycle.py` — retracciones que se propagan y decisiones con
   dueño, sobre el frontmatter de las plantillas. Uso:
   `python3 doc_lifecycle.py validaciones/ decisiones/ informes/`.

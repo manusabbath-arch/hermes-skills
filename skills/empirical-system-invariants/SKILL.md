@@ -18,18 +18,18 @@ por ciclo, cada etapa del pipeline publica un CONTRATO de datos y un guard lo ve
 fallando ALTO con el eslabón exacto. La confianza la da la batería completa en verde,
 no la memoria del operador.
 
-**Origen:** polymarket-trading-bot (2026). Un sistema de prediction-markets acumuló
-`edge_neto`/`edge_bruto` siempre NULL (el código nunca se escribió), `edge_elo/form/casino`
-estructuralmente NULL, phantom wirings, y flags que el `.env` no tenía. Nada lo detectaba:
-las fallas eran "silencios traidores" hasta que una sesión de debug las encontraba por
-suerte. Esta skill es la capa operativa que cierra ese vacío.
+**Origen:** un sistema en producción acumuló campos que el siguiente paso consumía y
+estaban **siempre NULL** (el código que los escribía nunca existió), wiring fantasma y
+flags declarados que la config real no tenía. Nada lo detectaba: eran "silencios
+traidores" que una sesión de debug encontraba por suerte. Esta skill es la capa
+operativa que cierra ese vacío. Los casos completos, en `references/casos.md`.
 
 ## Cuándo usar esta skill
 
 - El sistema genera datos que un consumidor (modelo, guard, venta de feed, dashboard) usa
   para decidir, y no hay contrato que atestigüe que cada etapa pobló lo que promete.
-- Antes de confiar en cualquier métrica de producto o veredicto de edge sobre datos de un
-  pipeline no verificado.
+- Antes de confiar en cualquier métrica de producto, modelo o veredicto calculado sobre
+  datos de un pipeline no verificado.
 - Antes de vender un feed de datos: un feed que no puede probar que mide lo que dice no
   se vende ni se confía.
 - En cada ciclo de producción (systemd/cron) y bajo demanda (CLI).
@@ -38,16 +38,18 @@ suerte. Esta skill es la capa operativa que cierra ese vacío.
 
 Verificar en CADA ciclo. Si alguno falla: ciclo ROJO con el eslabón exacto.
 
-1. **Ingest/WS:** ¿entregó books, o procesó estalejos? Contar los stales; ROJO si crece.
-   Un reconnect hace todo verse sano 1-2 min — medir durante horas, no segundos.
-2. **Modelo:** ¿`model_prob` (o el campo que el siguiente paso consume) pobló valores, o
-   escribió NULL? ROJO si el campo consumido está NULL en filas post-deploy.
-3. **Señal/enriquecimiento:** ¿los campos de edge/fuentes traen datos o phantom NULL?
-   `edge_elo/form/casino` NULL es defecto (nunca se escribió), no dato legítimo.
-4. **Guard → orden:** ¿la señal que pasó guards es la misma que salió a orden? No wiring
-   fantasma (getattr con default que nadie asigna). Verificar `hasattr` / módulo real.
-5. **Shadow/ledger:** ¿vio un book medido, no una fila degenerada sin book? El shadow no
-   escribe una fila sin book medido.
+1. **Ingesta:** ¿llegó dato fresco o se procesó dato viejo (stale)? Contar los stale;
+   ROJO si crece. Una reconexión hace todo verse sano 1-2 min — medir durante horas.
+2. **Transformación / modelo:** ¿el campo que el siguiente paso consume se pobló, o
+   quedó NULL? ROJO si el campo consumido está NULL en filas posteriores al deploy.
+3. **Enriquecimiento:** ¿los campos que vienen de fuentes externas traen datos o un
+   NULL fantasma? Un campo diseñado y nunca escrito es defecto, no dato legítimo.
+4. **Decisión → acción:** ¿lo que pasó las reglas es lo mismo que se ejecutó? Sin
+   wiring fantasma (`getattr` con default que nadie asigna); verificar `hasattr` sobre
+   la instancia real o el módulo al que apunta el import.
+5. **Registro / auditoría:** ¿la fila registrada describe una medición real, o es una
+   fila degenerada (sin el dato que la justifica)? El registro no escribe filas sin
+   medición.
 
 ## Regla de semáforo
 
@@ -102,14 +104,14 @@ deploys mientras se estabiliza.
    exit 1 con el eslabón identificado (prueba que DETECTA deuda real, no teoría).
 3. La plantilla queda rellenable con los nombres reales del proyecto objetivo.
 
-## Deuda que esta skill convierte en ROJO (ejemplos del fuente)
+## Deuda que esta skill convierte en ROJO
 
-- `edge_neto`/`edge_bruto` en trades siempre NULL → contrato #3 lo marca ROJO.
-- `edge_elo/form/casino` en rejected_signals siempre NULL (infra multi-source diseñada pero
-  nunca conectada) → contrato #3.
-- Shadow escribiendo fila sin book medido → contrato #5 (bug ya corregido; el check evita
-  regresión).
-- Flags declarados ON que el `.env` no tiene → contrato #4/#2 (doc vs estado real).
+- Un campo de resultado que la tabla de operaciones declara y nunca se escribe → #2.
+- Campos de fuentes externas diseñados y nunca conectados (0 de N filas no-NULL) → #3.
+- Un registro que escribe filas sin la medición que las justifica → #5.
+- Flags declarados ON que la config de producción no tiene → #4 (doc vs estado real).
+
+Los casos reales detrás de cada ejemplo están en `references/casos.md`.
 
 ## Relación con el playbook
 

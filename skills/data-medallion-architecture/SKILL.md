@@ -59,20 +59,43 @@ FUENTE → BRONZE → SILVER → GOLD → CONSUMO
 ## Código validado (medallion completo, copia-pega)
 
 ```python
-import os, pyarrow as pa, duckdb
-from deltalake import write_deltalake, DeltaTable
+import os, tempfile, pyarrow as pa, duckdb
+from deltalake import write_deltalake, DeltaTable, QueryBuilder
 
-# BRONZE: raw append-only
-raw_events = pa.Table.from_pylist([{"market":"m0","price":"0.55","edge_raw":0.12,"ts":10}])
-write_deltalake(bronze, raw_events)          # append-only (mode default create)
+lake = tempfile.mkdtemp()                    # en prod: la ruta del lake
+bronze, silver, gold = (os.path.join(lake, c) for c in ("bronze", "silver", "gold"))
 
-# SILVER: dedup PK + coerce tipo + NULL gestionado
-cleaned = []  # dedup por (market, ts); float(price) en try/except -> sentinel 0.0 si malo
-write_deltalake(silver, pa.Table.from_pylist(cleaned))
+def leer(path):  # lectura nativa; ver la nota de to_pyarrow_table en delta-lakehouse
+    return pa.table(QueryBuilder().register("t", DeltaTable(path)).execute("SELECT * FROM t").read_all())
 
-# GOLD: agregada materializada / query
+# BRONZE: crudo tal cual llegó, append-only (incluye duplicados y basura)
+raw = [{"sku": "A0", "precio": "55.0", "ts": 10},
+       {"sku": "A0", "precio": "55.0", "ts": 10},   # duplicado
+       {"sku": "A1", "precio": "n/d", "ts": 11}]    # no parsea
+write_deltalake(bronze, pa.Table.from_pylist(raw), mode="append")
+
+# SILVER: dedup por PK + tipo coercionado; lo que no parsea queda NULL, nunca 0
+def to_float(v):
+    try:
+        return float(v)
+    except (TypeError, ValueError):
+        return None
+seen = {}
+for r in leer(bronze).to_pylist():
+    seen[(r["sku"], r["ts"])] = {**r, "precio": to_float(r["precio"])}
+schema = pa.schema([("sku", pa.string()), ("precio", pa.float64()), ("ts", pa.int64())])
+write_deltalake(silver, pa.Table.from_pylist(list(seen.values()), schema=schema), mode="overwrite")
+
+# GOLD: agregado de consumo (duckdb sobre Arrow: no necesita la extensión delta)
 con = duckdb.connect()
-print(con.execute(f"SELECT market, MAX(price) last_price FROM delta_scan('{silver}') GROUP BY market").fetchall())
+s = leer(silver)
+g = con.execute("SELECT sku, MAX(precio) AS ultimo_precio, COUNT(precio) AS medidos "
+                "FROM s GROUP BY sku ORDER BY sku").to_arrow_table()
+# to_arrow_table(), no .arrow(): en duckdb 1.5 .arrow() devuelve un stream
+# (RecordBatchReader) y escribirlo a Delta deja el proceso colgado al salir.
+write_deltalake(gold, g, mode="overwrite")
+print(leer(gold).to_pylist())
+# [{'sku': 'A0', 'ultimo_precio': 55.0, 'medidos': 1}, {'sku': 'A1', 'ultimo_precio': None, 'medidos': 0}]
 ```
 
 ## Elegir la FUENTE (decisión, no reflejo)

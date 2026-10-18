@@ -18,10 +18,10 @@ sin que la calidad dependa de que alguien se acuerde de revisar. Es el **arnés 
 construcción**, no el método de investigación: aplica igual a un CRUD, una API o
 un pipeline.
 
-**Origen:** polymarket-trading-bot (2026), ~500 commits construidos con agentes
-(Claude Code, Hermes, OpenCode, Codex), y el proyecto NG (2026), seis agentes
-escribiendo el mismo repo a la vez. Cada regla de acá nació de un fallo real que
-costó tiempo o plata; la evidencia va con la regla.
+**Origen:** cada regla nació de un fallo medido en proyectos reales construidos
+con agentes —un sistema de trading con ~500 commits de agente y un análisis de
+negocio con seis agentes escribiendo el mismo repo—. La evidencia corta va con la
+regla; los casos completos, en `references/casos.md`.
 
 **Diferencia con `empirical-project-playbook`:** ese dispara cuando el proyecto
 MIDE algo y decide con datos (pre-registro, anti-minería, kill criteria). Este
@@ -68,9 +68,9 @@ Reglas que hacen que el loop sirva de verdad:
   (`python -m pytest --version` como paso propio).
 - **Un gate que no puede fallar no es un gate.** Firmas a buscar: `|| true`,
   `continue-on-error`, `stages: [manual]`, un `# noqa` varado en la línea de
-  cierre. En el proyecto fuente, `bandit` y `pip-audit` corrieron **meses** con
+  cierre. En un proyecto fuente, `bandit` y `pip-audit` corrieron **meses** con
   `|| true` — presentes, ejecutados, incapaces de fallar — justo sobre las
-  librerías que firmaban órdenes con dinero real.
+  librerías que movían dinero real.
 - **Versiones de lint pineadas en UN solo lugar.** Si `.pre-commit-config.yaml`
   dice `black==25` y `requirements-dev.txt` dice `black>=23`, el hook local y el
   CI nunca convergen: reformateos en bucle para siempre.
@@ -80,9 +80,9 @@ Reglas que hacen que el loop sirva de verdad:
 
 ## El verde vacío: un check que no miró nada está apagado
 
-El gemelo del gate que no puede fallar es el que **aprueba sin haber mirado**. En
-NG, una auditoría encontró nueve checks en verde sobre cero elementos — tres
-críticos, uno con una cifra que ya había salido a los vendedores. Un nombre de
+El gemelo del gate que no puede fallar es el que **aprueba sin haber mirado**. Una
+auditoría encontró nueve checks en verde sobre cero elementos — tres críticos,
+uno con una cifra que ya había salido a la gente que la usaba. Un nombre de
 check mal escrito salía en verde con código 0.
 
 - **Todo verde lleva su denominador.** "0 hallazgos" sobre 0 sitios no es lo mismo
@@ -114,13 +114,13 @@ suprimir el check: es **congelar la deuda conocida y fallar solo si crece**.
 
 ```
 .incident_baseline.json
-{ "acknowledged": [ {"file": "src/foo.py", "attr": "cached_book"}, ... ] }
+{ "acknowledged": [ {"file": "src/foo.py", "attr": "cached_prices"}, ... ] }
 ```
 
 - El check reporta `nuevos` (falla el build) y `conocidos` (informa).
 - **Indexar la baseline por identidad estable, NO por línea.** Si la clave
   incluye el número de línea, editar cualquier cosa arriba inventa un hallazgo
-  "nuevo" y el equipo aprende a ignorar el check. El proyecto fuente usa
+  "nuevo" y el equipo aprende a ignorar el check. Una clave que funciona:
   `file + attribute`.
 - Reportar también las claves **stale** (en la baseline pero ya inexistentes):
   es deuda que se pagó y hay que sacar del archivo, o el trinquete afloja.
@@ -191,8 +191,8 @@ Visibles, no aprobadas.** Un `# noqa` pelado es deuda que nadie va a encontrar.
 ## Guards: todas las superficies, no solo la del agente
 
 Una acción destructiva se puede ejecutar por varios caminos. Un guard que cubre
-uno solo no es un guard: es una sugerencia. En el proyecto fuente el git-guard
-está **triplicado a propósito**: hook de `pre-commit`, plugin del agente, y hook
+uno solo no es un guard: es una sugerencia. Un git-guard que funcionó estaba
+**triplicado a propósito**: hook de `pre-commit`, plugin del agente, y hook
 `PreToolUse` del CLI — *"para el caso en que el commit lo haga una persona o una
 herramienta sin plugin"*.
 
@@ -206,9 +206,9 @@ Lo mínimo que un proyecto construido por agentes bloquea:
   temporal.
 - Escrituras contra producción: `scripts/prod_write_guard.py` es un hook
   PreToolUse (exit 2 = bloquear) que corta SQL que modifica vía los clientes
-  declarados y escrituras sobre rutas protegidas. Parsea el payload como JSON —en
-  NG un `sed` codicioso dejaba pasar escrituras con el payload de Hermes— y
-  bloquea si no puede leer la entrada.
+  declarados y escrituras sobre rutas protegidas. Parsea el payload como JSON —un `sed`
+  codicioso dejaba pasar escrituras cuando el agente mandaba campos después del
+  comando— y bloquea si no puede leer la entrada.
 
 Y la contrapartida específica de la era de los agentes: **verificar que el agente
 no obedezca instrucciones que vienen del contenido que está leyendo** (prompt
@@ -283,8 +283,8 @@ Un plan de trabajo no trivial declara, antes de ejecutarse, (a) **las 3–5 form
 más probables en que puede fallar**, cada una con el test, check o medición que la
 pondría en rojo, y (b) **criterios de aceptación numerados, cada uno nombrando su
 control**: sin el control no es un criterio, es un deseo. Y declara `estado:` y
-`rama:` en el frontmatter, que es lo que lo vuelve auditable. Medido en NG: con la
-sección pedida en prosa, **1 de 29** planes la tenía; las decisiones, que sí tenían
+`rama:` en el frontmatter, que es lo que lo vuelve auditable. Medido: con la sección
+pedida en prosa, **1 de 29** planes la tenía; las decisiones, que sí tenían
 check, estaban **42 de 42** completas. **El documento no obliga; el check sí.**
 
 La vía liviana existe a propósito: un cambio que cabe en un commit con su test no
@@ -293,7 +293,7 @@ lleva plan. Pedir el spec entero para una línea llena la sección de relleno.
 ## Trabajo que cruza sesiones: el arnés de larga duración
 
 Cada sesión arranca sin memoria de la anterior. Anthropic ("Effective harnesses
-for long-running agents") y NG llegaron a lo mismo: el estado vive en archivos del
+for long-running agents") y los proyectos fuente llegaron a lo mismo: el estado vive en archivos del
 repo, no en el contexto.
 
 - **Lista de features en JSON, todas arrancan fallando.** Cada entrada: categoría,
@@ -359,8 +359,8 @@ rebatir con evidencia) están en `references/diagnosis-and-review.md`.
 
 - **Ante un check en rojo, leer su METADATA antes que su mensaje.** El mensaje
   resume; la metadata dice cuál sumando se movió, que es lo único que separa
-  "defecto real" de "umbral mal calibrado". `Trade success: 11.2%` no distinguía
-  nada; `failures=421` vs `rejections=11397` señaló la causa en un paso.
+  "defecto real" de "umbral mal calibrado". `success: 11.2%` no distinguía nada;
+  `failures=421` vs `rejections=11397` señaló la causa en un paso.
 - **Mirar el `timestamp` antes de razonar sobre cualquier snapshot de salud.** Un
   `/health` cacheado describe otro instante. En un mismo día, dos conclusiones
   salieron falsas por razonar sobre un snapshot viejo.
@@ -457,6 +457,8 @@ Si no pasó ninguna de las tres, es un documento más que se lee y se olvida.
 - `scripts/tests/` — tests herméticos de los cuatro scripts.
 - `references/diagnosis-and-review.md` — diagnóstico en cuatro fases y cómo
   recibir una revisión.
+- `references/casos.md` — los proyectos de origen y los incidentes completos
+  detrás de las reglas.
 - `references/multi-agent-repo.md` — varios agentes sobre el mismo repo:
   worktrees, commits concurrentes, locks/EOL, guardas por consumidor, agentes que
   se hablan, sesiones sin shell, tests bajo contención.

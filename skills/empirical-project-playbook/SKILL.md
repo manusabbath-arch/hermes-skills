@@ -19,8 +19,10 @@ que un proyecto real de prediction-markets construyó contra sus propios
 errores: 25+ patrones de incidente mecanizados, un registry de findings con
 lifecycle, y un norte de decisión único.
 
-**Origen:** polymarket-trading-bot (2026). Los axiomas de mercado (familia X)
-NO se extrapolan; el MÉTODO sí. Este playbook es la capa portable.
+**Origen:** un bot de trading en mercados de predicción (2026) y un análisis de
+negocio sobre un ERP (2026), ambos construidos con agentes. Las conclusiones de
+dominio (qué mercado tenía edge, qué producto rotaba) NO se extrapolan; el MÉTODO
+sí. Los casos completos, en `references/casos.md`.
 
 ## Cuándo usar esta skill
 
@@ -47,7 +49,7 @@ canario— vive en `erp-business-analysis`.
 ## Los 3 mandamientos del método
 
 1. **Un juez, un norte.** Una sola métrica de veredicto final por la que se
-   promociona o descarta todo (ej. `EDGE_CONFIRMED` usable-only). Todo lo demás
+   promociona o descarta todo (ej. "edge confirmado sobre señales usables", "margen que cierra contra el banco"). Todo lo demás
    es medio. Si hay muchas métricas tentadoras, elegir UNA explícitamente.
 2. **Presence ≠ utility.** Un feature no está listo cuando corre sin error:
    está listo cuando una query/log de PRODUCCIÓN responde la pregunta que lo
@@ -94,13 +96,12 @@ la memoria del operador y de sesiones de debug que encuentran el próximo fallo 
   una decisión, un contrato (etapa fuente → consumidor → campo prometido → condición → query
   de prod → NULL≠0) debe atestiguarlo. Ver skill `empirical-system-invariants` (batería
   + guard `empirical-system-invariants/scripts/invariant_guard.py`, agnóstico).
-- **Engram como memoria de VEREDICTOS, no de logs.** Persistir los RESULTADOS de checks y
-  findings (veredicto, n, EV, kill/success, dataset_version) como observaciones con
-  `topic_key` estable — nunca el ruido de progreso. Un check nuevo aprendido tras un
-  incidente se registra para que cualquier agente futuro lo cargue. El silo que guarda cada
-  cosa es decisión explícita (Hermes no escribe al engram del proyecto; convención ya
-  documentada).
-- **Hermes MCP como fuente única del estado.** Exponer health/checks/veredictos como
+- **Memoria de VEREDICTOS, no de logs.** Si el proyecto usa una memoria persistente de
+  agentes, persistir los RESULTADOS de checks y findings (veredicto, n, EV, kill/success,
+  versión del dataset) con una clave estable — nunca el ruido de progreso. Un check nuevo
+  aprendido tras un incidente se registra para que cualquier agente futuro lo cargue. Qué
+  agente escribe en qué memoria es decisión explícita y escrita.
+- **MCP como fuente única del estado.** Exponer health/checks/veredictos como
   recursos MCP para que agentes y dashboards lean el MISMO dato que el sistema usa — nunca
   una copia que drifta entre capas. (El patrón "MCP como capa de integración" del playbook;
   acá pasa a ser parte del contrato de datos.)
@@ -109,9 +110,8 @@ la memoria del operador y de sesiones de debug que encuentran el próximo fallo 
   ciclo "sesión de debug que encuentra el próximo phantom wiring": la auditoría corre como
   tarea acotada y su salida se verifica contra la batería.
 - **Deuda medida, no sospechada.** Una snapshot de prod y una query COUNT convierten una
-  sospecha en un número. Ejemplo real medido: `edge_elo/form/casino/h2h/residual` estaban
-  0/1384 no-null en `rejected_signals` — confirmado por SQL, y el guard lo marca ROJO con
-  exit 1. NUNCA afirmar deuda sin reproducirla uno mismo sobre la DB.
+  sospecha en un número. Ejemplo real medido: cinco campos de enriquecimiento estaban
+  0 de 1.384 filas no-NULL — confirmado por SQL, y el guard lo marca ROJO con exit 1. NUNCA afirmar deuda sin reproducirla uno mismo sobre la DB.
 
 ## Capa de data-engineering y lakehouse (para entrenar IA / conectar agentes)
 
@@ -221,8 +221,8 @@ Para proyectos que quieren una capa de negocio/analytics encima:
   juntar más en minutos.** Un bug dominante se maldiagnosticó como timeout de
   red con 2 muestras tempranas; con 351, el 95% era tamaño de frame. Esperar la
   ventana antes de escribir la conclusión.
-- **Verificar el protocolo real contra el servidor, no contra el mock.** Un WS
-  mal desde el origen no lo agarró ningún test porque los tests mockeaban el
+- **Verificar el protocolo real contra el servidor, no contra el mock.** Un protocolo
+  (WebSocket) mal desde el origen no lo agarró ningún test porque los tests mockeaban el
   protocolo viejo. Probar en vivo con un script chico.
 
 ### Estructura y método
@@ -245,17 +245,16 @@ Para proyectos que quieren una capa de negocio/analytics encima:
 ### Recolección de datos
 
 - **El recolector debe funcionar SIN depender de ejecutar la acción que mide.**
-  El que-ve-señales tenía que recolectar datos aunque Guard0Cap bloqueara las
-  órdenes → shadow-ledger PRE-GATE (enganche antes de la ejecución), que crece
-  aunque `ordenes=0`.
+  Si un gate bloquea la acción, el registro de "lo que habría pasado" se engancha
+  ANTES del gate (shadow pre-gate) y sigue creciendo aunque las acciones sean cero.
 - **Un canal de datos sin pipeline de resolución acumula filas que nadie puede
-  juzgar nunca.** El feedback loop (`would_have_won`) se rompe si no hay
-  resolución in-cycle + timer backstop. "¿Quién llama a update_*_outcome()?"
+  juzgar nunca.** El feedback loop ("¿habría acertado?") se rompe si no hay
+  resolución en el ciclo + un timer de respaldo. "¿Quién llama a update_*_outcome()?"
   desde el día 1.
-- **Etiqueta de dedup ÚNICA por fuente** (`profile_tag`): dos fuentes con el
-  mismo tag se pisan sin avisar; una fuente gemela escribe una fila por tag,
-  inflando `n` ~4x salvo dedupe explícito por entidad. Las queries ad-hoc NO
-  deduplican — usar la herramienta canónica (el `edge_verdict`).
+- **Etiqueta de dedup ÚNICA por fuente:** dos fuentes con la misma etiqueta se
+  pisan sin avisar; una fuente gemela escribe una fila por etiqueta, inflando `n`
+  ~4x salvo dedupe explícito por entidad. Las queries ad-hoc NO deduplican — usar
+  la herramienta canónica que calcula el veredicto.
 - **Distinguir 3 estados de un dato:** no-medido (NULL, defecto a corregir),
   medido-con-valor (dato), medido-y-cero (dato legítimo). Y el veredicto es al
   TAMAÑO en que se midió.
@@ -270,8 +269,8 @@ Para proyectos que quieren una capa de negocio/analytics encima:
 
 - **Estado que se lee pero nadie asigna = wiring fantasma** (getattr con
   default "seguro"): nada crashea, nada loguea, el caller opera sobre vacío
-  para siempre. El trailing-stop NUNCA se activó en prod porque un método
-  portado perdió su atributo interno. Un `grep` del nombre no prueba que la
+  para siempre. Un stop de protección NUNCA se activó en producción porque un
+  método portado perdió su atributo interno. Un `grep` del nombre no prueba que la
   instancia lo tenga — verificar `hasattr` / a qué módulo apunta el import.
 - **Un escalar donde el dominio tiene N entidades** (dict keyed por posición)
   es la misma clase de error. Si el vecino está keyed y este no, sospechar.
@@ -376,7 +375,8 @@ sesión.
 - Las referencias de sistemas/seguridad viven en `references/` — leerlas con
   `file_path` cuando se trabaje ese dominio (no las cargues en toda sesión):
   `references/systems-engineering.md`, `references/security.md`,
-  `references/agent-security.md`.
+  `references/agent-security.md`. Los proyectos y casos de origen, en
+  `references/casos.md`.
 - Si un proyecto nuevo revela un patrón de silencio nuevo, agregarlo a la
   sección "silencios traidores" (patch) — es la parte que crece con la práctica.
 
