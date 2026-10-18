@@ -50,7 +50,10 @@ reales con el comportamiento esperado (formato de la guía de autoría de
 Anthropic): se escriben antes que la prosa y se corren con un agente que tenga
 la skill cargada, comparando contra el mismo pedido sin la skill.
 
-- Cada skill es un subdirectorio de `skills/` con su `SKILL.md`.
+- Cada skill es un subdirectorio de `skills/` con su `SKILL.md`. El `name:` del
+  frontmatter **tiene que ser igual al nombre del directorio** (el loader indexa por
+  directorio; si difieren, la skill no se resuelve) y la `description` dice qué hace y
+  cuándo usarla — es lo único que el agente lee para decidir si cargarla.
 - El path default del tap es `skills/` (el `add` lo usa por defecto).
 - Nombres de carpetas que arrancan con `.` o `_` se saltan (no son skills).
 

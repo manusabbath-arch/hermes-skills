@@ -83,7 +83,8 @@ Mantener en el proyecto un **libro de errores** propio con esta misma estructura
    ranking**. *Freno:* una regla de negocio vive en **un** módulo; un test busca
    copias; un chequeo no tiene su propia copia de la regla que verifica.
 7. **Fabricación y atribución falsa.** Atribuirle al ERP lo que hizo nuestro
-   código es la lectura cómoda: "el ERP viene desactualizado 1,4%" era un `abs()`
+   código es la lectura cómoda (y si ya se publicó, se **retracta y se propaga** la
+   corrección a todo documento que la citó): "el ERP viene desactualizado 1,4%" era un `abs()`
    nuestro, y viajó dos días hasta el panel. *Freno:* comparar el archivo contra sí
    mismo **antes** de culpar a la fuente; sello de procedencia en cada cifra.
 8. **La premisa de negocio errada.** El análisis era correcto dado un supuesto

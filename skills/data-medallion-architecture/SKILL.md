@@ -24,7 +24,8 @@ llegar de una fuente cruda a un dashboard de escenarios hipotéticos.
 
 ## Stack (validado end-to-end sobre deltalake 1.6 + duckdb 1.5 + pyarrow)
 
-`deltalake` (tablas Delta + history/time-travel) · `duckdb` (SQL `delta_scan`) ·
+`deltalake` (tablas Delta + history/time-travel) · `duckdb` (SQL sobre Arrow; `delta_scan`
+necesita descargar la extensión `delta`) ·
 `pyarrow` (ingesta a `pa.Table`). Instalar en venv (PEP 668): `pip install deltalake duckdb pyarrow`.
 
 ## La capa medallion — roles (cada capa SÓLO hace lo suyo)
@@ -38,16 +39,23 @@ FUENTE → BRONZE → SILVER → GOLD → CONSUMO
 - Ingestiona el dato TAL COMO llega (JSON, CSV, XML). NO se limpia, NO se dedupe.
 - Append-only: una fila = un evento recibido; el historial es inmutable.
 - Es la capa de auditoría / re-procesamiento: si silver/gold se rompen, se re-deduce desde
-  bronze.
+  bronze. Con Delta, el historial y el **time-travel** (`DeltaTable(path, version=n)`)
+  dejan reproducir exactamente qué crudo había cuando se calculó un número.
+- **Por eso no se limpia al ingestar:** si la limpieza tiene un bug, sin Bronze el dato
+  original ya no existe y no hay de dónde reprocesar.
 
 **SILVER (limpia, dedup, tipos, NULL gestionado):**
 - Dedup por PK, coerce tipos (string → float/int), filtra/rellena.
-- NULL se DECLARA: malo→sentinel documentado (ej. 0.0), borde→conservado como NULL. NUNCA
-  silencio. Regla NULL≠0 del playbook: NULL=defecto a corregir, 0=medido legítimo.
+- Lo que no parsea queda **NULL**, nunca un 0 ni otro sentinel dentro del dominio: un 0
+  inventado se suma como dato real. Regla NULL≠0 del playbook: NULL = no medido (defecto
+  a corregir), 0 = medido legítimo. Contar los NULL por campo y reportarlos.
 - Es lo que consumen los análisis por defecto (gold se materializa desde acá).
 
 **GOLD (agregada, pregunta de negocio, dashboard-ready):**
-- Agrega a la dimensión de corte (market/día/liga). Es la capa que responde la pregunta.
+- Agrega a la dimensión de corte (producto/día/cliente). Es la capa que responde la pregunta.
+- **Se verifica antes de darla por buena:** valores plausibles (rangos, signos), cada
+  partición con filas, y un total que cierra contra una fuente independiente. Una Gold que
+  "tiene filas" no está validada (presence ≠ utility).
 - Se materializa como tabla Delta (para consumo) o como query DuckDB (para dashboards en
   vivo).
 
@@ -94,14 +102,25 @@ g = con.execute("SELECT sku, MAX(precio) AS ultimo_precio, COUNT(precio) AS medi
 # to_arrow_table(), no .arrow(): en duckdb 1.5 .arrow() devuelve un stream
 # (RecordBatchReader) y escribirlo a Delta deja el proceso colgado al salir.
 write_deltalake(gold, g, mode="overwrite")
-print(leer(gold).to_pylist())
+final = leer(gold).to_pylist()
+# Verificación de Gold (presence != utility): plausible y con el NULL contado, no solo "hay filas"
+assert all(r["ultimo_precio"] is None or r["ultimo_precio"] > 0 for r in final)
+assert sum(r["medidos"] for r in final) == 1     # 1 precio medido, 1 NULL declarado
+print(final)
 # [{'sku': 'A0', 'ultimo_precio': 55.0, 'medidos': 1}, {'sku': 'A1', 'ultimo_precio': None, 'medidos': 0}]
 ```
 
 ## Elegir la FUENTE (decisión, no reflejo)
 
-Antes de construir: comparar orígenes (API/DB/SFTP) con criterios explícitos y números, no
-preferencia:
+Cada tipo de fuente se ingesta distinto; tratarlas igual pierde datos o duplica:
+
+| Fuente | Ingesta a Bronze | Trampa típica |
+|---|---|---|
+| **API REST** | Incremental por cursor/`updated_since`, paginada, con reintentos con backoff; guardar el payload crudo (JSON) y la hora de extracción | Paginación que cambia mientras se lee; rate limit; respuestas cacheadas que parecen frescas |
+| **Base de datos (Postgres, etc.)** | Snapshot completo para maestros chicos; CDC o incremental por `updated_at` para tablas grandes; siempre desde réplica o fuera de hora pico | Query pesada contra la base que sirve producción; borrados que un incremental no ve |
+| **Archivo por SFTP (CSV)** | Copiar el archivo **tal cual** con su nombre, hora y checksum; idempotente por checksum (el mismo archivo dos veces no duplica) | Encoding y separador no declarados; archivo a medio subir; reenvío del mismo archivo |
+
+Y para elegir entre orígenes, criterios explícitos y números, no preferencia:
 - **Confiabilidad / freshness:** ¿la API falla en silencio devolviendo datos cacheados?
   (proveedor externo que falla en silencio es peor que local lento pero honesto).
 - **Latencia, cuota, costo, disponibilidad.**
@@ -115,10 +134,10 @@ preferencia:
 
 Flujo para llegar de la arquitectura al dashboard:
 
-1. **Fijar la pregunta de negocio GOLD ANTES de construir** (ej. "¿qué mercados con edge
-   >x sobreviven el fill?"). La capa GOLD responde esto.
+1. **Fijar la pregunta de negocio GOLD ANTES de construir** (ej. "¿qué productos sostienen
+   margen > x si el costo sube un 10%?"). La capa GOLD responde esto.
 2. **Definir escenarios hipotéticos** = variaciones de la agregación/segmentación sobre
-   GOLD (ej. cambiar el umbral de edge, el horizonte, el parámetro de riesgo). No son
+   GOLD (ej. cambiar el aumento de costo, el horizonte, el descuento). No son
    queries sueltas: son la MISMA pregunta con parámetros.
 3. **Materializar/consultar** con DuckDB + `delta_scan` sobre GOLD, con la query parametrizada
    por el escenario.
