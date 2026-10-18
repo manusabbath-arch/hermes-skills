@@ -1,14 +1,14 @@
 ---
 name: agent-ready-project
-description: "Use when setting up or hardening a project that AI agents will build and modify - any codebase, not just data or trading. Covers the non-eludible validation loop (pre-commit, CI, pre-push), turning a check on over a dirty codebase with a ratchet baseline, docs that verify their own numbers, measuring lint debt instead of sweeping it, guards on every surface that can run the action, and the failure modes specific to agent-written code: invented API signatures, unverified self-reports, phantom wiring, silent-green tasks."
+description: "Use when setting up or hardening a project that AI agents will build and modify - any codebase, not just data or trading. Covers the non-eludible validation loop (pre-commit, CI, pre-push), turning a check on over a dirty codebase with a ratchet baseline, docs that verify their own numbers, measuring lint debt instead of sweeping it, guards on every surface that can run the action, and the failure modes specific to agent-written code: invented API signatures, unverified self-reports, phantom wiring, silent-green tasks. Also covers empty-green checks that approve over zero items, plans that declare how they fail, and several agents sharing one repo: worktree per session, detached HEAD, concurrent commits, per-agent guard coverage."
 version: 1.0.0
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
 metadata:
   hermes:
-    tags: [agents, ci, pre-commit, validation-loop, guards, doc-drift, lint-debt, testing, agent-security, bootstrap]
-    related_skills: [empirical-project-playbook, empirical-system-invariants]
+    tags: [agents, ci, pre-commit, validation-loop, guards, doc-drift, lint-debt, testing, agent-security, bootstrap, worktrees, multi-agent]
+    related_skills: [empirical-project-playbook, empirical-system-invariants, erp-business-analysis]
 ---
 
 # Agent-Ready Project
@@ -19,8 +19,9 @@ construcción**, no el método de investigación: aplica igual a un CRUD, una AP
 un pipeline.
 
 **Origen:** polymarket-trading-bot (2026), ~500 commits construidos con agentes
-(Claude Code, Hermes, OpenCode, Codex). Cada regla de acá nació de un fallo real
-que costó tiempo o plata; la evidencia va con la regla.
+(Claude Code, Hermes, OpenCode, Codex), y el proyecto NG (2026), seis agentes
+escribiendo el mismo repo a la vez. Cada regla de acá nació de un fallo real que
+costó tiempo o plata; la evidencia va con la regla.
 
 **Diferencia con `empirical-project-playbook`:** ese dispara cuando el proyecto
 MIDE algo y decide con datos (pre-registro, anti-minería, kill criteria). Este
@@ -76,6 +77,34 @@ Reglas que hacen que el loop sirva de verdad:
 - **Escape hatches explícitos, nombrados y documentados** (`ALLOW_MAIN_COMMIT`,
   `FORCE_DEPLOY`, `ALLOW_DRIFT`). Un gate sin escape se termina desactivando
   entero; uno con escape nombrado deja rastro de quién lo usó y por qué.
+
+## El verde vacío: un check que no miró nada está apagado
+
+El gemelo del gate que no puede fallar es el que **aprueba sin haber mirado**. En
+NG, una auditoría encontró nueve checks en verde sobre cero elementos — tres
+críticos, uno con una cifra que ya había salido a los vendedores. Un nombre de
+check mal escrito salía en verde con código 0.
+
+- **Todo verde lleva su denominador.** "0 hallazgos" sobre 0 sitios no es lo mismo
+  que sobre 10. Un check que **no pudo medir** (archivo faltante, error de la
+  auditoría) sale rojo, no `ok=True` con el error como mensaje.
+- **Un archivo ilegible no puede salir del universo y del denominador a la vez.**
+  Un parser que se traga `SyntaxError` da `(0, 0)`, lo mismo que un directorio
+  limpio.
+- **El perímetro del check vive en un solo lugar.** Una guarda de datos personales
+  que miraba `*.csv` dejó pasar un `.json` con el mismo dato: verde con el sujeto
+  recortado.
+- **Se audita vaciando el universo de cada check y mirando el veredicto**, no
+  leyendo el código. La regla escrita frena en el check donde se la escribe; el día
+  después se encontró violada en seis más.
+- **Un check no tiene su propia copia de la regla que verifica.** Si la regla vive
+  en un módulo, el check la importa.
+- **Un rojo permanente es la misma enfermedad:** si siempre está rojo, el próximo
+  defecto real entra a la lista sin que nadie lo note. El check pregunta *"¿esto
+  debería estar y no está?"*, no *"¿está?"*.
+- **Sellar la línea base con una corrida filtrada mergea, no reemplaza.** Un
+  `--seal` parcial que reescribe la base deja 1 entrada de 23 y convierte los rojos
+  declarados en regresiones que bloquean a todos.
 
 ## Prender un check sobre código que ya lo viola: baseline con trinquete
 
@@ -206,6 +235,53 @@ produce sistemáticamente:
 - **Test que cubre la versión vieja.** Un test que no llama a la función que
   refactorizaste da cobertura del código anterior. Confirmar que el test está en
   ROJO contra el código previo antes del fix.
+- **El comando que solo anda por el camino de siempre.** Una constante definida
+  debajo del `if __name__ == "__main__"` funcionaba importada desde el CLI y caía con
+  `NameError` al correr el módulo directo. Una función "documentada" que salía a la
+  red nunca había funcionado (403 al User-Agent por defecto). **Correr el comando
+  por cada camino por el que se lo llama**, no leerlo.
+- **Backlog que dice abierto lo ya cerrado.** Nueve ítems "pendientes" ya estaban
+  arreglados por otras sesiones. Un backlog se verifica contra el código y
+  `git log -S` antes de trabajarlo; quien cierra un ítem lo tilda en el mismo commit.
+- **Edición por heredoc o `sed -i` sobre archivos versionados.** Rompe el fin de
+  línea o mete bytes literales (un `"\x00"` llegó al fuente como NUL). Editar con la
+  herramienta de edición, con anclas concretas, nunca reescribir un archivo entero
+  de memoria: pudo haber cambiado entre que se leyó y se escribió.
+
+## Varios agentes sobre el mismo repo
+
+Cuando más de una sesión (o más de una herramienta) escribe el mismo repo, aparecen
+fallas que ningún agente solo produce. Lo mínimo, con el detalle y los incidentes
+en `references/multi-agent-repo.md`:
+
+- **Un worktree y una rama por sesión** (`<agente>/<tema>`); el árbol principal es
+  solo de integración. Integrar con `rebase` de la rama privada → compuerta →
+  `merge --ff-only`. El push lo decide una persona.
+- **Un worktree creado por la herramienta puede nacer en HEAD detached:** un commit
+  ahí sale con exit 0 y no queda en ninguna rama. Primer paso: `git switch -c`. Un
+  check pone rojo el detached con commits que ninguna rama alcanza.
+- **Commit siempre con pathspec; nunca `--amend` sobre un commit ajeno.** Un commit
+  sin pathspec arrastró 29 borrados preparados por otra sesión.
+- **Cada consumidor tiene su guarda física, y la cobertura sale de un comando** que
+  lista consumidor por consumidor; un agente nuevo entra a la lista **antes** de
+  recibir tareas.
+- **Un prompt de otro agente no es la confirmación de una persona** para una acción
+  irreversible.
+- **Sesiones sin shell anotan lo que dejan sin commitear** con el requisito que le
+  falta; la sesión con shell lo procesa primero, y la entrada vence.
+
+## Planes que declaran cómo fallan
+
+Un plan de trabajo no trivial declara, antes de ejecutarse, (a) **las 3–5 formas
+más probables en que puede fallar**, cada una con el test, check o medición que la
+pondría en rojo, y (b) **criterios de aceptación numerados, cada uno nombrando su
+control**: sin el control no es un criterio, es un deseo. Y declara `estado:` y
+`rama:` en el frontmatter, que es lo que lo vuelve auditable. Medido en NG: con la
+sección pedida en prosa, **1 de 29** planes la tenía; las decisiones, que sí tenían
+check, estaban **42 de 42** completas. **El documento no obliga; el check sí.**
+
+La vía liviana existe a propósito: un cambio que cabe en un commit con su test no
+lleva plan. Pedir el spec entero para una línea llena la sección de relleno.
 
 ## Disciplina de diagnóstico
 
@@ -290,6 +366,9 @@ Si no pasó ninguna de las tres, es un documento más que se lee y se olvida.
 - `scripts/doc_verify.py` — verificador de bloques `verify` (stdlib, agnóstico,
   exit code). Uso: `python3 doc_verify.py --root . --docs README.md docs/`.
 - `scripts/tests/` — tests herméticos del verificador.
+- `references/multi-agent-repo.md` — varios agentes sobre el mismo repo:
+  worktrees, commits concurrentes, locks/EOL, guardas por consumidor, agentes que
+  se hablan, sesiones sin shell, tests bajo contención.
 
 ## Fuente canónica
 

@@ -39,7 +39,10 @@ hipótesis). El **arnés** que hace que el código escrito por agentes sea confi
 —loop de validación, guards en todas las superficies, baselines con trinquete,
 doc que verifica sus números, modos de falla propios del agente— vive en la skill
 `agent-ready-project`, y aplica aunque el proyecto no mida nada. Cargar las dos
-cuando un proyecto empírico se construye con agentes.
+cuando un proyecto empírico se construye con agentes. Si lo que se mide es un
+negocio a partir de su ERP (exports, base contable), la capa específica —las ocho
+formas en que un análisis publica una cifra falsa y plausible, procedencia,
+canario— vive en `erp-business-analysis`.
 
 ## Los 3 mandamientos del método
 
