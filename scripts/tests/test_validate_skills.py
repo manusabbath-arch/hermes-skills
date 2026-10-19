@@ -92,3 +92,93 @@ def test_plain_security_prose_passes(tmp_path):
 
 def test_real_tap_is_green():
     assert vs.main() == 0
+
+
+# --- Datos del negocio de origen -------------------------------------------
+
+def test_precise_amount_is_red(tmp_path):
+    # Cifras inventadas: un fixture con montos reales los volvería a publicar.
+    for text in ["Una brecha de $381.927 entre exports.",  # ficticio
+                 "El semestre daba 58,31M contra 116,62M.",  # ficticio
+                 "Daba el doble ($41,7M vs $20,85M).",  # ficticio
+                 "Saldo US$ 12.345,67 al cierre."]:  # ficticio
+        assert vs.check_business_data(_doc(tmp_path, text), "d.md"), text
+
+
+def test_round_amount_passes(tmp_path):
+    text = "Difiere $290.000; se publicaron $25M y eran $250k; una brecha de $4M; 1,5M filas."
+    assert vs.check_business_data(_doc(tmp_path, text), "d.md") == []
+
+
+def test_precise_amount_marked_ficticio_passes(tmp_path):
+    text = "Ejemplo: total $1.234.567 (ficticio)."
+    assert vs.check_business_data(_doc(tmp_path, text), "d.md") == []
+
+
+def test_private_term_is_red_case_insensitive(tmp_path):
+    errs = vs.check_business_data(_doc(tmp_path, "El ERP era AcmeSoft."), "d.md", ["acmesoft"])
+    assert "término privado" in errs[0] and "d.md:1" in errs[0]
+
+
+def test_private_terms_load_from_file_and_skip_comments(tmp_path):
+    f = tmp_path / ".private-terms"
+    f.write_text("# nombres del cliente\nAcmeSoft\n\n  Foo Bar  \n", encoding="utf-8")
+    assert vs.load_private_terms(f) == ["acmesoft", "foo bar"]
+
+
+def test_missing_private_terms_file_is_none_not_empty(tmp_path):
+    # Ausente es "no se chequeó", distinto de "lista vacía": main lo dice en voz alta.
+    assert vs.load_private_terms(tmp_path / "no-existe") is None
+
+
+def test_private_term_matches_whole_words_only(tmp_path):
+    # "acme" no es "acmesoft" ni "acmes": una lista privada con palabras comunes
+    # no puede volver ruido cada texto que las contiene como subcadena.
+    assert vs.check_business_data(_doc(tmp_path, "Los acmes y AcmeSoft."), "d.md", ["acme"]) == []
+    assert vs.check_business_data(_doc(tmp_path, "Cliente ACME, sucursal."), "d.md", ["acme"])
+
+
+# --- La versión sube con el contenido ---------------------------------------
+
+import subprocess
+
+
+def _git(repo, *args):
+    subprocess.run(["git", "-C", str(repo), *args], check=True, capture_output=True)
+
+
+def _skill_repo(tmp_path, version="1.0.0", tag=True):
+    repo = tmp_path / "tap"
+    d = repo / "skills" / "a"
+    d.mkdir(parents=True)
+    (d / "SKILL.md").write_text(f"---\nname: a\nversion: {version}\n---\ncuerpo\n", encoding="utf-8")
+    _git(repo, "init", "-q")
+    _git(repo, "-c", "user.name=t", "-c", "user.email=t@t", "add", ".")
+    _git(repo, "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "x")
+    if tag:
+        _git(repo, "tag", "v1.0.0")
+    return repo, d / "SKILL.md"
+
+
+def test_content_changed_without_version_bump_is_red(tmp_path):
+    repo, md = _skill_repo(tmp_path)
+    md.write_text(md.read_text(encoding="utf-8") + "regla nueva\n", encoding="utf-8")
+    errs, _ = vs.check_versions(repo)
+    assert errs and "a:" in errs[0] and "v1.0.0" in errs[0]
+
+
+def test_content_changed_with_version_bump_passes(tmp_path):
+    repo, md = _skill_repo(tmp_path)
+    md.write_text("---\nname: a\nversion: 1.1.0\n---\ncuerpo\nregla nueva\n", encoding="utf-8")
+    assert vs.check_versions(repo) == ([], "contra v1.0.0")
+
+
+def test_untouched_skill_passes(tmp_path):
+    repo, _ = _skill_repo(tmp_path)
+    assert vs.check_versions(repo)[0] == []
+
+
+def test_no_tags_is_declared_not_silent(tmp_path):
+    repo, _ = _skill_repo(tmp_path, tag=False)
+    errs, note = vs.check_versions(repo)
+    assert errs == [] and "NO chequeado" in note

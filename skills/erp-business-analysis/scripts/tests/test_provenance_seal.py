@@ -91,14 +91,14 @@ def test_one_row_below_ceiling_window_is_not_truncated(tmp_path):
 
 def test_declared_encoding_decodes_accented_byte(tmp_path):
     # 0xCD es 'Í' en cp1252; leerlo como cp850 daba '═'. Se fija el byte.
-    p = _write(tmp_path, "cliente\nENVÍO SALTO\n", encoding="cp1252")
+    p = _write(tmp_path, "cliente\nENVÍO CENTRO\n", encoding="cp1252")
     assert p.read_bytes().count(b"\xcd") == 1
     s = ps.seal(p, "SAS", encoding="cp1252")
     assert s["filas_leidas"] == 1
 
 
 def test_wrong_encoding_is_red_via_cli(tmp_path):
-    p = _write(tmp_path, "cliente\nENVÍO SALTO\n", encoding="cp1252")
+    p = _write(tmp_path, "cliente\nENVÍO CENTRO\n", encoding="cp1252")
     r = subprocess.run(
         [sys.executable, str(SCRIPT), str(p), "--entity", "SAS"],
         capture_output=True,

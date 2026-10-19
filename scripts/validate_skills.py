@@ -32,6 +32,13 @@ Verifies, for every skills/<name>/:
     only the stdlib, never a network module, and use subprocess only when
     listed in SUBPROCESS_ALLOWED; skill text carries no prompt-injection
     phrasing, pipe-to-shell installs, or invisible/bidi Unicode characters
+  - business data from the source project (the repo is public): no amount with
+    3+ significant digits ($381.927, 58,31M - ficticio) in any text file unless its line
+    says "ficticio" - round illustrative amounts (290.000, 25M) pass; and, when
+    `.private-terms` exists (gitignored, one term per line), none of its terms.
+    Without that file the run says so: "not checked" is not "clean"
+  - a skill whose files changed since the last v* tag carries a new `version`
+    (shallow history is RED: it cannot see the tag)
 
 Exit codes: 0 all green, 1 at least one RED. Paths anchored to __file__.
 """
@@ -41,6 +48,7 @@ import ast
 import json
 import py_compile
 import re
+import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -150,6 +158,7 @@ NETWORK_MODULES = {
 SUBPROCESS_ALLOWED = {
     "skills/agent-ready-project/scripts/doc_verify.py": "kind=command, opt-in con --allow-command",
     "skills/agent-ready-project/scripts/worktree_guard.py": "corre git worktree/rev-list",
+    "scripts/validate_skills.py": "corre git describe/diff/show contra el último tag (versión)",
 }
 INJECTION_PATTERNS = [
     re.compile(r"ignore\s+(all\s+|the\s+)?(previous|prior|above)\s+instructions", re.I),
@@ -201,6 +210,100 @@ def check_text_policy(path: Path, rel: str) -> list[str]:
         line = text.count("\n", 0, m.start()) + 1
         errors.append(f"{rel}:{line}: carácter Unicode invisible U+{ord(m.group(0)):04X}")
     return errors
+
+
+# --- Datos del negocio de origen --------------------------------------------
+# El repo es público y las lecciones vienen de un negocio real. Un monto preciso
+# (3+ cifras significativas) tiene forma de dato real; uno redondo, de ejemplo.
+# Los nombres propios no se pueden listar acá sin publicarlos: van en un archivo
+# ignorado por git que solo existe en la máquina de quien conoce el origen.
+
+NUMBER = r"\d{1,3}(?:\.\d{3})+(?:,\d+)?|\d+(?:[.,]\d+)?"
+AMOUNT = re.compile(
+    rf"(?:US\$|U\$S|USD|UYU|\$)\s?(?P<a>{NUMBER})(?:\s?(?:M|k|mil|millones)\b)?"
+    rf"|\b(?P<b>\d+,\d+)\s?M\b"
+)
+MIN_PRECISE_DIGITS = 3
+FICTICIO = re.compile(r"ficticio", re.I)
+PRIVATE_TERMS_FILE = REPO / ".private-terms"
+BUSINESS_SCAN_SUFFIXES = {".md", ".json", ".py", ".yml", ".yaml", ".txt", ".csv"}
+BUSINESS_SKIP_DIRS = {".git", "__pycache__", ".pytest_cache"}
+
+
+def significant_digits(number: str) -> int:
+    return len(re.sub(r"\D", "", number).strip("0"))
+
+
+def load_private_terms(path: Path) -> list[str] | None:
+    if not path.is_file():
+        return None
+    terms = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line and not line.startswith("#"):
+            terms.append(line.lower())
+    return terms
+
+
+def check_business_data(path: Path, rel: str, private_terms: list[str] | None = None) -> list[str]:
+    errors = []
+    lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
+    for n, line in enumerate(lines, 1):
+        if not FICTICIO.search(line):
+            for m in AMOUNT.finditer(line):
+                number = m.group("a") or m.group("b")
+                if significant_digits(number) >= MIN_PRECISE_DIGITS:
+                    errors.append(
+                        f"{rel}:{n}: monto preciso '{m.group(0).strip()}' (forma de dato real): "
+                        "redondearlo o marcar la línea 'ficticio'"
+                    )
+        low = line.lower()
+        for term in private_terms or []:
+            if re.search(rf"(?<!\w){re.escape(term)}(?!\w)", low):
+                errors.append(f"{rel}:{n}: término privado del proyecto de origen")
+    return errors
+
+
+def business_scan_files() -> list[Path]:
+    files = []
+    for p in sorted(REPO.rglob("*")):
+        if p.is_file() and p.suffix in BUSINESS_SCAN_SUFFIXES and not (
+            BUSINESS_SKIP_DIRS & set(p.relative_to(REPO).parts)
+        ):
+            files.append(p)
+    return files
+
+
+# --- La versión sube con el contenido -----------------------------------------
+# Entre septiembre y el primer release las 7 skills cambiaron y ninguna subió de
+# versión: quien instala no tiene cómo saber que lo suyo quedó viejo.
+
+def _git(repo: Path, *args: str) -> subprocess.CompletedProcess:
+    return subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True)
+
+
+def check_versions(repo: Path) -> tuple[list[str], str]:
+    """Each skill whose files differ from the last v* tag must carry a new version."""
+    tag = _git(repo, "describe", "--tags", "--abbrev=0", "--match", "v*")
+    if tag.returncode != 0:
+        if _git(repo, "rev-parse", "--is-shallow-repository").stdout.strip() == "true":
+            return (["historia shallow: no se ve el último tag (checkout con fetch-depth: 0)"], "")
+        return ([], "NO chequeado: el repo no tiene tags v*")
+    tag_name = tag.stdout.strip()
+    errors = []
+    for skill_md in sorted((repo / "skills").glob("*/SKILL.md")):
+        name = skill_md.parent.name
+        rel = f"skills/{name}"
+        if _git(repo, "diff", "--quiet", tag_name, "--", rel).returncode == 0:
+            continue
+        old = _git(repo, "show", f"{tag_name}:{rel}/SKILL.md")
+        if old.returncode != 0:
+            continue  # skill nueva desde el tag
+        old_v = (parse_frontmatter(old.stdout) or {}).get("version")
+        new_v = (parse_frontmatter(skill_md.read_text(encoding="utf-8")) or {}).get("version")
+        if old_v == new_v:
+            errors.append(f"{name}: cambió desde {tag_name} y sigue en version {new_v} (subirla)")
+    return errors, f"contra {tag_name}"
 
 
 def check_skill(skill_dir: Path) -> list[str]:
@@ -344,6 +447,23 @@ def main() -> int:
     for e in repo_errors:
         print(f"    - {e}")
     all_errors.extend(repo_errors)
+
+    terms = load_private_terms(PRIVATE_TERMS_FILE)
+    data_errors = []
+    for f in business_scan_files():
+        data_errors.extend(check_business_data(f, f.relative_to(REPO).as_posix(), terms))
+    scope = (f"montos + {len(terms)} término(s) privado(s)" if terms is not None
+             else "solo montos; términos privados NO chequeados (falta .private-terms)")
+    print(f"[{'ROJO' if data_errors else 'OK'}] datos del negocio de origen ({scope})")
+    for e in data_errors:
+        print(f"    - {e}")
+    all_errors.extend(data_errors)
+
+    version_errors, version_note = check_versions(REPO)
+    print(f"[{'ROJO' if version_errors else 'OK'}] versión sube con el contenido ({version_note})")
+    for e in version_errors:
+        print(f"    - {e}")
+    all_errors.extend(version_errors)
 
     print(
         f"\nVALIDATE-SKILLS: {len(skill_dirs)} skills, "

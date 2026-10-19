@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+
+# Términos privados del proyecto de origen (validate_skills.py los lee; nunca se versionan)
+.private-terms
