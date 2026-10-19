@@ -161,6 +161,9 @@ def main(argv: list[str] | None = None) -> int:
         print(f"SELLO-ROJO: {exc}", file=sys.stderr)
         return 1
 
+    # El sello se lee por pipe: UTF-8 siempre, no la página de códigos de la
+    # consola (en Windows, cp1252 rompía el JSON en el primer carácter no ASCII).
+    sys.stdout.reconfigure(encoding="utf-8")
     print(json.dumps(s, ensure_ascii=False, indent=2) if args.json else as_markdown(s))
     return 0
 
