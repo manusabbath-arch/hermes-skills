@@ -1,0 +1,4 @@
+{
+  "sql_clients": ["psql", "mysql", "sqlcmd", "sqlite3", "db2"],
+  "protected_paths": []
+}
