@@ -29,6 +29,22 @@ python3 scripts/install_skills.py --target agents --force      # actualizar
 hermes skills tap add manusabbath-arch/hermes-skills
 ```
 
+## Arrancar un proyecto nuevo
+
+El kit genera un proyecto con las guardas de `agent-ready-project` ya conectadas:
+pre-commit y CI con una compuerta, el hook de producción registrado y probado,
+`AGENTS.md` y `CLAUDE.md`, y el arnés de sesiones largas (`feature_list.json`,
+`progress.md`, `init.sh`).
+
+```
+python3 scripts/new_project.py ../mi-proyecto --name mi-proyecto   # --python py en Windows
+cd ../mi-proyecto && bash init.sh
+```
+
+El CI de este repo genera un proyecto, corre su `init.sh` y comprueba que su
+pre-commit rechaza un commit en rojo; cada guarda del kit tiene un test que la rompe a
+propósito (`scripts/tests/test_new_project.py`).
+
 Para verificar una instalación contra un release publicado (`SHA256SUMS`), ver
 [`SECURITY.md`](SECURITY.md).
 

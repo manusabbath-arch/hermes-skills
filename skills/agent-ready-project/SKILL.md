@@ -1,7 +1,7 @@
 ---
 name: agent-ready-project
 description: "Use when setting up or hardening a project that AI agents will build and modify - any codebase, not just data or trading. Covers the non-eludible validation loop (pre-commit, CI, pre-push), turning a check on over a dirty codebase with a ratchet baseline, docs that verify their own numbers, measuring lint debt instead of sweeping it, guards on every surface that can run the action, and the failure modes specific to agent-written code: invented API signatures, unverified self-reports, phantom wiring, silent-green tasks. Also covers empty-green checks that approve over zero items, plans that declare how they fail, and several agents sharing one repo: worktree per session, detached HEAD, concurrent commits, per-agent guard coverage, and long-running work across sessions (feature list, progress file, separate evaluator)."
-version: 1.1.0
+version: 1.2.0
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
@@ -417,6 +417,18 @@ rebatir con evidencia) están en `references/diagnosis-and-review.md`.
   a docs fechados con un puntero — no llegar a 300.
 - **Versionar la doc del agente en el repo.** Es el activo que hace que la próxima
   sesión no re-derive los errores.
+
+## Proyecto nuevo: el kit de arranque
+
+Para un proyecto que empieza, no hace falta armar esto pieza por pieza: el tap trae
+un kit (`kit/` en la raíz del repo-tap) y el script `new_project.py` lo genera con
+las cuatro guardas de esta skill ya conectadas: pre-commit y CI con una compuerta
+(`tools/kit_check.py`), el hook de producción registrado y probado con una escritura
+de prueba, línea base con trinquete, `AGENTS.md` corto con `CLAUDE.md` que lo
+importa, y el arnés de sesiones largas (`feature_list.json` con todo en
+`passes: false`, `progress.md`, `init.sh`). Las guardas se copian con su sha: editarlas
+a mano en el proyecto pone la compuerta en rojo. Cada guarda del kit tiene un test
+que la rompe a propósito.
 
 ## Orden de adopción (un proyecto existente, sin parar todo)
 

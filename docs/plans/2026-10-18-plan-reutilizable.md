@@ -200,5 +200,13 @@ Fase 1 hecha salvo repeticiones y criterios de un tercero: 5 escenarios por skil
 negativo, tres modelos, activación medida (`EVALS.md`). Pendiente: ronda C (3
 repeticiones de Haiku) y que alguien ajeno revise los criterios.
 
+**Estado (2026-10-19):** fase 2 hecha en v1.2.0 (plugin de Claude Code probado desde
+GitHub, `install_skills.py` para Codex y Cursor, job de instalación limpia); falta
+pasar las descripciones al inglés, que requiere re-medir la activación. Fase 4 hecha en
+v1.3.0, como `kit/` dentro del tap y no como repo plantilla aparte (una sola fuente: las
+guardas se copian del mismo árbol con su sha). Criterio 4.1: el CI genera un proyecto,
+corre `init.sh` en verde y prueba que el pre-commit rechaza un rojo. Criterio 4.2:
+`scripts/tests/test_new_project.py` rompe cada guarda a propósito. Siguiente: fase 5.
+
 Recomendación de arranque: **fase 1 y fase 3 en paralelo**. Son las que convierten lo
 que hoy afirmamos ("sirve", "es seguro") en algo que un check prueba.
