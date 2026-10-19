@@ -308,9 +308,11 @@ def check_skill(skill_dir: Path) -> list[str]:
             for line in source.splitlines():
                 if banned in line and "NUNCA" not in line.upper() and not line.strip().startswith("#"):
                     errors.append(f"{name}: {script.name} contiene `{banned}` (gate que no puede fallar)")
-        with tempfile.NamedTemporaryFile(suffix=".pyc", delete=True) as tmp:
+        # Un directorio y no NamedTemporaryFile: en Windows el archivo abierto no
+        # se puede reemplazar y py_compile escribe con os.replace.
+        with tempfile.TemporaryDirectory() as tmp:
             try:
-                py_compile.compile(str(script), cfile=tmp.name, doraise=True)
+                py_compile.compile(str(script), cfile=str(Path(tmp) / "check.pyc"), doraise=True)
             except py_compile.PyCompileError as exc:
                 errors.append(f"{name}: {script.name} no compila -> {exc.msg.strip()}")
 
