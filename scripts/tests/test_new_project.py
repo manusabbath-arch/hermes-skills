@@ -22,6 +22,9 @@ spec.loader.exec_module(np_)
 
 
 PY = Path(sys.executable).as_posix()
+# La ruta resuelta por PATH, no "bash" a secas: en Windows CreateProcess mira System32
+# antes que el PATH y encuentra el bash.exe de WSL (sin distribución) en vez de Git Bash.
+BASH = shutil.which("bash") or "bash"
 ENV = {**os.environ, "PYTHON": PY}
 
 
@@ -70,7 +73,7 @@ def test_every_feature_starts_failing(proj):
 
 @pytest.mark.skipif(shutil.which("bash") is None or shutil.which("git") is None, reason="init.sh needs bash and git")
 def test_init_sh_sets_hooks_and_ends_green(proj):
-    r = subprocess.run(["bash", "init.sh"], cwd=proj, capture_output=True, text=True, encoding="utf-8", env=ENV)
+    r = subprocess.run([BASH, "init.sh"], cwd=proj, capture_output=True, text=True, encoding="utf-8", env=ENV)
     assert r.returncode == 0, r.stdout + r.stderr
     hooks = subprocess.run(["git", "config", "core.hooksPath"], cwd=proj, capture_output=True, text=True)
     assert hooks.stdout.strip() == ".githooks"
@@ -106,7 +109,7 @@ def test_mutation_phantom_wiring(proj):
 
 @pytest.mark.skipif(shutil.which("bash") is None or shutil.which("git") is None, reason="needs bash and git")
 def test_pre_commit_blocks_a_red_commit(proj):
-    assert subprocess.run(["bash", "init.sh"], cwd=proj, capture_output=True, env=ENV).returncode == 0
+    assert subprocess.run([BASH, "init.sh"], cwd=proj, capture_output=True, env=ENV).returncode == 0
     (proj / "src" / "demo_app.py").write_text(
         "def f(o):\n    return getattr(o, 'nadie_lo_asigna', 0)\n", encoding="utf-8")
     git = ["git", "-c", "user.name=t", "-c", "user.email=t@t"]
@@ -199,7 +202,7 @@ def test_hook_with_a_missing_interpreter_is_red(tmp_path):
 
 @pytest.mark.skipif(shutil.which("bash") is None or shutil.which("git") is None, reason="needs bash and git")
 def test_worktree_guard_runs_once_there_are_commits(proj):
-    assert subprocess.run(["bash", "init.sh"], cwd=proj, capture_output=True, env=ENV).returncode == 0
+    assert subprocess.run([BASH, "init.sh"], cwd=proj, capture_output=True, env=ENV).returncode == 0
     git = ["git", "-c", "user.name=t", "-c", "user.email=t@t"]
     subprocess.run([*git, "add", "-A"], cwd=proj, check=True, capture_output=True)
     subprocess.run([*git, "commit", "-qm", "inicio"], cwd=proj, check=True, capture_output=True, env=ENV)
@@ -212,7 +215,7 @@ def test_worktree_guard_runs_once_there_are_commits(proj):
 def test_vendored_sha_survives_a_windows_checkout(proj):
     # Un compañero clona en Windows con autocrlf: las guardas no pueden volver en CRLF,
     # o su sha deja de coincidir con SOURCES.json y la compuerta da rojo en su máquina.
-    assert subprocess.run(["bash", "init.sh"], cwd=proj, capture_output=True, env=ENV).returncode == 0
+    assert subprocess.run([BASH, "init.sh"], cwd=proj, capture_output=True, env=ENV).returncode == 0
     git = ["git", "-c", "user.name=t", "-c", "user.email=t@t", "-c", "core.autocrlf=true"]
     subprocess.run([*git, "add", "-A"], cwd=proj, check=True, capture_output=True)
     subprocess.run([*git, "commit", "-qm", "inicio"], cwd=proj, check=True, capture_output=True, env=ENV)
