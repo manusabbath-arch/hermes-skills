@@ -167,7 +167,7 @@ extendido y diff del CI).
 
 ### Fase 6 — Volver a NG
 
-Usar el tap en `ng-distribuidora` por symlink, reemplazar sus copias de las guardas por
+Usar el tap en el proyecto de origen por symlink, reemplazar sus copias de las guardas por
 las del tap donde sean iguales, y medir con el benchmark de la fase 5 sobre exports
 reales anonimizados. Cierra el ciclo: el proyecto que originó las reglas valida su
 versión portable.

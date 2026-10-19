@@ -21,7 +21,7 @@ def _claude(command):
 
 
 @pytest.mark.parametrize("cmd", [
-    'db2 "UPDATE sf.cliente SET credito = 0"',
+    'db2 "UPDATE erp.cliente SET credito = 0"',
     "psql -c 'delete from facturas where id = 1'",
     'db2.exe "DROP TABLE x"',
     "cd /tmp && psql -c 'TRUNCATE ventas'",
@@ -31,7 +31,7 @@ def test_sql_writes_are_blocked(cmd):
 
 
 @pytest.mark.parametrize("cmd", [
-    'db2 "SELECT * FROM sf.cliente WHERE fecha_update > current date"',
+    'db2 "SELECT * FROM erp.cliente WHERE fecha_update > current date"',
     "psql -c 'select count(*) from ventas'",
     "git commit -m 'drop the old update path'",   # sin cliente SQL: no es SQL
     "python analizar.py --update-cache",
