@@ -1,7 +1,7 @@
 ---
 name: data-medallion-architecture
 description: "Use when designing an end-to-end data architecture: choosing a source (API, database, SFTP), building a medallion bronze-silver-gold lakehouse pipeline, and turning it into hypothetical-scenario dashboards and AI/ML/MCP consumption. Covers source-selection tradeoffs, ingest per source type (API, DB, SFTP), idempotent re-deliveries, deduplication and NULL handling in Silver, and layer design patterns. Not for operating an existing Delta table (vacuum, optimize, time travel): use delta-lakehouse."
-version: 1.0.0
+version: 1.1.0
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
