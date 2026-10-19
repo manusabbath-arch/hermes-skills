@@ -1,0 +1,16 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "A lo llama candidato a sobreajuste encontrado mirando los datos; B lo llama explícitamente hipótesis minada a posteriori."},
+{"pedido": 1, "criterio": 2, "A": false, "B": true, "nota": "A propone validación fuera de muestra pero no pre-registro con criterios de kill y éxito fijados antes; B tiene ambos."},
+{"pedido": 1, "criterio": 3, "A": false, "B": true, "nota": "A menciona paper trading solo como alternativa a capital chico, sin una fase de shadow previa clara; B propone shadow mode antes de enforce."},
+{"pedido": 2, "criterio": 1, "A": false, "B": true, "nota": "A pide un smoke test y que se use, no una query de producción con valores plausibles en filas post-deploy; B lo pide de forma explícita."},
+{"pedido": 2, "criterio": 2, "A": false, "B": true, "nota": "A remite a los criterios del ticket; B pide la query de aceptación, idealmente escrita antes de construirlo."},
+{"pedido": 3, "criterio": 1, "A": true, "B": true, "nota": "Las dos proponen un test de regresión o guard en CI que hace fallar el build."},
+{"pedido": 3, "criterio": 2, "A": false, "B": true, "nota": "Solo B pide registrar como deuda explícita, con fecha y evidencia, lo que no se pueda mecanizar."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Las dos advierten que 40 por brazo es ruido y piden un tamaño de muestra fijado de antemano."},
+{"pedido": 4, "criterio": 2, "A": false, "B": true, "nota": "A no pre-registra criterios de éxito y de abandono; B pre-registra criterios de éxito y de kill antes de seguir mirando."},
+{"pedido": 4, "criterio": 3, "A": false, "B": false, "nota": "Ninguna propone de forma explícita replicar en una muestra fresca; las dos proponen seguir corriendo hasta el n."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Las dos sospechan de un denominador equivocado o de un conjunto o ventana distinto al del numerador; B menciona además el denominador que cuenta solo éxitos."},
+{"pedido": 5, "criterio": 2, "A": true, "B": true, "nota": "Las dos proponen revisar numerador y denominador por separado antes de corregir."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Las dos dan una definición directa y correcta."},
+{"pedido": 6, "criterio": 2, "A": true, "B": false, "nota": "B cierra con un consejo de proceso (fijar umbral, métrica y tamaño de antemano) que el pedido no pide; A no agrega nada de eso."}
+]

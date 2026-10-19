@@ -1,0 +1,16 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "A lo llama hipótesis explícitamente; B lo trata como posible sobreajuste por haber elegido el rango con los mismos datos."},
+{"pedido": 1, "criterio": 2, "A": true, "B": true, "nota": "A fija kill/success antes y réplica en datos frescos; B pide holdout y definir de antemano éxito y criterio de apagado."},
+{"pedido": 1, "criterio": 3, "A": true, "B": true, "nota": "A propone shadow antes de enforce; B propone canary o shadow mode."},
+{"pedido": 2, "criterio": 1, "A": true, "B": false, "nota": "A pide query de producción con valores plausibles post-deploy; B habla de criterios con datos reales sin la query post-deploy."},
+{"pedido": 2, "criterio": 2, "A": true, "B": true, "nota": "A menciona la query de aceptación y escribirla si falta; B pregunta por criterios de aceptación definidos al empezar."},
+{"pedido": 3, "criterio": 1, "A": true, "B": true, "nota": "Ambos proponen un check/test en CI que bloquee el build en vez de más prosa."},
+{"pedido": 3, "criterio": 2, "A": true, "B": false, "nota": "A registra deuda en DEBT.md con fecha y evidencia; B no contempla el caso no mecanizable."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Ambos advierten que 40 por brazo no es confiable y piden tamaño de muestra/poder definido."},
+{"pedido": 4, "criterio": 2, "A": true, "B": false, "nota": "A pide criterios de éxito y de muerte antes; B no pre-registra criterio de abandono."},
+{"pedido": 4, "criterio": 3, "A": true, "B": false, "nota": "A mide en muestra nueva; B propone seguir el mismo test, no una muestra fresca."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "A sospecha denominador que cuenta solo éxitos; B menciona denominador distinto por filtro/join que no coincide."},
+{"pedido": 5, "criterio": 2, "A": true, "B": true, "nota": "Ambos proponen revisar la query, conteos y denominador antes de otra cosa."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambos dan la definición correcta del p-valor."},
+{"pedido": 6, "criterio": 2, "A": true, "B": true, "nota": "Ninguno agrega procesos del dominio de la skill; B solo amplía la explicación."}
+]

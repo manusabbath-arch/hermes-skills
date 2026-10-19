@@ -1,0 +1,16 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "A lo llama minería post-hoc e hipótesis; B señala que el rango salió de los mismos datos y hay riesgo de sobreajuste."},
+{"pedido": 1, "criterio": 2, "A": true, "B": true, "nota": "A pre-registra kill/success y re-mide en muestra fresca; B valida en holdout y define de antemano éxito y criterio de apagado."},
+{"pedido": 1, "criterio": 3, "A": true, "B": true, "nota": "Ambos proponen shadow mode antes de ejecutar en vivo."},
+{"pedido": 2, "criterio": 1, "A": true, "B": false, "nota": "A pide query de producción con valores plausibles post-deploy; B habla de criterios y métricas en general, sin esa query."},
+{"pedido": 2, "criterio": 2, "A": true, "B": false, "nota": "A pide la query escrita antes del build; B menciona criterios de aceptación, no una query previa."},
+{"pedido": 3, "criterio": 1, "A": true, "B": true, "nota": "Ambos proponen un test de regresión en CI que bloquee en lugar de más prosa."},
+{"pedido": 3, "criterio": 2, "A": true, "B": false, "nota": "A propone fila en DEBT.md con fecha y evidencia; B no cubre el caso no mecanizable."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Ambos advierten que 40 por brazo no es confiable y piden cálculo de potencia / tamaño planeado."},
+{"pedido": 4, "criterio": 2, "A": true, "B": false, "nota": "A pre-registra criterios de kill y success; B no pide pre-registro."},
+{"pedido": 4, "criterio": 3, "A": true, "B": false, "nota": "A replica en muestra nueva; B propone seguir el mismo test, no una muestra fresca."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "A nombra denominador que cuenta solo éxitos; B un denominador distinto del esperado por filtro/join desalineado."},
+{"pedido": 5, "criterio": 2, "A": true, "B": true, "nota": "Ambos proponen comparar numerador y denominador con conteos crudos antes de tocar el dashboard."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambos definen el p-valor correctamente y de forma directa."},
+{"pedido": 6, "criterio": 2, "A": false, "B": true, "nota": "A agrega la recomendación de fijar el umbral antes junto con criterios de decisión, proceso de la skill no pedido; B no."}
+]

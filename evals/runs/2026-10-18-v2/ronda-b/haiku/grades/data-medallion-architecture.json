@@ -1,0 +1,17 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "Ambas eligen una ingesta distinta por fuente (watermark/incremental o CDC/hash en A; cursor paginado, snapshot justificado por borrados y checksum en B)."},
+{"pedido": 1, "criterio": 2, "A": true, "B": true, "nota": "Ambas separan Bronze crudo append-only, Silver tipado/limpio/deduplicado y Gold agregado de consumo."},
+{"pedido": 1, "criterio": 3, "A": true, "B": true, "nota": "A modela dim_escenario con supuestos versionados; B define los escenarios como parámetros explícitos (costo +10%, horizonte, descuento) sobre Gold."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Ambas explican que el crudo permite reprocesar y auditar y que la limpieza va en Silver."},
+{"pedido": 2, "criterio": 2, "A": false, "B": false, "nota": "Ninguna menciona el time-travel ni el historial de Delta."},
+{"pedido": 3, "criterio": 1, "A": false, "B": true, "nota": "A usa pandas+Parquet y declara no conocer el stack; B usa deltalake+duckdb+pyarrow."},
+{"pedido": 3, "criterio": 2, "A": false, "B": true, "nota": "A escribe archivos Parquet sueltos, no tablas Delta; B escribe tres tablas Delta separadas."},
+{"pedido": 3, "criterio": 3, "A": false, "B": true, "nota": "A no verifica Gold; B relee Gold y valida con asserts que los precios son positivos y que el conteo de nulos es el esperado."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Ambas hacen la ingesta idempotente por hash/SHA-256 del archivo y conservan Bronze."},
+{"pedido": 4, "criterio": 2, "A": true, "B": true, "nota": "Ambas deduplican en Silver por clave de negocio/PK."},
+{"pedido": 4, "criterio": 3, "A": true, "B": true, "nota": "A compara el total contra el ERP/proveedor; B contra la suma calculada sobre el archivo original."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambas rechazan el 0, usan NULL y explican que un 0 distorsiona como si fuera un dato real."},
+{"pedido": 5, "criterio": 2, "A": true, "B": true, "nota": "A propone contar los n/d por día y reportarlos al proveedor; B cuenta y reporta los NULL por campo."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambas explican correctamente las diferencias: filas/columnar, tipos, compresión y legibilidad."},
+{"pedido": 6, "criterio": 2, "A": true, "B": false, "nota": "A cierra con una recomendación breve de uso sin procesos ni herramientas; B agrega la capa Bronze y Delta como herramienta del dominio."}
+]

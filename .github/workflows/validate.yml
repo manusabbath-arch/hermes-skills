@@ -26,11 +26,39 @@ jobs:
       - name: Verify the numbers this repo's docs assert
         run: python skills/agent-ready-project/scripts/doc_verify.py --root . --docs README.md
 
+      - name: Phantom wiring audit over the tap's own code
+        run: python skills/agent-ready-project/scripts/phantom_wiring.py scripts skills
+
+      - name: Published eval tables match the raw grades
+        run: |
+          for r in evals/runs/2026-10-18/round1 evals/runs/2026-10-18/round2; do
+            python scripts/eval_report.py --grades "$r/grades" --key evals/runs/2026-10-18/key.json --evals evals/runs/2026-10-18/evals > /tmp/results.md
+            diff -u "$r/results.md" /tmp/results.md
+          done
+          v2=evals/runs/2026-10-18-v2
+          for m in haiku sonnet opus; do
+            python scripts/eval_report.py --grades "$v2/$m/grades" --key "$v2/$m/key.json" --evals "$v2/evals" > /tmp/results.md
+            diff -u "$v2/$m/results.md" /tmp/results.md
+            python scripts/activation_eval.py score --key "$v2/activation/key.json" --answers "$v2/activation/answers/$m.json" > /tmp/results.md
+            diff -u "$v2/activation/results-$m.md" /tmp/results.md
+            python scripts/activation_eval.py score --key "$v2/ronda-b/activation/key.json" --answers "$v2/ronda-b/activation/answers/$m.json" > /tmp/results.md
+            diff -u "$v2/ronda-b/activation/results-$m.md" /tmp/results.md
+          done
+          python scripts/eval_report.py --grades "$v2/ronda-b/haiku/grades" --key "$v2/ronda-b/haiku/key.json" --evals "$v2/evals" > /tmp/results.md
+          diff -u "$v2/ronda-b/haiku/results.md" /tmp/results.md
+
       - name: Install test deps
-        run: python -m pip install --disable-pip-version-check pytest
+        # El stack que delta-lakehouse y data-medallion-architecture declaran
+        # validado: sus tests corren el código del SKILL.md con estas versiones.
+        run: python -m pip install --disable-pip-version-check pytest deltalake==1.6.6 duckdb==1.5.6 pyarrow==26.0.0
 
       - name: Verify the interpreter ran (a gate must tell "failed" from "never ran")
         run: python -m pytest --version
 
-      - name: Run shipped script tests
-        run: python -m pytest skills -q
+      - name: Run shipped script and repo tests
+        run: python -m pytest skills scripts -q
+
+      - name: Checksum manifest round-trips (what a release would publish)
+        run: |
+          python scripts/release_manifest.py > /tmp/SHA256SUMS
+          python scripts/release_manifest.py --check /tmp/SHA256SUMS

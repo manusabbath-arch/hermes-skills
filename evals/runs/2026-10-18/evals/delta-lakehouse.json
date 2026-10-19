@@ -1,0 +1,38 @@
+[
+  {
+    "skills": [
+      "delta-lakehouse"
+    ],
+    "query": "Necesito guardar PDFs de facturas y la tabla de ventas en un lakehouse para entrenar un modelo después.",
+    "files": [],
+    "expected_behavior": [
+      "Propone Delta Lake para lo estructurado y una estrategia para no estructurado (rutas/metadatos en tabla Delta)",
+      "Usa el stack validado (deltalake + duckdb + pyarrow)",
+      "Menciona historial de operaciones/time-travel para reproducir el dataset de entrenamiento"
+    ]
+  },
+  {
+    "skills": [
+      "delta-lakehouse"
+    ],
+    "query": "Las lecturas de mi tabla Delta se pusieron lentas después de meses de upserts diarios.",
+    "files": [],
+    "expected_behavior": [
+      "Diagnostica archivos chicos/fragmentación y propone compaction/optimize",
+      "Trata vacuum con retención explícita, advirtiendo que vacuar en caliente rompe la reproducibilidad (NULL ≠ 0 aplicado a retención)",
+      "Propone medir antes y después en vez de suponer la mejora"
+    ]
+  },
+  {
+    "skills": [
+      "delta-lakehouse"
+    ],
+    "query": "Quiero que un agente consulte las tablas del lakehouse para responder preguntas de negocio.",
+    "files": [],
+    "expected_behavior": [
+      "Hace que el agente lea la MISMA tabla que el sistema escribe, no una copia que drifta",
+      "Propone lectura vía duckdb sobre Delta",
+      "Pide una query de aceptación con valores plausibles antes de darlo por hecho"
+    ]
+  }
+]

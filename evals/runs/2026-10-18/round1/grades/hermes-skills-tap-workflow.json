@@ -1,0 +1,9 @@
+[
+  {"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "Ambas dicen que la copia instalada en el perfil no se sincroniza sola y que hay que re-instalar o actualizar."},
+  {"pedido": 1, "criterio": 2, "A": true, "B": false, "nota": "A recomienda un symlink del perfil al repo para que el cambio en el repo sea el cambio en el perfil; B no menciona symlinks."},
+  {"pedido": 2, "criterio": 1, "A": false, "B": false, "nota": "Ambas crean skills/<nombre>/SKILL.md con frontmatter, pero ninguna exige de forma explícita que el name coincida con el directorio."},
+  {"pedido": 2, "criterio": 2, "A": true, "B": false, "nota": "A corre validate_skills.py y pytest antes del push; B no corre ningún check del repo."},
+  {"pedido": 2, "criterio": 3, "A": true, "B": false, "nota": "A agrega la fila al README y sube el conteo verificado skills-count; B solo dice registrarla en el README si hay índice, sin conteo verificado."},
+  {"pedido": 3, "criterio": 1, "A": true, "B": true, "nota": "Ambas ofrecen la instalación manual copiando desde el repo; A además propone el symlink."},
+  {"pedido": 3, "criterio": 2, "A": true, "B": false, "nota": "A dice que no reintentaría en loop y que se verifique con ls; B no habla de evitar reintentos y verifica con hermes skills list en lugar de ls."}
+]

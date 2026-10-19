@@ -1,0 +1,70 @@
+[
+  {
+    "skills": [
+      "hermes-skills-tap-workflow"
+    ],
+    "query": "Edité una skill en el repo tap pero en mi perfil de Hermes sigue la versión vieja.",
+    "files": [],
+    "expected_behavior": [
+      "Explica que la instalación por copia no se propaga sola y que hay que re-instalar",
+      "Recomienda symlink desde el perfil al repo para que el cambio en el repo sea el cambio en el perfil"
+    ]
+  },
+  {
+    "skills": [
+      "hermes-skills-tap-workflow"
+    ],
+    "query": "Quiero publicar una skill nueva en el tap. ¿Qué pasos sigo?",
+    "files": [],
+    "expected_behavior": [
+      "Crea `skills/<nombre>/SKILL.md` con frontmatter cuyo name coincide con el directorio",
+      "Corre los checks del repo (validate_skills.py y tests) antes del push",
+      "Actualiza el README y su conteo verificado"
+    ]
+  },
+  {
+    "skills": [
+      "hermes-skills-tap-workflow"
+    ],
+    "query": "`hermes skills install` falló con 'Could not fetch from any source', ¿cómo instalo igual la skill del tap?",
+    "files": [],
+    "expected_behavior": [
+      "Ofrece la propagación manual (symlink o copia desde el repo clonado) como alternativa",
+      "No reintenta el install en loop e indica cómo verificar con `ls` que el perfil tiene la skill"
+    ]
+  },
+  {
+    "skills": [
+      "hermes-skills-tap-workflow"
+    ],
+    "query": "Agregué una skill nueva y el CI falla en el paso de doc_verify con 'skills-count'. ¿Por qué?",
+    "files": [],
+    "expected_behavior": [
+      "Explica que el README afirma la cantidad de skills en un bloque verify y que hay que actualizar ese número",
+      "Indica sumar la fila de la skill nueva en la tabla del README"
+    ]
+  },
+  {
+    "skills": [
+      "hermes-skills-tap-workflow"
+    ],
+    "query": "Puse la skill en `skills/MiSkill/` con `name: mi-skill` y no aparece al instalar. ¿Qué pasa?",
+    "files": [],
+    "expected_behavior": [
+      "Explica que el name del frontmatter tiene que ser igual al nombre del directorio",
+      "Indica usar minúsculas y guiones en el nombre del directorio"
+    ]
+  },
+  {
+    "skills": [
+      "hermes-skills-tap-workflow"
+    ],
+    "query": "¿Cómo creo un repo nuevo en GitHub?",
+    "files": [],
+    "expected_behavior": [
+      "Responde la pregunta concreta de forma directa y correcta",
+      "No agrega procesos, chequeos ni herramientas del dominio de la skill que el pedido no pide"
+    ],
+    "negativo": true
+  }
+]

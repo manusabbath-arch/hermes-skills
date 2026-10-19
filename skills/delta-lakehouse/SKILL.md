@@ -1,6 +1,6 @@
 ---
 name: delta-lakehouse
-description: "Use when building an ETL or data pipeline, or storing structured and unstructured data in a Delta lakehouse for ML training or AI agent consumption. Covers extraction from heterogeneous sources, Delta tables with operation history and time travel, upsert patterns, partitioning, vacuum and compaction, using deltalake + duckdb + pyarrow."
+description: "Use when building an ETL or data pipeline, or storing structured and unstructured data in a Delta lakehouse for ML training or AI agent consumption. Covers extraction from heterogeneous sources, Delta tables with operation history and time travel, upsert patterns, partitioning, vacuum and compaction, retention, reading Delta offline, using deltalake + duckdb + pyarrow. Not for designing bronze/silver/gold layers or per-source ingest: use data-medallion-architecture."
 version: 1.0.0
 author: Hermes Agent
 license: MIT
@@ -17,9 +17,13 @@ Convierte datos operativos en un activo versionado y reutilizable: un **lakehous
 resuelve el almacenado de estructurado + no estructurado, el historial de operaciones
 (writes/updates), time-travel y la lectura directa por engines, modelos y agentes de IA.
 
-**Origen:** polymarket-trading-bot (2026). Datos de predicción/mercados que hoy viven en
+**Origen:** un sistema de trading (2026) con datos operativos que vivían en
 SQLite/JSON/logs no versionados, imposibles de reproducir para entrenar un modelo o
 auditar qué estado vio un agente.
+
+## Cuándo NO aplicarla
+
+Si el pedido es una pregunta puntual de lectura o escritura de datos (cómo leer un CSV con pandas), se responde **solo eso**, directo y sin agregar procesos, chequeos ni advertencias de esta skill que nadie pidió: esta skill aplica a guardar y operar tablas Delta. Diseñar capas Bronze/Silver/Gold, ingesta por tipo de fuente o deduplicación: `data-medallion-architecture`.
 
 ## Stack (validado end-to-end 2026)
 
@@ -59,12 +63,20 @@ Confirmar stack antes de interpretar salida:
 ## Código validado (copia-pega)
 
 ```python
-import os, pyarrow as pa, duckdb
-from deltalake import write_deltalake, DeltaTable
+import os, tempfile, pyarrow as pa, duckdb
+from deltalake import write_deltalake, DeltaTable, QueryBuilder
+
+base = tempfile.mkdtemp()                      # en prod: la ruta del lake
+
+def leer(dt: DeltaTable) -> pa.Table:
+    # Lectura nativa (DataFusion). Con deltalake 1.6 + pyarrow 26 + Python 3.13,
+    # dt.to_pyarrow_table() dejaba el proceso colgado al salir (~60% de corridas).
+    # Devuelve un Table de arro3: pa.table() lo pasa a pyarrow (interfaz PyCapsule).
+    return pa.table(QueryBuilder().register("t", dt).execute("SELECT * FROM t").read_all())
 
 # 1) EXTRACT no estructurado (JSONL) -> Arrow
-events = [{"market": "m0", "edge_elo": None, "ts": 0},
-          {"market": "m1", "edge_elo": 0.5, "ts": 1}]
+events = [{"sku": "A0", "precio": None, "ts": 0},   # None = no medido (NULL != 0)
+          {"sku": "A1", "precio": 50.0, "ts": 1}]
 arrow = pa.Table.from_pylist(events)
 
 # 2) Escritura inicial -> tabla Delta version 0
@@ -73,19 +85,23 @@ write_deltalake(tbl, arrow)
 print(DeltaTable(tbl).version())               # 0
 
 # 3) Update (upsert) -> nueva version + historial
-new = pa.Table.from_pylist([{"market": "m1", "edge_elo": 0.9, "ts": 2}])
-merged = pa.concat_tables([DeltaTable(tbl).to_pyarrow_table(), new])   # read + union
+new = pa.Table.from_pylist([{"sku": "A1", "precio": 90.0, "ts": 2}])
+# DataFusion lee strings como string_view: castear al esquema antes de unir
+merged = pa.concat_tables([leer(DeltaTable(tbl)).cast(arrow.schema), new])
 seen = {}
 for row in merged.to_pylist():
-    seen[row["market"]] = row                   # dedup por PK, ultimo gana
-write_deltalake(tbl, pa.Table.from_pylist(list(seen.values())), mode="overwrite")
+    seen[row["sku"]] = row                      # dedup por PK, ultimo gana
+write_deltalake(tbl, pa.Table.from_pylist(list(seen.values()), schema=arrow.schema),
+                mode="overwrite")
 
-print(DeltaTable(tbl).history()[0]["operation"])   # commit visible
-print(DeltaTable(tbl, version=0).to_pyarrow_table().num_rows)  # time-travel
+print(DeltaTable(tbl).history()[0]["operation"])          # commit visible
+print(leer(DeltaTable(tbl, version=0)).num_rows)           # time-travel
 
-# 4) DuckDB lee Delta nativo
+# 4) DuckDB consulta Arrow. delta_scan('<tbl>') también sirve, pero descarga la
+#    extensión `delta` la primera vez: sin red falla ("Failed to download extension").
 con = duckdb.connect()
-print(con.execute(f"SELECT * FROM delta_scan('{tbl}') ORDER BY market").fetchall())
+actual = leer(DeltaTable(tbl))
+print(con.execute("SELECT * FROM actual ORDER BY sku").fetchall())
 ```
 
 ## Optimización de almacenado/lectura

@@ -1,0 +1,17 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "Ambas proponen tabla Delta para ventas y PDFs en storage con tabla Delta de rutas/metadatos."},
+{"pedido": 1, "criterio": 2, "A": true, "B": false, "nota": "A usa deltalake + pyarrow + duckdb; B se apoya en Spark/MLflow/Unity Catalog sin el stack validado."},
+{"pedido": 1, "criterio": 3, "A": true, "B": true, "nota": "Ambas registran la versión Delta junto al modelo para reproducir con time-travel."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Ambas diagnostican archivos chicos y proponen compaction/OPTIMIZE."},
+{"pedido": 2, "criterio": 2, "A": true, "B": false, "nota": "A fija retention_hours explícito y lo liga a las versiones a reproducir; B solo dice no bajar a 0 sin vincularlo a reproducibilidad."},
+{"pedido": 2, "criterio": 3, "A": true, "B": false, "nota": "A pide medir el tiempo de lectura antes y después; B no propone medir."},
+{"pedido": 3, "criterio": 1, "A": true, "B": false, "nota": "A exige leer las mismas tablas que escribe el sistema, no copias; B propone un esquema gold curado sin abordar el drift."},
+{"pedido": 3, "criterio": 2, "A": true, "B": false, "nota": "A propone DuckDB sobre Delta (delta_scan o vía Arrow); B solo lista DuckDB entre varios motores."},
+{"pedido": 3, "criterio": 3, "A": true, "B": true, "nota": "Ambas condicionan la aceptación a un set de preguntas reales/con respuestas conocidas antes de exponerlo."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Ambas explican que vacuum borró los archivos del time-travel y que Delta no puede recuperarlos."},
+{"pedido": 4, "criterio": 2, "A": true, "B": true, "nota": "Ambas proponen retención explícita mayor que la ventana de reproducibilidad."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambas identifican que se intenta descargar la extensión delta."},
+{"pedido": 5, "criterio": 2, "A": true, "B": true, "nota": "A ofrece preinstalar y leer vía deltalake QueryBuilder/Arrow; B ofrece preinstalar la extensión offline."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambas responden con pd.read_csv de forma directa y correcta."},
+{"pedido": 6, "criterio": 2, "A": true, "B": true, "nota": "Ninguna agrega procesos o herramientas del dominio Delta."}
+]

@@ -1,0 +1,16 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "Ambas tratan el rango como hipótesis ajustada post-hoc, no como hallazgo."},
+{"pedido": 1, "criterio": 2, "A": false, "B": true, "nota": "A pide validación fuera de muestra pero no un pre-registro con kill/success fijados antes; B pide ambas cosas explícitamente."},
+{"pedido": 1, "criterio": 3, "A": true, "B": true, "nota": "A propone paper trading antes de producción; B propone shadow explícito."},
+{"pedido": 2, "criterio": 1, "A": false, "B": true, "nota": "A habla de prueba end-to-end y monitoreo, no de una query de producción con valores plausibles post-deploy; B lo dice explícitamente."},
+{"pedido": 2, "criterio": 2, "A": false, "B": true, "nota": "A menciona criterios de aceptación como supuesto, no la query de aceptación previa; B aborda si existe la query de aceptación."},
+{"pedido": 3, "criterio": 1, "A": true, "B": true, "nota": "A propone test de regresión en CI que bloquee; B propone check que falle el build."},
+{"pedido": 3, "criterio": 2, "A": false, "B": true, "nota": "Solo B pide registrar como deuda explícita con fecha y evidencia si no es mecanizable."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Ambas advierten que 40 por brazo no alcanza y piden fijar el tamaño de muestra antes."},
+{"pedido": 4, "criterio": 2, "A": false, "B": true, "nota": "A no pre-registra criterios de éxito y abandono; B pide pre-registrar criterios de kill y éxito."},
+{"pedido": 4, "criterio": 3, "A": false, "B": false, "nota": "Ninguna propone replicar en una muestra fresca; ambas piden seguir el mismo test y rollout gradual."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "A sospecha un denominador de otra fuente/ventana que el numerador; B nombra explícitamente el denominador que cuenta solo éxitos."},
+{"pedido": 5, "criterio": 2, "A": true, "B": true, "nota": "Ambas proponen tomar numerador y denominador crudos y recalcular antes de cambiar el panel."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambas definen correctamente el p-valor de forma directa."},
+{"pedido": 6, "criterio": 2, "A": true, "B": false, "nota": "A se queda en la definición; B agrega pre-fijar umbral, comparaciones múltiples y réplica con datos nuevos, propios del dominio de la skill."}
+]

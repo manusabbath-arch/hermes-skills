@@ -1,0 +1,17 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "Ambas usan Delta para ventas; A ofrece rutas+sha256 en tabla (u opción binaria), B rutas+metadatos en tabla Delta."},
+{"pedido": 1, "criterio": 2, "A": false, "B": false, "nota": "A usa deltalake y Arrow pero no menciona duckdb; B no nombra el stack."},
+{"pedido": 1, "criterio": 3, "A": true, "B": true, "nota": "Ambas proponen fijar y guardar la versión Delta para reproducir el dataset."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Ambas diagnostican archivos chicos y proponen compactar/OPTIMIZE."},
+{"pedido": 2, "criterio": 2, "A": false, "B": false, "nota": "Ambas piden retención no nula, pero ninguna advierte explícitamente aquí que vacuum rompe la reproducibilidad."},
+{"pedido": 2, "criterio": 3, "A": true, "B": true, "nota": "Ambas dicen medir antes y después."},
+{"pedido": 3, "criterio": 1, "A": true, "B": false, "nota": "A exige leer la misma tabla, no una copia; B propone tablas gold curadas sin abordar el drift."},
+{"pedido": 3, "criterio": 2, "A": true, "B": false, "nota": "A lee Delta y consulta con DuckDB vía Arrow; B no menciona duckdb."},
+{"pedido": 3, "criterio": 3, "A": false, "B": true, "nota": "B pide un set de preguntas con respuestas esperadas antes de usarlo; A solo valida el contrato del esquema."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Ambas explican que vacuum borró los parquet que necesita el time-travel y que no se recuperan desde Delta."},
+{"pedido": 4, "criterio": 2, "A": true, "B": true, "nota": "Ambas proponen una retención explícita de varios días (B, 7 días como mínimo)."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambas identifican que falla la descarga de la extensión delta."},
+{"pedido": 5, "criterio": 2, "A": true, "B": true, "nota": "Ambas proponen preinstalar la extensión o leer con deltalake y pasarlo a DuckDB."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambas responden con pd.read_csv directamente."},
+{"pedido": 6, "criterio": 2, "A": true, "B": true, "nota": "Ninguna agrega procesos del dominio; B solo suma parámetros de pandas."}
+]

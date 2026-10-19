@@ -1,0 +1,74 @@
+[
+  {
+    "skills": [
+      "agent-ready-project"
+    ],
+    "query": "Nuestro CI corre `pytest | grep passed || exit 1` y bandit con `|| true`. Revisalo y dejalo listo para que lo modifiquen agentes.",
+    "files": [],
+    "expected_behavior": [
+      "Señala que el grep no distingue tests rojos de un intérprete inexistente y agrega un paso que verifica el intérprete (p. ej. `python -m pytest --version`) antes",
+      "Quita el `|| true` de bandit o lo reemplaza por un escape hatch nombrado y documentado, explicando que un gate que no puede fallar no es un gate",
+      "No suprime familias enteras de hallazgos para dejarlo verde"
+    ]
+  },
+  {
+    "skills": [
+      "agent-ready-project"
+    ],
+    "query": "Quiero prender un check de lint nuevo pero el repo ya tiene 180 violaciones y no puedo arreglarlas todas hoy.",
+    "files": [],
+    "expected_behavior": [
+      "Propone una baseline con trinquete que falla solo con violaciones nuevas",
+      "Indexa la baseline por identidad estable (archivo + símbolo), no por número de línea",
+      "Reporta también las claves stale de la baseline para que la deuda solo pueda bajar"
+    ]
+  },
+  {
+    "skills": [
+      "agent-ready-project"
+    ],
+    "query": "Tres agentes (Claude Code, Hermes y OpenCode) van a trabajar a la vez en este repo. ¿Cómo lo organizamos para no pisarnos?",
+    "files": [],
+    "expected_behavior": [
+      "Propone un worktree y una rama `<agente>/<tema>` por sesión, con el árbol principal solo para integrar",
+      "Advierte que un worktree creado por la herramienta puede estar en HEAD detached y que el primer paso es `git switch -c`; menciona `scripts/worktree_guard.py`",
+      "Pide commits con pathspec y nunca `--amend` sobre un commit ajeno",
+      "Propone que cada agente tenga su guarda física (p. ej. `scripts/prod_write_guard.py`) y que la cobertura se mida con un comando"
+    ]
+  },
+  {
+    "skills": [
+      "agent-ready-project"
+    ],
+    "query": "Nuestro check `validar` imprime '0 problemas' y sale con 0. Un agente renombró el directorio que escanea y nadie lo notó en semanas. ¿Qué cambiamos?",
+    "files": [],
+    "expected_behavior": [
+      "Explica que el check no miró nada y por eso dio verde (verde vacío)",
+      "Pide que el mensaje lleve su denominador (cuántos archivos o elementos revisó) y que cero revisados sea rojo",
+      "Propone auditar los checks vaciando su universo a propósito y verificando que se pongan en rojo"
+    ]
+  },
+  {
+    "skills": [
+      "agent-ready-project"
+    ],
+    "query": "Un subagente me reportó 'PR creado y tests en verde'. ¿Lo doy por terminado?",
+    "files": [],
+    "expected_behavior": [
+      "No acepta el reporte del subagente sin verificar el handle real (URL del PR, SHA, estado del CI) uno mismo",
+      "Recomienda delegar en subagentes solo tareas atómicas y dejar el contexto de diseño en la sesión principal"
+    ]
+  },
+  {
+    "skills": [
+      "agent-ready-project"
+    ],
+    "query": "¿Cómo renombro una variable local en una función de Python?",
+    "files": [],
+    "expected_behavior": [
+      "Responde la pregunta concreta de forma directa y correcta",
+      "No agrega procesos, chequeos ni herramientas del dominio de la skill que el pedido no pide"
+    ],
+    "negativo": true
+  }
+]

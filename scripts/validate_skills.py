@@ -17,11 +17,28 @@ Verifies, for every skills/<name>/:
   - no `|| true` / `continue-on-error` inside shipped scripts (a gate that
     cannot fail is not a gate)
   - shipped Python compiles
+  - rules from Anthropic's skill authoring guide: `name` is lowercase/digits/
+    hyphens, <=64 chars, without the reserved words "anthropic"/"claude";
+    `description` carries no XML tags; a references/ or templates/ .md longer
+    than 100 lines opens with a table of contents (an agent previews long files
+    with `head`); references/ files do not cite other references/ files (keep
+    them one level deep from SKILL.md, or the agent reads them partially)
+  - evals/evals.json exists with >= 5 scenarios in the guide's format
+    ({skills, query, files, expected_behavior}), at least one of them
+    `"negativo": true` (a request the skill should NOT change): "build
+    evaluations first" - a skill without them was never shown to change, or to
+    leave alone, what an agent does
+  - trust policy (skills are executable supply chain): shipped scripts import
+    only the stdlib, never a network module, and use subprocess only when
+    listed in SUBPROCESS_ALLOWED; skill text carries no prompt-injection
+    phrasing, pipe-to-shell installs, or invisible/bidi Unicode characters
 
 Exit codes: 0 all green, 1 at least one RED. Paths anchored to __file__.
 """
 from __future__ import annotations
 
+import ast
+import json
 import py_compile
 import re
 import sys
@@ -37,6 +54,17 @@ MAX_DESCRIPTION_CHARS = 1024
 MAX_SKILL_LINES = 500
 
 # A description made only of these words triggers on nothing a user would type.
+NAME_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+MAX_NAME_CHARS = 64
+RESERVED_NAME_WORDS = ("anthropic", "claude")
+XML_TAG = re.compile(r"</?[A-Za-z][\w-]*[^>]*>")
+TOC_THRESHOLD_LINES = 100
+TOC_HEADING = re.compile(r"^#{2,3} (Contents|Contenido|Índice)\s*$", re.M | re.I)
+TOC_WINDOW_LINES = 30
+MIN_EVALS = 5
+MIN_NEGATIVE_EVALS = 1
+MIN_EXPECTED_BEHAVIORS = 2
+
 STUB_PATTERN = re.compile(
     r"^use when [\w/\- ]{0,40}(projects?|skills?|agents?|repos?)\.?$", re.I
 )
@@ -78,6 +106,103 @@ def cited_paths(body: str) -> set[tuple[str | None, str]]:
     return found
 
 
+def check_evals(skill_dir: Path) -> list[str]:
+    name = skill_dir.name
+    path = skill_dir / "evals" / "evals.json"
+    if not path.is_file():
+        return [f"{name}: falta evals/evals.json (>= {MIN_EVALS} escenarios: query + expected_behavior)"]
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return [f"{name}: evals/evals.json no es JSON válido ({exc})"]
+    negatives = sum(1 for ev in data if isinstance(ev, dict) and ev.get("negativo") is True) \
+        if isinstance(data, list) else 0
+    if isinstance(data, list) and len(data) >= MIN_EVALS and negatives < MIN_NEGATIVE_EVALS:
+        return [f"{name}: evals/evals.json sin escenario negativo (`\"negativo\": true`): "
+                "falta probar que la skill no empuja donde no corresponde"]
+    if not isinstance(data, list) or len(data) < MIN_EVALS:
+        n = len(data) if isinstance(data, list) else 0
+        return [f"{name}: evals/evals.json tiene {n} escenario(s), mínimo {MIN_EVALS}"]
+    errors = []
+    for i, ev in enumerate(data):
+        where = f"{name}: evals[{i}]"
+        if not isinstance(ev, dict):
+            errors.append(f"{where} no es un objeto")
+            continue
+        if name not in (ev.get("skills") or []):
+            errors.append(f"{where}.skills no incluye '{name}'")
+        if not str(ev.get("query", "")).strip():
+            errors.append(f"{where}.query vacío")
+        eb = ev.get("expected_behavior")
+        if not isinstance(eb, list) or len([b for b in eb if str(b).strip()]) < MIN_EXPECTED_BEHAVIORS:
+            errors.append(f"{where}.expected_behavior con menos de {MIN_EXPECTED_BEHAVIORS} criterios")
+    return errors
+
+
+# --- Trust policy ---------------------------------------------------------
+
+NETWORK_MODULES = {
+    "socket", "ssl", "urllib", "http", "ftplib", "smtplib", "poplib", "imaplib",
+    "telnetlib", "xmlrpc", "socketserver", "asyncio", "webbrowser",
+}
+# Scripts that run a subprocess on purpose, with the reason. Adding one is a
+# reviewed decision, visible in the diff.
+SUBPROCESS_ALLOWED = {
+    "skills/agent-ready-project/scripts/doc_verify.py": "kind=command, opt-in con --allow-command",
+    "skills/agent-ready-project/scripts/worktree_guard.py": "corre git worktree/rev-list",
+}
+INJECTION_PATTERNS = [
+    re.compile(r"ignore\s+(all\s+|the\s+)?(previous|prior|above)\s+instructions", re.I),
+    re.compile(r"ignor[aáe]\w*\s+(todas\s+)?las\s+instrucciones\s+(anteriores|previas)", re.I),
+    re.compile(r"disregard\s+(the\s+|your\s+)?(system|previous)\s+(prompt|instructions)", re.I),
+    re.compile(r"\b(curl|wget)\b[^\n|]*\|\s*(sudo\s+)?(ba|z)?sh\b", re.I),
+    re.compile(r"base64\s+(-d|--decode)[^\n|]*\|\s*(ba)?sh\b", re.I),
+]
+# Zero-width and bidirectional controls: invisible to a reviewer, readable to a model.
+HIDDEN_CHARS = re.compile("[\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff]")
+
+
+def imported_modules(source: str) -> set[str]:
+    mods: set[str] = set()
+    for node in ast.walk(ast.parse(source)):
+        if isinstance(node, ast.Import):
+            mods |= {a.name.split(".")[0] for a in node.names}
+        elif isinstance(node, ast.ImportFrom) and node.module and node.level == 0:
+            mods.add(node.module.split(".")[0])
+    return mods
+
+
+def check_script_policy(script: Path, rel: str) -> list[str]:
+    try:
+        mods = imported_modules(script.read_text(encoding="utf-8"))
+    except SyntaxError:
+        return []  # py_compile ya lo reporta
+    errors = []
+    local = {p.stem for p in script.parent.glob("*.py")}
+    for m in sorted(mods - set(sys.stdlib_module_names) - local - {"__future__"}):
+        errors.append(f"{rel}: importa '{m}', que no es stdlib (los scripts publicados no traen dependencias)")
+    for m in sorted(mods & NETWORK_MODULES):
+        errors.append(f"{rel}: importa '{m}' (red): un script publicado no sale a la red")
+    if "subprocess" in mods and rel not in SUBPROCESS_ALLOWED:
+        errors.append(f"{rel}: usa subprocess y no está en SUBPROCESS_ALLOWED (agregarlo con su motivo)")
+    return errors
+
+
+def check_text_policy(path: Path, rel: str) -> list[str]:
+    text = path.read_text(encoding="utf-8", errors="replace")
+    errors = []
+    for pat in INJECTION_PATTERNS:
+        m = pat.search(text)
+        if m:
+            line = text.count("\n", 0, m.start()) + 1
+            errors.append(f"{rel}:{line}: texto con forma de instrucción inyectada o instalación a ciegas: '{m.group(0)}'")
+    m = HIDDEN_CHARS.search(text)
+    if m:
+        line = text.count("\n", 0, m.start()) + 1
+        errors.append(f"{rel}:{line}: carácter Unicode invisible U+{ord(m.group(0)):04X}")
+    return errors
+
+
 def check_skill(skill_dir: Path) -> list[str]:
     errors: list[str] = []
     name = skill_dir.name
@@ -101,7 +226,20 @@ def check_skill(skill_dir: Path) -> list[str]:
             "(el loader indexa por directorio)"
         )
 
+    fm_name = fm.get("name", "")
+    if fm_name:
+        if len(fm_name) > MAX_NAME_CHARS or not NAME_PATTERN.match(fm_name):
+            errors.append(
+                f"{name}: name='{fm_name}' debe ser minúsculas/dígitos/guiones, "
+                f"<= {MAX_NAME_CHARS} chars"
+            )
+        for word in RESERVED_NAME_WORDS:
+            if word in fm_name:
+                errors.append(f"{name}: name contiene la palabra reservada '{word}'")
+
     desc = fm.get("description", "")
+    if desc and XML_TAG.search(desc):
+        errors.append(f"{name}: description con tag XML '{XML_TAG.search(desc).group(0)}'")
     if desc:
         if len(desc) < MIN_DESCRIPTION_CHARS:
             errors.append(
@@ -135,18 +273,46 @@ def check_skill(skill_dir: Path) -> list[str]:
                 errors.append(f"{name}: el cuerpo cita `{prefix}/{rel}` y no existe en este tap")
         # prefijo desconocido = skill externa al tap, no verificable acá.
 
+    errors.extend(check_evals(skill_dir))
+
+    for sub in ("references", "templates"):
+        for doc in sorted((skill_dir / sub).glob("*.md")):
+            doc_text = doc.read_text(encoding="utf-8")
+            n_doc = doc_text.count("\n") + 1
+            head = "\n".join(doc_text.splitlines()[:TOC_WINDOW_LINES])
+            if n_doc > TOC_THRESHOLD_LINES and not TOC_HEADING.search(head):
+                errors.append(
+                    f"{name}: {sub}/{doc.name} tiene {n_doc} líneas y no abre con "
+                    f"'## Contents' en sus primeras {TOC_WINDOW_LINES} (>{TOC_THRESHOLD_LINES} "
+                    "líneas: el agente lo previsualiza con head y no ve el resto)"
+                )
+            if sub == "references":
+                for _prefix, rel in cited_paths(doc_text):
+                    if rel.startswith("references/"):
+                        errors.append(
+                            f"{name}: references/{doc.name} cita `{rel}`: las referencias "
+                            "van a un solo nivel de SKILL.md"
+                        )
+
+    for doc in sorted(skill_dir.rglob("*")):
+        if doc.suffix in {".md", ".json"} and doc.is_file():
+            errors.extend(check_text_policy(doc, doc.relative_to(REPO).as_posix()))
+
     for script in skill_dir.rglob("*.py"):
         if "tests" in script.parts:
             continue
+        errors.extend(check_script_policy(script, script.relative_to(REPO).as_posix()))
         source = script.read_text(encoding="utf-8")
         for banned in ("|| true", "continue-on-error"):
             # Ignorar la mención en prosa/docstring que EXPLICA por qué está prohibido.
             for line in source.splitlines():
                 if banned in line and "NUNCA" not in line.upper() and not line.strip().startswith("#"):
                     errors.append(f"{name}: {script.name} contiene `{banned}` (gate que no puede fallar)")
-        with tempfile.NamedTemporaryFile(suffix=".pyc", delete=True) as tmp:
+        # Un directorio y no NamedTemporaryFile: en Windows el archivo abierto no
+        # se puede reemplazar y py_compile escribe con os.replace.
+        with tempfile.TemporaryDirectory() as tmp:
             try:
-                py_compile.compile(str(script), cfile=tmp.name, doraise=True)
+                py_compile.compile(str(script), cfile=str(Path(tmp) / "check.pyc"), doraise=True)
             except py_compile.PyCompileError as exc:
                 errors.append(f"{name}: {script.name} no compila -> {exc.msg.strip()}")
 
@@ -170,6 +336,14 @@ def main() -> int:
         print(f"[{'ROJO' if errs else 'OK'}] {d.name}")
         for e in errs:
             print(f"    - {e}")
+
+    repo_errors = []
+    for script in sorted((REPO / "scripts").glob("*.py")):
+        repo_errors.extend(check_script_policy(script, script.relative_to(REPO).as_posix()))
+    print(f"[{'ROJO' if repo_errors else 'OK'}] scripts/ del repo")
+    for e in repo_errors:
+        print(f"    - {e}")
+    all_errors.extend(repo_errors)
 
     print(
         f"\nVALIDATE-SKILLS: {len(skill_dirs)} skills, "

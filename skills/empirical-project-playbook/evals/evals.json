@@ -1,0 +1,71 @@
+[
+  {
+    "skills": [
+      "empirical-project-playbook"
+    ],
+    "query": "Encontré en los datos que la estrategia gana cuando el precio está entre 0.30 y 0.42. ¿La activo en producción?",
+    "files": [],
+    "expected_behavior": [
+      "Trata el rango como hipótesis minada post-hoc, no como hallazgo",
+      "Pide pre-registro con criterios de kill/success fijados antes y réplica en muestra fresca",
+      "Propone shadow/observación antes de enforce, no ir directo a live"
+    ]
+  },
+  {
+    "skills": [
+      "empirical-project-playbook"
+    ],
+    "query": "El feature nuevo ya está deployado y no tira errores. ¿Lo cerramos?",
+    "files": [],
+    "expected_behavior": [
+      "Aplica presence ≠ utility: pide una query de producción con valores plausibles en filas post-deploy",
+      "Pregunta por la query de aceptación que debía existir antes de construirlo"
+    ]
+  },
+  {
+    "skills": [
+      "empirical-project-playbook"
+    ],
+    "query": "Un bug que ya documentamos dos veces en el README volvió a aparecer.",
+    "files": [],
+    "expected_behavior": [
+      "Propone convertir el patrón en un check que falla el build en vez de más prosa",
+      "Si no es mecanizable, pide registrarlo como deuda explícita con fecha y evidencia"
+    ]
+  },
+  {
+    "skills": [
+      "empirical-project-playbook"
+    ],
+    "query": "El A/B dio +12% de conversión con 40 usuarios por brazo. ¿Lo escalamos a todos?",
+    "files": [],
+    "expected_behavior": [
+      "Advierte que con 40 por brazo el resultado no es confiable y pide un tamaño de muestra fijado antes",
+      "Pide pre-registrar criterios de éxito y de abandono antes de seguir mirando los datos",
+      "Propone replicar en una muestra fresca antes de escalar"
+    ]
+  },
+  {
+    "skills": [
+      "empirical-project-playbook"
+    ],
+    "query": "Nuestro dashboard muestra 'success rate: -5046%'. ¿Qué puede estar pasando?",
+    "files": [],
+    "expected_behavior": [
+      "Sospecha de la definición de la métrica: un denominador que cuenta solo éxitos u otro conjunto que el numerador",
+      "Propone revisar los sumandos y el denominador antes de tocar el umbral o el dashboard"
+    ]
+  },
+  {
+    "skills": [
+      "empirical-project-playbook"
+    ],
+    "query": "¿Qué es un p-valor?",
+    "files": [],
+    "expected_behavior": [
+      "Responde la pregunta concreta de forma directa y correcta",
+      "No agrega procesos, chequeos ni herramientas del dominio de la skill que el pedido no pide"
+    ],
+    "negativo": true
+  }
+]

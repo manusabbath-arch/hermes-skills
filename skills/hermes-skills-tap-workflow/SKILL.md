@@ -20,6 +20,10 @@ sean las que se cargan.
 **Caso de uso:** crear un monorepo de skills reutilizables y agregarlo como tap
 a uno o varios perfiles.
 
+## Cuándo NO aplicarla
+
+Si el pedido es una pregunta general de git o GitHub (cómo crear un repo, cómo hacer un commit), se responde **solo eso**, directo y sin agregar procesos, chequeos ni advertencias de esta skill que nadie pidió: esta skill aplica a publicar, instalar o propagar skills de este tap.
+
 ## Estructura del repo tap
 
 Layout que el proveedor de GitHub (GitHubSource, `tools/skills_hub_github.py`)
@@ -31,10 +35,29 @@ repo/
 └── skills/
     └── <skill-name>/
         ├── SKILL.md
+        ├── evals/evals.json     # >= 3 escenarios; el validador lo exige
         └── templates/...        # references/ y scripts/ son opcionales
 ```
 
-- Cada skill es un subdirectorio de `skills/` con su `SKILL.md`.
+**Antes del push, los checks del repo** (los mismos que corre el CI y que
+bloquean el merge):
+
+```bash
+python3 scripts/validate_skills.py          # frontmatter, rutas citadas, reglas de autoría, evals
+python3 -m pytest skills -q                 # tests de los scripts publicados
+python3 skills/agent-ready-project/scripts/doc_verify.py --root . --docs README.md
+```
+
+Una skill nueva suma su fila al README y sube el conteo del bloque `verify`
+`skills-count`: si no, `doc_verify` falla. Sus `evals/evals.json` son pedidos
+reales con el comportamiento esperado (formato de la guía de autoría de
+Anthropic): se escriben antes que la prosa y se corren con un agente que tenga
+la skill cargada, comparando contra el mismo pedido sin la skill.
+
+- Cada skill es un subdirectorio de `skills/` con su `SKILL.md`. El `name:` del
+  frontmatter **tiene que ser igual al nombre del directorio** (el loader indexa por
+  directorio; si difieren, la skill no se resuelve) y la `description` dice qué hace y
+  cuándo usarla — es lo único que el agente lee para decidir si cargarla.
 - El path default del tap es `skills/` (el `add` lo usa por defecto).
 - Nombres de carpetas que arrancan con `.` o `_` se saltan (no son skills).
 

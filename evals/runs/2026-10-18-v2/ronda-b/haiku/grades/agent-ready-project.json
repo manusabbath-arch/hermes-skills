@@ -1,0 +1,19 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": false, "nota": "A señala que el intérprete faltante se ve igual y agrega `python -m pytest --version`; B no menciona verificar el intérprete."},
+{"pedido": 1, "criterio": 2, "A": true, "B": true, "nota": "Ambos quitan el `|| true` y explican que así el paso nunca puede fallar."},
+{"pedido": 1, "criterio": 3, "A": true, "B": false, "nota": "A usa baseline sin suprimir familias; B propone `bandit -ll`, que descarta toda la severidad baja."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Ambos proponen una baseline que falla solo ante violaciones nuevas y solo puede achicarse."},
+{"pedido": 2, "criterio": 2, "A": true, "B": false, "nota": "A indexa por archivo + regla y explica por qué no por línea; B no dice nada sobre la clave."},
+{"pedido": 2, "criterio": 3, "A": true, "B": false, "nota": "A reporta las entradas stale; B no las menciona."},
+{"pedido": 3, "criterio": 1, "A": true, "B": false, "nota": "A propone worktree + rama `<agente>/<tema>` con el árbol principal solo para integrar; B no reserva el árbol principal para integrar."},
+{"pedido": 3, "criterio": 2, "A": true, "B": false, "nota": "A advierte el HEAD detached, `git switch -c` y worktree_guard; B no."},
+{"pedido": 3, "criterio": 3, "A": true, "B": false, "nota": "A exige commits con pathspec y nada de --amend sobre commits ajenos; B no."},
+{"pedido": 3, "criterio": 4, "A": false, "B": false, "nota": "A propone guardas por agente, pero no medir la cobertura con un comando; B no propone guardas."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Ambos explican que el check no revisó nada y aun así reportó éxito."},
+{"pedido": 4, "criterio": 2, "A": true, "B": true, "nota": "Ambos piden mostrar el conteo de archivos revisados y que 0 revisados falle."},
+{"pedido": 4, "criterio": 3, "A": true, "B": false, "nota": "A propone renombrar el directorio a propósito y verificar que dé rojo; B propone un fixture con errores, que no es vaciar el universo."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambos verifican ellos mismos el PR, la rama, el SHA y el CI reales."},
+{"pedido": 5, "criterio": 2, "A": true, "B": false, "nota": "A recomienda solo tareas atómicas y deja el diseño en la sesión principal; B no."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambos responden directo y bien con Rename Symbol, rope o a mano."},
+{"pedido": 6, "criterio": 2, "A": true, "B": true, "nota": "Ninguno agrega procesos del dominio de la skill; solo sugieren correr tests o un linter, algo genérico."}
+]

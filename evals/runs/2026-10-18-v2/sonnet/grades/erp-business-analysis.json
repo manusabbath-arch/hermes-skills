@@ -1,0 +1,19 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": false, "nota": "A lee el período del preámbulo y no del nombre y lo declara; B asume YTD hasta hoy por el nombre."},
+{"pedido": 1, "criterio": 2, "A": true, "B": true, "nota": "Ambos normalizan por días o comparan el mismo corte de fechas antes de comparar."},
+{"pedido": 1, "criterio": 3, "A": true, "B": false, "nota": "A dice explícitamente agregar sumas y no promediar ratios; B no lo aborda."},
+{"pedido": 1, "criterio": 4, "A": true, "B": false, "nota": "A declara razón social y cierra con sello de procedencia; B no menciona ninguno."},
+{"pedido": 2, "criterio": 1, "A": true, "B": false, "nota": "A compara detalle vs total del mismo archivo; B compara cliente por cliente contra el ERP."},
+{"pedido": 2, "criterio": 2, "A": true, "B": true, "nota": "Ambos revisan la fecha y hora del export frente al ERP."},
+{"pedido": 2, "criterio": 3, "A": true, "B": false, "nota": "A busca la unidad si el cociente es redondo; B no."},
+{"pedido": 2, "criterio": 4, "A": true, "B": false, "nota": "A no atribuye sin evidencia y retracta y propaga; B no menciona retractar ni propagar."},
+{"pedido": 3, "criterio": 1, "A": true, "B": false, "nota": "A incluye informe, período, entidad, código, csv/xlsx nunca xls y cifra de control; a B le faltan formato, entidad y cifra de control."},
+{"pedido": 3, "criterio": 2, "A": true, "B": false, "nota": "A sigue una estructura equivalente a la plantilla de pedido; B arma un mensaje libre sin esos campos."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Ambos sospechan primero de una fila de total o subtotal."},
+{"pedido": 4, "criterio": 2, "A": true, "B": false, "nota": "A pide imprimir encabezados y cruzar por nombre de columna; B no."},
+{"pedido": 4, "criterio": 3, "A": false, "B": false, "nota": "Ninguno propone contrastar la cantidad de filas leídas contra las líneas del archivo."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambos revisan primero los movimientos cargados entre los exports de la mañana y de la tarde."},
+{"pedido": 5, "criterio": 2, "A": true, "B": false, "nota": "A pide la razón social declarada en cada preámbulo; B solo verifica el código o CUIT del cliente."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambos responden =SUMA/=SUM correctamente y de forma directa."},
+{"pedido": 6, "criterio": 2, "A": true, "B": true, "nota": "Ninguno agrega procesos ni herramientas del dominio ERP."}
+]

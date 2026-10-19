@@ -1,0 +1,19 @@
+[
+{"pedido": 1, "criterio": 1, "A": false, "B": true, "nota": "B lee y declara el período del preámbulo; A no menciona el preámbulo."},
+{"pedido": 1, "criterio": 2, "A": true, "B": true, "nota": "Ambos comparan el mismo tramo o anualizan antes de comparar."},
+{"pedido": 1, "criterio": 3, "A": false, "B": true, "nota": "B exige agregar y advierte contra promediar ratios; A no lo aborda."},
+{"pedido": 1, "criterio": 4, "A": false, "B": true, "nota": "B declara la razón social y cierra con un sello de procedencia equivalente (sha256, entidad, período); A no hace ninguna de las dos cosas."},
+{"pedido": 2, "criterio": 1, "A": false, "B": true, "nota": "B compara primero el detalle contra el total del propio archivo; A compara el export contra el ERP."},
+{"pedido": 2, "criterio": 2, "A": true, "B": true, "nota": "Ambos revisan la fecha de corte o la hora del export frente a la pantalla del ERP."},
+{"pedido": 2, "criterio": 3, "A": false, "B": true, "nota": "B dice explícitamente que se busque moneda o unidad si el cociente es redondo; A solo menciona la moneda."},
+{"pedido": 2, "criterio": 4, "A": false, "B": true, "nota": "B no publica sin evidencia y pide retractar y propagar; A no habla de retractar."},
+{"pedido": 3, "criterio": 1, "A": false, "B": true, "nota": "B incluye informe, parámetros, csv/xlsx sin .xls y cifra de control; a A le faltan la cifra de control y la exclusión de .xls."},
+{"pedido": 3, "criterio": 2, "A": false, "B": true, "nota": "B arma un pedido con estructura equivalente a la plantilla; el de A es genérico e incompleto."},
+{"pedido": 4, "criterio": 1, "A": true, "B": true, "nota": "Ambos sospechan de filas de total o subtotal."},
+{"pedido": 4, "criterio": 2, "A": false, "B": true, "nota": "B pide cruzar por nombre de encabezado y no por posición; A no lo hace."},
+{"pedido": 4, "criterio": 3, "A": false, "B": true, "nota": "B propone contar las filas leídas contra las líneas del archivo; A no."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambos revisan primero los movimientos cargados entre los dos exports."},
+{"pedido": 5, "criterio": 2, "A": true, "B": true, "nota": "Ambos piden verificar con qué empresa o entidad se generó cada export."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambos responden =SUMA(A:A) de forma correcta."},
+{"pedido": 6, "criterio": 2, "A": true, "B": false, "nota": "B agrega una advertencia sobre las filas de total, propia del dominio; A solo suma SUMAR.SI, que es Excel genérico."}
+]

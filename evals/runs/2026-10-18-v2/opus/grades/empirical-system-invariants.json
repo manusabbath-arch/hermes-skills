@@ -1,0 +1,16 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": false, "nota": "A mapea etapa fuente -> consumidora -> campo con condición y query post-deploy; B perfila columnas sin contratos por etapa ni consumidor."},
+{"pedido": 1, "criterio": 2, "A": true, "B": false, "nota": "A declara NULL != 0 por campo y marca ROJO el contrato que falla en filas post-deploy; B mezcla nulos y ceros como 'sospechoso'."},
+{"pedido": 1, "criterio": 3, "A": false, "B": false, "nota": "A propone un guard por ciclo con ROJO y notificación pero no menciona salir con código de error; B solo dice 'fallen o alerten' de forma vaga."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Las dos separan 0 legítimo de NULL faltante y ajustan la regla del campo en vez de apagar el guard."},
+{"pedido": 2, "criterio": 2, "A": true, "B": false, "nota": "A dice que se ignora el ROJO 'incluido el día que sea real'; B solo dice que deja de servir, sin decir que esconde los rojos reales."},
+{"pedido": 3, "criterio": 1, "A": true, "B": true, "nota": "Las dos rechazan except: pass; A falla alto con exit 1 y B registra la excepción, alerta y nunca la cuenta como verde."},
+{"pedido": 3, "criterio": 2, "A": true, "B": false, "nota": "A loguea el eslabón y el error y deja el ciclo en ROJO (exit 1), aunque sin esperado vs real; B usa un estado ERROR sin eslabón y deja seguir el ciclo."},
+{"pedido": 4, "criterio": 1, "A": false, "B": false, "nota": "Ninguna propone contar = 0 contra IS NULL; las dos hablan de defaults y coalesce."},
+{"pedido": 4, "criterio": 2, "A": true, "B": false, "nota": "A pide declarar que para margen lo ausente es NULL; B solo sugiere a futuro usar NULL, sin una declaración de contrato."},
+{"pedido": 4, "criterio": 3, "A": true, "B": true, "nota": "Las dos piden buscar el código que escribe margen y revisar los defaults que lo convierten en 0."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Las dos explican que el silencio no distingue 'nada que procesar' de 'no corrió' o 'falló'."},
+{"pedido": 5, "criterio": 2, "A": true, "B": false, "nota": "A loguea siempre y pone ROJO si N = 0 con pendientes en la fuente; B loguea siempre pero solo alerta si el job no corrió."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Las dos responden ALTER TABLE ADD COLUMN de forma directa y correcta."},
+{"pedido": 6, "criterio": 2, "A": true, "B": true, "nota": "Ninguna agrega guards ni procesos; la nota sobre dejar la columna nullable es breve y relevante."}
+]

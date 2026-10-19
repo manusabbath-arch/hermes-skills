@@ -1,0 +1,16 @@
+[
+{"pedido": 1, "criterio": 1, "A": false, "B": true, "nota": "A mide nulos por columna sin noción de consumidor ni condición por etapa; B lista campos consumidos por el paso siguiente, con condición y query de prod por campo convertida en check."},
+{"pedido": 1, "criterio": 2, "A": false, "B": false, "nota": "Ninguna declara NULL ≠ 0 por campo ni marca ROJO el campo consumido NULL post-deploy; B solo marca ROJO si nada asigna el campo."},
+{"pedido": 1, "criterio": 3, "A": false, "B": false, "nota": "Ninguna propone en este pedido un guard que falle con exit code; A habla de un check con umbral y B de convertir queries en checks, sin exit code."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Ambas distinguen 0 válido de NULL y corrigen la regla en vez de silenciar el check."},
+{"pedido": 2, "criterio": 2, "A": false, "B": false, "nota": "Ninguna menciona la fatiga de alertas ni que un rojo permanente esconde los rojos reales."},
+{"pedido": 3, "criterio": 1, "A": true, "B": true, "nota": "Ambas rechazan el try/except que traga el error."},
+{"pedido": 3, "criterio": 2, "A": false, "B": true, "nota": "B registra el eslabón con esperado vs real y marca ROJO con exit 1; A loguea el traceback y marca degradado, sin esperado vs real."},
+{"pedido": 4, "criterio": 1, "A": false, "B": true, "nota": "B propone contar IS NULL contra = 0; A no propone esa medición."},
+{"pedido": 4, "criterio": 2, "A": false, "B": true, "nota": "B dice que el contrato debe declarar si el 0 es válido; A no menciona el contrato."},
+{"pedido": 4, "criterio": 3, "A": true, "B": true, "nota": "Ambas proponen revisar en el loader o writer si el campo se asigna."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambas señalan que el silencio no distingue cero procesados de no corrió o falló."},
+{"pedido": 5, "criterio": 2, "A": true, "B": true, "nota": "Ambas proponen loguear siempre el conteo y alertar o marcar ROJO cuando el ciclo no cumplió."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambas responden correctamente con ALTER TABLE ADD COLUMN."},
+{"pedido": 6, "criterio": 2, "A": true, "B": false, "nota": "B agrega consejos de contratos y queries de producción que no se pidieron; A se limita a la pregunta."}
+]

@@ -1,0 +1,11 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "Ambas proponen tabla Delta para ventas y tabla Delta de metadatos con rutas a los PDFs."},
+{"pedido": 1, "criterio": 2, "A": false, "B": true, "nota": "A usa Databricks/Unity Catalog/Auto Loader; B usa explícitamente deltalake + duckdb + pyarrow."},
+{"pedido": 1, "criterio": 3, "A": true, "B": true, "nota": "A menciona Delta time travel o versión fija para el dataset; B usa history() y DeltaTable(version=N)."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Ambas diagnostican archivos pequeños y proponen OPTIMIZE/compact."},
+{"pedido": 2, "criterio": 2, "A": false, "B": true, "nota": "A solo usa el default de 7 días con advertencia vaga; B fija retención explícita, dry run y advierte que se pierde la reproducibilidad por time-travel."},
+{"pedido": 2, "criterio": 3, "A": true, "B": true, "nota": "Ambas proponen medir la misma consulta antes y después."},
+{"pedido": 3, "criterio": 1, "A": false, "B": true, "nota": "Solo B exige explícitamente que el agente lea la misma tabla que escribe el sistema y no una copia."},
+{"pedido": 3, "criterio": 2, "A": false, "B": true, "nota": "A consulta vía SQL endpoint/warehouse; B usa duckdb sobre Delta."},
+{"pedido": 3, "criterio": 3, "A": true, "B": true, "nota": "A pide un set de preguntas con respuestas conocidas y chequeo de magnitud razonable antes de usuarios; B prueba preguntas reales con valores plausibles."}
+]

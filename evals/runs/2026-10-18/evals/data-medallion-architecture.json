@@ -1,0 +1,37 @@
+[
+  {
+    "skills": [
+      "data-medallion-architecture"
+    ],
+    "query": "Tenemos ventas en una API REST, el maestro de clientes en Postgres y un CSV diario por SFTP. Diseñá la arquitectura de datos para un dashboard de escenarios.",
+    "files": [],
+    "expected_behavior": [
+      "Elige y justifica la forma de ingesta por fuente (API, DB, SFTP) en vez de tratarlas igual",
+      "Asigna roles separados a Bronze (crudo, append), Silver (limpio, tipado, deduplicado) y Gold (agregados de consumo)",
+      "Conecta Gold al dashboard de escenarios hipotéticos con supuestos explícitos"
+    ]
+  },
+  {
+    "skills": [
+      "data-medallion-architecture"
+    ],
+    "query": "¿Puedo limpiar y deduplicar directamente al ingestar, así me ahorro la capa Bronze?",
+    "files": [],
+    "expected_behavior": [
+      "Explica que Bronze guarda el crudo para poder reprocesar y auditar, y que la limpieza va en Silver",
+      "Menciona time-travel/historial de Delta como parte del valor de conservar el crudo"
+    ]
+  },
+  {
+    "skills": [
+      "data-medallion-architecture"
+    ],
+    "query": "Armame el código para pasar un CSV de ventas por Bronze, Silver y Gold usando el stack que recomienda la skill.",
+    "files": [],
+    "expected_behavior": [
+      "Usa el stack validado de la skill (deltalake + duckdb + pyarrow) en vez de inventar otro",
+      "Escribe cada capa como tabla Delta separada con su responsabilidad",
+      "Incluye una verificación de que Gold se lee con valores plausibles (presence ≠ utility)"
+    ]
+  }
+]

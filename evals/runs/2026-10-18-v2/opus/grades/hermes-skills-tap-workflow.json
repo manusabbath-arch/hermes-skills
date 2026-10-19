@@ -1,0 +1,15 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "Ambas explican que la copia instalada no se actualiza sola y que hay que re-instalar."},
+{"pedido": 1, "criterio": 2, "A": true, "B": false, "nota": "A recomienda symlink desde el perfil al repo; B no menciona symlink."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Ambas crean skills/<nombre>/SKILL.md con name igual al directorio."},
+{"pedido": 2, "criterio": 2, "A": true, "B": false, "nota": "A corre validate_skills.py y pytest; B solo menciona vagamente validaciones locales (lint, docs) sin validador ni tests."},
+{"pedido": 2, "criterio": 3, "A": true, "B": true, "nota": "A actualiza fila y conteo verify del README; B menciona actualizar README con lista y conteo de skills."},
+{"pedido": 3, "criterio": 1, "A": true, "B": true, "nota": "Ambas ofrecen copia manual desde el repo clonado (A también symlink)."},
+{"pedido": 3, "criterio": 2, "A": true, "B": false, "nota": "A dice no reintentar en loop y verificar con ls; B no dice ninguna de las dos cosas explícitamente."},
+{"pedido": 4, "criterio": 1, "A": true, "B": false, "nota": "A explica el bloque verify skills-count del README y subir el número; B habla genéricamente de un número documentado sin el bloque verify."},
+{"pedido": 4, "criterio": 2, "A": true, "B": true, "nota": "Ambas indican agregar la fila de la skill nueva en la tabla del README."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambas explican que name y directorio deben ser idénticos."},
+{"pedido": 5, "criterio": 2, "A": true, "B": true, "nota": "Ambas indican kebab-case en minúsculas para el directorio."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambas responden directo y correcto con gh repo create y la web."},
+{"pedido": 6, "criterio": 2, "A": true, "B": true, "nota": "Ninguna agrega procesos del dominio de la skill."}
+]

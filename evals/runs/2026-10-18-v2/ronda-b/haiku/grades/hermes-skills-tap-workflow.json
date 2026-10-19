@@ -1,0 +1,15 @@
+[
+{"pedido": 1, "criterio": 1, "A": true, "B": true, "nota": "Ambas explican que la copia instalada no se actualiza sola y que hay que re-instalar."},
+{"pedido": 1, "criterio": 2, "A": true, "B": false, "nota": "A recomienda symlink al repo; B no lo menciona."},
+{"pedido": 2, "criterio": 1, "A": true, "B": false, "nota": "A exige que name coincida con el directorio; B no lo dice."},
+{"pedido": 2, "criterio": 2, "A": true, "B": false, "nota": "A corre validate_skills.py y pytest; B solo menciona vagamente validación o doc_verify, sin tests."},
+{"pedido": 2, "criterio": 3, "A": true, "B": false, "nota": "A suma fila al README y sube skills-count; B lo plantea de forma condicional y vaga."},
+{"pedido": 3, "criterio": 1, "A": true, "B": true, "nota": "Ambas ofrecen copia manual desde el repo como alternativa."},
+{"pedido": 3, "criterio": 2, "A": true, "B": false, "nota": "A dice no reintentar en loop y verificar con ls; B no indica verificación con ls ni evitar el loop."},
+{"pedido": 4, "criterio": 1, "A": true, "B": false, "nota": "A nombra el bloque verify del README con skills-count; B solo supone un contador genérico."},
+{"pedido": 4, "criterio": 2, "A": true, "B": false, "nota": "A indica agregar la fila al README; B habla vagamente de contador o listado."},
+{"pedido": 5, "criterio": 1, "A": true, "B": true, "nota": "Ambas señalan el desajuste carpeta/name y piden que coincidan."},
+{"pedido": 5, "criterio": 2, "A": true, "B": true, "nota": "Ambas recomiendan directorio en minúsculas con guiones (mi-skill)."},
+{"pedido": 6, "criterio": 1, "A": true, "B": true, "nota": "Ambas responden directo con gh repo create y la web."},
+{"pedido": 6, "criterio": 2, "A": true, "B": true, "nota": "Ninguna agrega procesos del dominio de la skill."}
+]

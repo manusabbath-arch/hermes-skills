@@ -1,0 +1,9 @@
+[
+{"pedido": 1, "criterio": 1, "A": false, "B": true, "nota": "A perfila campos sin contratos por etapa; B lista etapa fuente, consumidora, campo, condición de poblado y query de producción."},
+{"pedido": 1, "criterio": 2, "A": false, "B": true, "nota": "A trata el 0 como centinela sospechoso sin declarar NULL vs 0; B declara NULL vs 0 por campo y hace fallar el guard ante campos NULL post-deploy."},
+{"pedido": 1, "criterio": 3, "A": false, "B": true, "nota": "A propone una aserción que 'falle o alerte' sin exit code; B propone un script de guard que sale con exit 1."},
+{"pedido": 2, "criterio": 1, "A": true, "B": true, "nota": "Ambas separan el 0 informado del NULL ausente y corrigen la regla (is None) en vez de silenciar el check."},
+{"pedido": 2, "criterio": 2, "A": true, "B": true, "nota": "A dice que el rojo permanente enseña a ignorarlo y tapa los reales; B nombra la fatiga de alertas y que el equipo ignora el rojo."},
+{"pedido": 3, "criterio": 1, "A": true, "B": true, "nota": "Ambas rechazan tragarse el error en silencio: loguean el traceback y alertan."},
+{"pedido": 3, "criterio": 2, "A": false, "B": true, "nota": "A usa un estado ERROR distinto de ROJO y no registra esperado vs real; B deja el estado en RED y registra eslabón, esperado y real."}
+]
