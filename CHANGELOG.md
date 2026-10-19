@@ -4,6 +4,25 @@ Una entrada por tag. Cada skill lleva su propia `version` en el frontmatter, y
 `scripts/validate_skills.py` falla si una skill cambió desde el último tag sin subirla.
 Cada release adjunta `SHA256SUMS` para verificar lo instalado (ver `SECURITY.md`).
 
+## v1.3.0 — 2026-10-19
+
+Kit de arranque *agent-ready* (fase 4 del plan).
+
+- **`kit/` y `scripts/new_project.py`:** generan un proyecto con `AGENTS.md` (mapa corto)
+  y `CLAUDE.md` que lo importa; `init.sh`, pre-commit y CI que corren la misma compuerta;
+  `feature_list.json`, `progress.md` y plantillas de plan y decisión.
+- **`tools/kit_check.py`**, la compuerta del proyecto generado, cada guarda con su
+  denominador: guardas vendorizadas contra su sha (`SOURCES.json` con la versión del tap),
+  phantom-wiring con línea base de trinquete, docs verificadas, secretos, `feature_list`
+  (`passes: true` exige `evidence`), el hook de producción ejecutado con un `DROP TABLE` de
+  prueba (un intérprete que no existe es rojo, no una guarda apagada) y worktrees.
+- **Tests de mutación:** cada guarda del kit, rota a propósito, da rojo; el pre-commit
+  rechaza un commit en rojo. El CI lo prueba en Linux y en Windows, y genera un proyecto
+  y corre su `init.sh`.
+- **`agent-ready-project` 1.2.0:** sección que apunta al kit.
+- **`SHA256SUMS` cubre también `kit/`**; `--only skills` verifica una copia sin kit. La
+  política de confianza (stdlib, sin red, `subprocess` en lista) se aplica al kit.
+
 ## v1.2.0 — 2026-10-19
 
 Empaquetado para cualquier agente. Ninguna skill cambió de contenido.
