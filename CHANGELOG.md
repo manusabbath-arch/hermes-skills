@@ -4,6 +4,20 @@ Una entrada por tag. Cada skill lleva su propia `version` en el frontmatter, y
 `scripts/validate_skills.py` falla si una skill cambió desde el último tag sin subirla.
 Cada release adjunta `SHA256SUMS` para verificar lo instalado (ver `SECURITY.md`).
 
+## v1.2.0 — 2026-10-19
+
+Empaquetado para cualquier agente. Ninguna skill cambió de contenido.
+
+- **Plugin de Claude Code:** `.claude-plugin/plugin.json` y `marketplace.json`; el CI corre
+  `claude plugin validate --strict` e instala el plugin en una configuración limpia
+  verificando que resuelvan las 7 skills.
+- **Codex, Cursor y Hermes:** `scripts/install_skills.py` copia a `~/.agents/skills/` (o
+  `~/.cursor`, `~/.claude`, `~/.hermes`, o una carpeta de proyecto) y verifica cada archivo
+  contra el origen. Nunca pisa sin `--force` ni toca skills ajenas. Probado en Linux y
+  Windows en el CI.
+- El validador exige que `plugin.json`, el marketplace y la primera entrada de este
+  CHANGELOG tengan la misma versión.
+
 ## v1.1.0 — 2026-10-19
 
 Primer release con tag. Las skills de septiembre pasan a 1.1.0; la nueva arranca en 1.0.0.

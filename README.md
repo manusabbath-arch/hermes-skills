@@ -1,13 +1,39 @@
 # hermes-skills
 
-Skills reutilizables de Hermes Agent como GitHub tap. Agregar con:
+Skills medidas para proyectos empíricos y análisis sobre ERPs, en el formato abierto
+`SKILL.md`: las lee Claude Code, Codex, Cursor y Hermes. Las descripciones y el cuerpo
+están en español.
+
+## Instalar
+
+**Claude Code** (plugin, 2.1.275 o posterior):
+
+```
+/plugin install hermes-skills --marketplace manusabbath-arch/hermes-skills
+```
+
+**Codex y Cursor** leen `~/.agents/skills/` (Cursor también `~/.cursor/skills/`). Desde
+un clon del repo, el instalador copia las skills y verifica cada archivo contra el
+origen; nunca pisa una skill existente sin `--force`. Funciona igual en Windows:
+
+```
+python3 scripts/install_skills.py --target agents              # Codex, Cursor
+python3 scripts/install_skills.py --dest ./.agents/skills      # solo este proyecto
+python3 scripts/install_skills.py --target agents --skill erp-business-analysis
+python3 scripts/install_skills.py --target agents --force      # actualizar
+```
+
+**Hermes:**
 
 ```
 hermes skills tap add manusabbath-arch/hermes-skills
 ```
 
-Layout: cada skill vive en `skills/<nombre>/` con su `SKILL.md` y sus
-plantillas (`templates/`), exactamente como los instala Hermes.
+Para verificar una instalación contra un release publicado (`SHA256SUMS`), ver
+[`SECURITY.md`](SECURITY.md).
+
+Layout: cada skill vive en `skills/<nombre>/` con su `SKILL.md`, sus plantillas
+(`templates/`), referencias, scripts (solo biblioteca estándar) y evals.
 
 Este tap publica 7 skills, y ese número lo verifica el CI — no la buena memoria
 de quien edite este README:

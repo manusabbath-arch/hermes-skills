@@ -306,6 +306,29 @@ def check_versions(repo: Path) -> tuple[list[str], str]:
     return errors, f"contra {tag_name}"
 
 
+CHANGELOG_ENTRY = re.compile(r"^## v(\d+\.\d+\.\d+)\b", re.M)
+
+
+def check_plugin_versions(repo: Path) -> list[str]:
+    """plugin.json, both versions in marketplace.json and the newest CHANGELOG entry agree."""
+    plugin_path = repo / ".claude-plugin" / "plugin.json"
+    market_path = repo / ".claude-plugin" / "marketplace.json"
+    for p in (plugin_path, market_path):
+        if not p.is_file():
+            return [f"falta {p.relative_to(repo).as_posix()} (el tap se instala como plugin de Claude Code)"]
+    plugin_v = json.loads(plugin_path.read_text(encoding="utf-8")).get("version")
+    market = json.loads(market_path.read_text(encoding="utf-8"))
+    others = {"marketplace.json metadata.version": market.get("metadata", {}).get("version")}
+    for entry in market.get("plugins", []):
+        others[f"marketplace.json plugins[{entry.get('name')}].version"] = entry.get("version")
+    errors = [f"{where} = {v} y plugin.json = {plugin_v}" for where, v in others.items() if v != plugin_v]
+    changelog = repo / "CHANGELOG.md"
+    m = CHANGELOG_ENTRY.search(changelog.read_text(encoding="utf-8")) if changelog.is_file() else None
+    if not m or m.group(1) != plugin_v:
+        errors.append(f"CHANGELOG.md no abre con la entrada v{plugin_v} de plugin.json")
+    return errors
+
+
 def check_skill(skill_dir: Path) -> list[str]:
     errors: list[str] = []
     name = skill_dir.name
@@ -464,6 +487,12 @@ def main() -> int:
     for e in version_errors:
         print(f"    - {e}")
     all_errors.extend(version_errors)
+
+    plugin_errors = check_plugin_versions(REPO)
+    print(f"[{'ROJO' if plugin_errors else 'OK'}] plugin, marketplace y CHANGELOG en la misma versión")
+    for e in plugin_errors:
+        print(f"    - {e}")
+    all_errors.extend(plugin_errors)
 
     print(
         f"\nVALIDATE-SKILLS: {len(skill_dirs)} skills, "

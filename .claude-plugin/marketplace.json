@@ -1,0 +1,16 @@
+{
+  "name": "hermes-skills",
+  "owner": { "name": "Manu" },
+  "metadata": {
+    "description": "Tap de skills medidas con evaluación ciega en tres modelos.",
+    "version": "1.2.0"
+  },
+  "plugins": [
+    {
+      "name": "hermes-skills",
+      "source": "./",
+      "description": "Las 7 skills del tap como un plugin.",
+      "version": "1.2.0"
+    }
+  ]
+}
