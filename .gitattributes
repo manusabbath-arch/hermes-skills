@@ -1,0 +1,3 @@
+# LF en todas las plataformas: SHA256SUMS se genera en Linux y tiene que
+# verificar igual una instalación clonada en Windows (autocrlf la pasaría a CRLF).
+* text=auto eol=lf
