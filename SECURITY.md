@@ -22,9 +22,15 @@ Las reglas tienen tests que las rompen a propósito (`scripts/tests/`).
 ## Verificar una instalación
 
 ```bash
-# Bajar SHA256SUMS del release (por ejemplo v1.1.0) y, desde un clon del tap en ese tag:
-python3 scripts/release_manifest.py --root /ruta/a/la/copia/instalada --check SHA256SUMS
+# Bajar SHA256SUMS del release (por ejemplo v1.3.0) y, desde un clon del tap en ese tag:
+python3 scripts/release_manifest.py --root /ruta/a/la/copia --check SHA256SUMS
+# Una copia que solo trae skills/ (sin el kit de arranque):
+python3 scripts/release_manifest.py --root /ruta/a/la/copia --check SHA256SUMS --only skills
 ```
+
+El manifiesto cubre `skills/` y `kit/`. `install_skills.py` verifica cada skill contra el
+origen al instalarla, y `kit_check.py` verifica en cada commit las guardas copiadas a un
+proyecto contra los sha de `tools/guards/SOURCES.json`.
 
 Falla si un archivo **cambió**, **falta** o **sobra**. Un archivo que nadie publicó y
 aparece en tu copia es exactamente lo que hay que mirar.

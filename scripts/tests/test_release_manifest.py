@@ -69,3 +69,27 @@ def test_empty_tree_is_red(tmp_path):
 def test_malformed_manifest_is_red(tmp_path):
     r = check(tree(tmp_path / "r"), "no-es-un-hash  skills/a/SKILL.md\n", tmp_path)
     assert r.returncode == 1
+
+
+def _with_kit(root):
+    (root / "kit" / "tools").mkdir(parents=True)
+    (root / "kit" / "tools" / "kit_check.py").write_text("x = 2\n", encoding="utf-8")
+    return root
+
+
+def test_manifest_covers_the_kit_too(tmp_path):
+    entries = rm.manifest(_with_kit(tree(tmp_path)))
+    assert "kit/tools/kit_check.py" in entries and "skills/a/SKILL.md" in entries
+
+
+def test_skills_only_install_verifies_with_only_skills(tmp_path):
+    published = rm.render(rm.manifest(_with_kit(tree(tmp_path / "pub"))))
+    installed = tree(tmp_path / "inst")  # instalador de skills: sin kit/
+    m = tmp_path / "SHA256SUMS"
+    m.write_text(published, encoding="utf-8")
+    full = subprocess.run([sys.executable, str(SCRIPT), "--root", str(installed), "--check", str(m)],
+                          capture_output=True, text=True)
+    assert full.returncode == 1 and "FALTA     kit/tools/kit_check.py" in full.stdout
+    only = subprocess.run([sys.executable, str(SCRIPT), "--root", str(installed), "--check", str(m),
+                           "--only", "skills"], capture_output=True, text=True)
+    assert only.returncode == 0, only.stdout

@@ -7,7 +7,7 @@ poder comprobar que recibió exactamente lo publicado en un tag, y no una copia
 alterada en el camino o en un mirror. Este script:
 
   - genera un manifiesto SHA256SUMS (formato `sha256sum`) de cada archivo bajo
-    skills/, ordenado y con rutas POSIX, para adjuntar al release;
+    skills/ y kit/, ordenado y con rutas POSIX, para adjuntar al release;
   - verifica un árbol contra ese manifiesto: falla si un archivo cambió, falta,
     o sobra (un archivo agregado que nadie publicó es justo lo que hay que ver).
 
@@ -16,6 +16,7 @@ Excluye artefactos que no se publican (`__pycache__`, `.pyc`). Stdlib, sin red.
 Uso:
   python3 scripts/release_manifest.py > SHA256SUMS
   python3 scripts/release_manifest.py --root <copia-instalada> --check SHA256SUMS
+  python3 scripts/release_manifest.py --root <copia> --check SHA256SUMS --only skills  # sin kit/
 
 Exit: 0 manifiesto emitido o árbol idéntico, 1 diferencias, 2 uso incorrecto.
 """
@@ -31,10 +32,12 @@ EXCLUDED_PARTS = {"__pycache__", ".pytest_cache"}
 EXCLUDED_SUFFIXES = {".pyc"}
 
 
-def published_files(root: Path) -> list[Path]:
-    base = root / "skills"
+PUBLISHED_ROOTS = ("skills", "kit")
+
+
+def published_files(root: Path, only: tuple[str, ...] = PUBLISHED_ROOTS) -> list[Path]:
     return sorted(
-        p for p in base.rglob("*")
+        p for base in only for p in (root / base).rglob("*")
         if p.is_file()
         and not EXCLUDED_PARTS.intersection(p.relative_to(root).parts)
         and p.suffix not in EXCLUDED_SUFFIXES
@@ -49,8 +52,8 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
-def manifest(root: Path) -> dict[str, str]:
-    return {p.relative_to(root).as_posix(): sha256(p) for p in published_files(root)}
+def manifest(root: Path, only: tuple[str, ...] = PUBLISHED_ROOTS) -> dict[str, str]:
+    return {p.relative_to(root).as_posix(): sha256(p) for p in published_files(root, only)}
 
 
 def render(entries: dict[str, str]) -> str:
@@ -83,19 +86,23 @@ def compare(expected: dict[str, str], actual: dict[str, str]) -> list[str]:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("--root", type=Path, default=REPO, help="raíz que contiene skills/")
+    ap.add_argument("--root", type=Path, default=REPO, help="raíz que contiene skills/ y kit/")
     ap.add_argument("--check", type=Path, help="manifiesto SHA256SUMS contra el cual verificar")
+    ap.add_argument("--only", choices=PUBLISHED_ROOTS, action="append",
+                    help="verificar solo esta parte (una instalación de skills no trae kit/)")
     args = ap.parse_args(argv)
+    only = tuple(args.only) if args.only else PUBLISHED_ROOTS
 
-    actual = manifest(args.root)
+    actual = manifest(args.root, only)
     if not actual:
-        print(f"RELEASE-MANIFEST: ROJO, no hay archivos bajo {args.root / 'skills'}", file=sys.stderr)
+        print(f"RELEASE-MANIFEST: ROJO, no hay archivos bajo {', '.join(only)} en {args.root}", file=sys.stderr)
         return 1
     if args.check is None:
         sys.stdout.write(render(actual))
         return 0
     try:
-        expected = parse(args.check.read_text(encoding="utf-8"))
+        expected = {k: v for k, v in parse(args.check.read_text(encoding="utf-8")).items()
+                    if k.split("/", 1)[0] in only}
     except (OSError, ValueError) as exc:
         print(f"RELEASE-MANIFEST: ROJO, no se pudo leer el manifiesto ({exc})", file=sys.stderr)
         return 1
