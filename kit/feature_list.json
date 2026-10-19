@@ -1,0 +1,16 @@
+{
+  "features": [
+    {
+      "id": "F001",
+      "description": "El entorno arranca con init.sh y la prueba base pasa",
+      "steps": ["bash init.sh termina en verde", "python -m unittest discover -s tests pasa"],
+      "passes": false
+    },
+    {
+      "id": "F002",
+      "description": "Reemplazar por la primera feature real del proyecto",
+      "steps": ["Describir el comportamiento observable", "Escribir el test que hoy falla", "Hacerlo pasar"],
+      "passes": false
+    }
+  ]
+}

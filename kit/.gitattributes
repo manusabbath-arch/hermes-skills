@@ -1,0 +1,3 @@
+# LF en todas las plataformas: las guardas de tools/guards/ se verifican por sha
+# contra SOURCES.json, y un clon de Windows con autocrlf las pasaría a CRLF.
+* text=auto eol=lf

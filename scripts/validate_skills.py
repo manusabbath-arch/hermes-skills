@@ -159,6 +159,7 @@ SUBPROCESS_ALLOWED = {
     "skills/agent-ready-project/scripts/doc_verify.py": "kind=command, opt-in con --allow-command",
     "skills/agent-ready-project/scripts/worktree_guard.py": "corre git worktree/rev-list",
     "scripts/validate_skills.py": "corre git describe/diff/show contra el último tag (versión)",
+    "kit/tools/kit_check.py": "corre doc_verify, worktree_guard, git y el hook de producción con un payload de prueba",
 }
 INJECTION_PATTERNS = [
     re.compile(r"ignore\s+(all\s+|the\s+)?(previous|prior|above)\s+instructions", re.I),
@@ -181,13 +182,13 @@ def imported_modules(source: str) -> set[str]:
     return mods
 
 
-def check_script_policy(script: Path, rel: str) -> list[str]:
+def check_script_policy(script: Path, rel: str, extra_local: frozenset[str] = frozenset()) -> list[str]:
     try:
         mods = imported_modules(script.read_text(encoding="utf-8"))
     except SyntaxError:
         return []  # py_compile ya lo reporta
     errors = []
-    local = {p.stem for p in script.parent.glob("*.py")}
+    local = {p.stem for p in script.parent.glob("*.py")} | extra_local
     for m in sorted(mods - set(sys.stdlib_module_names) - local - {"__future__"}):
         errors.append(f"{rel}: importa '{m}', que no es stdlib (los scripts publicados no traen dependencias)")
     for m in sorted(mods & NETWORK_MODULES):
@@ -464,9 +465,16 @@ def main() -> int:
             print(f"    - {e}")
 
     repo_errors = []
+    # El kit se copia en proyectos ajenos: misma política que un script de skill.
+    # Sus módulos locales son los del kit y las guardas que new_project.py copia a tools/guards/.
+    kit_scripts = [p for p in sorted((REPO / "kit").rglob("*.py")) if "__pycache__" not in p.parts]
+    kit_local = frozenset(p.stem for p in kit_scripts) | frozenset(
+        p.stem for p in (SKILLS_DIR / "agent-ready-project" / "scripts").glob("*.py"))
     for script in sorted((REPO / "scripts").glob("*.py")):
         repo_errors.extend(check_script_policy(script, script.relative_to(REPO).as_posix()))
-    print(f"[{'ROJO' if repo_errors else 'OK'}] scripts/ del repo")
+    for script in kit_scripts:
+        repo_errors.extend(check_script_policy(script, script.relative_to(REPO).as_posix(), kit_local))
+    print(f"[{'ROJO' if repo_errors else 'OK'}] scripts/ del repo y kit/")
     for e in repo_errors:
         print(f"    - {e}")
     all_errors.extend(repo_errors)

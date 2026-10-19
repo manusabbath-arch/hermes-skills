@@ -1,0 +1,20 @@
+name: ci
+
+# El CI corre exactamente lo mismo que init.sh: si en una máquina da verde y acá
+# rojo, la diferencia es el entorno, y eso también es un hallazgo.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: bash init.sh

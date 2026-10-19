@@ -29,7 +29,7 @@ jobs:
         run: python skills/agent-ready-project/scripts/doc_verify.py --root . --docs README.md
 
       - name: Phantom wiring audit over the tap's own code
-        run: python skills/agent-ready-project/scripts/phantom_wiring.py scripts skills
+        run: python skills/agent-ready-project/scripts/phantom_wiring.py scripts skills kit
 
       - name: Published eval tables match the raw grades
         run: |
@@ -96,7 +96,7 @@ jobs:
 
       - name: A manifest built from git blobs (what Linux publishes) verifies this checkout
         run: |
-          git ls-files skills | sort | while read -r f; do
+          git ls-files skills kit | sort | while read -r f; do
             printf '%s  %s\n' "$(git show "HEAD:$f" | sha256sum | cut -d' ' -f1)" "$f"
           done > "$RUNNER_TEMP/SHA256SUMS"
           python scripts/release_manifest.py --check "$RUNNER_TEMP/SHA256SUMS"
@@ -151,3 +151,17 @@ jobs:
             echo "pisó skills existentes sin --force"; exit 1
           fi
           python scripts/install_skills.py --target agents --force
+
+      - name: A project generated from the kit starts green and its pre-commit blocks a red commit
+        run: |
+          python scripts/new_project.py "$RUNNER_TEMP/demo" --name demo --python python3
+          cd "$RUNNER_TEMP/demo"
+          bash init.sh
+          git -c user.name=ci -c user.email=ci@ci add -A
+          git -c user.name=ci -c user.email=ci@ci commit -qm "inicio"
+          python tools/kit_check.py
+          printf 'def f(o):\n    return getattr(o, "nadie", 0)\n' > src/rojo.py
+          git add -A
+          if git -c user.name=ci -c user.email=ci@ci commit -qm "rojo"; then
+            echo "el pre-commit dejó pasar una guarda en rojo"; exit 1
+          fi

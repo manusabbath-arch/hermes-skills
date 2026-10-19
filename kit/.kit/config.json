@@ -1,0 +1,5 @@
+{
+  "python_paths": ["src", "tests", "tools"],
+  "docs": ["AGENTS.md", "docs"],
+  "base_branch": "main"
+}
