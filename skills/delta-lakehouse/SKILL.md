@@ -1,7 +1,7 @@
 ---
 name: delta-lakehouse
 description: "Use when building an ETL or data pipeline, or storing structured and unstructured data in a Delta lakehouse for ML training or AI agent consumption. Covers extraction from heterogeneous sources, Delta tables with operation history and time travel, upsert patterns, partitioning, vacuum and compaction, retention, reading Delta offline, using deltalake + duckdb + pyarrow. Not for designing bronze/silver/gold layers or per-source ingest: use data-medallion-architecture."
-version: 1.0.0
+version: 1.1.0
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]

@@ -1,7 +1,7 @@
 ---
 name: empirical-project-playbook
 description: "Use when starting, building, or auditing an empirical/data-driven project with AI agents - anything that measures something (edge, conversion, performance, a business hypothesis) and decides with data. Covers pre-registration and kill criteria, anti-mining defenses, presence-vs-utility acceptance, shadow-mode rollout, mechanized build-failing checks, the 'treacherous silence' bug family, verification standards, and security/systems rules. Also for a metric or dashboard number that looks impossible (a negative success rate, a denominator that counts the wrong set) and for small-sample A/B results."
-version: 1.0.0
+version: 1.1.0
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
