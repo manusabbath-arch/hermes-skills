@@ -1,0 +1,10 @@
+{
+  "name": "hermes-skills",
+  "version": "1.2.0",
+  "description": "Skills medidas para proyectos empíricos y análisis sobre ERPs: verificación mecanizada, guardas para agentes, lakehouse y las trampas que publican cifras falsas y plausibles.",
+  "author": { "name": "Manu" },
+  "homepage": "https://github.com/manusabbath-arch/hermes-skills",
+  "repository": "https://github.com/manusabbath-arch/hermes-skills",
+  "license": "MIT",
+  "keywords": ["skills", "erp", "data-quality", "agents", "lakehouse", "evals"]
+}

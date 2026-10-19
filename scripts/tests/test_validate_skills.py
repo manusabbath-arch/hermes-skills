@@ -182,3 +182,36 @@ def test_no_tags_is_declared_not_silent(tmp_path):
     repo, _ = _skill_repo(tmp_path, tag=False)
     errs, note = vs.check_versions(repo)
     assert errs == [] and "NO chequeado" in note
+
+
+# --- Versión del plugin, del marketplace y del CHANGELOG ----------------------
+
+def _plugin_repo(tmp_path, plugin="1.2.0", market="1.2.0", entry="1.2.0", changelog="v1.2.0"):
+    (tmp_path / ".claude-plugin").mkdir()
+    (tmp_path / ".claude-plugin" / "plugin.json").write_text(
+        json.dumps({"name": "t", "version": plugin}), encoding="utf-8")
+    (tmp_path / ".claude-plugin" / "marketplace.json").write_text(json.dumps(
+        {"name": "t", "metadata": {"version": market},
+         "plugins": [{"name": "t", "source": "./", "version": entry}]}), encoding="utf-8")
+    (tmp_path / "CHANGELOG.md").write_text(
+        f"# Changelog\n\n## {changelog} — 2026-10-19\n\n## v1.1.0 — 2026-10-01\n", encoding="utf-8")
+    return tmp_path
+
+
+def test_plugin_versions_in_sync_pass(tmp_path):
+    assert vs.check_plugin_versions(_plugin_repo(tmp_path)) == []
+
+
+def test_marketplace_entry_out_of_sync_is_red(tmp_path):
+    errs = vs.check_plugin_versions(_plugin_repo(tmp_path, entry="1.1.0"))
+    assert errs and "1.1.0" in errs[0]
+
+
+def test_changelog_behind_plugin_is_red(tmp_path):
+    errs = vs.check_plugin_versions(_plugin_repo(tmp_path, changelog="v1.1.0"))
+    assert errs and "CHANGELOG" in errs[0]
+
+
+def test_missing_plugin_manifest_is_red(tmp_path):
+    (tmp_path / "CHANGELOG.md").write_text("# Changelog\n", encoding="utf-8")
+    assert "plugin.json" in vs.check_plugin_versions(tmp_path)[0]

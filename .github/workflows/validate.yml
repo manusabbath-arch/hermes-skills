@@ -100,3 +100,54 @@ jobs:
             printf '%s  %s\n' "$(git show "HEAD:$f" | sha256sum | cut -d' ' -f1)" "$f"
           done > "$RUNNER_TEMP/SHA256SUMS"
           python scripts/release_manifest.py --check "$RUNNER_TEMP/SHA256SUMS"
+
+  # El README promete que el tap se instala como plugin desde Claude Code 2.1.275 y
+  # que el instalador deja las skills donde las leen Codex y Cursor. Este job lo
+  # prueba en una configuración limpia, sin cuenta: si una skill no resuelve, rojo.
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # validate_skills compara cada skill contra el último tag
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Claude Code at the minimum version the README claims
+        run: npm install -g --no-fund --no-audit @anthropic-ai/claude-code@2.1.275
+
+      - name: Plugin and marketplace manifests pass strict validation
+        run: |
+          claude --version
+          claude plugin validate --strict .
+          claude plugin validate --strict .claude-plugin/plugin.json
+
+      - name: Plugin installs in a clean config and resolves every skill
+        env:
+          CLAUDE_CONFIG_DIR: ${{ runner.temp }}/claude-config
+        run: |
+          mkdir -p "$CLAUDE_CONFIG_DIR"
+          claude plugin marketplace add "$GITHUB_WORKSPACE"
+          claude plugin install hermes-skills@hermes-skills
+          claude plugin details hermes-skills@hermes-skills | tee /tmp/details.txt
+          expected=$(ls skills/*/SKILL.md | wc -l)
+          grep -E "Skills \($expected\)" /tmp/details.txt
+
+      - name: Installer puts every skill where Codex and Cursor read them
+        env:
+          HOME: ${{ runner.temp }}/home
+        run: |
+          mkdir -p "$HOME"
+          python scripts/install_skills.py --target agents
+          expected=$(ls skills/*/SKILL.md | wc -l)
+          test "$(ls "$HOME"/.agents/skills/*/SKILL.md | wc -l)" -eq "$expected"
+          if python scripts/install_skills.py --target agents; then
+            echo "pisó skills existentes sin --force"; exit 1
+          fi
+          python scripts/install_skills.py --target agents --force
