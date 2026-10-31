@@ -1,0 +1,11 @@
+Se cobraron **5795** en total del 1 al 14 de septiembre, contando una sola vez los cobros que aparecen duplicados.
+
+El archivo une dos exports (01–10/09 y 08–14/09). Por eso el segundo encabezado aparece a mitad del archivo y los cobros del 08 al 10/09 están dos veces. Son 5 filas idénticas en fecha, serie, número, cliente e importe: B-101, A-132, B-134, A-116 y B-131, que suman 1280. Sumar todo el archivo daría un total inflado.
+
+- **Primer bloque (01–10/09):** 4510.
+- **Segundo bloque sin las 5 filas repetidas (11–14/09):** 310 + 245 + 355 + 205 + 55 + 115 = 1285.
+- **Total:** 4510 + 1285 = 5795.
+
+Hice las cuentas a mano. No tengo un export independiente para contrastar el total. El archivo declara una sola empresa (A) y no indica moneda.
+
+CIFRA: 5795

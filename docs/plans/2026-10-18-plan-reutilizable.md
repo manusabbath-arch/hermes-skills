@@ -165,6 +165,16 @@ la cifra correcta se verifica con una identidad independiente (canario) en un te
 benchmark); 5.2 tabla de trampas evitadas con y sin skill (*control:* `eval_report.py`
 extendido y diff del CI).
 
+**Estado (31/10/26):** 5.1 **hecho** (`benchmarks/erp-trampas/`: generador con semilla,
+referencia que recalcula desde los archivos, canario y "cada trampa trampea" en tests).
+5.2 **hecho con resultado negativo**: la tabla existe y el CI la regenera (con
+`benchmarks/erp-trampas/puntuar.py`, no con `eval_report.py`: la puntuación es por cifra y
+no necesita evaluador), pero **no discrimina** — 0 caídas en la trampa sin skill en Haiku
+ni en Sonnet (`runs/2026-10-31/LECTURA.md`). Dos desvíos de este plan explican buena parte:
+solo CSV (sin XLSX, por la política de stdlib) y preguntas que nombran la dimensión de la
+trampa en vez de "¿cuánto vendimos?". La fase sigue abierta hasta una v2 con archivos
+grandes, ejecución de código y preguntas de negocio, con su propio pre-registro.
+
 ### Fase 6 — Volver al proyecto de origen
 
 Usar el tap en el proyecto de origen por symlink, reemplazar sus copias de las guardas por

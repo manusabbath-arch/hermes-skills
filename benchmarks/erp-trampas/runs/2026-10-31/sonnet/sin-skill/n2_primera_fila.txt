@@ -1,0 +1,3 @@
+El archivo empieza con tres líneas de título del informe y una línea en blanco. La fila de encabezado está en la línea 5 (`Empresa;Cliente;Importe`). La primera fila de datos es la línea 6: `A;Almacén Norte;140`, así que el importe es 140.
+
+CIFRA: 140

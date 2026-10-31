@@ -15,6 +15,7 @@ build falla.
 5. Qué NO prueba esto
 6. Historia: v1
 7. Cómo repetirla
+8. Benchmark de trampas de ERP
 
 ## 1. Método
 
@@ -130,3 +131,14 @@ tipo de fuente y con un "sentinel 0.0" que contradecía su propia regla NULL ≠
    `prompt.md` a un agente por modelo y `... score --key <dir>/key.json --answers <respuesta>`.
 5. Pre-registrar lo que se espera **antes** de correr una ronda que mide un cambio.
 6. Agregar la corrida a `evals/runs/` y sus tablas al CI.
+
+## 8. Benchmark de trampas de ERP
+
+Ocho exports sintéticos con una trampa cada uno y la cifra correcta e ingenua calculadas por
+un script de referencia (`benchmarks/erp-trampas/`). Puntúa por cifra, sin evaluador.
+
+Primera corrida (31/10/26, `benchmarks/erp-trampas/runs/2026-10-31/results.md`): con y sin
+`erp-business-analysis`, Haiku 7 y 8 correctas de 8, Sonnet 8 y 7, y **0 caídas en la trampa
+en las cuatro condiciones**. Contra el pre-registro es un fracaso: el benchmark, así como
+está, no mide lo que la skill aporta (archivos chicos que se leen enteros, preguntas que
+nombran la trampa). La lectura y lo que cambia para la v2 están en `LECTURA.md` de esa corrida.

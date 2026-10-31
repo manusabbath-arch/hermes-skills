@@ -1,0 +1,5 @@
+Usé solo `datos/t3_periodo/Ventas 2026 YTD.csv`. Tiene 31 filas de importes (01/03 al 31/03/2026, una por día, sin fechas repetidas ni faltantes). Sumé los importes en tres bloques de 10, 10 y 11 filas: 1.860 + 2.645 + 2.865 = 7.370. Luego dividí por 31 días: 7.370 / 31 = 237,74.
+
+El nombre del archivo dice "YTD", pero el contenido solo cubre marzo. Por eso dividí entre 31 y no entre los 90 días del trimestre, ya que no hay datos de enero ni de febrero. Si el export debía incluir otros meses, faltan datos y el promedio cambiaría.
+
+CIFRA: 237.74

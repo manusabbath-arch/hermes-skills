@@ -1,0 +1,11 @@
+El total cobrado del 1 al 14 de septiembre es 5795.
+
+El archivo junta dos exports, el del 01 al 10/09 y el del 08 al 14/09. Los cobros del 08 al 10/09 aparecen dos veces, con idénticos serie, número, cliente e importe (líneas 24-28, repetidas de las 18-22). Conté esas cinco filas una sola vez.
+
+- Primer bloque (líneas 5-22, del 01 al 10/09): 4510.
+- Filas nuevas del segundo bloque (líneas 29-34, del 11 al 14/09): 310 + 245 + 355 + 205 + 55 + 115 = 1285.
+- Total: 4510 + 1285 = 5795.
+
+Si no se quitaran los duplicados, el total sería 6575 (los cinco cobros repetidos suman 1280).
+
+CIFRA: 5795

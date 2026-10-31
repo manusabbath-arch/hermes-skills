@@ -1,0 +1,7 @@
+Ningún producto está por debajo de su stock mínimo, pero la cifra no es confiable: el campo StockMinimo no se usa.
+
+Leí `stock.csv`, que tiene 8 productos (P001 a P008). En los 8, `StockMinimo` y `StockMaximo` valen `0.00`, y el stock va de 9 a 90. Comparando `Stock < StockMinimo` da 0 productos, porque ningún stock es menor que cero.
+
+Ese resultado no prueba que el stock esté bien. La skill advierte que un `0.00` en campos que nadie carga (stock mín/máx) no es un dato hasta probar que lo es. Que los 8 productos tengan mínimo y máximo en cero indica que el campo está muerto: nadie lo cargó. Con este archivo no puedo distinguir un cero guardado de un valor sin cargar, y con mínimos sin definir no se puede saber qué productos están bajo su mínimo real. Por eso no devuelvo un 0 que parezca una medición.
+
+CIFRA: NO DETERMINABLE

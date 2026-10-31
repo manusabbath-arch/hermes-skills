@@ -1,0 +1,5 @@
+La empresa A vendió 3030 en marzo.
+
+Sumé a mano las 16 filas de clientes del CSV, sin contar la fila "TOTAL GENERAL". El resultado es 3030, y coincide con el total que trae el propio archivo. El período del informe es 01/03/2026 al 31/03/2026, o sea marzo completo. Los clientes aparecen repetidos, así que cada uno tiene dos filas y las sumé todas.
+
+CIFRA: 3030

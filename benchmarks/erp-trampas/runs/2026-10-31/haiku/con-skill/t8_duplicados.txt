@@ -1,0 +1,7 @@
+Cuenta: **$5.795** (empresa A, 01/09 al 14/09/2026).
+
+El archivo es la unión de dos exports (01-10/09 y 08-14/09), así que los días 08, 09 y 10 aparecen dos veces. Sumé las 18 filas del primer bloque (4.510) y las 6 filas del segundo bloque que no están repetidas (310, 245, 355, 205, 55, 115 = 1.285). Las 5 filas repetidas (275, 285, 210, 325, 185 = 1.280) son idénticas, fila por fila, a las del primer bloque, y las descarté. Verifiqué que no haya falsos duplicados: no hay pares Serie+Número repetidos fuera del solapamiento (B125 y A125, por ejemplo, son comprobantes distintos). Sumar sin deduplicar daría 7.075, que está inflado en esas 1.280.
+
+Fuentes: `datos/t8_duplicados/cobros_1_al_14.csv` y las reglas de `skill/SKILL.md` (forma 1 del error y "la unión de exports") y `skill/templates/error-book.md`. No ejecuté código; las sumas las hice a mano y las revisé dos veces.
+
+CIFRA: 5795

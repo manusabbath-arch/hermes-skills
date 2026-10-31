@@ -1,0 +1,3 @@
+Abrí `stock.csv` y conté los campos separados por `;` en la fila de encabezado: `Codigo`, `Producto`, `Stock`, `StockMinimo`, `StockMaximo`. Cada fila de datos (P001 a P008) también tiene 5 campos, así que el archivo tiene 5 columnas. La línea 10 aparece vacía y no agrega columnas.
+
+CIFRA: 5

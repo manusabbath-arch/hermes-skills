@@ -1,0 +1,3 @@
+Sumé a mano las 11 filas con `Empresa = A` del CSV (filas 6–8, 13–16 y 21–24). El informe dice "Período: 01/06/2026 al 30/06/2026", así que todas las filas corresponden a junio. Los importes son 140, 180, 325, 345, 360, 195, 75, 245, 235, 210 y 325. Los subtotales son 990 + 630 + 1015 = 2635. El archivo no indica moneda, así que el número va sin unidades.
+
+CIFRA: 2635

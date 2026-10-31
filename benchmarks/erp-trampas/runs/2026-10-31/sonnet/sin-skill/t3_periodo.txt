@@ -1,0 +1,7 @@
+El export trae 31 filas, una por día, del 01/03 al 31/03/2026. Aunque el nombre dice "YTD", el encabezado indica "Período: 01/03/2026 al 31/03/2026". Por lo tanto, solo cubre marzo y no hay datos de enero ni febrero.
+
+Sumé los importes de las 31 filas a mano y el total es 7.370. Como hay un registro por cada día de marzo, el promedio es 7.370 / 31 = 237,74 por día.
+
+Esta cifra es el promedio de marzo. No sirve como promedio de todo el año hasta el 31/03.
+
+CIFRA: 237.74

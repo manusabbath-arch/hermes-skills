@@ -1,0 +1,5 @@
+Vendió **3030** en marzo (sin unidad ni moneda declaradas en el archivo).
+
+Leí `SKILL.md` y el CSV. El preámbulo declara Empresa A y período 01/03/2026 al 31/03/2026. Sumé las 16 filas de detalle, sin contar la de `TOTAL GENERAL`, y da 3030. Ese total coincide con la fila `TOTAL GENERAL` del propio archivo, así que el export cierra consigo mismo. No hay subtotales ni filas duplicadas que descartar.
+
+CIFRA: 3030

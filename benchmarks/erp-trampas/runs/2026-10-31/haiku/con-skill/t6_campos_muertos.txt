@@ -1,0 +1,5 @@
+No se puede determinar. `StockMinimo` vale `0.00` en las 8 filas de `stock.csv`, y `skill/references/casos.md` (líneas 41-43) y `base-erp-legado.md` (líneas 28-30) documentan que ese patrón es un campo muerto: stock mínimo en cero guardado, no un mínimo real. Con mínimo 0, la respuesta "0 productos por debajo" sería una falsa tranquilidad, así que no la publico como cifra.
+
+Cómo llegué: leí `SKILL.md` (regla "un `0.00` no es un dato hasta probar que lo es") y el CSV completo. Conté las 8 filas: todas tienen `StockMinimo = 0.00`. Los stocks (77, 36, 9, 16, 78, 77, 90, 10) no se pueden comparar contra un mínimo real porque no existe. Para responder hace falta que el ERP cargue stock mínimo, o un export donde el campo sea NULL o tenga valores distintos de cero.
+
+CIFRA: NO DETERMINABLE

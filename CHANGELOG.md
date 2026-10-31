@@ -4,6 +4,28 @@ Una entrada por tag. Cada skill lleva su propia `version` en el frontmatter, y
 `scripts/validate_skills.py` falla si una skill cambió desde el último tag sin subirla.
 Cada release adjunta `SHA256SUMS` para verificar lo instalado (ver `SECURITY.md`).
 
+## v1.5.0 — 2026-11-01
+
+Segunda ronda de aprendizajes del proyecto de la distribuidora, y el benchmark de la fase 5.
+
+- **`erp-business-analysis` 1.1.0:** `references/base-erp-legado.md` (modelo medido por
+  partición, integridad que la base no declara, trampas de join, el universo de una suma,
+  la fila que un `||` con NULL borra en DB2, leer la salida por contenido, el wrapper de solo
+  lectura, exports) y la sección "Antes de calcular: ¿ya está medido?".
+- **`agent-ready-project` 1.3.0:** `references/diseno-de-guardas.md` y
+  `scripts/check_baseline.py` (regresión vs rojo declarado con condición de salida, chequeo
+  desaparecido, sellar mezcla; con tests y pasada de mutación); §10 de `multi-agent-repo.md`
+  (ramas vivas, worktrees que desaparecen).
+- **`empirical-project-playbook` 1.2.0:** operar el entorno (gasto en modelos con tope y
+  nunca programado, salud sin dato = STALE, logs sin datos de terceros, limpieza que lista).
+- **9 escenarios de evals nuevos** (3 negativos). Se escribieron después de la prosa, contra
+  la regla del tap; todavía no se corrieron.
+- **`benchmarks/erp-trampas/`:** ocho trampas de exports con su cifra ingenua y la correcta,
+  puntuación automática, runner con tope de gasto obligatorio. Primera corrida (Haiku y
+  Sonnet, 0,67 USD): **no discrimina**, ver `benchmarks/erp-trampas/runs/2026-10-31/LECTURA.md`.
+- **Anonimización:** el nombre del proyecto de origen salió de los 9 lugares donde seguía
+  publicado.
+
 ## v1.4.0 — 2026-10-31
 
 Ola 1 de destilación desde el perfil Hermes: cuatro skills portables, sin datos de

@@ -1,0 +1,7 @@
+El archivo mezcla dos monedas, y la carpeta no tiene ningún tipo de cambio para pasar los dólares a pesos.
+
+- **Filas en pesos (`$`):** suman 3225. Son 14 filas: 260, 140, 75, 295, 250, 395, 215, 110, 265, 280, 220, 220, 295 y 205.
+- **Filas en dólares (`U$S`):** suman 115. Son 4 filas: 10, 30, 35 y 40.
+- **Total en pesos:** sería 3225 + 115 × (tipo de cambio). Sin el tipo de cambio no puedo dar el total. Sumar 3225 + 115 mezclaría monedas, y 3225 solo deja afuera las ventas en dólares.
+
+CIFRA: NO DETERMINABLE

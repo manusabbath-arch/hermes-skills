@@ -1,0 +1,11 @@
+Se vendieron 3.105 de mercadería en agosto, sin contar el flete.
+
+Leí el CSV, que es de la Empresa A y cubre del 01/08/2026 al 31/08/2026. Tiene 18 filas de datos, y los acentos se ven rotos porque el archivo está en una codificación antigua. La fila `ENV�O` es el producto ENVÍO, o sea el flete, que no es mercadería.
+
+- **Flete (4 filas):** 25 + 35 + 20 + 30 = 110.
+- **Mercadería (14 filas):** 85 + 180 + 70 + 375 + 235 + 120 + 305 + 145 + 175 + 365 + 135 + 220 + 375 + 320 = 3.105.
+- **Control:** 3.105 + 110 = 3.215, que es el total de las 18 filas.
+
+El archivo no trae moneda. El archivo no tiene fila de total, así que no pude compararlo con un total propio ni con otra fuente.
+
+CIFRA: 3105

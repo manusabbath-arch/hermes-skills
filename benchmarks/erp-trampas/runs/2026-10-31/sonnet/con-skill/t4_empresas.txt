@@ -1,0 +1,7 @@
+Filas de empresa A (importes): 140, 180, 325, 345, 360, 195, 75, 245, 235, 210, 325.
+
+Suma: 140+180=320; +325=645; +345=990; +360=1350; +195=1545; +75=1620; +245=1865; +235=2100; +210=2310; +325=2635.
+
+Cómo llegué: el export declara período 01/06/2026 al 30/06/2026 y "Empresa: (todas)", así que mezcla A y B. Filtré solo las filas con Empresa = A (11 filas) y las sumé. No hay filas de subtotal ni TOTAL que descontar. No tengo una fuente independiente para hacer el canario, así que el total sale solo de este archivo. El archivo no indica la moneda.
+
+CIFRA: 2635

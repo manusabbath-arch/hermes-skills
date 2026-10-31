@@ -1,0 +1,3 @@
+`datos/t6_campos_muertos/stock.csv` tiene 5 columnas. Leí el encabezado, que usa `;` como separador: `Codigo;Producto;Stock;StockMinimo;StockMaximo`. Las filas de datos que vi tienen también 5 campos.
+
+CIFRA: 5
