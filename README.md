@@ -51,14 +51,14 @@ Para verificar una instalación contra un release publicado (`SHA256SUMS`), ver
 Layout: cada skill vive en `skills/<nombre>/` con su `SKILL.md`, sus plantillas
 (`templates/`), referencias, scripts (solo biblioteca estándar) y evals.
 
-Este tap publica 7 skills, y ese número lo verifica el CI — no la buena memoria
+Este tap publica 11 skills, y ese número lo verifica el CI — no la buena memoria
 de quien edite este README:
 
 <!-- verify
 id: skills-count
 kind: files
 target: skills/*/SKILL.md
-expect: 7
+expect: 11
 -->
 
 ## Skills
@@ -78,6 +78,10 @@ Qué cambió en cada versión: [`CHANGELOG.md`](CHANGELOG.md).
 | `agent-ready-project` | Arnés para proyectos construidos con agentes de IA (cualquier codebase, no solo data): loop de validación no eludible, prender checks sobre código sucio con baseline de trinquete, doc que verifica sus propios números, deuda de lint medida en vez de barrida, guards en todas las superficies, checks en verde vacío, planes que declaran cómo fallan, varios agentes sobre el mismo repo (worktrees, commits concurrentes, guardas por consumidor), trabajo que cruza sesiones (lista de features, progreso, evaluador separado), y los modos de falla propios del código de agente. Scripts: `doc_verify.py`, `phantom_wiring.py`, `prod_write_guard.py` (hook de solo-lectura contra producción), `worktree_guard.py`. Referencias: varios agentes en un repo, diagnóstico y revisión. Plantillas: checklist del arnés, spec del bloque verify. |
 | `erp-business-analysis` | Analizar un negocio real desde su ERP (exports `.xls/.xlsx/.csv` o la base productiva en solo lectura) sin publicar cifras plausibles y falsas: las ocho formas del error (libro de errores), sello de procedencia, canario contra fuente independiente, `0.00` ≠ dato, varias razones sociales, período y hora del export, moneda y `DECIMAL`, retracciones que se propagan, decisiones con dueño, datos de terceros. Scripts: `provenance_seal.py`, `doc_lifecycle.py` (retracciones y decisiones). Plantillas: libro de errores, nota de validación, pedido de export, nota de decisión. |
 | `hermes-skills-tap-workflow` | Cómo publicar/propagar skills vía tap (este repo como fuente canónica). |
+| `designing-mechanical-guards` | Convertir una regla que se sigue rompiendo en un check que falla el build: denominador, perímetro, verde vacío, línea base con trinquete, rojos declarados. |
+| `unattended-run-verification` | Probar que una corrida sola (Task Scheduler, cron, systemd) dispara y que el artefacto existe: el log que dice "hecho" no basta. |
+| `external-data-source-intake` | Un archivo que no es el sistema de registro (GPS, CKAN, telemetría, APIs vivas) a punto de publicarse: qué descarta el lector, umbrales, solapamiento, lo que la fuente no trae. |
+| `grounded-citations` | Citas numeradas con ledger `url → [n]` armado en la recuperación, bloque Sources generado, y `verify --evidence` con citas verbatim. |
 
 ## Cómo editar y propagar un cambio de skill
 

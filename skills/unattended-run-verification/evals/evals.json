@@ -1,0 +1,52 @@
+[
+  {
+    "skills": ["unattended-run-verification"],
+    "query": "Dejo la PC prendida esta noche. ¿El job de las 07:10 se va a ejecutar y va a dejar el archivo?",
+    "files": [],
+    "expected_behavior": [
+      "Lee NextRunTime, LastTaskResult, LogonType y StartWhenAvailable de la máquina, no el estado de la tarea",
+      "Trata un log que dice hecho como prueba de que el proceso aceptó el trabajo, no de que el artefacto existe",
+      "Pide el archivo con fecha y tamaño, o el spooler, como evidencia de la salida"
+    ]
+  },
+  {
+    "skills": ["unattended-run-verification"],
+    "query": "SumatraPDF salió exit 0, el log dice Impreso. ¿Está el papel?",
+    "files": [],
+    "expected_behavior": [
+      "Dice que exit 0 de un print-to es cola, no papel",
+      "Pide Get-PrintJob y comparar la subred de la máquina con la IP de la cola",
+      "Menciona trabajos Retained que tapan a los siguientes"
+    ]
+  },
+  {
+    "skills": ["unattended-run-verification"],
+    "query": "El worker de Telegram está corriendo y el chequeo de proceso está en verde, pero nadie contesta.",
+    "files": [],
+    "expected_behavior": [
+      "No toma un proceso vivo como prueba de que trabaja",
+      "Pide el pendiente que declara la fuente (pending_update_count o profundidad de cola)",
+      "Pide un latido escrito por el trabajador en cada vuelta, también cuando no hay novedades"
+    ]
+  },
+  {
+    "skills": ["unattended-run-verification"],
+    "query": "El PDF apareció en la carpeta tres minutos después de que la corrida declaró fallo por timeout.",
+    "files": [],
+    "expected_behavior": [
+      "No reivindica la corrida con un artefacto posterior al cierre",
+      "Atribuye el archivo a un hijo huérfano (matar el árbol, no el lanzador)",
+      "Compara la hora del archivo con la ventana de la corrida"
+    ]
+  },
+  {
+    "skills": ["unattended-run-verification"],
+    "query": "¿Qué flag usa crontab para listar las tareas del usuario actual?",
+    "files": [],
+    "expected_behavior": [
+      "Responde la pregunta concreta de crontab (crontab -l)",
+      "No agrega el procedimiento de verificación de salida, spooler ni condiciones de energía"
+    ],
+    "negativo": true
+  }
+]
