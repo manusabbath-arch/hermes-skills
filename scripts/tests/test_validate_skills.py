@@ -115,6 +115,13 @@ def test_precise_amount_marked_ficticio_passes(tmp_path):
     assert vs.check_business_data(_doc(tmp_path, text), "d.md") == []
 
 
+def test_benchmark_amounts_are_synthetic_but_terms_still_checked(tmp_path):
+    f = _doc(tmp_path, "Sumé $3225 para AcmeSoft.")  # ficticio
+    errs = vs.check_business_data(f, "benchmarks/x/runs/a.txt", ["acmesoft"])
+    assert len(errs) == 1 and "término privado" in errs[0]
+    assert vs.check_business_data(f, "skills/x/a.md")  # fuera de benchmarks/ sigue rojo
+
+
 def test_private_term_is_red_case_insensitive(tmp_path):
     errs = vs.check_business_data(_doc(tmp_path, "El ERP era AcmeSoft."), "d.md", ["acmesoft"])
     assert "término privado" in errs[0] and "d.md:1" in errs[0]

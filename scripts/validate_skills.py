@@ -229,6 +229,10 @@ FICTICIO = re.compile(r"ficticio", re.I)
 PRIVATE_TERMS_FILE = REPO / ".private-terms"
 BUSINESS_SCAN_SUFFIXES = {".md", ".json", ".py", ".yml", ".yaml", ".txt", ".csv"}
 BUSINESS_SKIP_DIRS = {".git", "__pycache__", ".pytest_cache"}
+# Datos sintéticos por construcción (semilla fija en su generador): ahí un monto preciso no
+# es dato real, y las respuestas crudas de los modelos no se editan para marcarlas.
+# Los términos privados se chequean igual.
+SYNTHETIC_AMOUNT_ROOTS = ("benchmarks/",)
 
 
 def significant_digits(number: str) -> int:
@@ -248,9 +252,10 @@ def load_private_terms(path: Path) -> list[str] | None:
 
 def check_business_data(path: Path, rel: str, private_terms: list[str] | None = None) -> list[str]:
     errors = []
+    synthetic = rel.startswith(SYNTHETIC_AMOUNT_ROOTS)
     lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
     for n, line in enumerate(lines, 1):
-        if not FICTICIO.search(line):
+        if not synthetic and not FICTICIO.search(line):
             for m in AMOUNT.finditer(line):
                 number = m.group("a") or m.group("b")
                 if significant_digits(number) >= MIN_PRECISE_DIGITS:
