@@ -1,0 +1,23 @@
+Informe: Ventas por producto
+Empresa: A
+Período: 01/08/2026 al 31/08/2026
+
+Cliente;Producto;Importe
+Minimercado Río;Galletas 200g;85
+Almacén Norte;ENVÍO;25
+Almacén Norte;Aceite 900ml;180
+Super Centro;Yerba 1kg;70
+Super Centro;Galletas 200g;375
+Almacén Norte;Azúcar 1kg;235
+Bar Oeste;Pan lactal;120
+Almacén Norte;Arroz 1kg;305
+Cantina Puerto;Yerba 1kg;145
+Panadería Este;Agua 2L;175
+Cantina Puerto;Galletas 200g;365
+Autoservicio Plaza;Azúcar 1kg;135
+Autoservicio Plaza;ENVÍO;35
+Panadería Este;Pan lactal;220
+Cantina Puerto;Galletas 200g;375
+Super Centro;ENVÍO;20
+Autoservicio Plaza;Arroz 1kg;320
+Autoservicio Plaza;ENVÍO;30

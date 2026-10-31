@@ -31,6 +31,14 @@ jobs:
       - name: Phantom wiring audit over the tap's own code
         run: python skills/agent-ready-project/scripts/phantom_wiring.py scripts skills kit
 
+      - name: Published benchmark tables match the raw answers
+        run: |
+          for r in benchmarks/erp-trampas/runs/*/; do
+            [ -f "$r/results.md" ] || continue
+            python benchmarks/erp-trampas/puntuar.py --run "$r" > /tmp/results.md
+            diff -u "$r/results.md" /tmp/results.md
+          done
+
       - name: Published eval tables match the raw grades
         run: |
           for r in evals/runs/2026-10-18/round1 evals/runs/2026-10-18/round2; do
@@ -58,7 +66,7 @@ jobs:
         run: python -m pytest --version
 
       - name: Run shipped script and repo tests
-        run: python -m pytest skills scripts -q
+        run: python -m pytest skills scripts benchmarks -q
 
       - name: Checksum manifest round-trips (what a release would publish)
         run: |
@@ -92,7 +100,7 @@ jobs:
         run: python -m pytest --version
 
       - name: Run shipped script and repo tests
-        run: python -m pytest skills scripts -q
+        run: python -m pytest skills scripts benchmarks -q
 
       - name: A manifest built from git blobs (what Linux publishes) verifies this checkout
         run: |

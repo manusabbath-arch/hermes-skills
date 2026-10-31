@@ -1,0 +1,35 @@
+{
+  "t1_total_general": {
+    "correcta": 3030,
+    "ingenua": 6060
+  },
+  "t2_columnas": {
+    "correcta": 5255,
+    "ingenua": 2529
+  },
+  "t3_periodo": {
+    "correcta": 237.74,
+    "ingenua": 81.89
+  },
+  "t4_empresas": {
+    "correcta": 2635,
+    "ingenua": 4625
+  },
+  "t5_monedas": {
+    "correcta": 3225,
+    "ingenua": 3340
+  },
+  "t6_campos_muertos": {
+    "correcta": null,
+    "ingenua": 0
+  },
+  "t7_encoding": {
+    "correcta": 3105,
+    "ingenua": 3215
+  },
+  "t8_duplicados": {
+    "correcta": 5795,
+    "ingenua": 7075,
+    "dedup_por_numero": 5025
+  }
+}
