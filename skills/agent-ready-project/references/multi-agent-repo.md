@@ -1,7 +1,7 @@
 # Varios agentes sobre el mismo repo — referencia
 
 Detalle de la sección "Varios agentes sobre el mismo repo" de `agent-ready-project`.
-**Origen:** proyecto NG (2026): seis consumidores (Claude Code, Hermes, OpenCode,
+**Origen:** el proyecto de la distribuidora (2026): seis consumidores (Claude Code, Hermes, OpenCode,
 Qwen Code, Kimi Code, Antigravity) escribiendo el mismo repo, en Windows, con
 `core.autocrlf=true` y un pre-commit que corre la suite. Cada punto tiene el
 incidente medido que lo originó.

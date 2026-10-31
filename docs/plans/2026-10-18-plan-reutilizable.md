@@ -165,15 +165,15 @@ la cifra correcta se verifica con una identidad independiente (canario) en un te
 benchmark); 5.2 tabla de trampas evitadas con y sin skill (*control:* `eval_report.py`
 extendido y diff del CI).
 
-### Fase 6 — Volver a NG
+### Fase 6 — Volver al proyecto de origen
 
 Usar el tap en el proyecto de origen por symlink, reemplazar sus copias de las guardas por
 las del tap donde sean iguales, y medir con el benchmark de la fase 5 sobre exports
 reales anonimizados. Cierra el ciclo: el proyecto que originó las reglas valida su
 versión portable.
 
-**Criterio:** 6.1 NG corre las guardas del tap sin regresiones (*control:* su
-`ng.py validar` contra la línea base).
+**Criterio:** 6.1 el proyecto de origen corre las guardas del tap sin regresiones (*control:* su
+su compuerta (`validar`) contra la línea base).
 
 ## 4. Lo que NO vamos a hacer
 

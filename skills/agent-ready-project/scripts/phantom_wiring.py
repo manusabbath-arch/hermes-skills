@@ -6,7 +6,7 @@ El patrón: `getattr(obj, "attr", default)` donde ningún archivo del proyecto
 asigna `attr` (`self.attr = ...`, `attr = ...` ni `def attr`). El default es
 justo lo que oculta el bug: nada crashea, nada loguea, el caller opera sobre
 estado vacío para siempre. En polymarket-trading-bot tuvo >=6 ocurrencias y una
-dejó el trailing-stop sin activarse nunca en producción; NG lo portó como check
+dejó el trailing-stop sin activarse nunca en producción; el proyecto de la distribuidora lo portó como check
 de su compuerta.
 
 Reglas del check (las de "verde vacío"):

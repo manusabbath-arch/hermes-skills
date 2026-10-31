@@ -4,7 +4,7 @@ worktree_guard.py — el commit que no quedó en ninguna rama.
 
 Algunas herramientas de agentes crean su propio worktree en HEAD detached. Ahí
 un commit sale con exit 0 y no queda en ninguna rama: se pierde al desmontar el
-worktree (salvo reflog) y `git status` se ve normal. En NG, una sesión trabajó
+worktree (salvo reflog) y `git status` se ve normal. En el proyecto de la distribuidora, una sesión trabajó
 así días enteros sin que nada lo notara.
 
 Clasifica cada worktree del repo:

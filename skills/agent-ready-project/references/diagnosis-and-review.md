@@ -1,6 +1,6 @@
 # Diagnóstico antes del arreglo, y cómo recibir una revisión — referencia
 
-Dos disciplinas que el proyecto NG adaptó de `systematic-debugging` y
+Dos disciplinas que el proyecto de origen (la distribuidora) adaptó de `systematic-debugging` y
 `receiving-code-review` de [obra/superpowers](https://github.com/obra/superpowers)
 (MIT), llevadas a un repo donde se rompen **cifras** tanto como código.
 
