@@ -9,6 +9,7 @@ a propósito: quedan las proporciones, que son la lección.
 1. El proyecto fuente
 2. Casos por forma de error
 3. Casos de lectura del ERP
+4. Casos de la base y del método
 
 ## 1. El proyecto fuente
 
@@ -49,3 +50,25 @@ retracción en un libro de errores por forma; esa es la estructura de
   cortando la base a las 08:25 del día del export.
 - **Consulta lenta:** un `EXISTS` correlacionado tardaba 317 s; el `LEFT JOIN … IS
   NULL` equivalente, 6,8 s.
+
+## 4. Casos de la base y del método
+
+El detalle técnico está en la referencia de la base; acá, la proporción que dejó cada uno.
+
+- **`||` con NULL:** 20 filas declaradas, 16 impresas; sobre ~190 salidas guardadas con
+  denominador, 16 habían perdido filas (hasta 4,8% de una consulta). Envolver en
+  `COALESCE` cuatro consultas recuperó todas sus filas sin cambiar un valor no nulo.
+- **Detector de errores de cinco dígitos:** `SQL0206N` salía `ok`. De ~385 corridas, 60 no
+  salieron bien; 10 eran exactamente ese error.
+- **0 claves foráneas, 0 `CHECK`:** 17 controles de huérfanos escritos a mano.
+- **`SUM(saldo)` sin tipo de documento:** +30% de deuda. Una definición de "cancelada" que
+  metía notas de crédito como deuda viva: 9,4×.
+- **Un documento en dos viajes:** `MIN(id)` elegía el viaje del turno, no el del repartidor.
+- **Lo que "no existía":** el vínculo documento→viaje, dado por ~4%, cubría 8 de cada 10
+  ventas; estaba en una tabla que ningún documento del repo nombraba.
+- **La salida pisada:** una corrida fallida reescribió el archivo del día y el sha citado
+  por un informe dejó de resolver; se perdió la evidencia de la corrida anterior.
+- **Cifra heredada:** "0 de 29" era 1 de 29. **Conteo en el panel:** "293 de 293" pasó a
+  rojo a las horas, porque escribir la nota siguiente lo llevó a 294.
+- **Rama sin integrar:** 8 commits con un cobro corregido (un cheque sumado como efectivo)
+  mientras `main` publicaba la cifra vieja.

@@ -70,5 +70,40 @@
       "No agrega procesos, chequeos ni herramientas del dominio de la skill que el pedido no pide"
     ],
     "negativo": true
+  },
+  {
+    "skills": [
+      "agent-ready-project"
+    ],
+    "query": "Nuestra compuerta tiene 120 chequeos y siempre hay 5 o 6 en rojo por datos que faltan; el equipo ya ignora el rojo. ¿Bajamos esos chequeos a warning?",
+    "files": [],
+    "expected_behavior": [
+      "Propone una línea base sellada que distinga regresión (bloquea) de rojo conocido",
+      "Pide declarar cada rojo con motivo y condición de salida, y que un chequeo nuevo que nace rojo se declare en el mismo commit",
+      "Advierte que sellar debe mezclar, no reemplazar, y que un chequeo que deja de correr también bloquea"
+    ]
+  },
+  {
+    "skills": [
+      "agent-ready-project"
+    ],
+    "query": "La suite me dio 300 fallos en archivos que no toqué, todos con 'no existe' y código 127. ¿Revierto mi último commit?",
+    "files": [],
+    "expected_behavior": [
+      "No revierte a ciegas: sospecha que el worktree o el árbol cambió bajo los tests (otro agente integró o borró el worktree)",
+      "Propone verificar que el worktree exista, mirar el reflog y repetir en un clon limpio antes de declarar regresión"
+    ]
+  },
+  {
+    "skills": [
+      "agent-ready-project"
+    ],
+    "query": "¿Qué hace git worktree add?",
+    "files": [],
+    "negativo": true,
+    "expected_behavior": [
+      "Explica en pocas líneas qué es un worktree y la sintaxis básica",
+      "No agrega reglas de compuerta, líneas base, guardas por consumidor ni procesos de integración que nadie pidió"
+    ]
   }
 ]

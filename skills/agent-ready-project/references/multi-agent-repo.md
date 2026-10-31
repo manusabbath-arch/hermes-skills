@@ -17,6 +17,7 @@ incidente medido que lo originó.
 7. Sesiones sin shell y el punto de recogida
 8. Identidad de quién commitea
 9. Tests bajo contención
+10. El estado real: ramas vivas, worktrees que desaparecen
 
 ## 1. Aislamiento: un worktree y una rama por sesión
 
@@ -155,3 +156,25 @@ commitear. El modelo, si no está en el entorno, no se completa a mano.
   de códigos de la consola; el `UnicodeDecodeError` ocurre en el hilo lector, `stdout`
   queda `None` y el test muere **antes de su aserción**, apuntando al lugar
   equivocado. Leer bytes y decodificar explícito con `errors="replace"`.
+
+## 10. El estado real: ramas vivas, worktrees que desaparecen
+
+- **El disco de un worktree no es durable.** Otra sesión hizo `git worktree add` sobre el
+  mismo path: el worktree dejó de listarse y la carpeta quedó vacía. Lo commiteado y lo
+  copiado afuera se recuperó (`git cat-file blob <sha> > <path>`, porque los objetos siguen
+  aunque el checkout no); lo que solo vivía en el disco, no. Commitear temprano en la rama
+  propia, y anotar el sha por archivo (`git rev-parse :<path>`) antes de una operación
+  riesgosa vuelve la restauración verificable.
+- **Cientos de fallos en tests que no tocaste son el árbol que se fue, no una regresión.**
+  Una suite dio 301 fallos, todos en archivos ajenos al cambio y con "no está" / `127`: otro
+  agente había integrado la rama y borrado el worktree mientras la suite corría. El reflog
+  (`merge <rama>: Fast-forward`) lo prueba. Diagnóstico antes que pánico: ¿existe el
+  worktree?, ¿qué dice el reflog?, ¿falla igual en un clon limpio?
+- **El estado de una rama es el de su rebase contra el `main` de ahora**, no el de una
+  prueba vieja: una rama dada por "no integrable" rebasó limpio al re-correr. Y `git log
+  main..<rama>` no dice si el contenido ya está en `main`: el indicador es
+  `git log main..HEAD` **después** de rebasar; si queda vacío, el contenido ya estaba.
+- **"¿Qué falta?" incluye las ramas sin integrar.** Una capacidad puede estar construida,
+  medida y sin publicar (8 commits con una cifra corregida mientras `main` publicaba la
+  vieja). Antes de responder, `git worktree list` y `git log --oneline main..<rama>` por
+  rama viva; un chequeo que compara documentos dentro de un solo árbol no lo ve.

@@ -1,7 +1,7 @@
 ---
 name: empirical-project-playbook
 description: "Use when starting, building, or auditing an empirical/data-driven project with AI agents - anything that measures something (edge, conversion, performance, a business hypothesis) and decides with data. Covers pre-registration and kill criteria, anti-mining defenses, presence-vs-utility acceptance, shadow-mode rollout, mechanized build-failing checks, the 'treacherous silence' bug family, verification standards, and security/systems rules. Also for a metric or dashboard number that looks impossible (a negative success rate, a denominator that counts the wrong set) and for small-sample A/B results."
-version: 1.1.0
+version: 1.2.0
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
@@ -291,6 +291,26 @@ Para proyectos que quieren una capa de negocio/analytics encima:
 - **No concluir ausencia desde un solo path**: un `.env` editado a mano puede
   reportarse como "deploy completo" mientras el código corre 265 commits atrás;
   verificar el SHA real, no la intención.
+
+### Operar el entorno: gasto, salud, logs y limpieza
+
+- **Un agente que gasta en modelos tiene tope declarado y nunca corre programado.** Las
+  evals propias corren con tope por llamada y tope obligatorio por corrida (al pasarlo,
+  los casos restantes puntúan como fallo, no se saltean). Un test falla si un script
+  lanza un modelo sin estar en la lista de lanzadores con su tope, o si una tarea
+  programada lo invoca: programar gasto es una decisión de una persona, escrita antes.
+- **Una vista de salud única, y sin dato = STALE, nunca verde:** disco libre, antigüedad
+  del último respaldo bueno, trabajo sin commitear en el árbol de integración de más de
+  N horas (dos validaciones a medio escribir dejaron dos chequeos rojos cada mañana
+  durante tres días, y las corridas desde un worktree no lo veían).
+- **Logs estructurados sin datos de terceros:** una línea JSON por evento, con el mismo id
+  de corrida que la bitácora; la redacción por patrón ayuda, pero qué campo se escribe lo
+  decide quien llama.
+- **Una sola política de limpieza, que por defecto solo lista.** Borrar lo corre quien lo
+  pidió; nunca son candidatos la bitácora ni las salidas que un documento cita por sha
+  (un sha que ya no está en disco no se vuelve a derivar).
+- **Medir antes de repetir un consejo:** un procedimiento que llega de otra sesión puede
+  ser correcto y traer un paso de más.
 
 ## Seguridad y sistemas (reglas durosas — detalle en referencias)
 

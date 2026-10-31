@@ -38,3 +38,9 @@ no frena**: la regla del denominador se escribió en un check y al día siguient
 violada en seis más; con check, 42 de 42 decisiones tenían dueño, y sin check, 1 de 29
 planes tenía su spec. El detalle de ese proyecto vive en la skill
 `erp-business-analysis` y en `agent-ready-project`.
+
+Del mismo proyecto, para la operación del entorno: las evals de los agentes costaban del
+orden de 0,30 USD por caso y corrían con tope por corrida; de todos los scripts del repo,
+solo dos llamaban a un modelo por su cuenta y ninguna tarea programada lo hacía, y un test
+lo mantiene así. La vista de salud nació de dos chequeos que amanecían rojos por trabajo a
+medio escribir en el árbol de integración.
