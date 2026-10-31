@@ -10,8 +10,10 @@ GASTA DINERO: cada caso es una llamada a un modelo. Por eso:
 
 Aislamiento: cada (modelo, condición) trabaja en una carpeta propia que solo tiene una
 copia de `datos/` (y, con skill, una copia de la skill en `skill/`). Se usa
-`claude -p --bare` (sin CLAUDE.md, hooks, memoria ni plugins de la máquina), solo con
-Read/Glob/Grep y sin MCP: el sujeto sin skill no puede encontrarla, y ninguno puede
+`claude -p` sin settings de usuario/proyecto (`--setting-sources ""`, así no cargan
+hooks ni plugins), sin skills ni comandos (`--disable-slash-commands`), solo con
+Read/Glob/Grep y sin MCP. `--bare` no sirve: no lee la credencial guardada. La carpeta
+de trabajo está en el temporal del sistema, lejos de cualquier CLAUDE.md: el sujeto sin skill no puede encontrarla, y ninguno puede
 correr código (la trampa tiene que verse leyendo, como se ve en una planilla).
 
 Salida: `<out>/<modelo>/<con-skill|sin-skill>/<caso>.txt` y `<out>/costos.json`. Después:
@@ -52,13 +54,16 @@ def preparar(base: Path, con_skill: bool) -> Path:
 
 
 def llamar(cwd: Path, modelo: str, prompt: str, presupuesto: float) -> tuple[str, float]:
-    cmd = ["claude", "-p", prompt, "--bare", "--model", modelo, "--tools", "Read,Glob,Grep",
+    cmd = ["claude", "-p", "--setting-sources", "", "--disable-slash-commands", "--model", modelo, "--tools", "Read,Glob,Grep",
            "--strict-mcp-config", "--no-session-persistence", "--output-format", "json",
            "--max-budget-usd", f"{presupuesto:.2f}"]
     exe = shutil.which(cmd[0])
     if exe is None:
         raise RuntimeError("no se encontró `claude` en el PATH")
-    proc = subprocess.run([exe, *cmd[1:]], cwd=cwd, capture_output=True, timeout=900)
+    # El prompt va por stdin: en Windows `claude` es un .CMD y cmd.exe corta un argumento
+    # en el primer salto de línea (y reinterpreta & | < > ^ %).
+    proc = subprocess.run([exe, *cmd[1:]], cwd=cwd, input=prompt.encode("utf-8"),
+                          capture_output=True, timeout=900)
     salida = proc.stdout.decode("utf-8", errors="replace")
     try:
         data = json.loads(salida)

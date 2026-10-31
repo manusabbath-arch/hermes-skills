@@ -33,9 +33,9 @@ skill no debería cambiar la cifra ni alargar la respuesta.
   los datos publicados salgan byte a byte del generador, y que en cada trampa la ingenua
   difiera de la correcta (una trampa que no trampea no discrimina).
 - `casos.json` — la pregunta de cada caso.
-- `correr.py` — corre los casos con `claude -p --bare` en carpetas aisladas (solo una
-  copia de `datos/`, y de la skill en la condición con skill), sin MCP ni ejecución de
-  código. **Gasta dinero:** `--tope-usd` es obligatorio y corta la corrida al pasarlo;
+- `correr.py` — corre los casos con `claude -p` sin settings, skills ni MCP, en carpetas
+  aisladas (solo una copia de `datos/`, y de la skill en la condición con skill), sin
+  ejecución de código. **Gasta dinero:** `--tope-usd` es obligatorio y corta la corrida al pasarlo;
   nunca se programa.
 - `puntuar.py` — tabla por caso y por modelo: `C` correcta, `I` ingenua, `O` otra, `-` sin
   cifra (falta = fallo). Las corridas publicadas viven en `runs/<fecha>/` y el CI
