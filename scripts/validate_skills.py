@@ -285,7 +285,10 @@ def business_scan_files() -> list[Path]:
 # versión: quien instala no tiene cómo saber que lo suyo quedó viejo.
 
 def _git(repo: Path, *args: str) -> subprocess.CompletedProcess:
-    return subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True)
+    # `git show <tag>:SKILL.md` devuelve UTF-8; sin `encoding`, Windows decodifica con la
+    # página de códigos (cp1252) y un byte como 0x8d tumba el validador.
+    return subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True,
+                          encoding="utf-8", errors="replace")
 
 
 def check_versions(repo: Path) -> tuple[list[str], str]:

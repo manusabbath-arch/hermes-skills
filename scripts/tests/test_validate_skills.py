@@ -222,3 +222,16 @@ def test_changelog_behind_plugin_is_red(tmp_path):
 def test_missing_plugin_manifest_is_red(tmp_path):
     (tmp_path / "CHANGELOG.md").write_text("# Changelog\n", encoding="utf-8")
     assert "plugin.json" in vs.check_plugin_versions(tmp_path)[0]
+
+
+def test_git_decodes_utf8_not_the_console_codepage(monkeypatch):
+    """En Windows, text=True sin encoding decodifica con cp1252 y un SKILL.md en UTF-8 lo rompe."""
+    seen = {}
+
+    def fake_run(cmd, **kw):
+        seen.update(kw)
+        return subprocess.CompletedProcess(cmd, 0, "", "")
+
+    monkeypatch.setattr(vs.subprocess, "run", fake_run)
+    vs._git(Path("."), "status")
+    assert seen.get("encoding") == "utf-8" and seen.get("errors") == "replace"
