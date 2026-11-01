@@ -29,7 +29,10 @@ build falla.
   respuestas A y B; qué letra tuvo la skill se sorteó y vive en `key.json`, que no lee.
 Las cuatro skills de v1.4.0 (`designing-mechanical-guards`, `unattended-run-verification`,
 `external-data-source-intake`, `grounded-citations`) no entran en las tablas de §2, que son
-la corrida ciega de las 7 skills de v1.3.0: se midieron en la ronda C (§9).
+la corrida ciega de las 7 skills de v1.3.0: se midieron en la ronda C (§9). Las cuatro de
+v1.5.0 (`tests-over-changing-data-exports`, `outbound-notification-channels`,
+`recurring-report-design`, `documentation-drift-audit`) traen `evals/evals.json` y
+todavía no se midieron.
 
 - **Activación:** un agente ve solo el `name` y la `description` de las 7 skills y 49
   pedidos barajados (los 35 de las evals + 7 ajenos al tap), y elige qué skills cargaría.

@@ -51,14 +51,14 @@ Para verificar una instalación contra un release publicado (`SHA256SUMS`), ver
 Layout: cada skill vive en `skills/<nombre>/` con su `SKILL.md`, sus plantillas
 (`templates/`), referencias, scripts (solo biblioteca estándar) y evals.
 
-Este tap publica 11 skills, y ese número lo verifica el CI — no la buena memoria
+Este tap publica 15 skills, y ese número lo verifica el CI — no la buena memoria
 de quien edite este README:
 
 <!-- verify
 id: skills-count
 kind: files
 target: skills/*/SKILL.md
-expect: 11
+expect: 15
 -->
 
 ## Skills
@@ -82,6 +82,10 @@ Qué cambió en cada versión: [`CHANGELOG.md`](CHANGELOG.md).
 | `unattended-run-verification` | Probar que una corrida sola (Task Scheduler, cron, systemd) dispara y que el artefacto existe: el log que dice "hecho" no basta. |
 | `external-data-source-intake` | Un archivo que no es el sistema de registro (GPS, CKAN, telemetría, APIs vivas) a punto de publicarse: qué descarta el lector, umbrales, solapamiento, lo que la fuente no trae. |
 | `grounded-citations` | Citas numeradas con ledger `url → [n]` armado en la recuperación, bloque Sources generado, y `verify --evidence` con citas verbatim. |
+| `tests-over-changing-data-exports` | Tests que leen un export que alguien vuelve a bajar: fixtures versus el archivo más nuevo, aserciones de forma, skip con motivo, caché que no esconde un archivo que cambió. |
+| `outbound-notification-channels` | Abrir un canal de salida (mail, chat, webhook, ntfy): secreto en el almacén del SO, apagado por defecto, transporte inyectado, y generar el artefacto no es entregarlo. |
+| `recurring-report-design` | Informe diario o semanal que alguien lee de verdad: consumidor y denominador, rotación en vez de acumulación, dosis topeada, latido cuya ausencia es la alarma. |
+| `documentation-drift-audit` | Auditar docs contra el sistema que describen: hechos viejos, consejos viejos, wikilinks rotos, huérfanos, y un check de integridad que imprime su denominador. |
 
 ## Cómo editar y propagar un cambio de skill
 
