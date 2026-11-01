@@ -38,6 +38,11 @@ jobs:
             python benchmarks/erp-trampas/puntuar.py --run "$r" > /tmp/results.md
             diff -u "$r/results.md" /tmp/results.md
           done
+          for r in benchmarks/erp-trampas/v2/runs/*/; do
+            [ -f "$r/results.md" ] || continue
+            python benchmarks/erp-trampas/puntuar.py --suite v2 --run "$r" > /tmp/results.md
+            diff -u "$r/results.md" /tmp/results.md
+          done
 
       - name: Published eval tables match the raw grades
         run: |

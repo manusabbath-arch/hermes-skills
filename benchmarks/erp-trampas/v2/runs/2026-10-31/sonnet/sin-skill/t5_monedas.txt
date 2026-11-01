@@ -1,0 +1,3 @@
+Filas: 2200 | Total bruto de referencia (incluye posible flete): 827920.0
+El export no tiene columna de producto: no se puede separar ENV�O de la venta de mercader�a.
+CIFRA: NO DETERMINABLE

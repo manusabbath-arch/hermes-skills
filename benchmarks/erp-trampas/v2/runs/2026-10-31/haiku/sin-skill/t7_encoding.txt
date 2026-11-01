@@ -1,0 +1,8 @@
+Archivo: <tmp>\erp-script-t1dydyur\datos\t7\ventas_agosto.csv
+L�neas de agosto 2026 le�das: 2200
+Ventas de mercader�a (Producto): 1945
+L�neas de ENV�O excluidas: 255
+L�neas con otro concepto excluidas: 0
+Importes inv�lidos: 0
+Total ventas de mercader�a en pesos: 431730
+CIFRA: 431730

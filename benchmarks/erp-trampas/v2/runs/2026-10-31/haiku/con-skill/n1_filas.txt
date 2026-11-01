@@ -1,0 +1,5 @@
+Archivo: datos\t6\stock.csv | encoding: utf-8
+Encabezado: ['Codigo', 'Producto', 'Stock', 'StockMinimo', 'StockMaximo']
+Filas tras encabezado: 2200
+Filas vacias descartadas: 0
+CIFRA: 2200

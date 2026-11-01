@@ -131,7 +131,9 @@ def correr_script(script: str, cwd: Path) -> tuple[str, str]:
                               capture_output=True, timeout=120)
     except subprocess.TimeoutExpired:
         return "", "[TIMEOUT] 120 s"
-    return dec(proc.stdout), dec(proc.stderr)[-2000:]
+    # La ruta del temporal trae el usuario de la máquina; la salida se publica.
+    tapar = lambda t: t.replace(str(cwd.parent), "<tmp>")  # noqa: E731
+    return tapar(dec(proc.stdout)), tapar(dec(proc.stderr))[-2000:]
 
 
 def cargar_casos(suite: Path) -> tuple[list[dict], str, str]:

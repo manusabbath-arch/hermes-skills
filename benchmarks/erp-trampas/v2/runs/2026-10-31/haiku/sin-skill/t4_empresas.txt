@@ -1,0 +1,11 @@
+Filas de junio, empresa A: 1092
+Filas de otra empresa (excluidas): 1108
+Filas fuera de junio (excluidas): 0
+L�neas no reconocidas (encabezados, etc.): 4
+   Informe: Ventas por cliente
+   Empresa: (todas)
+   Período: 01/06/2026 al 30/06/2026
+   Empresa;Fecha;Cliente;Importe
+Total ventas empresa A, junio 2026: $243590
+Equivalente en U$S (40 $/U$S): 6089.75
+CIFRA: 243590

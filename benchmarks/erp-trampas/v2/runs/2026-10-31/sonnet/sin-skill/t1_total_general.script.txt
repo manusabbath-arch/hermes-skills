@@ -1,0 +1,33 @@
+import csv
+
+path = "datos/t1/ventas_marzo.csv"
+total_filas = 0
+n = 0
+total_informe = None
+fuera_de_marzo = 0
+
+with open(path, encoding="utf-8-sig", newline="") as f:
+    for row in csv.reader(f, delimiter=";"):
+        if len(row) < 3:
+            continue
+        fecha, cliente, importe = row[0].strip(), row[1].strip(), row[2].strip()
+        if cliente.upper().startswith("TOTAL"):
+            total_informe = float(importe.replace(",", "."))
+            continue
+        try:
+            d, m, a = fecha.split("/")
+            val = float(importe.replace(",", "."))
+        except ValueError:
+            continue  # encabezados
+        if (m, a) != ("03", "2026"):
+            fuera_de_marzo += 1
+            continue
+        total_filas += val
+        n += 1
+
+print("Filas de datos:", n)
+print("Suma de filas (incluye ENVÍO, sin poder separarlo):", total_filas)
+print("TOTAL GENERAL del informe:", total_informe)
+print("Filas fuera de marzo:", fuera_de_marzo)
+print("El export no tiene columna de producto: no se puede excluir ENVÍO (flete).")
+print("CIFRA: NO DETERMINABLE")

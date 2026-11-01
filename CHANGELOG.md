@@ -23,6 +23,9 @@ Segunda ronda de aprendizajes del proyecto de la distribuidora, y el benchmark d
 - **`benchmarks/erp-trampas/`:** ocho trampas de exports con su cifra ingenua y la correcta,
   puntuación automática, runner con tope de gasto obligatorio. Primera corrida (Haiku y
   Sonnet, 0,67 USD): **no discrimina**, ver `benchmarks/erp-trampas/runs/2026-10-31/LECTURA.md`.
+  **v2** (`benchmarks/erp-trampas/v2/`, con pre-registro commiteado antes de correr): exports
+  de más de 1.000 filas, respuesta por script que el runner corre con un filtro, preguntas
+  de negocio. Tampoco discrimina (0 caídas en 40 llamadas, 1,17 USD): ver su `LECTURA.md`.
 - **Anonimización:** el nombre del proyecto de origen salió de los 9 lugares donde seguía
   publicado.
 

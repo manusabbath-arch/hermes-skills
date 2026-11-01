@@ -41,11 +41,26 @@ skill no debería cambiar la cifra ni alargar la respuesta.
   cifra (falta = fallo). Las corridas publicadas viven en `runs/<fecha>/` y el CI
   regenera su tabla y la compara.
 
+## v2: archivos grandes y respuesta por script
+
+La primera corrida no discriminó (`runs/2026-10-31/LECTURA.md`). La v2 (`v2/`) mantiene las
+ocho trampas y cambia las condiciones: más de 1.000 filas por archivo, preguntas de negocio
+que no nombran la trampa ("¿cuánto vendimos en julio?") con un contexto fijo, y el sujeto
+entrega un script que `correr.py --suite v2` corre una sola vez, después de un filtro de
+imports y llamadas, en una copia descartable de `datos/`. Lo que se puntúa es lo que imprime
+el script. Qué cambió y por qué, y los criterios: `v2/PRE-REGISTRO.md`.
+
+```
+python3 v2/generar.py
+python3 correr.py --suite v2 --out v2/runs/<fecha> --tope-usd <tope> --modelos haiku,sonnet
+python3 puntuar.py --suite v2 --run v2/runs/<fecha> > v2/runs/<fecha>/results.md
+```
+
 ## Límites
 
 - **Solo CSV.** El tap solo admite la librería estándar y escribir XLSX a mano no compensa;
   la trampa del `.xls` truncado en 65.536 filas queda fuera.
-- Los archivos son chicos para que un agente sin ejecución de código pueda sumarlos
+- En la v1, los archivos son chicos para que un agente sin ejecución de código pueda sumarlos
   leyendo: un error de aritmética cuenta como `O`, no como trampa.
 - Un modelo que ya vio este repo puede conocer las respuestas. Por eso se publica la
   semilla: para una corrida limpia, cambiarla y regenerar.

@@ -1,0 +1,8 @@
+Archivos leidos: ['cobros_01_al_10.csv', 'cobros_08_al_14.csv']
+Filas contadas: 2200
+Duplicados exactos descartados (solapamiento): 464
+Mismo comprobante con datos distintos: 0
+Filas fuera del periodo: 0
+Importes no numericos: 0
+Total cobrado 01/09 al 14/09 ($): 472430
+CIFRA: 472430

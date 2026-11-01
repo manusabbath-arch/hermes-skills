@@ -1,0 +1,5 @@
+Filas de julio: 2200 (pesos: 1871, U$S: 329)
+Excluidas por ENV�O: 0; fuera de per�odo: 0
+Total en $ de filas $: 404920
+Total en $ de filas U$S convertidas a TC 40: 423000
+CIFRA: 827920

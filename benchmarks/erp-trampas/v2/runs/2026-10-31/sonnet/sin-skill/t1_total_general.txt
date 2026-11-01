@@ -1,0 +1,6 @@
+Filas de datos: 2200
+Suma de filas (incluye ENV�O, sin poder separarlo): 468550.0
+TOTAL GENERAL del informe: 468550.0
+Filas fuera de marzo: 0
+El export no tiene columna de producto: no se puede excluir ENV�O (flete).
+CIFRA: NO DETERMINABLE

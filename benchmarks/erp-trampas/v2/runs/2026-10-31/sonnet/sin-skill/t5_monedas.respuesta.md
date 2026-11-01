@@ -1,0 +1,45 @@
+El export `datos/t5/ventas_julio.csv` es un "Ventas por cliente" con las columnas Fecha, Cliente, Moneda e Importe. No tiene columna de producto ni de ítem, y no hay ninguna fila que diga ENVÍO. Como el flete se factura como el producto ENVÍO y no es venta de mercadería, no puedo saber cuánto de cada importe es flete. Cualquier total que calcule podría incluirlo.
+
+El script hace lo siguiente:
+- Lee el CSV.
+- Detecta si hay una columna de producto.
+- Calcula el total de referencia en pesos, con los importes en U$S convertidos a 40 $/U$S.
+- Si no hay columna de producto, imprime `CIFRA: NO DETERMINABLE`.
+- Si hubiera columna de producto, excluye ENVÍO e imprime la cifra.
+
+```python
+import csv, os
+
+path = os.path.join("datos", "t5", "ventas_julio.csv")
+TC = 40
+
+with open(path, encoding="utf-8-sig", newline="") as f:
+    lines = f.read().splitlines()
+
+# localizar encabezado
+hi = next(i for i, l in enumerate(lines) if l.lower().startswith("fecha;"))
+header = [h.strip().lower() for h in lines[hi].split(";")]
+rows = list(csv.reader(lines[hi + 1:], delimiter=";"))
+rows = [r for r in rows if len(r) == len(header) and r[0].strip()]
+
+i_imp = header.index("importe")
+i_mon = header.index("moneda")
+i_prod = next((i for i, h in enumerate(header)
+               if h in ("producto", "artículo", "articulo", "item", "ítem", "descripcion", "descripción")), None)
+
+def pesos(r):
+    v = float(r[i_imp].replace(",", "."))
+    return v * TC if r[i_mon].strip().upper().startswith("U") else v
+
+total_ref = sum(pesos(r) for r in rows if r[0].strip()[3:5] == "07")
+print("Filas:", len(rows), "| Total bruto de referencia (incluye posible flete):", total_ref)
+
+if i_prod is None:
+    print("El export no tiene columna de producto: no se puede separar ENVÍO de la venta de mercadería.")
+    print("CIFRA: NO DETERMINABLE")
+else:
+    total = sum(pesos(r) for r in rows
+                if r[0].strip()[3:5] == "07"
+                and r[i_prod].strip().upper().replace("Í", "I") != "ENVIO")
+    print("CIFRA: %s" % (int(total) if total == int(total) else round(total, 2)))
+```

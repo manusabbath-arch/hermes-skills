@@ -1,0 +1,9 @@
+Archivo: <tmp>\erp-script-lvx8p0sx\datos\t1\ventas_marzo.csv
+Pre�mbulo: Per�odo: 01/03/2026 al 31/03/2026
+Filas de detalle sumadas: 2200
+Total de control del export (TOTAL GENERAL): 468550
+Suma del detalle: 468550
+Filas fuera de marzo 2026: 0
+Filas malformadas: 0
+Ventas de marzo 2026, en $ (sin ENV�O; el archivo no tiene esa l�nea): 468550
+CIFRA: 468550

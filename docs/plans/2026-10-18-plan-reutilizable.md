@@ -172,8 +172,12 @@ referencia que recalcula desde los archivos, canario y "cada trampa trampea" en 
 no necesita evaluador), pero **no discrimina** — 0 caídas en la trampa sin skill en Haiku
 ni en Sonnet (`runs/2026-10-31/LECTURA.md`). Dos desvíos de este plan explican buena parte:
 solo CSV (sin XLSX, por la política de stdlib) y preguntas que nombran la dimensión de la
-trampa en vez de "¿cuánto vendimos?". La fase sigue abierta hasta una v2 con archivos
-grandes, ejecución de código y preguntas de negocio, con su propio pre-registro.
+trampa en vez de "¿cuánto vendimos?". La v2 (`benchmarks/erp-trampas/v2/`, mismo día, con
+pre-registro) corrigió eso: archivos grandes, respuesta por script y preguntas de negocio.
+**Tampoco discrimina:** 0 caídas en 80 llamadas entre las dos versiones. Propuesta: cerrar
+la fase 5 con este negativo documentado (una v3 ajustada hasta que la skill gane sería
+minería) y, si se vuelve a medir, hacerlo con una tarea de varios pasos y varias trampas
+juntas (`v2/runs/2026-10-31/LECTURA.md`). La decisión de cerrarla es del dueño del tap.
 
 ### Fase 6 — Volver al proyecto de origen
 

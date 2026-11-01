@@ -142,3 +142,11 @@ Primera corrida (31/10/26, `benchmarks/erp-trampas/runs/2026-10-31/results.md`):
 en las cuatro condiciones**. Contra el pre-registro es un fracaso: el benchmark, así como
 está, no mide lo que la skill aporta (archivos chicos que se leen enteros, preguntas que
 nombran la trampa). La lectura y lo que cambia para la v2 están en `LECTURA.md` de esa corrida.
+
+**v2** (mismo día, `benchmarks/erp-trampas/v2/`, pre-registro commiteado antes de correr):
+exports de más de 1.000 filas, preguntas de negocio y el sujeto entrega un script que se corre
+una vez. Correctas con / sin skill: Haiku 5 / 8, Sonnet 5 / 5; **0 caídas otra vez**. Las
+que no son correctas no son caídas: scripts de Haiku con skill que se rompieron por ruta o
+encoding, NO DETERMINABLE de Sonnet por un contexto mal escrito (el flete) y una cifra en
+notación científica. Ocho trampas aisladas, una por archivo, ya no le ganan a estos modelos;
+lo que sigue está en `v2/runs/2026-10-31/LECTURA.md`.

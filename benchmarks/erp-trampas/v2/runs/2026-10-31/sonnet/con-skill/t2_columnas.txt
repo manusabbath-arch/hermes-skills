@@ -1,0 +1,5 @@
+datos/t2/ventas_abril.csv encabezado: ['Fecha', 'Cliente', 'Producto', 'Importe', 'Cantidad']
+  filas sumadas=1200 descartadas=0 fuera_de_periodo=0 duplicados_exactos=0 subtotal=259160
+datos/t2/ventas_mayo.csv encabezado: ['Fecha', 'Cliente', 'Producto', 'Cantidad', 'Importe']
+  filas sumadas=1200 descartadas=0 fuera_de_periodo=0 duplicados_exactos=0 subtotal=257890
+CIFRA: 5.1705E+5

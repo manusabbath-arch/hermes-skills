@@ -1,0 +1,83 @@
+Antes de responder, leí la skill y revisé el export con búsquedas, sin ejecutar nada.
+
+- **Período:** el preámbulo dice `01/03/2026 al 31/03/2026`, así que son 31 días. El nombre del archivo ("YTD") no coincide con eso, y la skill indica leer el período del preámbulo y no del nombre.
+- **Estructura:** 3 líneas de preámbulo, un encabezado `Fecha;Cliente;Importe` y 2.200 filas de datos. Todas las filas tienen fecha de marzo de 2026, cliente y un importe entero. No hay líneas de total ni de ENVÍO, porque el export no trae columna de producto.
+
+**Qué hace el script:** toma el único CSV de `datos/t3/`, lee el período del preámbulo y valida cada fila (tres campos, fecha dentro del período, importe entero). Si algo no cuadra, se corta con error. Después suma los importes y divide por la cantidad de días calendario del período (31), que es el promedio por día que pide la pregunta. No deduplica filas, porque el export no trae un identificador que permita distinguir un duplicado real de una venta repetida. Imprime un resumen de control y la cifra en la última línea.
+
+```python
+import csv
+import glob
+import os
+import re
+from datetime import datetime
+
+BASE = os.path.join("datos", "t3")
+paths = glob.glob(os.path.join(BASE, "*.csv"))
+if len(paths) != 1:
+    raise SystemExit("ERROR: se esperaba exactamente 1 csv en datos/t3, hay %d" % len(paths))
+path = paths[0]
+
+with open(path, encoding="cp1252", newline="") as f:
+    lines = f.read().splitlines()
+
+# Período declarado en el preámbulo (no el nombre del archivo)
+start = end = None
+for line in lines:
+    m = re.match(r"Per.odo:\s*(\d{2}/\d{2}/\d{4})\s+al\s+(\d{2}/\d{2}/\d{4})", line)
+    if m:
+        start = datetime.strptime(m.group(1), "%d/%m/%Y").date()
+        end = datetime.strptime(m.group(2), "%d/%m/%Y").date()
+        break
+if start is None:
+    raise SystemExit("ERROR: no se encontró el período en el preámbulo")
+
+# Localizar encabezado de la tabla
+header_idx = None
+for i, line in enumerate(lines):
+    if line.strip() == "Fecha;Cliente;Importe":
+        header_idx = i
+        break
+if header_idx is None:
+    raise SystemExit("ERROR: no se encontró el encabezado Fecha;Cliente;Importe")
+
+total = 0
+n_rows = 0
+dates_with_sales = set()
+for lineno, line in enumerate(lines[header_idx + 1:], start=header_idx + 2):
+    if not line.strip():
+        continue
+    parts = line.split(";")
+    if len(parts) != 3:
+        raise SystemExit("ERROR: línea %d con %d campos" % (lineno, len(parts)))
+    fecha_s, cliente, importe_s = (p.strip() for p in parts)
+    try:
+        fecha = datetime.strptime(fecha_s, "%d/%m/%Y").date()
+    except ValueError:
+        raise SystemExit("ERROR: fecha inválida en línea %d: %r" % (lineno, fecha_s))
+    if not (start <= fecha <= end):
+        raise SystemExit("ERROR: fecha fuera del período en línea %d: %s" % (lineno, fecha_s))
+    if not cliente:
+        raise SystemExit("ERROR: cliente vacío en línea %d" % lineno)
+    if not re.fullmatch(r"\d+", importe_s):
+        raise SystemExit("ERROR: importe no entero en línea %d: %r" % (lineno, importe_s))
+    total += int(importe_s)
+    n_rows += 1
+    dates_with_sales.add(fecha)
+
+if n_rows == 0:
+    raise SystemExit("ERROR: el export no tiene filas de venta")
+
+dias_periodo = (end - start).days + 1
+promedio = total / dias_periodo
+
+print("Archivo: %s" % path)
+print("Período declarado: %s a %s (%d días)" % (start, end, dias_periodo))
+print("Filas de venta leídas: %d" % n_rows)
+print("Total vendido ($): %d" % total)
+print("Días con al menos una venta: %d" % len(dates_with_sales))
+print("Promedio por día calendario ($): %.2f" % promedio)
+print("CIFRA: %.2f" % promedio)
+```
+
+Caveat: no pude ejecutar el script, así que el valor sale de correrlo. Si el ERP repite filas legítimas o duplicadas, el total incluye ambas. El export no tiene forma de distinguirlas.

@@ -148,8 +148,12 @@ def test_el_script_corre_en_una_copia_descartable_no_en_la_suite(tmp_path):
         "```python\nimport os\nprint(os.getcwd())\nprint(open('datos/t6/stock.csv').read()[:6])\n```",
         tmp_path / "x.txt", V2)
     cwd, inicio = salida.splitlines()[:2]
-    assert inicio == "Codigo" and Path(cwd).resolve() != V2.resolve()
-    assert not Path(cwd).exists()                      # la copia se borró al terminar
+    assert inicio == "Codigo" and cwd.startswith("<tmp>")   # ruta del temporal tapada: se publica
+
+
+def test_las_rutas_del_temporal_no_se_publican(tmp_path):
+    salida, err = corr.correr_script("import os\nprint(os.getcwd())\nopen('no-existe')\n", tmp_path)
+    assert str(tmp_path.parent) not in salida + err and "<tmp>" in salida and "<tmp>" in err
 
 
 def test_v2_puntua_con_su_propia_referencia(tmp_path):

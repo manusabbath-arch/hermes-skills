@@ -1,0 +1,92 @@
+import csv
+import os
+
+
+def hallar_archivo():
+    aqui = os.path.dirname(os.path.abspath(__file__))
+    for base in (os.getcwd(), aqui):
+        p = os.path.join(base, "stock.csv")
+        if os.path.isfile(p):
+            return p
+    raise SystemExit("ERROR: no encuentro stock.csv")
+
+
+def leer_texto(path):
+    raw = open(path, "rb").read()
+    for enc in ("utf-8-sig", "cp1252"):
+        try:
+            return raw.decode(enc)
+        except UnicodeDecodeError:
+            pass
+    raise SystemExit("ERROR: no puedo decodificar el archivo")
+
+
+def a_numero(s):
+    s = s.strip()
+    if s == "":
+        return None
+    try:
+        return float(s)
+    except ValueError:
+        return None
+
+
+def main():
+    path = hallar_archivo()
+    texto = leer_texto(path)
+    reader = csv.reader(texto.splitlines(), delimiter=";")
+    header = [h.strip() for h in next(reader)]
+    idx = {h: i for i, h in enumerate(header)}
+    for col in ("Codigo", "Stock", "StockMinimo", "StockMaximo"):
+        if col not in idx:
+            raise SystemExit("ERROR: falta la columna " + col + " en " + str(header))
+
+    filas = 0
+    stock_ok = 0
+    min_nulo = 0
+    min_positivo = 0
+    max_positivo = 0
+    bajo_minimo = 0
+
+    for row in reader:
+        if not row or not row[idx["Codigo"]].strip():
+            continue
+        filas += 1
+        stock = a_numero(row[idx["Stock"]])
+        minimo = a_numero(row[idx["StockMinimo"]])
+        maximo = a_numero(row[idx["StockMaximo"]])
+        if stock is not None:
+            stock_ok += 1
+        if minimo is None:
+            min_nulo += 1
+        elif minimo > 0:
+            min_positivo += 1
+        if maximo is not None and maximo > 0:
+            max_positivo += 1
+        if stock is not None and minimo is not None and minimo > 0 and stock < minimo:
+            bajo_minimo += 1
+
+    print("Archivo: " + path)
+    print("Productos leidos: " + str(filas))
+    print("Stock numerico: " + str(stock_ok))
+    print("StockMinimo vacio o no numerico: " + str(min_nulo))
+    print("StockMinimo > 0: " + str(min_positivo))
+    print("StockMaximo > 0: " + str(max_positivo))
+
+    if filas == 0:
+        print("Sin filas: no hay datos para responder.")
+        print("CIFRA: NO DETERMINABLE")
+        return
+
+    if min_positivo == 0:
+        print("Ningun producto tiene StockMinimo > 0: el campo no esta cargado (cero o NULL no distinguible).")
+        print("La cuenta de productos bajo minimo no se puede determinar con este export.")
+        print("CIFRA: NO DETERMINABLE")
+        return
+
+    print("Productos con Stock < StockMinimo (minimo > 0): " + str(bajo_minimo))
+    print("CIFRA: " + str(bajo_minimo))
+
+
+if __name__ == "__main__":
+    main()

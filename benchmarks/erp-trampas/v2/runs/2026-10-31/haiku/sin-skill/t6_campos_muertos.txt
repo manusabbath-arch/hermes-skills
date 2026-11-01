@@ -1,0 +1,3 @@
+Filas leidas: 2200
+Todos los StockMinimo son 0.00 o vacios: el export no tiene minimos configurados.
+CIFRA: NO DETERMINABLE

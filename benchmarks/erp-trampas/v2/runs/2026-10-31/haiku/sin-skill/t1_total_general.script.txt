@@ -1,0 +1,40 @@
+import os
+import re
+
+RUTA = os.path.join("datos", "t1", "ventas_marzo.csv")
+# Fila de venta: fecha;cliente;importe (importe entero, posible signo)
+PAT = re.compile(r"^(\d{2})/(\d{2})/(\d{4});([^;]*);(-?\d+)$")
+
+total = 0
+filas = 0
+fuera_de_marzo = 0
+total_informado = None
+
+# latin-1 no falla con acentos ni con bytes raros; los importes son ASCII
+with open(RUTA, "rb") as f:
+    lineas = f.read().decode("latin-1").splitlines()
+
+for linea in lineas:
+    linea = linea.strip()
+    if not linea:
+        continue
+    m = PAT.match(linea)
+    if m:
+        dd, mm, aaaa, cliente, importe = m.groups()
+        if mm == "03" and aaaa == "2026":
+            total += int(importe)
+            filas += 1
+        else:
+            fuera_de_marzo += 1
+        continue
+    if "TOTAL GENERAL" in linea.upper():
+        total_informado = int(linea.split(";")[-1])
+
+print(f"Filas de marzo 2026 sumadas: {filas}")
+print(f"Filas fuera de marzo ignoradas: {fuera_de_marzo}")
+print(f"Suma calculada: {total}")
+print(f"TOTAL GENERAL informado por el ERP: {total_informado}")
+if total_informado is not None and total_informado != total:
+    print("ATENCION: la suma no coincide con el TOTAL GENERAL del export")
+
+print(f"CIFRA: {total}")
