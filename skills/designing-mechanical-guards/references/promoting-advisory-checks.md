@@ -54,6 +54,16 @@ what remains per closure and report *that*. If what remains is small and young (
 over a couple of days), say so and keep collecting: turning a gate on is cheap, turning off one
 that blocks honest work is not.
 
+## A new rule over an old corpus: enforce from a cutoff date
+
+A rule that is promoted to blocking over a corpus that predates it (plans, decisions, validation
+notes) is born red over everything already written, and the usual response is to weaken it until it
+passes. Measured in the origin project: a "how this can fail → control" section that the prose had
+asked for was present in 1 of 29 plans, while decisions, which had a check, carried theirs in 42 of
+42. Enforce the rule on documents dated on or after the cutoff, keep the older ones as a reported
+count (not a block), and write the cutoff into the check's docstring with the measured figure, so the
+date is not moved forward later to make a new red disappear.
+
 ## Write the boundary next to the code
 
 The module docstring should say, per family, what it detects, whether it may block, and the

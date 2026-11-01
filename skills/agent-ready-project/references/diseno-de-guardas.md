@@ -6,11 +6,12 @@ cómo se diseña una guarda para que siga mirando lo que dice mirar seis semanas
 línea base sellada, siete agentes sobre el mismo repo y una regla de trabajo: *cuando un
 agente falla, falla un chequeo* (test primero, o el motivo escrito de por qué no se puede).
 
-**Relación con `designing-mechanical-guards`:** esa skill es el procedimiento para convertir
-una regla en guarda (test en rojo, cableado, no-regresión sobre una compuerta madura). Esta
-referencia es el catálogo de un proyecto concreto: qué forma tomó cada guarda y qué la
-rompió. Se solapan en el verde vacío, la línea base y los rojos declarados; si difieren,
-mandan los ejemplos medidos de cada lado, y conviene unificarlas en una sola pasada.
+**Relación con `designing-mechanical-guards`:** esa skill es el procedimiento general para
+convertir una regla en guarda (test en rojo, cableado, no-regresión sobre una compuerta
+madura); esta referencia es el catálogo de un proyecto concreto: qué forma tomó cada guarda y
+qué la rompió. Cada sección termina con un **Procedimiento:** que apunta a la referencia de
+esa skill que lo desarrolla. Las dos salen del mismo origen y no se contradicen (revisado
+el 01/11/26); lo que solo estaba acá se llevó allá en su versión 1.1.0.
 
 ## Contents
 
@@ -65,6 +66,8 @@ mandan los ejemplos medidos de cada lado, y conviene unificarlas en una sola pas
 - **Una declaración que sobra** (el chequeo volvió a verde) se avisa con el comando exacto
   para quitarla, no con "limpiar el registro".
 
+**Procedimiento:** skill `designing-mechanical-guards`: *exception-registers*, *exception-registry-lifecycle* y *changing-existing-guards* (agregarle a una guarda que ya existe el estado declarado).
+
 ## 3. El denominador, siempre
 
 - **"0 hallazgos" sobre 0 elementos no es "0 hallazgos".** El test de cada chequeo incluye
@@ -80,6 +83,8 @@ mandan los ejemplos medidos de cada lado, y conviene unificarlas en una sola pas
   escribe en la página de códigos) se ve igual que una falla del producto. El harness también
   necesita su denominador: que la aserción haya corrido.
 
+**Procedimiento:** skill `designing-mechanical-guards`: *vacuous-green-detection* (las tres sondas: caminos de éxito, sujeto vacío, denominador) y *corruption-harness*.
+
 ## 4. Perímetros y listas con un solo dueño
 
 - **El perímetro de una guarda vive en una constante, en un módulo**, y todo lo demás la
@@ -92,6 +97,8 @@ mandan los ejemplos medidos de cada lado, y conviene unificarlas en una sola pas
   payload real de su agente (con los campos extra que trae) y exigiendo que bloquee.
 - **Lo declarado no protege si el consumidor no lee la declaración:** el escaneo de secretos
   recorría el disco, no `git ls-files`, y el `.gitignore` no lo frenaba.
+
+**Procedimiento:** skill `designing-mechanical-guards`: *guard-perimeter* (perímetro que debería ser contra el real, extensiones, ignore file, checkout) y *agent-cli-hook-semantics* (verificar un hook corriéndolo).
 
 ## 5. Una regla, una implementación
 
@@ -107,6 +114,8 @@ mandan los ejemplos medidos de cada lado, y conviene unificarlas en una sola pas
 - `getattr(obj, "x", default)` sobre un atributo que nadie escribe es **cableado fantasma**:
   el default se lleva toda la carga en silencio (ver `scripts/phantom_wiring.py`).
 
+**Procedimiento:** skill `designing-mechanical-guards`: *text-vs-measurement-guards* (prosa contra el valor medido) y *guards-over-machine-state*.
+
 ## 6. La guarda que pagaba el costo de lo que rechaza
 
 Si hay una forma barata de decidir que algo se descarta, va **antes** del trabajo caro.
@@ -117,6 +126,8 @@ existía. Invertir el orden bajó la compuerta de 71 s a ~38 s, y un test falla 
 vuelve a dar vuelta. El mismo
 principio ordena la compuerta (§8) y el hook del ERP: un camino rápido por palabras clave,
 y el análisis completo solo si alguna aparece.
+
+**Procedimiento:** skill `designing-mechanical-guards`: *tiered-gates*, sección del rechazo barato.
 
 ## 7. Los permisos del agente son código
 
@@ -129,6 +140,8 @@ y el análisis completo solo si alguna aparece.
   tiene que aceptar, y una aserción sobre el archivo real.
 - Lo de la máquina (el intérprete suelto) va al archivo local ignorado, no al versionado.
 
+**Procedimiento:** skill `designing-mechanical-guards`: *agent-cli-hook-semantics*, sección de permisos versionados.
+
 ## 8. La compuerta en capas, y medir antes de optimizar
 
 - Orden por costo: secretos (sin escape) → lint → chequeos acotados por lo que el commit
@@ -140,6 +153,8 @@ y el análisis completo solo si alguna aparece.
   fallas). La hipótesis "el escaneo tarda por recorrer el árbol" era falsa. Con varios
   agentes en la máquina, comparar CPU y alternar el orden: el tiempo de pared es ruido.
 
+**Procedimiento:** skill `designing-mechanical-guards`: *tiered-gates* (nivel elegido desde el grafo de imports, fallback ruidoso, guarda de deriva).
+
 ## 9. Documentos que el código obliga a mantener
 
 - **Diagramas con compuerta:** cada diagrama declara qué archivos describe; un commit que
@@ -150,9 +165,13 @@ y el análisis completo solo si alguna aparece.
   se exige **por fecha de corte**: exigirla pareja nace roja sobre todo lo anterior.
 - **El panel no cita conteos que se mueven:** cita propiedades (ver §5).
 
+**Procedimiento:** skill `designing-mechanical-guards`: *promoting-advisory-checks*, sección de la fecha de corte.
+
 ## 10. Guardas nuevas: primero en sombra
 
 Un hook de cierre de sesión ("código sin test, cifra sin validación, trabajo suelto") arrancó
 **en modo sombra**: escribe lo que habría bloqueado sin bloquear, y se prende cuando su tasa de
 falsos positivos medida es aceptable. Una guarda que bloquea mal el primer día se desactiva el
 segundo, y con ella la confianza en las demás.
+
+**Procedimiento:** skill `designing-mechanical-guards`: *promoting-advisory-checks*, *tuning-a-noisy-guard* y *advisory-to-enforcement*.

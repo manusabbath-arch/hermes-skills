@@ -19,7 +19,18 @@ Segunda ronda de aprendizajes del proyecto de la distribuidora, y el benchmark d
 - **`empirical-project-playbook` 1.2.0:** operar el entorno (gasto en modelos con tope y
   nunca programado, salud sin dato = STALE, logs sin datos de terceros, limpieza que lista).
 - **9 escenarios de evals nuevos** (3 negativos). Se escribieron después de la prosa, contra
-  la regla del tap; todavía no se corrieron.
+  la regla del tap; se midieron en la ronda C (abajo).
+- **Ronda C de evals** (`evals/runs/2026-11-01-ronda-c/`, pre-registrada): los 9 escenarios
+  nuevos y las 4 skills de v1.4.0, Haiku y Sonnet, 1,30 USD. Las tres hipótesis se cumplen
+  (escenarios nuevos +8 en los dos modelos; skills de v1.4.0 +19 y +25 de 48; negativos 14
+  de 14). `grounded-citations` no se puede medir sin comandos ni web, y está dicho así.
+  Runner nuevo: `evals/ronda.py` (con tope de gasto obligatorio y notas incompletas = rojo).
+- **Guardas unificadas:** `designing-mechanical-guards` 1.1.0 suma lo que solo estaba en el
+  catálogo de `agent-ready-project` (rechazo barato antes del trabajo caro, regla nueva sobre
+  un corpus viejo por fecha de corte, permisos versionados), y cada sección de
+  `diseno-de-guardas.md` apunta a su procedimiento general.
+- **CI:** acciones con runtime Node 24 (checkout v5, setup-python v6, setup-node v5), también
+  en el CI que genera el kit.
 - **`benchmarks/erp-trampas/`:** ocho trampas de exports con su cifra ingenua y la correcta,
   puntuación automática, runner con tope de gasto obligatorio. Primera corrida (Haiku y
   Sonnet, 0,67 USD): **no discrimina**, ver `benchmarks/erp-trampas/runs/2026-10-31/LECTURA.md`.
