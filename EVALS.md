@@ -25,6 +25,10 @@ build falla.
   no lee nada; los dos responden los mismos pedidos, sin comandos ni web.
 - **Evaluador ciego:** un agente distinto por skill y modelo recibe los criterios y las
   respuestas A y B; qué letra tuvo la skill se sorteó y vive en `key.json`, que no lee.
+Las cuatro skills de v1.4.0 (`designing-mechanical-guards`, `unattended-run-verification`,
+`external-data-source-intake`, `grounded-citations`) traen `evals/evals.json` y todavía no
+entran en las tablas de abajo: esas tablas son la corrida ciega de las 7 skills de v1.3.0.
+
 - **Activación:** un agente ve solo el `name` y la `description` de las 7 skills y 49
   pedidos barajados (los 35 de las evals + 7 ajenos al tap), y elige qué skills cargaría.
 - **Tablas:** `scripts/eval_report.py` y `scripts/activation_eval.py`; un criterio o un

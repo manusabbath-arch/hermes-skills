@@ -4,6 +4,24 @@ Una entrada por tag. Cada skill lleva su propia `version` en el frontmatter, y
 `scripts/validate_skills.py` falla si una skill cambió desde el último tag sin subirla.
 Cada release adjunta `SHA256SUMS` para verificar lo instalado (ver `SECURITY.md`).
 
+## v1.4.0 — 2026-10-31
+
+Ola 1 de destilación desde el perfil Hermes: cuatro skills portables, sin datos de
+cliente. Inventario en `docs/inventario-perfil-vs-tap.md`.
+
+- **Nueva: `designing-mechanical-guards` 1.0.0.** Procedimiento para convertir una
+  regla en un check. El catálogo de pitfalls y las 22 recetas viven en `references/`.
+- **Nueva: `unattended-run-verification` 1.0.0.** Verificar una corrida desatendida
+  y su artefacto real (Task Scheduler, cron, spooler, procesos huérfanos, escuchas).
+- **Nueva: `external-data-source-intake` 1.0.0.** Ingesta de una fuente que no es el
+  sistema de registro (GPS, CKAN, telemetría, APIs vivas), con tres referencias.
+- **Nueva: `grounded-citations` 1.0.0.** Ledger `scripts/sources.py` (stdlib) y
+  verificación de citas. El import de `hermes_constants` no viaja: el tap resuelve
+  `HERMES_HOME` / `~/.hermes` solo con stdlib.
+- El README y el plugin pasan de 7 a 11 skills. Las evals de las cuatro nuevas están
+  escritas (`evals/evals.json`); todavía no hay corrida ciega en Haiku/Sonnet/Opus
+  (el cuadro de `EVALS.md` sigue siendo el de las 7 de v1.3.0).
+
 ## v1.3.0 — 2026-10-19
 
 Kit de arranque *agent-ready* (fase 4 del plan).
