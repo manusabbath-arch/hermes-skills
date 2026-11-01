@@ -14,7 +14,7 @@ Una corrida es `<run>/<modelo>/<con-skill|sin-skill>/<caso>.txt`. Los negativos 
 donde la skill no debería cambiar nada) se puntúan igual y además se cuentan sus
 palabras: la skill no debería alargar una respuesta trivial.
 
-Uso:  python3 puntuar.py --run <dir>      → tabla Markdown por stdout
+Uso:  python3 puntuar.py --run <dir> [--suite v2]   → tabla Markdown por stdout
 Exit: 0 tabla completa, 1 falta alguna respuesta (la tabla sale igual, marcada).
 """
 from __future__ import annotations
@@ -26,8 +26,16 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE))
-import referencia  # noqa: E402
+
+
+def cargar_suite(suite: Path):
+    """(casos, módulo referencia) de una suite: la v1 es esta carpeta, la v2 `v2/`."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(f"referencia_{suite.name}", suite / "referencia.py")
+    ref = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(ref)
+    data = json.loads((suite / "casos.json").read_text(encoding="utf-8"))
+    return (data if isinstance(data, list) else data["casos"]), ref
 
 TOL = 0.005
 CIFRA = re.compile(r"^\W*CIFRA\W*:\s*(.+?)\s*$", re.I | re.M)
@@ -75,9 +83,9 @@ def clasificar(respuesta: str | None, correcta, ingenua) -> str:
     return "O"
 
 
-def puntuar(run: Path) -> tuple[str, bool]:
-    casos = json.loads((HERE / "casos.json").read_text(encoding="utf-8"))
-    ref = referencia.calcular(HERE / "datos")
+def puntuar(run: Path, suite: Path = HERE) -> tuple[str, bool]:
+    casos, referencia = cargar_suite(suite)
+    ref = referencia.calcular(suite / "datos")
     modelos = sorted(p.name for p in run.iterdir() if p.is_dir())
     completa = bool(modelos)
     cab = "| Caso | " + " | ".join(f"{m} con skill | {m} sin skill" for m in modelos) + " |"
@@ -98,7 +106,10 @@ def puntuar(run: Path) -> tuple[str, bool]:
                 if not caso.get("negativo"):
                     tot[(m, c)][k] += 1
                 elif texto is not None:
-                    palabras[(m, c)] += len(texto.split())
+                    # En modo script lo que se alarga es la respuesta, no la salida del script.
+                    larga = f.with_suffix(".respuesta.md")
+                    palabras[(m, c)] += len((larga.read_text(encoding="utf-8") if larga.is_file()
+                                             else texto).split())
                 celdas.append(k)
         etiqueta = f"{cid} (negativo)" if caso.get("negativo") else cid
         out.append(f"| {etiqueta} | " + " | ".join(celdas) + " |")
@@ -120,8 +131,9 @@ def puntuar(run: Path) -> tuple[str, bool]:
 def main() -> int:
     ap = argparse.ArgumentParser(description="Puntúa una corrida del benchmark.")
     ap.add_argument("--run", type=Path, required=True)
+    ap.add_argument("--suite", default="", help="subcarpeta de la suite (p. ej. v2); vacío = v1")
     args = ap.parse_args()
-    tabla, completa = puntuar(args.run)
+    tabla, completa = puntuar(args.run, HERE / args.suite if args.suite else HERE)
     sys.stdout.write(tabla)
     return 0 if completa else 1
 

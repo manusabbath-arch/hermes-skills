@@ -4,3 +4,4 @@
 
 # Los exports del benchmark son datos crudos: los bytes (cp1252 incluido) son la trampa.
 benchmarks/erp-trampas/datos/** -text
+benchmarks/erp-trampas/v2/datos/** -text

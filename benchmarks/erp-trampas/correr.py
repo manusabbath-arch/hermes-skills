@@ -19,13 +19,24 @@ correr código (la trampa tiene que verse leyendo, como se ve en una planilla).
 Salida: `<out>/<modelo>/<con-skill|sin-skill>/<caso>.txt` y `<out>/costos.json`. Después:
 `python3 puntuar.py --run <out>`.
 
-Uso:  python3 correr.py --out <dir> --tope-usd 5 [--modelos haiku,sonnet,opus] [--casos t1_total_general,...]
+Modo script (`--suite v2`): la suite trae `casos.json` como objeto con `"modo": "script"` y un
+`contexto`. El sujeto puede mirar los archivos pero no ejecutar nada; entrega UN script
+Python y este runner lo corre una sola vez en una copia nueva de `datos/` (`python -I`,
+120 s), después de un chequeo estático: solo imports de una lista corta de la librería
+estándar, sin builtins dinámicos, sin `open` para escribir y sin llamadas que borran,
+renombran o lanzan procesos. Un script rechazado, que falla o que no imprime `CIFRA:`
+puntúa `-`. Se guarda todo: `<caso>.respuesta.md` (el texto), `<caso>.script.txt`,
+`<caso>.err` y `<caso>.txt` (la salida del script, que es lo que se puntúa).
+
+Uso:  python3 correr.py --out <dir> --tope-usd 5 [--suite v2] [--modelos haiku,sonnet,opus] [--casos t1_total_general,...]
 Exit: 0 terminó dentro del tope, 1 cortó por tope o por error de una llamada, 2 uso.
 """
 from __future__ import annotations
 
 import argparse
+import ast
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -46,8 +57,101 @@ CON_SKILL = ("Antes de responder, leé `skill/SKILL.md` y aplicá lo que corresp
              "(podés leer también sus `references/` y `templates/`). ")
 
 
-def preparar(base: Path, con_skill: bool) -> Path:
-    shutil.copytree(HERE / "datos", base / "datos")
+INSTRUCCION_SCRIPT = (
+    "Sos un analista de datos. {contexto} Respondé la pregunta usando solo los archivos de esta "
+    "carpeta. Los exports son grandes: la cuenta se hace con un script. Podés mirar los archivos "
+    "(Read, Glob, Grep) pero no ejecutar nada. Tu respuesta tiene que traer UN bloque ```python con "
+    "el script completo: se va a correr una sola vez desde esta carpeta, con Python 3 y solo la "
+    "librería estándar, y no vas a ver su salida. La ÚLTIMA línea que imprima el script tiene que "
+    "ser exactamente `CIFRA: <número>` (sin unidades ni separador de miles), o "
+    "`CIFRA: NO DETERMINABLE` si los datos no permiten responder. Antes del bloque, explicá en "
+    "pocas líneas qué hace."
+)
+IMPORTS_OK = {"csv", "io", "re", "decimal", "collections", "pathlib", "math", "statistics",
+              "datetime", "codecs", "itertools", "json", "sys", "glob", "os", "unicodedata",
+              "functools", "operator", "fractions", "string", "typing", "dataclasses"}
+LLAMADAS_NO = {"exec", "eval", "compile", "__import__", "system", "popen", "remove", "unlink",
+               "rmdir", "removedirs", "rmtree", "rename", "renames", "chmod", "chown", "kill",
+               "symlink", "link", "truncate", "write_text", "write_bytes", "putenv", "mkdir",
+               "makedirs", "startfile", "execv", "execve", "spawnv", "fork", "getattr"}
+BLOQUE = re.compile(r"```python[ \t]*\n(.*?)```", re.S)
+
+
+def extraer_script(texto: str) -> str | None:
+    bloques = BLOQUE.findall(texto)
+    return bloques[-1] if bloques else None
+
+
+def rechazo(script: str) -> str | None:
+    """Motivo para no correr el script, o None. No es un sandbox: filtra lo obvio, y el
+    script corre en una copia descartable de `datos/`."""
+    try:
+        arbol = ast.parse(script)
+    except SyntaxError as exc:
+        return f"no compila: {exc}"
+    for nodo in ast.walk(arbol):
+        if isinstance(nodo, (ast.Import, ast.ImportFrom)):
+            nombres = [a.name for a in nodo.names] if isinstance(nodo, ast.Import) else [nodo.module or ""]
+            for n in nombres:
+                if n.split(".")[0] not in IMPORTS_OK:
+                    return f"import no permitido: {n}"
+        if isinstance(nodo, ast.Call):
+            f = nodo.func
+            nombre = f.id if isinstance(f, ast.Name) else f.attr if isinstance(f, ast.Attribute) else ""
+            if nombre in LLAMADAS_NO:
+                return f"llamada no permitida: {nombre}"
+            if nombre == "open":
+                modos = list(nodo.args[1:2]) + [k.value for k in nodo.keywords if k.arg == "mode"]
+                for m in modos:
+                    if not (isinstance(m, ast.Constant) and isinstance(m.value, str)):
+                        return "open con modo no literal"
+                    if set(m.value) & set("wax+"):
+                        return f"open para escribir: {m.value!r}"
+    return None
+
+
+def correr_script(script: str, cwd: Path) -> tuple[str, str]:
+    """(stdout, stderr) del script corrido una vez en `cwd`."""
+    motivo = rechazo(script)
+    if motivo:
+        return "", f"[RECHAZADO] {motivo}"
+    (cwd / "_respuesta.py").write_text(script, encoding="utf-8")
+    dec = lambda b: (b or b"").decode("utf-8", errors="replace")  # noqa: E731
+    try:
+        proc = subprocess.run([sys.executable, "-I", "_respuesta.py"], cwd=cwd,
+                              capture_output=True, timeout=120)
+    except subprocess.TimeoutExpired:
+        return "", "[TIMEOUT] 120 s"
+    return dec(proc.stdout), dec(proc.stderr)[-2000:]
+
+
+def cargar_casos(suite: Path) -> tuple[list[dict], str, str]:
+    """(casos, modo, contexto). La v1 es una lista; una suite con modo es un objeto."""
+    data = json.loads((suite / "casos.json").read_text(encoding="utf-8"))
+    if isinstance(data, list):
+        return data, "lectura", ""
+    return data["casos"], data.get("modo", "lectura"), data.get("contexto", "")
+
+
+def guardar_y_correr(texto: str, destino: Path, suite: Path) -> str:
+    """Guarda respuesta, script y stderr junto a `destino`; devuelve la salida a puntuar."""
+    def guardar(ext: str, t: str) -> None:
+        destino.with_suffix(ext).write_text(t.rstrip("\n") + "\n", encoding="utf-8", newline="\n")
+    guardar(".respuesta.md", texto)
+    script = extraer_script(texto)
+    if script is None:
+        guardar(".err", "[SIN SCRIPT] la respuesta no trae un bloque ```python")
+        return ""
+    guardar(".script.txt", script)
+    with tempfile.TemporaryDirectory(prefix="erp-script-") as limpio:
+        shutil.copytree(suite / "datos", Path(limpio) / "datos")
+        salida, err = correr_script(script, Path(limpio))
+    guardar(".err", err)
+    return salida
+
+
+def preparar(base: Path, con_skill: bool, suite: Path = HERE) -> Path:
+    shutil.copytree(suite / "datos", base / "datos")
     if con_skill:
         shutil.copytree(SKILL, base / "skill", ignore=shutil.ignore_patterns("evals", "tests", "__pycache__"))
     return base
@@ -79,11 +183,13 @@ def main() -> int:
     ap.add_argument("--tope-usd", type=float, required=True)
     ap.add_argument("--modelos", default="haiku,sonnet,opus")
     ap.add_argument("--casos", default="")
+    ap.add_argument("--suite", default="", help="subcarpeta de la suite (p. ej. v2); vacío = v1")
     args = ap.parse_args()
+    suite = HERE / args.suite if args.suite else HERE
     if args.tope_usd <= 0:
         print("[ERROR] --tope-usd tiene que ser > 0", file=sys.stderr)
         return 2
-    casos = json.loads((HERE / "casos.json").read_text(encoding="utf-8"))
+    casos, modo, contexto = cargar_casos(suite)
     if args.casos:
         pedidos = set(args.casos.split(","))
         casos = [c for c in casos if c["id"] in pedidos]
@@ -91,7 +197,7 @@ def main() -> int:
     tareas = [(m, c, caso) for m in modelos for c in ("con-skill", "sin-skill") for caso in casos]
     gastado, costos, cortado = 0.0, [], False
     with tempfile.TemporaryDirectory(prefix="erp-trampas-") as tmp:
-        dirs = {(m, c): preparar(Path(tmp) / m / c, c == "con-skill") for m in modelos for c in ("con-skill", "sin-skill")}
+        dirs = {(m, c): preparar(Path(tmp) / m / c, c == "con-skill", suite) for m in modelos for c in ("con-skill", "sin-skill")}
         for i, (m, c, caso) in enumerate(tareas):
             restante = args.tope_usd - gastado
             presupuesto = restante / (len(tareas) - i)
@@ -99,7 +205,8 @@ def main() -> int:
                 cortado = True
                 print(f"[TOPE] {gastado:.2f} de {args.tope_usd:.2f} USD: quedan {len(tareas) - i} sin correr")
                 break
-            prompt = (CON_SKILL if c == "con-skill" else "") + INSTRUCCION + "\n\nPregunta: " + caso["pregunta"]
+            base = INSTRUCCION_SCRIPT.format(contexto=contexto) if modo == "script" else INSTRUCCION
+            prompt = (CON_SKILL if c == "con-skill" else "") + base + "\n\nPregunta: " + caso["pregunta"]
             try:
                 texto, costo = llamar(dirs[(m, c)], m, prompt, presupuesto)
             except (RuntimeError, subprocess.TimeoutExpired) as exc:
@@ -109,7 +216,9 @@ def main() -> int:
             gastado += costo
             destino = args.out / m / c / f"{caso['id']}.txt"
             destino.parent.mkdir(parents=True, exist_ok=True)
-            destino.write_text(texto + "\n", encoding="utf-8", newline="\n")
+            if modo == "script":
+                texto = guardar_y_correr(texto, destino, suite)
+            destino.write_text(texto.rstrip("\n") + "\n", encoding="utf-8", newline="\n")
             costos.append({"modelo": m, "condicion": c, "caso": caso["id"], "usd": round(costo, 4)})
             print(f"{m}/{c}/{caso['id']}: {costo:.3f} USD (acumulado {gastado:.2f})")
     args.out.mkdir(parents=True, exist_ok=True)

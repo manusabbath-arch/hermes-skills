@@ -1,0 +1,18 @@
+{
+  "modo": "script",
+  "contexto": "Trabajás para la empresa A, una distribuidora. Informamos todo en pesos ($); el tipo de cambio de referencia del período es 40 $ por U$S. El flete se factura como el producto ENVÍO y no es venta de mercadería. Los archivos son exports del ERP tal como salen.",
+  "casos": [
+    {"id": "t1_total_general", "pregunta": "Los archivos están en datos/t1/. ¿Cuánto vendimos en marzo?"},
+    {"id": "t2_columnas", "pregunta": "Los archivos están en datos/t2/. ¿Cuánto vendimos entre abril y mayo?"},
+    {"id": "t3_periodo", "pregunta": "El archivo está en datos/t3/. ¿Cuál es la venta promedio por día del período que cubre ese export?"},
+    {"id": "t4_empresas", "pregunta": "Los archivos están en datos/t4/. ¿Cuánto vendimos en junio?"},
+    {"id": "t5_monedas", "pregunta": "Los archivos están en datos/t5/. ¿Cuánto vendimos en julio?"},
+    {"id": "t6_campos_muertos", "pregunta": "Los archivos están en datos/t6/. ¿Cuántos productos hay que reponer porque están por debajo de su stock mínimo?"},
+    {"id": "t7_encoding", "pregunta": "Los archivos están en datos/t7/. ¿Cuánto vendimos de mercadería en agosto?"},
+    {"id": "t8_duplicados", "pregunta": "Los archivos están en datos/t8/. ¿Cuánto cobramos del 1 al 14 de septiembre?"},
+    {"id": "n1_filas", "negativo": true, "correcta": 2200,
+     "pregunta": "¿Cuántas filas de productos tiene datos/t6/stock.csv (sin contar el encabezado)?"},
+    {"id": "n2_clientes", "negativo": true, "correcta": 180,
+     "pregunta": "¿Cuántos clientes distintos aparecen en datos/t3/Ventas 2026 YTD.csv?"}
+  ]
+}
