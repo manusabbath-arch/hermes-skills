@@ -26,6 +26,8 @@ Segunda ronda de aprendizajes del proyecto de la distribuidora, y el benchmark d
   **v2** (`benchmarks/erp-trampas/v2/`, con pre-registro commiteado antes de correr): exports
   de más de 1.000 filas, respuesta por script que el runner corre con un filtro, preguntas
   de negocio. Tampoco discrimina (0 caídas en 40 llamadas, 1,17 USD): ver su `LECTURA.md`.
+  **La fase 5 se cierra con este resultado negativo**, sin una v3 ajustada hasta que la
+  skill gane.
 - **Anonimización:** el nombre del proyecto de origen salió de los 9 lugares donde seguía
   publicado.
 

@@ -50,6 +50,11 @@ entrega un script que `correr.py --suite v2` corre una sola vez, después de un 
 imports y llamadas, en una copia descartable de `datos/`. Lo que se puntúa es lo que imprime
 el script. Qué cambió y por qué, y los criterios: `v2/PRE-REGISTRO.md`.
 
+**Resultado y estado:** la v2 tampoco discriminó (0 caídas en 40 llamadas,
+`v2/runs/2026-10-31/LECTURA.md`). El benchmark queda cerrado así (01/11/26): se publica
+como dataset y como negativo, y no se ajusta hasta que una skill gane. Para reusarlo con
+otro agente, cambiar la semilla y regenerar.
+
 ```
 python3 v2/generar.py
 python3 correr.py --suite v2 --out v2/runs/<fecha> --tope-usd <tope> --modelos haiku,sonnet

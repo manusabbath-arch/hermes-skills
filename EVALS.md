@@ -149,4 +149,6 @@ una vez. Correctas con / sin skill: Haiku 5 / 8, Sonnet 5 / 5; **0 caídas otra 
 que no son correctas no son caídas: scripts de Haiku con skill que se rompieron por ruta o
 encoding, NO DETERMINABLE de Sonnet por un contexto mal escrito (el flete) y una cifra en
 notación científica. Ocho trampas aisladas, una por archivo, ya no le ganan a estos modelos;
-lo que sigue está en `v2/runs/2026-10-31/LECTURA.md`.
+la lectura está en `v2/runs/2026-10-31/LECTURA.md`. **La fase 5 quedó cerrada (01/11/26) con
+este negativo**: no hay v3. Una medición nueva sería otra pregunta (varios pasos, varias
+trampas juntas, con shell) con su propio pre-registro.

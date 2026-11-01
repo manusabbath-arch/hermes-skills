@@ -174,10 +174,14 @@ ni en Sonnet (`runs/2026-10-31/LECTURA.md`). Dos desvíos de este plan explican 
 solo CSV (sin XLSX, por la política de stdlib) y preguntas que nombran la dimensión de la
 trampa en vez de "¿cuánto vendimos?". La v2 (`benchmarks/erp-trampas/v2/`, mismo día, con
 pre-registro) corrigió eso: archivos grandes, respuesta por script y preguntas de negocio.
-**Tampoco discrimina:** 0 caídas en 80 llamadas entre las dos versiones. Propuesta: cerrar
-la fase 5 con este negativo documentado (una v3 ajustada hasta que la skill gane sería
-minería) y, si se vuelve a medir, hacerlo con una tarea de varios pasos y varias trampas
-juntas (`v2/runs/2026-10-31/LECTURA.md`). La decisión de cerrarla es del dueño del tap.
+**Tampoco discrimina:** 0 caídas en 80 llamadas entre las dos versiones.
+
+**Cerrada (01/11/26, decisión del dueño del tap) con resultado negativo.** No se hace una
+v3 ajustada hasta que la skill gane: sería minería. El punto 4 (publicarlo como dataset
+abierto) queda cumplido tal como está: el dataset, el runner y las dos lecturas son
+públicos, y el negativo es parte de lo que se publica. Si se vuelve a medir, es otra
+pregunta con su propio pre-registro: una tarea de varios pasos sobre exports con varias
+trampas juntas, con shell (`v2/runs/2026-10-31/LECTURA.md`).
 
 ### Fase 6 — Volver al proyecto de origen
 
@@ -221,6 +225,9 @@ v1.3.0, como `kit/` dentro del tap y no como repo plantilla aparte (una sola fue
 guardas se copian del mismo árbol con su sha). Criterio 4.1: el CI genera un proyecto,
 corre `init.sh` en verde y prueba que el pre-commit rechaza un rojo. Criterio 4.2:
 `scripts/tests/test_new_project.py` rompe cada guarda a propósito. Siguiente: fase 5.
+
+**Estado (2026-11-01):** fase 5 cerrada con resultado negativo (v1 y v2 del benchmark, 0
+caídas en 80 llamadas; ver su sección). Siguiente: fase 6.
 
 Recomendación de arranque: **fase 1 y fase 3 en paralelo**. Son las que convierten lo
 que hoy afirmamos ("sirve", "es seguro") en algo que un check prueba.
