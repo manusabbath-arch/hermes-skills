@@ -14,7 +14,7 @@ hermanas con otro nombre.
 ## Ola 1 (esta rama): destilar al tap
 
 Elegidas porque caben (o se recortan) bajo el tope de 500 líneas del validador,
-no copian skills `ng-*` de cliente, y sirven al primer proyecto de dogfood
+no copian skills propias del repo de cliente, y sirven al primer proyecto de dogfood
 (`rastro-publico`: cron, fuentes públicas, citas).
 
 | Skill | Origen en el perfil | Líneas origen | Qué se hizo |
@@ -42,7 +42,7 @@ es de otro producto o ya tiene skill oficial. No se destila acá.
 
 ## Qué no se copia nunca a este tap
 
-- Skills `ng-*` del repo de cliente (apuntan al vault, no se publican).
+- Skills propias del repo de cliente (apuntan al vault, no se publican).
 - Cifras de negocio, razones sociales, rutas de planificador de un cliente.
 - `production-database-queries` sin partir y sin pasar el escáner de montos /
   `.private-terms`.

@@ -29,7 +29,9 @@ Segunda ronda de aprendizajes del proyecto de la distribuidora, y el benchmark d
   **La fase 5 se cierra con este resultado negativo**, sin una v3 ajustada hasta que la
   skill gane.
 - **Anonimización:** el nombre del proyecto de origen salió de los 9 lugares donde seguía
-  publicado.
+  publicado, y de 3 líneas que entraron con la v1.4.0 (`docs/inventario-perfil-vs-tap.md` y
+  `designing-mechanical-guards` 1.0.1, que además se cruza con `diseno-de-guardas.md`).
+- Esta entrada se escribió como v1.4.0 y pasó a v1.5.0 al rebasar sobre la v1.4.0 publicada.
 
 ## v1.4.0 — 2026-10-31
 

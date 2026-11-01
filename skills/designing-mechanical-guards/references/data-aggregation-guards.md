@@ -110,7 +110,7 @@ name fails the whole test set **in two opposite directions at once**: absent fro
 be named" set, and its own prefix present in the "names something nonexistent" set. Two
 unrelated-looking failures, one cause.
 
-Measured: a regex `ng\.py (\w+)` did not accept a hyphen, so a `control-total` command was
+Measured: a regex `tool\.py (\w+)` did not accept a hyphen, so a `control-total` command was
 both missing from the named set and contributed `control` to the unexpected set. Add a
 fixture asserting the pattern matches a legal spelling that stresses it (here: one with a
 separator), not merely that the document passes.

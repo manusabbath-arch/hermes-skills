@@ -6,6 +6,12 @@ cómo se diseña una guarda para que siga mirando lo que dice mirar seis semanas
 línea base sellada, siete agentes sobre el mismo repo y una regla de trabajo: *cuando un
 agente falla, falla un chequeo* (test primero, o el motivo escrito de por qué no se puede).
 
+**Relación con `designing-mechanical-guards`:** esa skill es el procedimiento para convertir
+una regla en guarda (test en rojo, cableado, no-regresión sobre una compuerta madura). Esta
+referencia es el catálogo de un proyecto concreto: qué forma tomó cada guarda y qué la
+rompió. Se solapan en el verde vacío, la línea base y los rojos declarados; si difieren,
+mandan los ejemplos medidos de cada lado, y conviene unificarlas en una sola pasada.
+
 ## Contents
 
 1. Un catálogo de chequeos, no scripts sueltos
