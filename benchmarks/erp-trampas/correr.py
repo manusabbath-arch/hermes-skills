@@ -70,10 +70,15 @@ INSTRUCCION_SCRIPT = (
 IMPORTS_OK = {"csv", "io", "re", "decimal", "collections", "pathlib", "math", "statistics",
               "datetime", "codecs", "itertools", "json", "sys", "glob", "os", "unicodedata",
               "functools", "operator", "fractions", "string", "typing", "dataclasses"}
-LLAMADAS_NO = {"exec", "eval", "compile", "__import__", "system", "popen", "remove", "unlink",
-               "rmdir", "removedirs", "rmtree", "rename", "renames", "chmod", "chown", "kill",
-               "symlink", "link", "truncate", "write_text", "write_bytes", "putenv", "mkdir",
-               "makedirs", "startfile", "execv", "execve", "spawnv", "fork", "getattr"}
+# Por nombre, los builtins dinámicos; como atributo, los métodos que borran, mueven o lanzan
+# procesos. Separados: `re.compile` no es `compile` (el ensayo de la v2 lo rechazaba).
+BUILTINS_NO = {"exec", "eval", "compile", "__import__", "getattr", "setattr", "delattr", "globals",
+               "vars", "breakpoint", "input"}
+METODOS_NO = {"system", "popen", "remove", "unlink", "rmdir", "removedirs", "rmtree", "rename",
+              "renames", "chmod", "chown", "kill", "symlink", "link", "truncate", "write_text",
+              "write_bytes", "putenv", "mkdir", "makedirs", "startfile", "execv", "execve",
+              "spawnv", "fork", "replace_file", "touch", "hardlink_to", "symlink_to"}
+MODULOS_CON_OPEN = {"io", "codecs", "os"}   # su open lleva el modo en el 2.º argumento; Path, en el 1.º
 BLOQUE = re.compile(r"```python[ \t]*\n(.*?)```", re.S)
 
 
@@ -97,11 +102,15 @@ def rechazo(script: str) -> str | None:
                     return f"import no permitido: {n}"
         if isinstance(nodo, ast.Call):
             f = nodo.func
-            nombre = f.id if isinstance(f, ast.Name) else f.attr if isinstance(f, ast.Attribute) else ""
-            if nombre in LLAMADAS_NO:
+            es_metodo = isinstance(f, ast.Attribute)
+            nombre = f.attr if es_metodo else f.id if isinstance(f, ast.Name) else ""
+            if nombre in (METODOS_NO if es_metodo else BUILTINS_NO):
                 return f"llamada no permitida: {nombre}"
             if nombre == "open":
-                modos = list(nodo.args[1:2]) + [k.value for k in nodo.keywords if k.arg == "mode"]
+                de_modulo = es_metodo and isinstance(f.value, ast.Name) and f.value.id in MODULOS_CON_OPEN
+                posicion = 0 if es_metodo and not de_modulo else 1
+                modos = list(nodo.args[posicion:posicion + 1]) + [k.value for k in nodo.keywords
+                                                                  if k.arg in ("mode", "flags")]
                 for m in modos:
                     if not (isinstance(m, ast.Constant) and isinstance(m.value, str)):
                         return "open con modo no literal"

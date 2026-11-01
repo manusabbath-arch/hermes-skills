@@ -42,3 +42,13 @@ corrida, sin iterar), así que un error de ejecución que un agente con shell ar
 acá es un fallo. Es una condición más dura que la real; se declara, no se compensa.
 
 **Lectura honesta:** con 8 casos por modelo, ±1 es ruido. Se publica tal como salga.
+
+## Enmienda (31/10/26, antes de la corrida oficial)
+
+Un ensayo de 4 llamadas (Haiku, casos `n1_filas` y `t1_total_general`, 0,03 USD, fuera de
+`runs/`) para probar el circuito encontró un bug del runner: el filtro rechazaba
+`re.compile` porque buscaba "compile" también como método. Se separaron los builtins
+(por nombre) de los métodos (como atributo), con su test. **No se cambiaron datos,
+preguntas, contexto ni criterios.** Lo que el ensayo dejó ver, y queda dicho para que no
+se lea después como sorpresa: en `t1` los dos sujetos encontraron la fila `TOTAL GENERAL`
+(con y sin skill) y, con el filtro corregido, sus dos scripts dan la cifra correcta.

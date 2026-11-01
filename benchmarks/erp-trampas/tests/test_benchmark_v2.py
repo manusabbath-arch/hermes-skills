@@ -99,6 +99,17 @@ def test_rechaza_lo_peligroso_o_roto(script):
     assert corr.rechazo(script)
 
 
+def test_un_metodo_con_nombre_de_builtin_no_es_el_builtin():
+    """El ensayo lo encontró: `re.compile` no es `compile`, ni `str.replace` es `os.replace`."""
+    assert corr.rechazo("import re\nre.compile('x')\n") is None
+    assert corr.rechazo("compile('1', 'f', 'exec')\n")
+    assert corr.rechazo("import os\nos.system('x')\n")
+    assert corr.rechazo("from pathlib import Path\nPath('x').open('w')\n")
+    assert corr.rechazo("import io\nio.open('datos/a.csv', 'a')\n")
+    assert corr.rechazo("from pathlib import Path\nPath('datos/a.csv').open(encoding='cp1252')\n") is None
+    assert corr.rechazo("import io\nio.open('datos/a.csv', 'r', encoding='latin-1')\n") is None
+
+
 def test_acepta_un_script_de_lectura():
     script = ("import csv, re, os\nfrom pathlib import Path\nfrom collections import Counter\n"
               "with open('datos/x.csv', encoding='cp1252', newline='') as f:\n    pass\n"
