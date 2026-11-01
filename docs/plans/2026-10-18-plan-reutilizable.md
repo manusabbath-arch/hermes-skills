@@ -196,6 +196,10 @@ su compuerta (`validar`) contra la línea base).
 ## 4. Lo que NO vamos a hacer
 
 - Sumar skills nuevas antes de que las 7 actuales discriminen en las evals (fase 1).
+  **Excepción registrada (v1.4.0, 01/11/26):** entraron 4 skills destiladas del perfil
+  Hermes (PR #6, mergeado por el dueño del tap) con sus `evals.json` pero sin corrida. La
+  ronda C (`evals/runs/2026-11-01-ronda-c/`) las mide. La regla sigue vigente para las
+  próximas: una skill nueva entra con su corrida con/sin skill, no solo con escenarios.
 - Un marketplace propio o un instalador propio: el valor vive en el contenido y los
   checks, no en el mecanismo (lección de superpowers).
 - Traducir todo al inglés: las descripciones sí, el cuerpo en español es el diferencial.
