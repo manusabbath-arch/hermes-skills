@@ -4,6 +4,27 @@ Una entrada por tag. Cada skill lleva su propia `version` en el frontmatter, y
 `scripts/validate_skills.py` falla si una skill cambió desde el último tag sin subirla.
 Cada release adjunta `SHA256SUMS` para verificar lo instalado (ver `SECURITY.md`).
 
+## v1.5.0 — 2026-11-01
+
+Ola 2 de destilación desde el perfil Hermes: cuatro skills portables más, sin datos de
+cliente. Inventario en `docs/inventario-perfil-vs-tap.md`.
+
+- **Nueva: `tests-over-changing-data-exports` 1.0.0.** Tests sobre exports que se
+  re-descargan: no globar «el más nuevo», aserciones de forma, skip con motivo,
+  caché opt-in por sha.
+- **Nueva: `outbound-notification-channels` 1.0.0.** Canal de salida (mail, chat,
+  webhook, ntfy): secreto en el almacén del SO, apagado por defecto, un `--enviar`
+  a mano no publica. El script de `keyring` no viaja (el validador recorre imports
+  también dentro de `try/except`).
+- **Nueva: `recurring-report-design` 1.0.0.** Informe de cadencia: rotación, dosis,
+  latido, reloj real versus hora nominal. Tres referencias de layout, scheduler y
+  bloques de trabajo.
+- **Nueva: `documentation-drift-audit` 1.0.0.** Auditoría de docs contra el sistema.
+  Script `check_docs_integrity.py` (stdlib); el punto de entrada por defecto es
+  `README.md`.
+- El README y el plugin pasan de 11 a 15 skills. Las evals están escritas; la
+  corrida ciega de Haiku/Sonnet/Opus sigue siendo la de las 7 de v1.3.0.
+
 ## v1.4.0 — 2026-10-31
 
 Ola 1 de destilación desde el perfil Hermes: cuatro skills portables, sin datos de
