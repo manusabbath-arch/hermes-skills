@@ -34,6 +34,12 @@ Segunda ronda de aprendizajes del proyecto de la distribuidora, y el benchmark d
 - **`validate_skills.py`: ruta personal = rojo.** Una ruta absoluta con el usuario de la
   máquina (`C:\Users\<x>\…`, `/home/<x>/…`) se caza sin lista privada, también en
   `benchmarks/`; pasan los marcadores y `/home/runner`. Salieron 2 que estaban publicadas.
+- **`validate_skills.py`: índice de relleno o dentro de código = rojo.** En v1.4.0, 8
+  referencias abrían con un `## Contents` que no listaba nada ("See headings below") y una
+  herramienta había metido 5 más dentro de bloques de Python, que dejaban de compilar (2
+  ejemplos de `designing-mechanical-guards`). Índices reales generados de los encabezados,
+  ejemplos que vuelven a compilar; `designing-mechanical-guards` y
+  `external-data-source-intake` 1.0.1.
 - **CI:** los términos privados se cargan desde el secreto `PRIVATE_TERMS`; sin él, el job
   deja un aviso visible en vez de pasar en silencio.
 - Esta entrada se escribió como v1.4.0 y pasó a v1.5.0 al rebasar sobre la v1.4.0 publicada.

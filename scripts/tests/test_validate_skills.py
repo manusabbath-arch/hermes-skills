@@ -149,6 +149,9 @@ def test_personal_path_is_red_without_any_list(tmp_path, text):
     r"`%LOCALAPPDATA%\hermes\skills` y `C:\Users\<usuario>\repo`.",
     "ln -sfn x ~/.hermes/skills/n; HOME=/home/runner en el CI.",
     "Copiá a `<clon>/skills`; en benchmarks se tapa con `<tmp>`.",
+    # Medido en la ronda C: una respuesta elidió el usuario con puntos suspensivos.
+    r'Barras normales (`"C:/Users/.../archivo.csv"`) o raw (`r"C:\Users\...\archivo.csv"`).',
+    r"C:\Users\…\x, C:\Users\%USERNAME%\x, /home/$USER/x, /home/.../x",
 ])
 def test_placeholder_paths_pass(tmp_path, text):
     assert vs.check_business_data(_doc(tmp_path, text), "d.md") == []
@@ -157,6 +160,34 @@ def test_placeholder_paths_pass(tmp_path, text):
 def test_personal_path_is_red_in_benchmarks_too(tmp_path):
     f = _doc(tmp_path, r"cwd: C:\Users\jperez\AppData\Local\Temp\x")  # ficticio
     assert vs.check_business_data(f, "benchmarks/x/runs/a.txt")
+
+
+# --- El índice de una referencia larga --------------------------------------------
+
+TOC_OK = "# T\n## Contents\n\n1. Uno\n2. Dos\n\n## Uno\n\n```python\n# comentario\nx = 1\n```\n## Dos\n"
+
+
+def test_real_toc_passes():
+    assert vs.check_toc(TOC_OK) == []
+
+
+def test_placeholder_toc_is_red():
+    # Medido en v1.4.0: 8 referencias abrían con un índice que no listaba nada.
+    texto = "# T\n## Contents\n\n- See headings below. Load this file when SKILL.md points here.\n\n## Uno\n"
+    assert vs.check_toc(texto)
+    # el relleno no cuenta como entrada aunque venga acompañado de una real
+    assert vs.check_toc(texto.replace("\n\n## Uno", "\n- Uno\n\n## Uno"))
+
+
+def test_toc_inside_code_block_is_red():
+    # Medido en v1.4.0: una herramienta metió el índice después de cada `# comentario` de Python.
+    texto = TOC_OK.replace("# comentario\n", "# comentario\n## Contents\n\n- a\n- b\n")
+    errs = vs.check_toc(texto)
+    assert errs and "bloque de código" in errs[0]
+
+
+def test_heading_comment_in_code_does_not_count_as_toc_entry_source():
+    assert vs.check_toc("# T\n## Contents\n\n- Uno\n\n```\n## Contents\n```\n") != []
 
 
 def test_missing_private_terms_file_is_none_not_empty(tmp_path):

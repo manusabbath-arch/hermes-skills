@@ -1,7 +1,13 @@
 # Guards over state that lives outside the repo
 ## Contents
 
-- See headings below. Load this file when SKILL.md points here.
+1. Measure a versioned witness, not the live foreign system
+2. Compare identity, not position
+3. Severity: one implementation, two surfaces
+4. When the subject is absent, say so
+5. Read it from the checkout the producer writes to
+6. Test the guard itself, first
+7. Wiring it into an existing gate
 
 
 A guard whose subject is not in the repo — another tool's config file, a credential or

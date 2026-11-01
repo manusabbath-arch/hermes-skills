@@ -236,10 +236,10 @@ SYNTHETIC_AMOUNT_ROOTS = ("benchmarks/",)
 
 
 # Una ruta absoluta con el nombre de usuario de la máquina no necesita lista privada para
-# cazarse: sale en el CI aunque falte `.private-terms`. Los marcadores (`<usuario>`) y el
+# cazarse: sale en el CI aunque falte `.private-terms`. Los marcadores (`<usuario>`, `...`, `%USERNAME%`) y el
 # usuario del runner de CI pasan.
 PERSONAL_PATH = re.compile(
-    r"(?i)\b[a-z]:[\\/]+users[\\/]+(?!<)(?!public\b)[^\\/\s`'\"<>]+"
+    r"(?i)\b[a-z]:[\\/]+users[\\/]+(?!public\b)\w[^\\/\s`'\"<>]*"
     r"|(?<![\w~.])/home/(?!runner\b)(?!<)[a-z_][\w.-]*"
 )
 
@@ -350,6 +350,38 @@ def check_plugin_versions(repo: Path) -> list[str]:
     return errors
 
 
+TOC_ENTRY = re.compile(r"^\s*(?:[-*]|\d+\.)\s+\S")
+TOC_PLACEHOLDER = re.compile(r"see headings below", re.I)
+MIN_TOC_ENTRIES = 2
+
+
+def check_toc(text: str) -> list[str]:
+    """El índice existe para que `head` muestre el mapa: tiene que listar algo, y un
+    `## Contents` dentro de un bloque de código es una inserción que rompe el ejemplo."""
+    problems: list[str] = []
+    in_fence, toc_at, toc_open, listed = False, None, False, 0
+    for n, line in enumerate(text.splitlines(), 1):
+        if line.lstrip().startswith("```"):
+            in_fence = not in_fence
+            continue
+        is_toc = bool(TOC_HEADING.match(line))
+        if in_fence:
+            if is_toc:
+                problems.append(f"línea {n}: '## Contents' dentro de un bloque de código "
+                                "(inserción, rompe el ejemplo)")
+            continue
+        if is_toc and toc_at is None:
+            toc_at, toc_open = n, True
+        elif toc_open and line.startswith("#"):
+            toc_open = False
+        elif toc_open and TOC_ENTRY.match(line) and not TOC_PLACEHOLDER.search(line):
+            listed += 1
+    if toc_at is not None and listed < MIN_TOC_ENTRIES:
+        problems.append(f"línea {toc_at}: el índice lista {listed} entrada(s); "
+                        f"tiene que nombrar las secciones (≥{MIN_TOC_ENTRIES})")
+    return problems
+
+
 def check_skill(skill_dir: Path) -> list[str]:
     errors: list[str] = []
     name = skill_dir.name
@@ -433,6 +465,7 @@ def check_skill(skill_dir: Path) -> list[str]:
                     f"'## Contents' en sus primeras {TOC_WINDOW_LINES} (>{TOC_THRESHOLD_LINES} "
                     "líneas: el agente lo previsualiza con head y no ve el resto)"
                 )
+            errors.extend(f"{name}: {sub}/{doc.name}: {p}" for p in check_toc(doc_text))
             if sub == "references":
                 for _prefix, rel in cited_paths(doc_text):
                     if rel.startswith("references/"):

@@ -1,7 +1,7 @@
 ---
 name: external-data-source-intake
 description: "Use when a non-ERP data source lands for analysis - GPS, telemetry, fleet traces, CKAN or open-data catalogs, supplier portals, river levels, fuel prices, weather APIs - and its numbers will be crossed with project masters or published. Covers reader shrinkage, threshold sweeps, interval overlap, stacked series, SOAP encoded arrays, and declaring what the source does not carry."
-version: 1.0.0
+version: 1.0.1
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]

@@ -1,7 +1,11 @@
 # Guards whose subject is a dataset, not a file
 ## Contents
 
-- See headings below. Load this file when SKILL.md points here.
+1. Its perimeter is the list of sources the project already calls its own
+2. What may be aggregated: an enumerated vocabulary of *meaningful* magnitudes
+3. Cost: persist the measurement keyed by content hash
+4. Proving it measures the right quantity: reproduce an independently measured figure
+5. A test's own pattern is part of the guard
 
 
 A third shape beside the static probe over source and the comparator over prose: a guard

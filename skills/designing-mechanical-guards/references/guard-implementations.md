@@ -1,7 +1,9 @@
 # Guard reference implementations
 ## Contents
 
-- See headings below. Load this file when SKILL.md points here.
+1. Shape 1 — static probe over source
+2. Shape 2 — comparator: prose against a measured value
+3. Registering into the project's gate
 
 
 Two shapes cover most guards worth writing. Both are written to be *called* rather than
@@ -96,24 +98,12 @@ import re
 from pathlib import Path
 
 # Enumerate the vocabulary. Do NOT write a regex for "any number".
-## Contents
-
-- See headings below. Load this file when SKILL.md points here.
-
 COUNTS = re.compile(r"(?<![\w.])(\d{1,4})\s+(pares|chequeos|claves)\b", re.IGNORECASE)
 
 # History markers. Everything here means "this figure is being recounted, not cited".
-## Contents
-
-- See headings below. Load this file when SKILL.md points here.
-
 HISTORY = re.compile(r"dec[íi]a|eran|cuando|medido el|20\d\d-\d\d-\d\d", re.IGNORECASE)
 
 # Where the number's own clause starts: the last boundary before it.
-## Contents
-
-- See headings below. Load this file when SKILL.md points here.
-
 BOUNDARY = re.compile(r"(?:[.;:|()]|\by\b|\bpero\b|\bmientras\b|\bo\b)", re.IGNORECASE)
 WINDOW = 50
 
