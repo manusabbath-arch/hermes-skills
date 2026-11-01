@@ -16,6 +16,15 @@ EV = [{"query": "¿Uno?", "expected_behavior": ["c1", "c2"]},
       {"query": "¿Dos?", "expected_behavior": ["c3"]}]
 
 
+def test_work_dirs_are_not_windows_reserved_names(tmp_path):
+    # La primera corrida se cayó en Windows creando una carpeta "con" (0 USD gastados).
+    reservados = {"con", "prn", "aux", "nul", *(f"com{i}" for i in range(10)), *(f"lpt{i}" for i in range(10))}
+    for con in (True, False):
+        nombre = ronda.carpeta(con)
+        assert nombre.split(".")[0].lower() not in reservados
+        (tmp_path / nombre).mkdir()
+
+
 def test_parse_skills_with_and_without_subset():
     assert ronda.parse_skills("a:7,8,b,c:1") == [("a", [7, 8]), ("b", None), ("c", [1])]
     with pytest.raises(ValueError):

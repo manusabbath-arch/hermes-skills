@@ -49,3 +49,9 @@ criterios (alrededor de un tercio). H1 y H2 piden menos (un sexto) a propósito.
 - Sonnet evalúa respuestas de Sonnet; una sola repetición por condición.
 - Los criterios los escribió quien escribió la skill; no hay revisor externo todavía.
 - El sujeto con skill sabe que tiene una skill (el prompt lo dice); el sin skill no.
+
+## Enmienda (01/11/26, antes de cualquier llamada)
+
+El primer intento se cayó al crear la carpeta de trabajo `con` (nombre reservado en Windows),
+antes de llamar a ningún modelo: 0 USD, 0 respuestas. Se renombró a `con-skill`/`sin-skill`,
+con su test, y se corre igual que lo de arriba. Nada más cambia.

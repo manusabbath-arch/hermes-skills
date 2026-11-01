@@ -53,6 +53,11 @@ uno por cada criterio de cada pedido, sin omitir ninguno.
 """
 
 
+def carpeta(con_skill: bool) -> str:
+    # No "con": en Windows CON es un dispositivo reservado y mkdir falla (WinError 267).
+    return "con-skill" if con_skill else "sin-skill"
+
+
 def parse_skills(spec: str) -> list[tuple[str, list[int] | None]]:
     """`a:7,8,b` -> [("a", [7, 8]), ("b", None)]. Los números son 1-based en evals.json."""
     out: list[tuple[str, list[int] | None]] = []
@@ -180,7 +185,7 @@ def main() -> int:
                     if presupuesto() < 0.01:
                         cortado = True
                         break
-                    cwd = tmp / m / s / ("con" if con else "sin")
+                    cwd = tmp / m / s / carpeta(con)
                     cwd.mkdir(parents=True)
                     if con:
                         shutil.copytree(SKILLS / s, cwd / "skill",
