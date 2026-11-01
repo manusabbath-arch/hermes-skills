@@ -1,0 +1,58 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A no menciona topes de gasto; B exige tope por llamada y por corrida antes de programar."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "A trata programar como algo directo; B dice que la decisión de gasto la toma una persona y por escrito."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "A no propone guarda; B propone un test que falla si una tarea programada invoca un modelo sin tope declarado."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A dice rojo/amarillo y 'sin datos' como estado propio, pero no lo marca STALE ni rojo de forma firme; B dice explícitamente sin dato = STALE, nunca verde."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "A verifica existencia y tamaño, sin medir antigüedad; B menciona mostrar la antigüedad pero sin umbral explícito."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna formula explícitamente que un control que no miró nada no es un control, aunque A se acerca con la idea de que el log ausente oculta el problema."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas responden 360 directamente."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguna agrega metodología ni pre-registro."
+ }
+]

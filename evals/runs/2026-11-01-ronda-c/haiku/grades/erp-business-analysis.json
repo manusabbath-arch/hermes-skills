@@ -1,0 +1,58 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A nunca menciona NULL en la concatenación; B lo explica claramente."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "A no propone COALESCE; B lo propone y aclara que no cambia valores no nulos."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "A sugiere contar filas pero no como práctica por corrida ni menciona NULLIF; B dice que las líneas deberían coincidir con los 20 registros, pero no lo recomienda como práctica ni menciona NULLIF."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas interpretan la falta de coincidencias como clave equivocada, no como maestro vacío."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ambas sospechan de tipo/relleno y de otra columna de código, y proponen TRIM."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "A cuenta filas del maestro, no las coincidencias del join; B propone un COUNT del join con TRIM antes de mirar resultados."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas dan la sintaxis con un ejemplo directo."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguna agrega catálogos de campos muertos, canarios ni sellos de procedencia."
+ }
+]

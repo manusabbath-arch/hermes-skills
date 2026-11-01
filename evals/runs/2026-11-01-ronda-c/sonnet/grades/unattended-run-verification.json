@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A nombra NextRunTime, LastTaskResult, LogonType y StartWhenAvailable; B solo menciona la próxima ejecución en la GUI y no los demás."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "A dice que el log o el estado no prueban el archivo; B dice que el historial solo indica que arrancó y que hay que mirar el archivo."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": true,
+  "B": true,
+  "nota": "Los dos piden verificar mañana que el archivo exista, con fecha y tamaño."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Los dos dicen que exit 0 y el log solo indican que el trabajo entró a la cola, no que salió papel."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": true,
+  "B": false,
+  "nota": "A pide Get-PrintJob y comparar la subred con la IP de la cola; B pide Get-PrintJob pero no compara subredes."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A dice que un Retained bloquea a los siguientes; B habla de trabajos retenidos pero no de que tapen a los siguientes."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Los dos dicen que un proceso vivo no prueba que el worker trabaje."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": true,
+  "B": false,
+  "nota": "A pide pending_update_count; B pide getWebhookInfo, que puede mostrar pendientes, pero no lo pide como la métrica del pendiente."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A pide un latido en cada vuelta, también sin novedades; B pide un heartbeat al procesar, no cuando no hay novedades."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A dice que el PDF no reivindica la corrida; B concluye que el fallo era falso y que el trabajo no falló."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": true,
+  "B": false,
+  "nota": "A atribuye el archivo a un hijo huérfano y pide matar el árbol; B no habla de huérfanos y solo sugiere matar el proceso."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A compara la hora del archivo con la ventana de la corrida; B verifica que corresponda a esa corrida pero sin comparar contra la ventana."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Los dos responden crontab -l."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguno agrega verificación de salida, spooler ni energía; B suma -u y -e, que no tienen que ver con eso."
+ }
+]

@@ -74,6 +74,11 @@ jobs:
           done
           python scripts/eval_report.py --grades "$v2/ronda-b/haiku/grades" --key "$v2/ronda-b/haiku/key.json" --evals "$v2/evals" > /tmp/results.md
           diff -u "$v2/ronda-b/haiku/results.md" /tmp/results.md
+          rc=evals/runs/2026-11-01-ronda-c
+          for m in haiku sonnet; do
+            python scripts/eval_report.py --grades "$rc/$m/grades" --key "$rc/$m/key.json" --evals "$rc/evals" > /tmp/results.md
+            diff -u "$rc/$m/results.md" /tmp/results.md
+          done
 
       - name: Install test deps
         # El stack que delta-lakehouse y data-medallion-architecture declaran

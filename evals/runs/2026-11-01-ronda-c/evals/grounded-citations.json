@@ -1,0 +1,62 @@
+[
+  {
+    "skills": [
+      "grounded-citations"
+    ],
+    "query": "Investigá el estado actual de Sentinel-2 NDCI y armame un informe con fuentes.",
+    "files": [],
+    "expected_behavior": [
+      "Registra cada URL en sources.py add o ingest en el momento de la recuperación, antes de escribir prosa",
+      "Cita inline con [n] por oración y cierra con sources.py render, no URLs retipeadas",
+      "Corre sources.py verify sobre el borrador antes de entregar"
+    ]
+  },
+  {
+    "skills": [
+      "grounded-citations"
+    ],
+    "query": "Esto es médico: confirmá cada cifra con evidencia verbatim.",
+    "files": [],
+    "expected_behavior": [
+      "Pasa a modo fact-checking: quote --from el texto extraído, no el snippet de búsqueda",
+      "Corre verify --evidence y render --style evidence",
+      "Marca [unverified] las afirmaciones de conocimiento propio que no se pudieron sourcer"
+    ]
+  },
+  {
+    "skills": [
+      "grounded-citations"
+    ],
+    "query": "El Sources del draft no coincide con los [n] del texto. Arreglalo a mano.",
+    "files": [],
+    "expected_behavior": [
+      "Rechaza editar a mano el bloque Sources",
+      "Usa sources.py render --replace-in sobre el draft",
+      "No renumera ids a mano: los ids son identidades del ledger"
+    ]
+  },
+  {
+    "skills": [
+      "grounded-citations"
+    ],
+    "query": "¿Qué está diciendo la gente de esto en Reddit, RSS y YouTube?",
+    "files": [],
+    "expected_behavior": [
+      "Hace fan-out multiplataforma, no un solo web_search",
+      "Registra cada URL de cada ruta en el mismo ledger",
+      "Separa opinión (un hilo reporta) de medición (fuente primaria)"
+    ]
+  },
+  {
+    "skills": [
+      "grounded-citations"
+    ],
+    "query": "¿Cuál es la sintaxis de un f-string en Python 3.12?",
+    "files": [],
+    "expected_behavior": [
+      "Responde la pregunta de sintaxis de forma directa",
+      "No abre un ledger, no cita inline ni agrega un bloque Sources"
+    ],
+    "negativo": true
+  }
+]

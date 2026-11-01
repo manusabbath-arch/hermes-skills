@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna pide leer NextRunTime/LastTaskResult/LogonType/StartWhenAvailable de la máquina; A y B solo mencionan opciones de forma general, y B dice que 'próxima ejecución' no prueba nada."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna trata explícitamente el log 'hecho' como prueba solo de aceptación del proceso."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "A dice 'el archivo y el registro' sin fecha ni tamaño; B pide archivo con fecha posterior a 07:10 y tamaño mayor que cero."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas dicen que exit 0/Impreso solo implica entrega a la cola, no papel."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "A no menciona Get-PrintJob ni subred. B menciona la subred pero no Get-PrintJob."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "A no menciona trabajos Retained. B menciona trabajos retenidos pero no que tapen a los siguientes."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas dicen que un proceso vivo no prueba que trabaje."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "A no pide el pendiente de la fuente; B pide pending_update_count."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "A no pide latido; B pide latido en cada consulta, incluso sin mensajes."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A dice que el archivo existe y no trata el fallo como 'nada generado', sin decir que no reivindica la corrida; B dice que el archivo no reivindica la corrida."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ambas atribuyen el archivo a un proceso hijo que sobrevivió y piden matar el proceso hijo o el árbol."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "A no compara la hora del archivo con la ventana de la corrida; B sí."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas responden crontab -l."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguna agrega verificación de salida, spooler o energía; A agrega equivalentes de Windows, lo que no es ese procedimiento."
+ }
+]

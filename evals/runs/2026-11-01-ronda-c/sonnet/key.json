@@ -1,0 +1,30 @@
+{
+ "agent-ready-project": {
+  "with_skill": "B",
+  "without_skill": "A"
+ },
+ "designing-mechanical-guards": {
+  "with_skill": "B",
+  "without_skill": "A"
+ },
+ "empirical-project-playbook": {
+  "with_skill": "A",
+  "without_skill": "B"
+ },
+ "erp-business-analysis": {
+  "with_skill": "A",
+  "without_skill": "B"
+ },
+ "external-data-source-intake": {
+  "with_skill": "B",
+  "without_skill": "A"
+ },
+ "grounded-citations": {
+  "with_skill": "B",
+  "without_skill": "A"
+ },
+ "unattended-run-verification": {
+  "with_skill": "A",
+  "without_skill": "B"
+ }
+}

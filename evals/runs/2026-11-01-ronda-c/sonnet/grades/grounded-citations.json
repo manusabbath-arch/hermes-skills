@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno registró URLs; ambos dijeron no tener herramientas. B solo describe el procedimiento."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno cita inline ni usa render; B solo lo menciona como plan."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno corrió verify; B no lo menciona para este pedido."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno usa quote --from; B habla de cita textual de la página extraída pero no del comando."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno corrió verify --evidence ni render --style evidence."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "B menciona marcar [unverified] lo que no se pueda sustentar; A no."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A propone reordenar y renumerar la lista; B rechaza el arreglo manual del bloque Sources."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "B indica render --replace-in; A no."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "A ofrece renumerar el texto; B dice que renumerar a mano genera desajustes."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno hizo fan-out; ambos dijeron no tener acceso a las plataformas."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno registró URLs en un ledger."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "B promete separar lo que reportan los usuarios de lo comprobado; A solo habla de síntesis de posturas."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos explican la sintaxis directamente."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguno abre ledger, cita inline ni agrega Sources."
+ }
+]

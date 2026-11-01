@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A pone el test fallido primero y confirma que falla por la razón correcta; B solo sugiere agregar un test, sin orden ni reproducción previa."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "A registra el check en el gate existente y confirma que el hook lo ejecuta; B propone un check en el gate."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A informa lo inspeccionado (12 reports) y exige que el árbol vacío dé rojo; B no lo menciona."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos dicen que el verde en el repo vivo no demuestra nada."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "A pide un árbol vacío o sin sujeto, no un fixture sintético con valor esperado inyectado; B pide una entrada mala conocida sin fixture."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "A no pide invertir el defecto en este pedido; B pide una entrada mala, no revertir el defecto ni cubrirlo en un fixture."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A toma como condición de paso que no haya rojos nuevos; B no lo plantea."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": true,
+  "B": false,
+  "nota": "A compara la lista FAIL del gate con el baseline; B no lo hace."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A usa el escape documentado por paso, sin --no-verify, y deja registro en el mensaje del commit; B no lo hace."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos rechazan || true porque descarta el veredicto."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno aplica advisory-to-enforcement convirtiendo el aviso en el sitio de llamada; ambos dan alternativas generales."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A propone un rojo conocido declarado con motivo y fecha; B propone continue-on-error sin motivo nombrado."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos responden directamente cómo renombrar la función."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguno agrega guardas ni procedimiento de gate."
+ }
+]

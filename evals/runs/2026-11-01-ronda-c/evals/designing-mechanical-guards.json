@@ -1,0 +1,62 @@
+[
+  {
+    "skills": [
+      "designing-mechanical-guards"
+    ],
+    "query": "This rule keeps breaking: every report must declare its source hash. Make sure it never happens again.",
+    "files": [],
+    "expected_behavior": [
+      "Writes a failing test that reproduces the real defect before the guard exists",
+      "Wires the check into the project's existing gate instead of a standalone unused script",
+      "Gives the guard a visible subject and denominator, and proves the empty-tree path is red"
+    ]
+  },
+  {
+    "skills": [
+      "designing-mechanical-guards"
+    ],
+    "query": "The new check is green on the live repo. Ship it.",
+    "files": [],
+    "expected_behavior": [
+      "Refuses to treat a green on the live tree as proof",
+      "Requires a synthetic fixture with an injected expected value",
+      "Asks to flip the defect back (or cover it in the fixture) and watch the guard go red"
+    ]
+  },
+  {
+    "skills": [
+      "designing-mechanical-guards"
+    ],
+    "query": "The gate is red on three old checks that are not mine. I need to commit a one-line fix.",
+    "files": [],
+    "expected_behavior": [
+      "Treats the pass condition as no new red, not all green",
+      "Compares this run's FAIL set against the sealed baseline",
+      "Uses a documented per-step escape and records the blockade in the commit message rather than a global hook bypass"
+    ]
+  },
+  {
+    "skills": [
+      "designing-mechanical-guards"
+    ],
+    "query": "This check is noisy. I'll add || true so it still runs but does not block.",
+    "files": [],
+    "expected_behavior": [
+      "Refuses || true as a gate that cannot fail",
+      "Converts the advisory at the call site following advisory-to-enforcement",
+      "Keeps a named escape with a motive instead of swallowing the verdict"
+    ]
+  },
+  {
+    "skills": [
+      "designing-mechanical-guards"
+    ],
+    "query": "How do I rename this function in Python?",
+    "files": [],
+    "expected_behavior": [
+      "Answers the rename question directly",
+      "Does not add a mechanical guard, a perimeter check, or a gate procedure the request did not ask for"
+    ],
+    "negativo": true
+  }
+]

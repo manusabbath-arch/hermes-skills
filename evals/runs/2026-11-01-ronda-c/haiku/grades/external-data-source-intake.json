@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "A no mide el lector; B solo sugiere comparar filas leídas vs crudas pero no lo mide."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "B propone barrido 50-400 m y dice que el número mide la elección de radio; A publica un solo umbral."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno declara qué no trae la fuente antes de cruzar; B menciona clientes sin coordenada pero no lo que falta en el export."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "B pide sumar por vehículo y no entre vehículos; A divide el total de flota."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "B distingue solapamiento interno (defecto) del depósito entre vehículos; A solo menciona solapamientos genéricos."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "B contrasta suma 1021,5 h vs unión 275,2 h y pide aclarar cuál se cita."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos rechazan que count 0 signifique ausencia."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "B propone q libre y facets de organization con filtro por organismo; A sugiere listar sin filtros y buscar en el portal."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno cita el archivo de referencia."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "B exige abrir la hoja y leer columnas; A habla de contar identificadores sin abrir la hoja."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ambos dicen que el conteo de filas no indica el grano."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "B rechaza una hoja sin destino, cliente ni coordenada; A no."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos responden con read_csv."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguno agrega compuertas ni inventario."
+ }
+]

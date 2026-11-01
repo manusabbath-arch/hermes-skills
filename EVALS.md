@@ -16,6 +16,7 @@ build falla.
 6. Historia: v1
 7. Cómo repetirla
 8. Benchmark de trampas de ERP
+9. Ronda C: escenarios nuevos y skills de v1.4.0
 
 ## 1. Método
 
@@ -27,8 +28,8 @@ build falla.
 - **Evaluador ciego:** un agente distinto por skill y modelo recibe los criterios y las
   respuestas A y B; qué letra tuvo la skill se sorteó y vive en `key.json`, que no lee.
 Las cuatro skills de v1.4.0 (`designing-mechanical-guards`, `unattended-run-verification`,
-`external-data-source-intake`, `grounded-citations`) traen `evals/evals.json` y todavía no
-entran en las tablas de abajo: esas tablas son la corrida ciega de las 7 skills de v1.3.0.
+`external-data-source-intake`, `grounded-citations`) no entran en las tablas de §2, que son
+la corrida ciega de las 7 skills de v1.3.0: se midieron en la ronda C (§9).
 
 - **Activación:** un agente ve solo el `name` y la `description` de las 7 skills y 49
   pedidos barajados (los 35 de las evals + 7 ajenos al tap), y elige qué skills cargaría.
@@ -132,6 +133,10 @@ tipo de fuente y con un "sentinel 0.0" que contradecía su propia regla NULL ≠
 5. Pre-registrar lo que se espera **antes** de correr una ronda que mide un cambio.
 6. Agregar la corrida a `evals/runs/` y sus tablas al CI.
 
+Los pasos 1 a 3 los automatiza `evals/ronda.py` con `claude -p` (desde la ronda C): foto de
+los escenarios, sorteo de letras por modelo, sujetos con y sin skill, evaluador ciego, y un
+`--tope-usd` obligatorio para toda la ronda.
+
 ## 8. Benchmark de trampas de ERP
 
 Ocho exports sintéticos con una trampa cada uno y la cifra correcta e ingenua calculadas por
@@ -152,3 +157,21 @@ notación científica. Ocho trampas aisladas, una por archivo, ya no le ganan a 
 la lectura está en `v2/runs/2026-10-31/LECTURA.md`. **La fase 5 quedó cerrada (01/11/26) con
 este negativo**: no hay v3. Una medición nueva sería otra pregunta (varios pasos, varias
 trampas juntas, con shell) con su propio pre-registro.
+
+## 9. Ronda C: escenarios nuevos y skills de v1.4.0
+
+Corrida del 01/11/26 (`evals/runs/2026-11-01-ronda-c/`, pre-registro commiteado antes):
+los 9 escenarios nuevos de v1.5.0 y los 5 de cada skill de v1.4.0, Haiku y Sonnet, evaluador
+ciego Sonnet, 1,30 USD. La automatiza `evals/ronda.py` (pasos 1 a 3 de §7, con tope de gasto
+obligatorio).
+
+| | Haiku con / sin | Sonnet con / sin |
+|---|---|---|
+| Escenarios nuevos de v1.5.0 (17 criterios no negativos) | 10 / 2 | 14 / 6 |
+| Skills de v1.4.0 (48 criterios no negativos) | 27 / 8 | 37 / 12 |
+| Negativos (14 criterios) | 14 / 14 | 14 / 14 |
+
+Las tres hipótesis pre-registradas se cumplen en los dos modelos, y ninguna skill queda
+peor con skill que sin ella. **`grounded-citations` no se puede medir con este protocolo:**
+sus criterios piden correr `sources.py` y buscar en la web, y los sujetos no tienen comandos
+ni web. Lectura completa: `evals/runs/2026-11-01-ronda-c/LECTURA.md`.
