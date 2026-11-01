@@ -235,6 +235,15 @@ BUSINESS_SKIP_DIRS = {".git", "__pycache__", ".pytest_cache"}
 SYNTHETIC_AMOUNT_ROOTS = ("benchmarks/",)
 
 
+# Una ruta absoluta con el nombre de usuario de la máquina no necesita lista privada para
+# cazarse: sale en el CI aunque falte `.private-terms`. Los marcadores (`<usuario>`) y el
+# usuario del runner de CI pasan.
+PERSONAL_PATH = re.compile(
+    r"(?i)\b[a-z]:[\\/]+users[\\/]+(?!<)(?!public\b)[^\\/\s`'\"<>]+"
+    r"|(?<![\w~.])/home/(?!runner\b)(?!<)[a-z_][\w.-]*"
+)
+
+
 def significant_digits(number: str) -> int:
     return len(re.sub(r"\D", "", number).strip("0"))
 
@@ -263,6 +272,9 @@ def check_business_data(path: Path, rel: str, private_terms: list[str] | None = 
                         f"{rel}:{n}: monto preciso '{m.group(0).strip()}' (forma de dato real): "
                         "redondearlo o marcar la línea 'ficticio'"
                     )
+        if PERSONAL_PATH.search(line) and not FICTICIO.search(line):
+            errors.append(f"{rel}:{n}: ruta personal (trae el usuario de la máquina): "
+                          "usar un marcador como `<usuario>` o una ruta relativa")
         low = line.lower()
         for term in private_terms or []:
             if re.search(rf"(?<!\w){re.escape(term)}(?!\w)", low):

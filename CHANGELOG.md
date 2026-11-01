@@ -31,6 +31,11 @@ Segunda ronda de aprendizajes del proyecto de la distribuidora, y el benchmark d
 - **Anonimización:** el nombre del proyecto de origen salió de los 9 lugares donde seguía
   publicado, y de 3 líneas que entraron con la v1.4.0 (`docs/inventario-perfil-vs-tap.md` y
   `designing-mechanical-guards` 1.0.1, que además se cruza con `diseno-de-guardas.md`).
+- **`validate_skills.py`: ruta personal = rojo.** Una ruta absoluta con el usuario de la
+  máquina (`C:\Users\<x>\…`, `/home/<x>/…`) se caza sin lista privada, también en
+  `benchmarks/`; pasan los marcadores y `/home/runner`. Salieron 2 que estaban publicadas.
+- **CI:** los términos privados se cargan desde el secreto `PRIVATE_TERMS`; sin él, el job
+  deja un aviso visible en vez de pasar en silencio.
 - Esta entrada se escribió como v1.4.0 y pasó a v1.5.0 al rebasar sobre la v1.4.0 publicada.
 
 ## v1.4.0 — 2026-10-31

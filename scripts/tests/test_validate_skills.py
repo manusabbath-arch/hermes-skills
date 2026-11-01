@@ -3,6 +3,7 @@ import importlib.util
 import json
 import sys
 from pathlib import Path
+import pytest
 
 SCRIPT = Path(__file__).resolve().parents[1] / "validate_skills.py"
 spec = importlib.util.spec_from_file_location("validate_skills", SCRIPT)
@@ -131,6 +132,31 @@ def test_private_terms_load_from_file_and_skip_comments(tmp_path):
     f = tmp_path / ".private-terms"
     f.write_text("# nombres del cliente\nAcmeSoft\n\n  Foo Bar  \n", encoding="utf-8")
     assert vs.load_private_terms(f) == ["acmesoft", "foo bar"]
+
+
+@pytest.mark.parametrize("text", [
+    r"Medido sobre `C:\Users\jperez\proyecto\skills`.",  # ficticio
+    "Ver C:/Users/jperez/AppData/Local/Temp/x.",  # ficticio
+    "Create: `/home/jperez/repo/README.md`",  # ficticio
+])
+def test_personal_path_is_red_without_any_list(tmp_path, text):
+    # Sale en el CI aunque falte .private-terms: la ruta trae el usuario de la máquina.
+    errs = vs.check_business_data(_doc(tmp_path, text), "d.md")
+    assert len(errs) == 1 and "ruta personal" in errs[0], text
+
+
+@pytest.mark.parametrize("text", [
+    r"`%LOCALAPPDATA%\hermes\skills` y `C:\Users\<usuario>\repo`.",
+    "ln -sfn x ~/.hermes/skills/n; HOME=/home/runner en el CI.",
+    "Copiá a `<clon>/skills`; en benchmarks se tapa con `<tmp>`.",
+])
+def test_placeholder_paths_pass(tmp_path, text):
+    assert vs.check_business_data(_doc(tmp_path, text), "d.md") == []
+
+
+def test_personal_path_is_red_in_benchmarks_too(tmp_path):
+    f = _doc(tmp_path, r"cwd: C:\Users\jperez\AppData\Local\Temp\x")  # ficticio
+    assert vs.check_business_data(f, "benchmarks/x/runs/a.txt")
 
 
 def test_missing_private_terms_file_is_none_not_empty(tmp_path):

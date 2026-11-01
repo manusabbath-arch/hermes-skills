@@ -1,7 +1,7 @@
 # Inventario: perfil Hermes vs tap
 
 Medido el 2026-10-31 sobre `%LOCALAPPDATA%\hermes\skills` (98 `SKILL.md`) y
-`C:\Users\Usuario\hermes-skills\skills` (este repo). El tap publicaba 7 skills
+`<clon>\skills` (este repo). El tap publicaba 7 skills
 antes de esta ola.
 
 ## Cómo se leyó

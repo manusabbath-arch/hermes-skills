@@ -22,6 +22,19 @@ jobs:
         with:
           python-version: '3.11'
 
+      # La lista de nombres del proyecto de origen no se versiona (el repo es público): vive
+      # en el secreto PRIVATE_TERMS. Sin él (forks, o mientras nadie lo cargó) el validador
+      # dice "NO chequeados" y acá queda un aviso visible: así se coló la v1.4.0.
+      - name: Private terms from the repo secret
+        env:
+          PRIVATE_TERMS: ${{ secrets.PRIVATE_TERMS }}
+        run: |
+          if [ -n "$PRIVATE_TERMS" ]; then
+            printf '%s\n' "$PRIVATE_TERMS" > .private-terms
+          else
+            echo "::warning::Sin el secreto PRIVATE_TERMS: los términos privados NO se chequean en este CI"
+          fi
+
       - name: Validate skill manifests and cited paths
         run: python scripts/validate_skills.py
 
