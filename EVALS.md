@@ -19,6 +19,7 @@ build falla.
 9. Ronda C: escenarios nuevos y skills de v1.4.0
 10. Ronda D: skills de v1.5.0
 11. Activación con las 15 skills
+12. Ronda E: criterios medibles
 
 ## 1. Método
 
@@ -213,3 +214,20 @@ las nuevas se quedan con pedidos de las viejas, y son los mismos pedidos en los 
 modelos, porque `designing-mechanical-guards` y `unattended-run-verification` cubren terreno
 de `agent-ready-project`, `empirical-project-playbook` y `empirical-system-invariants` sin
 un "Not for X: use Y" que marque el límite. Lectura completa en el `LECTURA.md` de la corrida.
+
+## 12. Ronda E: criterios medibles
+
+`grounded-citations` y `documentation-drift-audit` 1.0.1 tenían 11 criterios que pedían
+ejecutar comandos; se reescribieron para pedir que se propongan, y se midieron otra vez el
+02/11/26 (`evals/runs/2026-11-02-ronda-e/`, pre-registro en el mismo commit que el cambio de
+criterios), Haiku y Sonnet, 0,30 USD.
+
+| No negativos con / sin skill (de 12) | Haiku | Sonnet |
+|---|---|---|
+| `grounded-citations` | 1 / 0 | 10 / 0 |
+| `documentation-drift-audit` | 8 / 0 | 10 / 0 |
+
+En Sonnet, `grounded-citations` pasa de +5 a +10 cuando el criterio se vuelve medible. En
+Haiku no cambia la respuesta: lee la skill y contesta en modo conversación, sin el
+procedimiento. Esa hipótesis falla y queda escrita así. Lectura completa en el `LECTURA.md`
+de la corrida.

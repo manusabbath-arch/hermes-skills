@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A pide textos y fuentes; B propone inventariar y correr el check de links antes de editar."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "A pide la fuente de verdad pero no dice verificar con el comando; B dice medir con el comando que la produce, no deducirla de la wiki."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "A propone una tabla de cambios; B indica tachar con fecha y motivo."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A no menciona el denominador; B pide notas escaneadas y links resueltos."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "A no dice que un árbol vacío da el mismo cero; B sí."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "A no lo menciona; B no lo menciona en este pedido, solo en el pedido 1."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A solo pide verificar el 16; B sugiere escribir el comando que lista los checks."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "A acepta borrar el README tras revisarlo; B se niega a borrarlo y conserva el 8 viejo como evidencia con un bloque fechado."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno menciona apuntar a un comparador existente; B habla de un comando pero no de un comparador."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A acepta el TODO sin auditar; B revisa si la premisa sigue vigente y si ya se hizo."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "A no busca; B manda a buscar salidas de OCR y notas que lo den por hecho."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "A no lo plantea; B declara latente un ítem que nada consume."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos explican la sintaxis [[Nota]] y la variante con ruta."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguno abre el procedimiento de auditoría en esta respuesta."
+ }
+]

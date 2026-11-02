@@ -1,7 +1,7 @@
 ---
 name: documentation-drift-audit
 description: "Use when auditing docs against the system they describe: stale facts, stale advice, broken wikilinks, orphans from the entry point, and a mechanical integrity check that must print its denominator before a clean result counts."
-version: 1.0.0
+version: 1.0.1
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]

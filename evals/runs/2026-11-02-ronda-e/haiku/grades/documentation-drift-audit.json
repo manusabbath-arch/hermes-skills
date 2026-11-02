@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A describe inventariar y correr chequeo de integridad antes de corregir; B solo ofrece marcar números en texto pegado."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": true,
+  "B": false,
+  "nota": "A dice verificar cada número contra el sistema que lo describe; B compara con 'datos actuales' sin mencionar un comando."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A menciona dejar constancia de qué cambió y cuándo; B solo devuelve texto corregido."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A pide que el resultado imprima notas revisadas y links resueltos; B no pide denominador."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": true,
+  "B": false,
+  "nota": "A dice explícitamente que un árbol vacío o ilegible da 0 y 0; B no lo dice."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna menciona volver a correr el check al final de la pasada."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A recomienda escribir el comando que lista los checks en vez de la cifra; B deja 16 como cifra."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": true,
+  "B": false,
+  "nota": "A no borra todavía y mueve contenido único antes; B recomienda eliminar, aunque con una revisión previa."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna apunta a un comparador existente en vez de un segundo registro."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "A verifica alcanzabilidad pero no audita si la premisa fue desmentida; B acepta el TODO sin auditar."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna propone grep de cierre posterior en el archivo o en notas más nuevas."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A declara latente un ítem inalcanzable; B lo deja como pendiente."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas dan la sintaxis de wikilink con ruta, y [[nota]] si el nombre es único."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguna abre el procedimiento de auditoría."
+ }
+]

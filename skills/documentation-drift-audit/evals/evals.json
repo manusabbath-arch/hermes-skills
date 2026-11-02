@@ -4,7 +4,7 @@
     "query": "Leé la wiki y actualizala. Hay varios números viejos.",
     "files": [],
     "expected_behavior": [
-      "Inventaria el árbol y corre el check mecánico de wikilinks/huérfanos antes de editar prosa",
+      "Propone inventariar el árbol y correr el check mecánico de wikilinks/huérfanos antes de editar prosa",
       "Verifica cada cifra contra el comando que la produce, no re-derivándola a mano",
       "Corrige con rastro (tachar + fecha), no pisa en silencio"
     ]
@@ -16,7 +16,7 @@
     "expected_behavior": [
       "Pide el denominador (notas escaneadas, links resueltos) antes de leer el cero como limpio",
       "Un árbol vacío o ilegible produce el mismo cero que uno sano",
-      "Vuelve a correr el check al final de la pasada"
+      "Dice que hay que volver a correr el check al final de la pasada"
     ]
   },
   {

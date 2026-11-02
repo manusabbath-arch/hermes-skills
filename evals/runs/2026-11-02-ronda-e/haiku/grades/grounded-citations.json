@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna propone registrar URLs en un ledger con sources.py add/ingest."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna plantea citar inline con [n] ni cerrar con sources.py render."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna menciona sources.py verify sobre el borrador."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna plantea quote --from sobre texto extraído; solo piden el texto."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna incluye verify --evidence ni render --style evidence."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ambas dicen marcar como no verificada/no respaldada, pero no el marcador [unverified] para conocimiento propio; criterio no cumplido con claridad."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "A ofrece reescribir el bloque a mano; B también reescribe/alinea manualmente."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "A sugiere regenerar con 'el script' pero no nombra render --replace-in; B no lo menciona."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ambas proponen alinear numeración a mano; ninguna respeta ids como identidades del ledger."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna propone fan-out con una ruta por plataforma; dicen que no pueden acceder."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna propone registrar URLs en un mismo ledger."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A separa experiencia reportada de lo verificado; B solo separa por postura."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas explican la sintaxis de f-strings en 3.12 directamente."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguna abre ledger, cita inline ni agrega bloque Sources."
+ }
+]

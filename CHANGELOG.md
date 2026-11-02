@@ -4,6 +4,25 @@ Una entrada por tag. Cada skill lleva su propia `version` en el frontmatter, y
 `scripts/validate_skills.py` falla si una skill cambió desde el último tag sin subirla.
 Cada release adjunta `SHA256SUMS` para verificar lo instalado (ver `SECURITY.md`).
 
+## v1.6.1 — 2026-11-02
+
+Mediciones de las skills que entraron sin corrida, y criterios que se pueden medir.
+
+- **Ronda D de evals** (`evals/runs/2026-11-02-ronda-d/`, pre-registrada): las 4 skills de
+  v1.5.0, Haiku y Sonnet, 0,67 USD. Las tres hipótesis se cumplen: no negativos con / sin
+  skill, Haiku 37/9 y Sonnet 44/8 (de 48).
+- **Activación con las 15 skills** (`.../ronda-d/activation/`, pre-registrada; runner nuevo
+  `evals/activacion.py`): las 8 nuevas se eligen solas (28, 28 y 30 de 32) y ningún pedido
+  ajeno carga una skill, pero se quedan con pedidos de las viejas: H2 falla en Haiku (31 de
+  41). Falta un "Not for X: use Y" entre skills que se pisan.
+- **Criterios medibles:** `grounded-citations` 1.0.1 (9 criterios) y
+  `documentation-drift-audit` 1.0.1 (2) pedían ejecutar comandos que el protocolo de evals
+  no permite; ahora piden proponerlo. Lo que se exige saber no cambia.
+- **Ronda E** (`evals/runs/2026-11-02-ronda-e/`, pre-registrada): las dos skills con los
+  criterios nuevos, 0,30 USD. `documentation-drift-audit` +8 y +10; `grounded-citations` +10
+  en Sonnet (era +5 con los criterios viejos) y +1 en Haiku, que lee la skill y no aplica el
+  procedimiento sin herramientas.
+
 ## v1.6.0 — 2026-11-01
 
 Segunda ronda de aprendizajes del proyecto de la distribuidora, y el benchmark de la fase 5.

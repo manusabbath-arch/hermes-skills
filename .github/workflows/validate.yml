@@ -74,7 +74,7 @@ jobs:
           done
           python scripts/eval_report.py --grades "$v2/ronda-b/haiku/grades" --key "$v2/ronda-b/haiku/key.json" --evals "$v2/evals" > /tmp/results.md
           diff -u "$v2/ronda-b/haiku/results.md" /tmp/results.md
-          for rc in evals/runs/2026-11-01-ronda-c evals/runs/2026-11-02-ronda-d; do
+          for rc in evals/runs/2026-11-01-ronda-c evals/runs/2026-11-02-ronda-d evals/runs/2026-11-02-ronda-e; do
           for m in haiku sonnet; do
             python scripts/eval_report.py --grades "$rc/$m/grades" --key "$rc/$m/key.json" --evals "$rc/evals" > /tmp/results.md
             diff -u "$rc/$m/results.md" /tmp/results.md
@@ -117,6 +117,16 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
+
+      - name: Private terms from the repo secret
+        env:
+          PRIVATE_TERMS: ${{ secrets.PRIVATE_TERMS }}
+        run: |
+          if [ -n "$PRIVATE_TERMS" ]; then
+            printf '%s\n' "$PRIVATE_TERMS" > .private-terms
+          else
+            echo "::warning::Sin el secreto PRIVATE_TERMS: los términos privados NO se chequean en este CI"
+          fi
 
       - name: Validate skill manifests, trust policy and business data
         run: python scripts/validate_skills.py
