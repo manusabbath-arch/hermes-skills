@@ -14,7 +14,10 @@ Límites de activación entre skills que se pisan (decisión del dueño del tap)
   `empirical-project-playbook` ahora dice que cubre operar el entorno (gasto con tope, salud
   sin dato = STALE), que la skill trae desde v1.6.0.
 - **Activación medida otra vez con la misma semilla**
-  (`evals/runs/2026-11-02-activacion-limites/`, pre-registrada en el mismo commit).
+  (`evals/runs/2026-11-02-activacion-limites/`, pre-registrada en el mismo commit, 0,15 USD):
+  las 7 viejas pasan de 31/33/35 a 33/36/34 de 41 y las tres hipótesis se cumplen. El límite
+  de `unattended-run-verification` recuperó sus pedidos en los tres modelos; el de
+  `designing-mechanical-guards` no, y le costó uno propio.
 
 ## v1.6.1 — 2026-11-02
 
