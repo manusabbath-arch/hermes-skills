@@ -3,14 +3,14 @@
   "owner": { "name": "Manu" },
   "metadata": {
     "description": "Tap de skills medidas con evaluación ciega en tres modelos.",
-    "version": "1.6.2"
+    "version": "1.7.0"
   },
   "plugins": [
     {
       "name": "hermes-skills",
       "source": "./",
       "description": "Las 15 skills del tap como un plugin.",
-      "version": "1.6.2"
+      "version": "1.7.0"
     }
   ]
 }

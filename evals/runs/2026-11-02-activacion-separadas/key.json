@@ -1,0 +1,492 @@
+{
+ "1": {
+  "expected": "documentation-drift-audit",
+  "kind": "positivo",
+  "owner": "documentation-drift-audit"
+ },
+ "2": {
+  "expected": "hermes-skills-tap-workflow",
+  "kind": "positivo",
+  "owner": "hermes-skills-tap-workflow"
+ },
+ "3": {
+  "expected": "erp-business-analysis",
+  "kind": "positivo",
+  "owner": "erp-business-analysis"
+ },
+ "4": {
+  "expected": null,
+  "kind": "ajeno",
+  "owner": null
+ },
+ "5": {
+  "expected": "external-data-source-intake",
+  "kind": "positivo",
+  "owner": "external-data-source-intake"
+ },
+ "6": {
+  "expected": "outbound-notification-channels",
+  "kind": "positivo",
+  "owner": "outbound-notification-channels"
+ },
+ "7": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "agent-ready-project"
+ },
+ "8": {
+  "expected": "empirical-project-playbook",
+  "kind": "positivo",
+  "owner": "empirical-project-playbook"
+ },
+ "9": {
+  "expected": "designing-mechanical-guards",
+  "kind": "positivo",
+  "owner": "designing-mechanical-guards"
+ },
+ "10": {
+  "expected": "outbound-notification-channels",
+  "kind": "positivo",
+  "owner": "outbound-notification-channels"
+ },
+ "11": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "empirical-project-playbook"
+ },
+ "12": {
+  "expected": "documentation-drift-audit",
+  "kind": "positivo",
+  "owner": "documentation-drift-audit"
+ },
+ "13": {
+  "expected": "external-data-source-intake",
+  "kind": "positivo",
+  "owner": "external-data-source-intake"
+ },
+ "14": {
+  "expected": "designing-mechanical-guards",
+  "kind": "positivo",
+  "owner": "designing-mechanical-guards"
+ },
+ "15": {
+  "expected": null,
+  "kind": "ajeno",
+  "owner": null
+ },
+ "16": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "tests-over-changing-data-exports"
+ },
+ "17": {
+  "expected": "erp-business-analysis",
+  "kind": "positivo",
+  "owner": "erp-business-analysis"
+ },
+ "18": {
+  "expected": null,
+  "kind": "ajeno",
+  "owner": null
+ },
+ "19": {
+  "expected": null,
+  "kind": "ajeno",
+  "owner": null
+ },
+ "20": {
+  "expected": "erp-business-analysis",
+  "kind": "positivo",
+  "owner": "erp-business-analysis"
+ },
+ "21": {
+  "expected": "unattended-run-verification",
+  "kind": "positivo",
+  "owner": "unattended-run-verification"
+ },
+ "22": {
+  "expected": "hermes-skills-tap-workflow",
+  "kind": "positivo",
+  "owner": "hermes-skills-tap-workflow"
+ },
+ "23": {
+  "expected": "delta-lakehouse",
+  "kind": "positivo",
+  "owner": "delta-lakehouse"
+ },
+ "24": {
+  "expected": "grounded-citations",
+  "kind": "positivo",
+  "owner": "grounded-citations"
+ },
+ "25": {
+  "expected": "hermes-skills-tap-workflow",
+  "kind": "positivo",
+  "owner": "hermes-skills-tap-workflow"
+ },
+ "26": {
+  "expected": "delta-lakehouse",
+  "kind": "positivo",
+  "owner": "delta-lakehouse"
+ },
+ "27": {
+  "expected": "empirical-project-playbook",
+  "kind": "positivo",
+  "owner": "empirical-project-playbook"
+ },
+ "28": {
+  "expected": "recurring-report-design",
+  "kind": "positivo",
+  "owner": "recurring-report-design"
+ },
+ "29": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "designing-mechanical-guards"
+ },
+ "30": {
+  "expected": "designing-mechanical-guards",
+  "kind": "positivo",
+  "owner": "designing-mechanical-guards"
+ },
+ "31": {
+  "expected": "unattended-run-verification",
+  "kind": "positivo",
+  "owner": "unattended-run-verification"
+ },
+ "32": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "documentation-drift-audit"
+ },
+ "33": {
+  "expected": "agent-ready-project",
+  "kind": "positivo",
+  "owner": "agent-ready-project"
+ },
+ "34": {
+  "expected": "documentation-drift-audit",
+  "kind": "positivo",
+  "owner": "documentation-drift-audit"
+ },
+ "35": {
+  "expected": "tests-over-changing-data-exports",
+  "kind": "positivo",
+  "owner": "tests-over-changing-data-exports"
+ },
+ "36": {
+  "expected": null,
+  "kind": "ajeno",
+  "owner": null
+ },
+ "37": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "delta-lakehouse"
+ },
+ "38": {
+  "expected": "data-medallion-architecture",
+  "kind": "positivo",
+  "owner": "data-medallion-architecture"
+ },
+ "39": {
+  "expected": "empirical-system-invariants",
+  "kind": "positivo",
+  "owner": "empirical-system-invariants"
+ },
+ "40": {
+  "expected": "grounded-citations",
+  "kind": "positivo",
+  "owner": "grounded-citations"
+ },
+ "41": {
+  "expected": "tests-over-changing-data-exports",
+  "kind": "positivo",
+  "owner": "tests-over-changing-data-exports"
+ },
+ "42": {
+  "expected": "recurring-report-design",
+  "kind": "positivo",
+  "owner": "recurring-report-design"
+ },
+ "43": {
+  "expected": "grounded-citations",
+  "kind": "positivo",
+  "owner": "grounded-citations"
+ },
+ "44": {
+  "expected": "empirical-project-playbook",
+  "kind": "positivo",
+  "owner": "empirical-project-playbook"
+ },
+ "45": {
+  "expected": "grounded-citations",
+  "kind": "positivo",
+  "owner": "grounded-citations"
+ },
+ "46": {
+  "expected": "designing-mechanical-guards",
+  "kind": "positivo",
+  "owner": "designing-mechanical-guards"
+ },
+ "47": {
+  "expected": "data-medallion-architecture",
+  "kind": "positivo",
+  "owner": "data-medallion-architecture"
+ },
+ "48": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "unattended-run-verification"
+ },
+ "49": {
+  "expected": "empirical-project-playbook",
+  "kind": "positivo",
+  "owner": "empirical-project-playbook"
+ },
+ "50": {
+  "expected": "empirical-system-invariants",
+  "kind": "positivo",
+  "owner": "empirical-system-invariants"
+ },
+ "51": {
+  "expected": "delta-lakehouse",
+  "kind": "positivo",
+  "owner": "delta-lakehouse"
+ },
+ "52": {
+  "expected": "empirical-system-invariants",
+  "kind": "positivo",
+  "owner": "empirical-system-invariants"
+ },
+ "53": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "hermes-skills-tap-workflow"
+ },
+ "54": {
+  "expected": "empirical-project-playbook",
+  "kind": "positivo",
+  "owner": "empirical-project-playbook"
+ },
+ "55": {
+  "expected": null,
+  "kind": "ajeno",
+  "owner": null
+ },
+ "56": {
+  "expected": "erp-business-analysis",
+  "kind": "positivo",
+  "owner": "erp-business-analysis"
+ },
+ "57": {
+  "expected": "empirical-system-invariants",
+  "kind": "positivo",
+  "owner": "empirical-system-invariants"
+ },
+ "58": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "erp-business-analysis"
+ },
+ "59": {
+  "expected": "documentation-drift-audit",
+  "kind": "positivo",
+  "owner": "documentation-drift-audit"
+ },
+ "60": {
+  "expected": "agent-ready-project",
+  "kind": "positivo",
+  "owner": "agent-ready-project"
+ },
+ "61": {
+  "expected": "empirical-project-playbook",
+  "kind": "positivo",
+  "owner": "empirical-project-playbook"
+ },
+ "62": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "empirical-project-playbook"
+ },
+ "63": {
+  "expected": "unattended-run-verification",
+  "kind": "positivo",
+  "owner": "unattended-run-verification"
+ },
+ "64": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "empirical-system-invariants"
+ },
+ "65": {
+  "expected": "external-data-source-intake",
+  "kind": "positivo",
+  "owner": "external-data-source-intake"
+ },
+ "66": {
+  "expected": "agent-ready-project",
+  "kind": "positivo",
+  "owner": "agent-ready-project"
+ },
+ "67": {
+  "expected": "agent-ready-project",
+  "kind": "positivo",
+  "owner": "agent-ready-project"
+ },
+ "68": {
+  "expected": "data-medallion-architecture",
+  "kind": "positivo",
+  "owner": "data-medallion-architecture"
+ },
+ "69": {
+  "expected": "delta-lakehouse",
+  "kind": "positivo",
+  "owner": "delta-lakehouse"
+ },
+ "70": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "data-medallion-architecture"
+ },
+ "71": {
+  "expected": "data-medallion-architecture",
+  "kind": "positivo",
+  "owner": "data-medallion-architecture"
+ },
+ "72": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "grounded-citations"
+ },
+ "73": {
+  "expected": "hermes-skills-tap-workflow",
+  "kind": "positivo",
+  "owner": "hermes-skills-tap-workflow"
+ },
+ "74": {
+  "expected": "unattended-run-verification",
+  "kind": "positivo",
+  "owner": "unattended-run-verification"
+ },
+ "75": {
+  "expected": "empirical-system-invariants",
+  "kind": "positivo",
+  "owner": "empirical-system-invariants"
+ },
+ "76": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "outbound-notification-channels"
+ },
+ "77": {
+  "expected": "external-data-source-intake",
+  "kind": "positivo",
+  "owner": "external-data-source-intake"
+ },
+ "78": {
+  "expected": null,
+  "kind": "ajeno",
+  "owner": null
+ },
+ "79": {
+  "expected": "erp-business-analysis",
+  "kind": "positivo",
+  "owner": "erp-business-analysis"
+ },
+ "80": {
+  "expected": "outbound-notification-channels",
+  "kind": "positivo",
+  "owner": "outbound-notification-channels"
+ },
+ "81": {
+  "expected": "designing-mechanical-guards",
+  "kind": "positivo",
+  "owner": "designing-mechanical-guards"
+ },
+ "82": {
+  "expected": "recurring-report-design",
+  "kind": "positivo",
+  "owner": "recurring-report-design"
+ },
+ "83": {
+  "expected": "designing-mechanical-guards",
+  "kind": "positivo",
+  "owner": "designing-mechanical-guards"
+ },
+ "84": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "external-data-source-intake"
+ },
+ "85": {
+  "expected": "recurring-report-design",
+  "kind": "positivo",
+  "owner": "recurring-report-design"
+ },
+ "86": {
+  "expected": "hermes-skills-tap-workflow",
+  "kind": "positivo",
+  "owner": "hermes-skills-tap-workflow"
+ },
+ "87": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "erp-business-analysis"
+ },
+ "88": {
+  "expected": "designing-mechanical-guards",
+  "kind": "positivo",
+  "owner": "designing-mechanical-guards"
+ },
+ "89": {
+  "expected": "tests-over-changing-data-exports",
+  "kind": "positivo",
+  "owner": "tests-over-changing-data-exports"
+ },
+ "90": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "agent-ready-project"
+ },
+ "91": {
+  "expected": "erp-business-analysis",
+  "kind": "positivo",
+  "owner": "erp-business-analysis"
+ },
+ "92": {
+  "expected": "delta-lakehouse",
+  "kind": "positivo",
+  "owner": "delta-lakehouse"
+ },
+ "93": {
+  "expected": "designing-mechanical-guards",
+  "kind": "positivo",
+  "owner": "designing-mechanical-guards"
+ },
+ "94": {
+  "expected": "tests-over-changing-data-exports",
+  "kind": "positivo",
+  "owner": "tests-over-changing-data-exports"
+ },
+ "95": {
+  "expected": null,
+  "kind": "negativo",
+  "owner": "recurring-report-design"
+ },
+ "96": {
+  "expected": "erp-business-analysis",
+  "kind": "positivo",
+  "owner": "erp-business-analysis"
+ },
+ "97": {
+  "expected": "data-medallion-architecture",
+  "kind": "positivo",
+  "owner": "data-medallion-architecture"
+ },
+ "98": {
+  "expected": "outbound-notification-channels",
+  "kind": "positivo",
+  "owner": "outbound-notification-channels"
+ }
+}

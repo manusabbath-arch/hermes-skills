@@ -1,6 +1,8 @@
 [
   {
-    "skills": ["designing-mechanical-guards"],
+    "skills": [
+      "designing-mechanical-guards"
+    ],
     "query": "This rule keeps breaking: every report must declare its source hash. Make sure it never happens again.",
     "files": [],
     "expected_behavior": [
@@ -10,7 +12,9 @@
     ]
   },
   {
-    "skills": ["designing-mechanical-guards"],
+    "skills": [
+      "designing-mechanical-guards"
+    ],
     "query": "The new check is green on the live repo. Ship it.",
     "files": [],
     "expected_behavior": [
@@ -20,7 +24,9 @@
     ]
   },
   {
-    "skills": ["designing-mechanical-guards"],
+    "skills": [
+      "designing-mechanical-guards"
+    ],
     "query": "The gate is red on three old checks that are not mine. I need to commit a one-line fix.",
     "files": [],
     "expected_behavior": [
@@ -30,7 +36,9 @@
     ]
   },
   {
-    "skills": ["designing-mechanical-guards"],
+    "skills": [
+      "designing-mechanical-guards"
+    ],
     "query": "This check is noisy. I'll add || true so it still runs but does not block.",
     "files": [],
     "expected_behavior": [
@@ -40,7 +48,9 @@
     ]
   },
   {
-    "skills": ["designing-mechanical-guards"],
+    "skills": [
+      "designing-mechanical-guards"
+    ],
     "query": "How do I rename this function in Python?",
     "files": [],
     "expected_behavior": [
@@ -48,5 +58,52 @@
       "Does not add a mechanical guard, a perimeter check, or a gate procedure the request did not ask for"
     ],
     "negativo": true
+  },
+  {
+    "skills": [
+      "designing-mechanical-guards"
+    ],
+    "query": "Quiero prender un check de lint nuevo pero el repo ya tiene 180 violaciones y no puedo arreglarlas todas hoy.",
+    "files": [],
+    "expected_behavior": [
+      "Propone una baseline con trinquete que falla solo con violaciones nuevas",
+      "Indexa la baseline por identidad estable (archivo + símbolo), no por número de línea",
+      "Reporta también las claves stale de la baseline para que la deuda solo pueda bajar"
+    ]
+  },
+  {
+    "skills": [
+      "designing-mechanical-guards"
+    ],
+    "query": "Nuestro check `validar` imprime '0 problemas' y sale con 0. Un agente renombró el directorio que escanea y nadie lo notó en semanas. ¿Qué cambiamos?",
+    "files": [],
+    "expected_behavior": [
+      "Explica que el check no miró nada y por eso dio verde (verde vacío)",
+      "Pide que el mensaje lleve su denominador (cuántos archivos o elementos revisó) y que cero revisados sea rojo",
+      "Propone auditar los checks vaciando su universo a propósito y verificando que se pongan en rojo"
+    ]
+  },
+  {
+    "skills": [
+      "designing-mechanical-guards"
+    ],
+    "query": "Nuestra compuerta tiene 120 chequeos y siempre hay 5 o 6 en rojo por datos que faltan; el equipo ya ignora el rojo. ¿Bajamos esos chequeos a warning?",
+    "files": [],
+    "expected_behavior": [
+      "Propone una línea base sellada que distinga regresión (bloquea) de rojo conocido",
+      "Pide declarar cada rojo con motivo y condición de salida, y que un chequeo nuevo que nace rojo se declare en el mismo commit",
+      "Advierte que sellar debe mezclar, no reemplazar, y que un chequeo que deja de correr también bloquea"
+    ]
+  },
+  {
+    "skills": [
+      "designing-mechanical-guards"
+    ],
+    "query": "Un bug que ya documentamos dos veces en el README volvió a aparecer.",
+    "files": [],
+    "expected_behavior": [
+      "Propone convertir el patrón en un check que falla el build en vez de más prosa",
+      "Si no es mecanizable, pide registrarlo como deuda explícita con fecha y evidencia"
+    ]
   }
 ]

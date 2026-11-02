@@ -1,7 +1,7 @@
 ---
 name: designing-mechanical-guards
-description: "Use when a rule keeps breaking and should become a check the machine runs - mechanical guards, pre-commit gates, vacuous greens, guard perimeters, ratchet baselines, declared reds, advisory-to-enforcement, and make-sure-this-never-happens-again. Covers writing the failing test first, wiring into the existing gate, proving no regression on a mature gate that already carries known reds, and the measured failure shapes of checks that look green while covering nothing. Not for setting up a project's whole validation loop or adopting a baseline over many existing checks (use agent-ready-project), nor for judging whether a measured result holds (use empirical-project-playbook)."
-version: 1.1.1
+description: "Use when a rule keeps breaking and should become a check the machine runs - mechanical guards, pre-commit gates, vacuous greens, guard perimeters, ratchet baselines, declared reds, advisory-to-enforcement, and make-sure-this-never-happens-again. Covers writing the failing test first, wiring into the existing gate, proving no regression on a mature gate that already carries known reds, and the measured failure shapes of checks that look green while covering nothing. Not for setting up a project's whole validation loop or several agents sharing one repo (use agent-ready-project), nor for judging whether a measured result holds (use empirical-project-playbook)."
+version: 1.2.0
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
@@ -283,6 +283,14 @@ baseline.
 - `references/vacuous-green-detection.md` — auditing an existing check set for passes that
   prove nothing: the empty-subject probe, the error-into-pass path, and the denominator
   question, with the commands to reproduce each.
+- `references/diseno-de-guardas.md` — el catálogo de un proyecto concreto (en español): qué
+  forma tomó cada guarda y qué la rompió, con la línea base con trinquete por identidad
+  estable. Cada sección apunta a la referencia de esta skill que generaliza el procedimiento.
+- `scripts/check_baseline.py` — compuerta contra una línea base sellada (stdlib): regresión
+  vs rojo declarado con motivo y condición de salida, chequeo desaparecido, chequeo nuevo que
+  nace rojo, sellar que mezcla. Uso:
+  `python3 check_baseline.py --results r.json --baseline base.json [--seal]`; tests en
+  `scripts/tests/`.
 - `references/guard-implementations.md` — working reference implementations for the two
   recurring shapes: a static probe over source (AST) and a comparator over prose against a
   measured value, including the exemption-window technique and its tests.

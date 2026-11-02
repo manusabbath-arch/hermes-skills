@@ -21,6 +21,7 @@ build falla.
 11. Activación con las 15 skills
 12. Ronda E: criterios medibles
 13. Activación con límites entre skills
+14. Activación con las guardas separadas
 
 ## 1. Método
 
@@ -250,3 +251,21 @@ Las tres hipótesis se cumplen en los tres modelos. El límite de
 `designing-mechanical-guards` no, y le costó uno propio: entre esa skill y
 `agent-ready-project` el terreno se pisa en serio. Lectura completa en el `LECTURA.md` de la
 corrida.
+
+## 14. Activación con las guardas separadas
+
+Como el límite en la description no alcanzó (§13), se separaron las dos skills (v1.7.0):
+`designing-mechanical-guards` pasó a ser la dueña del diseño de cada guarda, con el catálogo,
+`check_baseline.py` y 4 escenarios que eran de otras skills; `agent-ready-project` quedó con el
+arnés del proyecto. Activación del 02/11/26 (`evals/runs/2026-11-02-activacion-separadas/`,
+pre-registrada en el mismo commit; 0,15 USD):
+
+| | Haiku | Sonnet | Opus |
+|---|---|---|---|
+| `designing-mechanical-guards` (de 8) | 8 | 8 | 8 |
+| `agent-ready-project` (de 4) | 3 | 4 | 4 |
+| Total en sus positivos (de 73) | 64 | 70 | 68 |
+| No positivos vacíos (de 25) | 24 | 25 | 25 |
+
+Las tres hipótesis se cumplen en los tres modelos. El total pasa de 60, 63 y 64 (con los
+límites) a 64, 70 y 68. Lectura completa en el `LECTURA.md` de la corrida.
