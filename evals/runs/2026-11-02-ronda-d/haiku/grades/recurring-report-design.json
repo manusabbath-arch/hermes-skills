@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A rechaza acumular y propone segunda hoja rotativa con presupuesto constante; B solo pide datos."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno pide consumidor y denominador de cada ítem nuevo (A menciona denominador solo en la vista semanal)."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A dice medir páginas en todas las variantes del día, no solo la de hoy."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A imprime dosis fija de 3 ítems; B ofrece imprimir completa."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "A da 3 ítems por día sin tomar uno por peldaño."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno menciona registrar lo impreso para que la rotación no se resetee."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos mandan; A explicita que la ausencia equivale a alarma, B que el silencio hace pensar en falla."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno habla de exit 0 ni distingue medir de no poder medir."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A propone texto con 'N cargados, 0 excepciones, M candidatos'; B solo 'sin excepciones hoy'."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A usa hora real 19:56 en el encabezado; B pone la nominal como hora y muestra ambas."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ambos imprimen el atraso explícitamente."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A dice que el corte es cuando se leyeron los datos; B no lo menciona."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos dan 210×297 mm y explican que los márgenes dependen del documento."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "A mete el contexto del reporte (márgenes medidos de 10 mm); B no agrega nada de la skill."
+ }
+]

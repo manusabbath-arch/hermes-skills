@@ -17,6 +17,8 @@ build falla.
 7. Cómo repetirla
 8. Benchmark de trampas de ERP
 9. Ronda C: escenarios nuevos y skills de v1.4.0
+10. Ronda D: skills de v1.5.0
+11. Activación con las 15 skills
 
 ## 1. Método
 
@@ -31,8 +33,7 @@ Las cuatro skills de v1.4.0 (`designing-mechanical-guards`, `unattended-run-veri
 `external-data-source-intake`, `grounded-citations`) no entran en las tablas de §2, que son
 la corrida ciega de las 7 skills de v1.3.0: se midieron en la ronda C (§9). Las cuatro de
 v1.5.0 (`tests-over-changing-data-exports`, `outbound-notification-channels`,
-`recurring-report-design`, `documentation-drift-audit`) traen `evals/evals.json` y
-todavía no se midieron.
+`recurring-report-design`, `documentation-drift-audit`) se midieron en la ronda D (§10).
 
 - **Activación:** un agente ve solo el `name` y la `description` de las 7 skills y 49
   pedidos barajados (los 35 de las evals + 7 ajenos al tap), y elige qué skills cargaría.
@@ -178,3 +179,37 @@ Las tres hipótesis pre-registradas se cumplen en los dos modelos, y ninguna ski
 peor con skill que sin ella. **`grounded-citations` no se puede medir con este protocolo:**
 sus criterios piden correr `sources.py` y buscar en la web, y los sujetos no tienen comandos
 ni web. Lectura completa: `evals/runs/2026-11-01-ronda-c/LECTURA.md`.
+
+## 10. Ronda D: skills de v1.5.0
+
+Corrida del 02/11/26 (`evals/runs/2026-11-02-ronda-d/`, pre-registro commiteado antes), con
+el mismo protocolo que la ronda C: Haiku y Sonnet, evaluador ciego Sonnet, 0,67 USD.
+
+| | Haiku con / sin | Sonnet con / sin |
+|---|---|---|
+| Criterios no negativos (de 48) | 37 / 9 | 44 / 8 |
+| Negativos (de 8) | 7 / 8 | 8 / 8 |
+
+Las tres hipótesis se cumplen; en Haiku, la de negativos lo hace justo (7 de 8): la respuesta
+con `recurring-report-design` a una pregunta simple sobre márgenes A4 trajo contexto de la
+skill. Dos criterios de `documentation-drift-audit` están redactados como acciones que los
+sujetos no pueden ejecutar, y esa skill puede estar subcontada. Lectura completa:
+`evals/runs/2026-11-02-ronda-d/LECTURA.md`.
+
+## 11. Activación con las 15 skills
+
+Corrida del 02/11/26 (`evals/runs/2026-11-02-ronda-d/activation/`, pre-registro commiteado
+antes; runner `evals/activacion.py`): 98 pedidos y las 15 descriptions juntas, Haiku, Sonnet
+y Opus, 0,15 USD.
+
+| | Haiku | Sonnet | Opus |
+|---|---|---|---|
+| Las 8 nuevas, elegidas en sus positivos (de 32) | 28 | 28 | 30 |
+| Las 7 viejas, elegidas en sus positivos (de 41) | 31 | 33 | 35 |
+| Pedidos no positivos con la lista vacía (de 25) | 25 | 25 | 25 |
+
+Las nuevas se eligen solas y ninguna skill se carga en un pedido ajeno. **H2 falla en Haiku:**
+las nuevas se quedan con pedidos de las viejas, y son los mismos pedidos en los tres
+modelos, porque `designing-mechanical-guards` y `unattended-run-verification` cubren terreno
+de `agent-ready-project`, `empirical-project-playbook` y `empirical-system-invariants` sin
+un "Not for X: use Y" que marque el límite. Lectura completa en el `LECTURA.md` de la corrida.

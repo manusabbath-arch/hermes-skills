@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A rechaza acumular y propone hoja temática rotativa por día; B agrega secciones fijas de resumen."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": true,
+  "B": false,
+  "nota": "A pide lector y denominador para cada ítem; B no lo pide."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A pide medir páginas en cada variante del parte, no solo la de hoy; B no."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A imprime una dosis diaria topeada; B imprime los 278 completos."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": true,
+  "B": false,
+  "nota": "A toma un ítem por escalón; B no usa escalones."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "A evita repetir lo pendiente y orden fijo, pero no dice que el reporte registre lo impreso para la rotación; B no lo menciona."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos dicen que sale siempre y que el silencio es la alarma."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": true,
+  "B": false,
+  "nota": "A define exit 0 si se midió y distinto de cero si no se pudo medir; B no habla de exit."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A declara '0 excepciones' en el texto del latido; B solo pone 'Sin excepciones hoy', sin declarar ceros como latido de la corrida."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A usa la hora real 19:56 en el encabezado; B pone la nominal en el encabezado."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ambos muestran el retraso (A como línea de aviso, B en el pie 'Generado 19:56')."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A dice que cada cifra lleva la hora en que se leyó el dato; B no lo plantea."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos responden sobre márgenes de A4 en mm."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguno agrega rotación, dosis, heartbeat ni retiro de ítems."
+ }
+]

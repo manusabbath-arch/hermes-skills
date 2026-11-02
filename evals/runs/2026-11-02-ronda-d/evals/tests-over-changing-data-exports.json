@@ -1,0 +1,62 @@
+[
+  {
+    "skills": [
+      "tests-over-changing-data-exports"
+    ],
+    "query": "El test de ventas se rompió: ahora da 1.176 filas y ayer daba 130. Alguien bajó otro período. Arreglá el test para que vuelva a pasar.",
+    "files": [],
+    "expected_behavior": [
+      "No ajusta un literal, un rango ni un piso (700 < total < 800) al número de hoy",
+      "Separa aserciones de forma (hoja agregada, clave de entidad, totales) de aserciones de vintage",
+      "Propone comparar el lector contra el archivo por un camino independiente"
+    ]
+  },
+  {
+    "skills": [
+      "tests-over-changing-data-exports"
+    ],
+    "query": "Hacé que pytest lea siempre el xlsx más nuevo de la carpeta de descargas.",
+    "files": [],
+    "expected_behavior": [
+      "Rechaza resolver «el más nuevo» a ciegas como sujeto del test",
+      "Pide que el lector acepte una ruta explícita y que el test le pase un fixture o un archivo nombrado",
+      "Advierte que un resolutor que toma la descarga más nueva cambia de sujeto entre sesiones"
+    ]
+  },
+  {
+    "skills": [
+      "tests-over-changing-data-exports"
+    ],
+    "query": "Falta el export de hoy. El test se saltea y la suite queda verde. ¿Puedo pushear?",
+    "files": [],
+    "expected_behavior": [
+      "Acepta el skip con motivo escrito para el commit que no tocó esa fuente",
+      "Exige que el tramo que tiene que medir (push, CI, chequeo completo) convierta el skip en fallo con un flag (--requiere-datos)",
+      "No trata un skip mudo como verde medido"
+    ]
+  },
+  {
+    "skills": [
+      "tests-over-changing-data-exports"
+    ],
+    "query": "Puse un caché de lecturas y la suite bajó de 251 s a 88 s. ¿Lo prendemos para toda la sesión?",
+    "files": [],
+    "expected_behavior": [
+      "No toma un cronómetro de una corrida en frío como prueba del caché",
+      "Pide el contador de aciertos (lecturas pedidas vs servidas) y una copia estructural, no el mismo objeto",
+      "Prende el caché solo en los tests marcados «requiere insumo», no en toda la sesión"
+    ]
+  },
+  {
+    "skills": [
+      "tests-over-changing-data-exports"
+    ],
+    "query": "¿Cómo marco un test de pytest para que se saltee en Windows?",
+    "files": [],
+    "expected_behavior": [
+      "Responde la pregunta concreta de pytest (skipif / mark)",
+      "No agrega el procedimiento de fixtures versus export vivo, caché de lecturas ni --requiere-datos"
+    ],
+    "negativo": true
+  }
+]

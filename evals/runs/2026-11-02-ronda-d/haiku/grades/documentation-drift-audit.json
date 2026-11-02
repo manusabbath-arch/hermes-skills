@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna inventaría el árbol ni corre el check; ambas dicen que no pueden acceder."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": true,
+  "B": false,
+  "nota": "A dice que verificará cada cifra contra lo que la produce; B solo pide pegar el contenido y fuentes."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A promete dejar constancia sin reescribir historial; B no menciona rastro."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A pide cuántos documentos y links revisó; B pregunta por alcance y formatos pero no el denominador."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": true,
+  "B": false,
+  "nota": "A señala que un árbol vacío da el mismo 0; B no lo plantea."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna vuelve a correr el check; no podían."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A propone el comando que lista los checks en vez del 16 fijo; B deja 16."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ambas piden revisar contenido único antes de borrar y no borran."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna menciona un comparador existente."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna audita si la premisa fue desmentida."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna hace grep de cierre posterior."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A declara latente si nadie consume el OCR; B lo deja pendiente."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas explican la sintaxis [[Nota]] y con carpeta."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguna abre procedimiento de auditoría."
+ }
+]

@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas rechazan ajustar el literal a 1.176 o un piso."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "B separa forma (clave de entidad, hoja agregada, totales) del hecho/vintage; A solo menciona propiedades genéricas."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "B cuenta con openpyxl por otro camino contra el lector; A no propone camino independiente."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A advierte pero implementa el resolutor como sujeto del test; B lo deja solo como default y pide ruta explícita."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "B pide leer(ruta=None) y fixture sintético; A no pide ruta explícita en el lector."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": true,
+  "B": true,
+  "nota": "Ambas advierten que el más nuevo cambia según quién descargó último y no es reproducible."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "A acepta pushear si no toca ventas con aviso; B acepta el skip en el commit con motivo."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "B propone flag --requiere-datos que convierte el skip en fallo en el tramo que mide; A solo sugiere genéricamente pytest.fail o contar skips."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": true,
+  "B": true,
+  "nota": "Ambas dicen que verde con skip no es medido."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A acepta la mejora y valida comparando resultados; B señala que el cronómetro en frío mide el caché del SO."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "B pide contador de aciertos y copia estructural; A menciona copias pero no el contador."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "A recomienda sesión completa; B lo limita a tests marcados requiere insumo."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas responden con skipif y sys.platform."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguna agrega el procedimiento de fixtures, caché ni --requiere-datos."
+ }
+]
