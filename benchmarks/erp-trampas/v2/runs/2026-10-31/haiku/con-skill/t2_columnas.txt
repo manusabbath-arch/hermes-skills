@@ -1,0 +1,8 @@
+ventas_abril.csv: filas de datos = 1200
+ventas_mayo.csv: filas de datos = 1200
+filas leidas total = 2400
+fuera de abril-mayo 2026 = 0
+ENVIO excluidas = 0 por $0
+filas repetidas exactas (no eliminadas) = 0
+venta abril-mayo 2026 en $ = 517050
+CIFRA: 517050

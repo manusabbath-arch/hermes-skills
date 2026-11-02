@@ -4,6 +4,58 @@ Una entrada por tag. Cada skill lleva su propia `version` en el frontmatter, y
 `scripts/validate_skills.py` falla si una skill cambió desde el último tag sin subirla.
 Cada release adjunta `SHA256SUMS` para verificar lo instalado (ver `SECURITY.md`).
 
+## v1.6.0 — 2026-11-01
+
+Segunda ronda de aprendizajes del proyecto de la distribuidora, y el benchmark de la fase 5.
+
+- **`erp-business-analysis` 1.1.0:** `references/base-erp-legado.md` (modelo medido por
+  partición, integridad que la base no declara, trampas de join, el universo de una suma,
+  la fila que un `||` con NULL borra en DB2, leer la salida por contenido, el wrapper de solo
+  lectura, exports) y la sección "Antes de calcular: ¿ya está medido?".
+- **`agent-ready-project` 1.3.0:** `references/diseno-de-guardas.md` y
+  `scripts/check_baseline.py` (regresión vs rojo declarado con condición de salida, chequeo
+  desaparecido, sellar mezcla; con tests y pasada de mutación); §10 de `multi-agent-repo.md`
+  (ramas vivas, worktrees que desaparecen).
+- **`empirical-project-playbook` 1.2.0:** operar el entorno (gasto en modelos con tope y
+  nunca programado, salud sin dato = STALE, logs sin datos de terceros, limpieza que lista).
+- **9 escenarios de evals nuevos** (3 negativos). Se escribieron después de la prosa, contra
+  la regla del tap; se midieron en la ronda C (abajo).
+- **Ronda C de evals** (`evals/runs/2026-11-01-ronda-c/`, pre-registrada): los 9 escenarios
+  nuevos y las 4 skills de v1.4.0, Haiku y Sonnet, 1,30 USD. Las tres hipótesis se cumplen
+  (escenarios nuevos +8 en los dos modelos; skills de v1.4.0 +19 y +25 de 48; negativos 14
+  de 14). `grounded-citations` no se puede medir sin comandos ni web, y está dicho así.
+  Runner nuevo: `evals/ronda.py` (con tope de gasto obligatorio y notas incompletas = rojo).
+- **Guardas unificadas:** `designing-mechanical-guards` 1.1.0 suma lo que solo estaba en el
+  catálogo de `agent-ready-project` (rechazo barato antes del trabajo caro, regla nueva sobre
+  un corpus viejo por fecha de corte, permisos versionados), y cada sección de
+  `diseno-de-guardas.md` apunta a su procedimiento general.
+- **CI:** acciones con runtime Node 24 (checkout v5, setup-python v6, setup-node v5), también
+  en el CI que genera el kit.
+- **`benchmarks/erp-trampas/`:** ocho trampas de exports con su cifra ingenua y la correcta,
+  puntuación automática, runner con tope de gasto obligatorio. Primera corrida (Haiku y
+  Sonnet, 0,67 USD): **no discrimina**, ver `benchmarks/erp-trampas/runs/2026-10-31/LECTURA.md`.
+  **v2** (`benchmarks/erp-trampas/v2/`, con pre-registro commiteado antes de correr): exports
+  de más de 1.000 filas, respuesta por script que el runner corre con un filtro, preguntas
+  de negocio. Tampoco discrimina (0 caídas en 40 llamadas, 1,17 USD): ver su `LECTURA.md`.
+  **La fase 5 se cierra con este resultado negativo**, sin una v3 ajustada hasta que la
+  skill gane.
+- **Anonimización:** el nombre del proyecto de origen salió de los 9 lugares donde seguía
+  publicado, y de 3 líneas que entraron con la v1.4.0 (`docs/inventario-perfil-vs-tap.md` y
+  `designing-mechanical-guards` 1.0.1, que además se cruza con `diseno-de-guardas.md`).
+- **`validate_skills.py`: ruta personal = rojo.** Una ruta absoluta con el usuario de la
+  máquina (`C:\Users\<x>\…`, `/home/<x>/…`) se caza sin lista privada, también en
+  `benchmarks/`; pasan los marcadores y `/home/runner`. Salieron 2 que estaban publicadas.
+- **`validate_skills.py`: índice de relleno o dentro de código = rojo.** En v1.4.0, 8
+  referencias abrían con un `## Contents` que no listaba nada ("See headings below") y una
+  herramienta había metido 5 más dentro de bloques de Python, que dejaban de compilar (2
+  ejemplos de `designing-mechanical-guards`). Índices reales generados de los encabezados,
+  ejemplos que vuelven a compilar; `designing-mechanical-guards` y
+  `external-data-source-intake` 1.0.1.
+- **CI:** los términos privados se cargan desde el secreto `PRIVATE_TERMS`; sin él, el job
+  deja un aviso visible en vez de pasar en silencio.
+- Esta entrada se escribió como v1.4.0 y pasó a v1.6.0 al integrar las v1.4.0 y v1.5.0
+  publicadas mientras estaba en revisión.
+
 ## v1.5.0 — 2026-11-01
 
 Ola 2 de destilación desde el perfil Hermes: cuatro skills portables más, sin datos de

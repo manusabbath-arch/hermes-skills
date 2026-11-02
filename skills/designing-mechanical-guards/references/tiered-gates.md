@@ -66,6 +66,17 @@ The selector is a guard, so it gets a guard, with the same discipline as any oth
 - The commit that installs the levels proves the fallback end to end: it touches the gate's own
   infrastructure, so it must take the full set. If it does not, the fallback is broken.
 
+## Inside one step: the cheap rejection goes before the expensive work
+
+The same ordering applies inside a single check. If there is a cheap way to decide that a subject is
+going to be rejected, it runs **before** the costly pass over that subject, never after it. Measured in
+the origin project: an export reader parsed each file completely and only then asked whether it was
+truncated; one rejected file cost 42% of the gate's parse time, while the cheap test (count rows
+against the format's ceiling, about a thousand times faster) already existed. Swapping the order took
+the gate from 71 s to about 38 s. Pin the order with a test that fails if the expensive call happens
+on a subject the cheap test rejects, or the next refactor puts it back. The same shape gives a hook its
+fast path: keyword scan first, full analysis only when a keyword appears.
+
 ## Do not adopt a third-party selection tool when the import graph gives the same cut
 
 Record the measurement, not the tool's reputation: how long since its last release, whether its

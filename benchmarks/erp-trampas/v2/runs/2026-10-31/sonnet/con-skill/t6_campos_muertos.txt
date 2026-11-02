@@ -1,0 +1,5 @@
+Columnas: ['Codigo', 'Producto', 'Stock', 'StockMinimo', 'StockMaximo']
+Filas le�das: 2200
+Productos con stock m�nimo cargado (>0): 0
+El stock m�nimo no est� cargado en el ERP (todo 0.00): no se puede determinar.
+CIFRA: NO DETERMINABLE

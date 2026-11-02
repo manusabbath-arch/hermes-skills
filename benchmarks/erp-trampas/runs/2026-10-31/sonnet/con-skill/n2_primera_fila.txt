@@ -1,0 +1,5 @@
+La primera fila de datos de `ventas_junio.csv` es `A;Almacén Norte;140`, así que el importe es 140.
+
+Las primeras 4 líneas del archivo son el preámbulo (informe, empresa, período y una línea en blanco), y la línea 5 es el encabezado `Empresa;Cliente;Importe`. La primera fila de datos viene justo después. Es una pregunta puntual de lectura, así que no apliqué el resto de los chequeos de la skill.
+
+CIFRA: 140

@@ -1,0 +1,94 @@
+import csv
+import io
+import os
+import unicodedata
+from datetime import datetime
+from decimal import Decimal, InvalidOperation
+
+BASE = os.path.join(os.getcwd(), "datos", "t2")
+ARCHIVOS = ["ventas_abril.csv", "ventas_mayo.csv"]
+MESES_VALIDOS = {4, 5}
+ANIO = 2026
+
+
+def leer_texto(path):
+    with open(path, "rb") as f:
+        raw = f.read()
+    for enc in ("utf-8-sig", "cp1252"):
+        try:
+            return raw.decode(enc)
+        except UnicodeDecodeError:
+            pass
+    return raw.decode("latin-1")
+
+
+def norm(s):
+    s = unicodedata.normalize("NFKD", s or "")
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    return s.strip().upper()
+
+
+def a_decimal(s):
+    s = (s or "").strip().replace("$", "").replace(" ", "")
+    if "," in s and "." in s:
+        s = s.replace(".", "").replace(",", ".")
+    else:
+        s = s.replace(",", ".")
+    return Decimal(s)
+
+
+def es_flete(producto):
+    p = norm(producto)
+    return "ENVIO" in p or "FLETE" in p
+
+
+total = Decimal(0)
+excluidas_flete = Decimal(0)
+n_incluidas = 0
+n_flete = 0
+errores = []
+
+for nombre in ARCHIVOS:
+    path = os.path.join(BASE, nombre)
+    texto = leer_texto(path)
+    lector = csv.reader(io.StringIO(texto), delimiter=";")
+    encabezado = next(lector)
+    idx = {norm(h): i for i, h in enumerate(encabezado)}
+    try:
+        i_fecha = idx["FECHA"]
+        i_prod = idx["PRODUCTO"]
+        i_imp = idx["IMPORTE"]
+    except KeyError:
+        errores.append(f"{nombre}: encabezado inesperado {encabezado}")
+        continue
+
+    for num, fila in enumerate(lector, start=2):
+        if not fila or all(not c.strip() for c in fila):
+            continue
+        try:
+            fecha = datetime.strptime(fila[i_fecha].strip(), "%d/%m/%Y")
+            importe = a_decimal(fila[i_imp])
+        except (ValueError, InvalidOperation, IndexError) as e:
+            errores.append(f"{nombre}:{num} {e}")
+            continue
+
+        if fecha.year != ANIO or fecha.month not in MESES_VALIDOS:
+            continue
+        if es_flete(fila[i_prod]):
+            n_flete += 1
+            excluidas_flete += importe
+            continue
+        total += importe
+        n_incluidas += 1
+
+print(f"Filas incluidas: {n_incluidas}")
+print(f"Filas de flete excluidas: {n_flete} por {excluidas_flete}")
+print(f"Total ventas abril-mayo ($): {total}")
+if errores:
+    print("Errores de lectura:")
+    for e in errores[:20]:
+        print(" ", e)
+    print("CIFRA: NO DETERMINABLE")
+else:
+    cifra = int(total) if total == total.to_integral_value() else float(total)
+    print(f"CIFRA: {cifra}")

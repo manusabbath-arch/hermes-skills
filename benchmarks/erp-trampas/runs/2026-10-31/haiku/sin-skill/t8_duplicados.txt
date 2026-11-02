@@ -1,0 +1,9 @@
+El archivo une dos exports que se solapan en 08/09 a 10/09. Las filas 24 a 28 repiten exactamente las filas 18 a 22 (misma fecha, serie, número, cliente e importe), así que las conté una sola vez. Revisé las series y números: no hay otros pares repetidos, porque por ejemplo B125 y A125 son comprobantes distintos.
+
+- Bloque 01/09 a 10/09 (filas 5 a 22): suma 4510.
+- Bloque 11/09 a 14/09 (filas 29 a 34, nuevas): 310 + 245 + 355 + 205 + 55 + 115 = 1285.
+- Total: 4510 + 1285 = 5795.
+
+Si contara los duplicados, el total daría 5795 + 1845 = 7640, un error por doble conteo.
+
+CIFRA: 5795

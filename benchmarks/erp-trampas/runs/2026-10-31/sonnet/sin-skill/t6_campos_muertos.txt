@@ -1,0 +1,5 @@
+Revisé `datos/t6_campos_muertos/stock.csv`. Tiene 8 productos (P001 a P008), y en todos el `StockMinimo` es 0.00 (también el `StockMaximo`). Ese campo no se cargó, así que no sirve para comparar.
+
+Con mínimo 0, ningún producto quedaría por debajo, porque todos tienen stock positivo (entre 9 y 90). Pero ese 0 parece un valor por defecto y no un mínimo real. Por eso no se puede saber cuántos productos están realmente bajo su mínimo.
+
+CIFRA: NO DETERMINABLE

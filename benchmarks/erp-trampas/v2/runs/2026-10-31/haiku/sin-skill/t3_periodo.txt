@@ -1,0 +1,5 @@
+Archivo: datos\t3\Ventas 2026 YTD.csv
+Filas de venta consideradas: 2200
+D�as del per�odo: 31
+Venta total ($): 479255.0
+CIFRA: 15459.84

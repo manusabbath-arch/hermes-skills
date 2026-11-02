@@ -1,0 +1,6 @@
+Preambulo: ['Informe: Ventas por producto', 'Empresa: A', 'Per�odo: 01/08/2026 al 31/08/2026', '']
+Encabezado: ['FECHA', 'CLIENTE', 'PRODUCTO', 'IMPORTE']
+filas mercaderia: 1945 | filas envio: 255 | descartadas: 0
+envio excluido ($): 10050
+mercaderia ($): 431730
+CIFRA: 431730

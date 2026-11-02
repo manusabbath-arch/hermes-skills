@@ -1,0 +1,11 @@
+Leí `skill/SKILL.md` y la plantilla `templates/error-book.md`. La regla que aplica es "toda suma de importes va con su moneda": no se suman dólares como pesos.
+
+El archivo tiene 18 filas de venta de julio (Empresa A, 01/07 al 31/07/2026), con dos monedas:
+- **Pesos (`$`), 14 filas:** 260 + 140 + 75 + 295 + 250 + 395 + 215 + 110 + 265 + 280 + 220 + 220 + 295 + 205 = **3225**.
+- **Dólares (`U$S`), 4 filas:** 10 + 30 + 35 + 40 = **115** (U$S, no pesos).
+
+Para pasar los U$S 115 a pesos hace falta un tipo de cambio. Busqué en toda la carpeta (`datos/` y `skill/`) cotización, tipo de cambio, dólar, USD y similares, y no hay ninguna. La única mención es un caso histórico en `references/casos.md`, que no sirve como cotización de julio de 2026. Por eso no puedo dar un total en pesos. Los $3225 son solo la parte ya en pesos.
+
+Si me pasás el tipo de cambio de julio de 2026 que corresponda, el total en pesos es 3225 + 115 × ese valor.
+
+CIFRA: NO DETERMINABLE

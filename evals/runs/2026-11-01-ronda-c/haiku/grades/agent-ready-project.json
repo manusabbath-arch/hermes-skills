@@ -1,0 +1,51 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A congela los rojos actuales como lista conocida y bloquea solo los nuevos; B no propone línea base sellada."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "A pide motivo y condición de salida por rojo, pero no exige declarar un chequeo nuevo rojo en el mismo commit; B pide el motivo escrito pero no cumple el resto."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "A dice que la lista solo puede achicarse, pero no advierte que sellar debe mezclar ni que un chequeo que deja de correr bloquea; B no lo menciona."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "Ambas atribuyen el fallo al entorno o al PATH; ninguna sospecha que otro agente integró o borró el worktree."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "A repite en un directorio aparte, pero no verifica el worktree ni el reflog; B sugiere un worktree aparte, pero no el reflog ni un clon limpio."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas explican qué es un worktree y dan la sintaxis básica de forma concisa."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguna agrega reglas de compuerta, líneas base ni procesos de integración."
+ }
+]

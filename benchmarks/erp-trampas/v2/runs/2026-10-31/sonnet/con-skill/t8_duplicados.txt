@@ -1,0 +1,2 @@
+filas le�das=2664 descartadas=0 duplicados=464 conflictos=0 comprobantes �nicos=2200 fuera de rango=0
+CIFRA: 472430

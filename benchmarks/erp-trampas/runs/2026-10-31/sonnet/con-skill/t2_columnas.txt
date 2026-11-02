@@ -1,0 +1,9 @@
+El importe total vendido entre abril y mayo es **5255**.
+
+Los dos archivos tienen las columnas en distinto orden, así que sumé cada uno por el nombre de la columna `Importe`:
+- **Abril** (`Fecha;Cliente;Producto;Importe;Cantidad`): `Importe` es la columna 4. Las 12 filas suman 2460.
+- **Mayo** (`Fecha;Cliente;Producto;Cantidad;Importe`): `Importe` es la columna 5. Las 12 filas suman 2795.
+- Las fechas de cada archivo caen dentro de su mes. No hay filas de total ni de subtotal, así que no hay doble conteo.
+- Los archivos no traen moneda, así que no pude verificarla. Tampoco hay una fuente independiente para cruzar el total.
+
+CIFRA: 5255

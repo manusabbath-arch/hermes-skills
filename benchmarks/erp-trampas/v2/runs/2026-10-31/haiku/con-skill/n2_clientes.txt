@@ -1,0 +1,4 @@
+Archivo le�do: datos\t3\Ventas 2026 YTD.csv
+Filas con venta: 2200
+Clientes distintos: 180
+CIFRA: 180

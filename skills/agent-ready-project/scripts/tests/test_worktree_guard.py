@@ -92,7 +92,7 @@ def test_cli_outside_a_repo_is_red(tmp_path):
 
 
 def test_inherited_index_file_does_not_leak(repo, monkeypatch):
-    # El incidente de NG: GIT_INDEX_FILE heredado de un `git commit -- <paths>`.
+    # El incidente de la distribuidora: GIT_INDEX_FILE heredado de un `git commit -- <paths>`.
     monkeypatch.setenv("GIT_INDEX_FILE", "/nonexistent/index")
     assert "GIT_INDEX_FILE" not in wg.isolated_env()
     assert len(wg.list_worktrees(repo)) == 1

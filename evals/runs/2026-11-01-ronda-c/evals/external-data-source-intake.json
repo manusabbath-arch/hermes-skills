@@ -1,0 +1,62 @@
+[
+  {
+    "skills": [
+      "external-data-source-intake"
+    ],
+    "query": "Te paso el export GPS de la flota. Calculame cuántos clientes nunca visitamos a 100 m.",
+    "files": [],
+    "expected_behavior": [
+      "Mide primero qué descarta el lector propio del proyecto contra el archivo crudo",
+      "Hace un barrido del radio (no publica un solo umbral) y declara que el número mide la elección",
+      "Declara qué no trae la fuente antes de cruzar con el padrón de clientes"
+    ]
+  },
+  {
+    "skills": [
+      "external-data-source-intake"
+    ],
+    "query": "Sumé Tiempo Detención de todos los vehículos y da más de mil horas en un mes. ¿Están parados todo el día?",
+    "files": [],
+    "expected_behavior": [
+      "Suma la columna de intervalo por entidad, nunca a través de entidades",
+      "Chequea solapamiento dentro de una entidad (defecto) vs entre entidades (legítimo, p. ej. el depósito)",
+      "Publica suma y unión, no un total único"
+    ]
+  },
+  {
+    "skills": [
+      "external-data-source-intake"
+    ],
+    "query": "El catálogo CKAN me devolvió count 0 para clima. Entonces no hay datos de clima.",
+    "files": [],
+    "expected_behavior": [
+      "No trata un cero de una consulta como ausencia de datos",
+      "Reconsulta por otra vía (filtro de organismo vs texto libre / facets)",
+      "Usa o sigue references/ckan-open-data-catalog.md"
+    ]
+  },
+  {
+    "skills": [
+      "external-data-source-intake"
+    ],
+    "query": "La hoja Parciales tiene más filas que Viajes. Usemos esa como input del ruteo.",
+    "files": [],
+    "expected_behavior": [
+      "Abre la hoja y cita la lista de columnas antes de recomendarla",
+      "No toma el nombre ni el conteo de filas como evidencia del grano",
+      "Rechaza una hoja de viajes sin destino, cliente ni coordenada como log de recorrido"
+    ]
+  },
+  {
+    "skills": [
+      "external-data-source-intake"
+    ],
+    "query": "¿Cómo abro un CSV con pandas?",
+    "files": [],
+    "expected_behavior": [
+      "Responde la pregunta concreta de pandas",
+      "No agrega las siete compuertas, umbrales ni el procedimiento de inventario de esta skill"
+    ],
+    "negativo": true
+  }
+]

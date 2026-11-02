@@ -7,7 +7,7 @@ análisis (los de `templates/validation-note.md` y `templates/decision-note.md`)
 
   RETRACCIÓN  una nota que declara `depends_on` sobre otra con `retractado` (o
               `estado: stale`) es ROJO, salvo que ella misma esté retractada.
-              En NG, un informe retractado seguía citado como base por tres
+              En el proyecto de origen, un informe retractado seguía citado como base por tres
               documentos y nada lo distinguía de la cita que lo retracta.
   DECISIÓN    una nota con campo `dueño`/`owner` (es una decisión):
                 - `abierta` sin dueño, o sin `fecha_limite` ni

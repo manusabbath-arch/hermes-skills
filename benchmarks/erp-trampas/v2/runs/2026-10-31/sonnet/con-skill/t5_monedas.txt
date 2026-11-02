@@ -1,0 +1,6 @@
+Pre�mbulo: ['Informe: Ventas por cliente', 'Empresa: A', 'Per�odo: 01/07/2026 al 31/07/2026']
+Columnas: ['Fecha', 'Cliente', 'Moneda', 'Importe']
+Filas le�das: 2200 descartadas: 0
+Total bruto en $ (incluye flete, no separable): 827920.0
+Columna de producto presente: False | filas con ENV: 0
+CIFRA: NO DETERMINABLE

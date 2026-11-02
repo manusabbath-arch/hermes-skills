@@ -1,0 +1,39 @@
+El script une los dos exports y descarta los cobros repetidos. El rango del 8 al 10 aparece en ambos archivos, así que deduplico por Serie y Número. Después filtra del 01/09 al 14/09 y suma el importe.
+
+```python
+import csv, re, glob
+from datetime import date
+
+def num(s):
+    s = s.strip().replace('$', '').replace(' ', '')
+    if ',' in s and '.' in s:
+        if s.rfind(',') > s.rfind('.'):
+            s = s.replace('.', '').replace(',', '.')
+        else:
+            s = s.replace(',', '')
+    elif ',' in s:
+        s = s.replace(',', '.')
+    return float(s)
+
+vistos = {}
+for f in sorted(glob.glob('datos/t8/cobros_*.csv')):
+    with open(f, encoding='utf-8-sig', newline='') as fh:
+        for row in csv.reader(fh, delimiter=';'):
+            if len(row) < 5 or not re.fullmatch(r'\d{2}/\d{2}/\d{4}', row[0].strip()):
+                continue
+            d, m, a = map(int, row[0].strip().split('/'))
+            fecha = date(a, m, d)
+            clave = (row[1].strip(), row[2].strip())
+            try:
+                imp = num(row[4])
+            except ValueError:
+                continue
+            if clave not in vistos:
+                vistos[clave] = (fecha, imp)
+
+total = sum(imp for fecha, imp in vistos.values()
+            if date(2026, 9, 1) <= fecha <= date(2026, 9, 14))
+if total == int(total):
+    total = int(total)
+print("CIFRA: %s" % total)
+```

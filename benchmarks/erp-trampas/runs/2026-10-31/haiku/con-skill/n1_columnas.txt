@@ -1,0 +1,5 @@
+El archivo tiene 5 columnas: `Codigo`, `Producto`, `Stock`, `StockMinimo` y `StockMaximo`.
+
+Leí `skill/SKILL.md` (que indica responder preguntas puntuales sobre archivos sin agregar procesos) y después `datos/t6_campos_muertos/stock.csv`. El separador es `;`. Conté los campos del encabezado y de las 8 filas de datos, y todas tienen 5 campos. No hay columnas vacías ni separadores sobrantes al final de las líneas.
+
+CIFRA: 5

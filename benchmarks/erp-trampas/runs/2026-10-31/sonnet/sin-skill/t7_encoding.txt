@@ -1,0 +1,7 @@
+Excluyendo ENVÍO (25+35+20+30), sumo las demás:
+
+85+180=265; +70=335; +375=710; +235=945; +120=1065; +305=1370; +145=1515; +175=1690; +365=2055; +135=2190; +220=2410; +375=2785; +320=3105.
+
+Leí el archivo (la codificación no es UTF-8, pero los importes y los nombres se leen bien). Sumé todas las líneas de mercadería y descarté las 4 de ENVÍO.
+
+CIFRA: 3105

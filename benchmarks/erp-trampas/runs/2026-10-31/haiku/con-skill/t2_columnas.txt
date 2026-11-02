@@ -1,0 +1,10 @@
+Sumé por nombre de columna, no por posición: en abril `Importe` es la columna 4 y en mayo es la 5 (`Cantidad` y `Importe` están invertidas entre archivos). Sumar la posición 4 de mayo daría cantidades (69) en lugar de importes.
+
+- **Abril** (`ventas_abril.csv`, 12 filas): 305 + 270 + 110 + 65 + 110 + 115 + 145 + 50 + 375 + 385 + 395 + 135 = **2.460**
+- **Mayo** (`ventas_mayo.csv`, 12 filas): 100 + 275 + 230 + 345 + 45 + 130 + 395 + 175 + 140 + 360 + 305 + 295 = **2.795**
+
+Ninguno de los dos archivos trae fila de total, así que no hay doble conteo. Los importes están en una sola moneda sin indicación de otra, y no hay una fuente independiente para cruzar el total. Las cuentas son manuales, sin ejecución de código.
+
+Total abril + mayo: 2.460 + 2.795 = 5.255 (sin unidades, como pide el formato; el archivo no declara moneda).
+
+CIFRA: 5255

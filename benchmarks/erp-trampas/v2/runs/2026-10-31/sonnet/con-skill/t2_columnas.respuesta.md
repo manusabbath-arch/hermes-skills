@@ -1,0 +1,59 @@
+El script lee los dos CSV por nombre de columna, porque en abril el orden es Importe;Cantidad y en mayo es Cantidad;Importe. Descarta las filas de subtotal o total y las de ENVÍO (flete, que no es venta de mercadería). Suma el Importe en pesos de las fechas de abril y mayo de 2026. Imprime los controles (filas leídas y descartadas, fechas fuera de período, duplicados exactos) y termina con `CIFRA:`.
+
+```python
+import csv, io, re
+from decimal import Decimal
+from datetime import datetime
+
+def leer(path):
+    raw = open(path, "rb").read()
+    try:
+        txt = raw.decode("utf-8-sig")
+    except UnicodeDecodeError:
+        txt = raw.decode("cp1252")
+    return list(csv.reader(io.StringIO(txt), delimiter=";"))
+
+def num(s):
+    s = s.strip().replace("$", "").replace(" ", "")
+    if "," in s and "." in s:
+        s = s.replace(".", "").replace(",", ".")
+    elif "," in s:
+        s = s.replace(",", ".")
+    return Decimal(s)
+
+total = Decimal(0)
+for f in ("datos/t2/ventas_abril.csv", "datos/t2/ventas_mayo.csv"):
+    rows = leer(f)
+    hdr = [h.strip().lower() for h in rows[0]]
+    print(f, "encabezado:", rows[0])
+    i_f, i_c, i_p, i_i = (hdr.index(k) for k in ("fecha", "cliente", "producto", "importe"))
+    ok = desc = fuera = 0
+    sub = Decimal(0)
+    vistos = {}
+    for r in rows[1:]:
+        if not r or not any(x.strip() for x in r):
+            continue
+        txt = " ".join(r).upper()
+        if "TOTAL" in txt or re.search(r"ENV[^;]{0,2}O", r[i_p].upper()):
+            desc += 1
+            continue
+        try:
+            d = datetime.strptime(r[i_f].strip(), "%d/%m/%Y")
+        except ValueError:
+            desc += 1
+            print("fecha inválida:", r)
+            continue
+        if not (d.year == 2026 and d.month in (4, 5)):
+            fuera += 1
+            continue
+        vistos[tuple(r)] = vistos.get(tuple(r), 0) + 1
+        sub += num(r[i_i])
+        ok += 1
+    dup = sum(v - 1 for v in vistos.values() if v > 1)
+    print(f"  filas sumadas={ok} descartadas={desc} fuera_de_periodo={fuera} duplicados_exactos={dup} subtotal={sub}")
+    total += sub
+
+print("CIFRA: " + str(total.normalize() if total == total.to_integral() else total).replace("E+", "E+"))
+```
+
+Nota: no pude ver la salida completa de los archivos. Los duplicados exactos se informan pero no se descuentan, porque podrían ser ventas legítimas repetidas.

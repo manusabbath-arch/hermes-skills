@@ -1,0 +1,9 @@
+El export no es un YTD. El preámbulo dice `Período: 01/03/2026 al 31/03/2026`, así que trae solo marzo (31 días) y no desde enero. El nombre del archivo engaña, como advierte la skill (regla 3: el período se lee del preámbulo).
+
+- **Filas:** 31 filas de detalle, una por día, del 01 al 31/03, sin subtotales ni filas de TOTAL. Es la empresa A.
+- **Suma de importes:** 7.370. La hice a mano y la fui acumulando fila por fila.
+- **Promedio por día:** 7.370 / 31 días = 237,74.
+
+Ese promedio vale para marzo 2026 (empresa A), no para el año hasta la fecha. Para un promedio de enero a marzo haría falta un export que cubra todo el período.
+
+CIFRA: 237.74

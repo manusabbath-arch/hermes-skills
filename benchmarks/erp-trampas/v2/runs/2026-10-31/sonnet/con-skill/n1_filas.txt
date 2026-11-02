@@ -1,0 +1,4 @@
+Encabezado: ['Codigo', 'Producto', 'Stock', 'StockMinimo', 'StockMaximo']
+Filas descartadas (vac�as/total): 0
+C�digos distintos: 2200
+CIFRA: 2200

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "<tmp>\erp-script-oj8wad9q\_respuesta.py", line 61, in <module>
+    main()
+    ~~~~^^
+  File "<tmp>\erp-script-oj8wad9q\_respuesta.py", line 11, in main
+    with open(ARCHIVO, "rb") as f:
+         ~~~~^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'ventas_agosto.csv'

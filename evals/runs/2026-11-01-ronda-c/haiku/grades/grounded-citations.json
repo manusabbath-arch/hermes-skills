@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno usa sources.py ni registra URLs; ambos dicen que no pueden buscar."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "No hay citas [n] ni render con sources.py en ninguna respuesta."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno corre sources.py verify."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno usa quote --from; piden que se pegue el texto."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno corre verify --evidence ni render --style evidence."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "No hay afirmaciones propias marcadas [unverified] en este pedido; ambos piden el texto."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno rechaza editar a mano; ambos ofrecen reescribir o reordenar el bloque manualmente."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno usa render --replace-in."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "A propone renumerar Sources por orden de aparición; B reescribe el bloque a mano y no trata los ids como identidades del ledger."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno hace fan-out; ambos dicen no tener acceso."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "No hay ledger en ninguna respuesta."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "B señala que un hilo de Reddit es opinión y no un hecho comprobado; A no hace la distinción."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos explican la sintaxis con ejemplos."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguno abre ledger, cita con [n] ni agrega bloque Sources."
+ }
+]

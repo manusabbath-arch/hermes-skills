@@ -1,0 +1,5 @@
+Filas de marzo 2026 sumadas: 2200
+Filas fuera de marzo ignoradas: 0
+Suma calculada: 468550
+TOTAL GENERAL informado por el ERP: 468550
+CIFRA: 468550

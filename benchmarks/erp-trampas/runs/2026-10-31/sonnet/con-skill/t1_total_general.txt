@@ -1,0 +1,10 @@
+La empresa A vendió 3030 en marzo.
+
+- **Archivo:** el export es "Ventas por cliente", Empresa A, período 01/03/2026 al 31/03/2026, según el preámbulo. El período y la empresa coinciden con lo que pregunta.
+- **Subtotal:** la última fila, `TOTAL GENERAL;3030`, es un subtotal del propio export. Sumarla junto con el detalle duplicaría el resultado, así que la excluí de la suma.
+- **Cuenta a mano:** sumé las 16 filas de detalle: 195+340+180+140+105+60+210+185+90+185+340+155+280+270+190+105 = 3030.
+- **Control:** el detalle da lo mismo que el `TOTAL GENERAL`, así que el archivo cierra consigo mismo.
+
+El archivo no declara la moneda, así que no puedo confirmar en qué unidad está el 3030.
+
+CIFRA: 3030

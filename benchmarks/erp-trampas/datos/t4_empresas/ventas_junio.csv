@@ -1,0 +1,25 @@
+Informe: Ventas por cliente
+Empresa: (todas)
+Período: 01/06/2026 al 30/06/2026
+
+Empresa;Cliente;Importe
+A;Almacén Norte;140
+A;Autoservicio Plaza;180
+A;Super Centro;325
+B;Bar Oeste;245
+B;Autoservicio Plaza;240
+B;Autoservicio Plaza;100
+B;Super Centro;315
+A;Bar Oeste;345
+A;Almacén Norte;360
+A;Almacén Norte;195
+A;Minimercado Río;75
+B;Panadería Este;215
+B;Almacén Norte;75
+B;Super Centro;75
+B;Autoservicio Plaza;370
+A;Super Centro;245
+A;Super Centro;235
+A;Autoservicio Plaza;210
+A;Bar Oeste;325
+B;Kiosco Sur;355

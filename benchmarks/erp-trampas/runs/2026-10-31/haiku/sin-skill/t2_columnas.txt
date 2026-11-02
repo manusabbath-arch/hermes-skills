@@ -1,0 +1,9 @@
+Los dos archivos tienen las columnas en distinto orden: en abril, `Importe` es la 4ª columna y `Cantidad` la 5ª; en mayo, es al revés. Tomé la columna `Importe` según el encabezado de cada archivo, no por posición.
+
+- **Abril** (12 filas): 305 + 270 + 110 + 65 + 110 + 115 + 145 + 50 + 375 + 385 + 395 + 135 = **2460**
+- **Mayo** (12 filas): 100 + 275 + 230 + 345 + 45 + 130 + 395 + 175 + 140 + 360 + 305 + 295 = **2795**
+- **Total**: 2460 + 2795 = **5255**
+
+Los archivos no tienen fila de totales ni datos vacíos, así que no hay nada que excluir.
+
+CIFRA: 5255

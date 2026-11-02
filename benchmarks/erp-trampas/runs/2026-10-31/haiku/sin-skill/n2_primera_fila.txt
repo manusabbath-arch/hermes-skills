@@ -1,0 +1,3 @@
+La primera fila de datos es la línea 6, justo debajo del encabezado `Empresa;Cliente;Importe` (línea 5). Las líneas 1 a 4 son título, empresa, período y una línea vacía, así que no cuentan. La fila es `A;Almacén Norte;140`, y la columna Importe vale 140.
+
+CIFRA: 140

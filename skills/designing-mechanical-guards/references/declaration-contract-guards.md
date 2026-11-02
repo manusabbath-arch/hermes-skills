@@ -1,7 +1,11 @@
 # Guards over your own declarations
 ## Contents
 
-- See headings below. Load this file when SKILL.md points here.
+1. Declare per artifact, and let the artifact be the judge
+2. An artifact nobody declared is itself a finding
+3. Measure the whole corpus before writing the declaration
+4. The consumer side is half the contract
+5. Verification
 
 
 A fourth shape beside the static probe over source, the comparator over prose, and the

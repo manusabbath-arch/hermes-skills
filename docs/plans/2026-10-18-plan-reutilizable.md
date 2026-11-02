@@ -165,19 +165,41 @@ la cifra correcta se verifica con una identidad independiente (canario) en un te
 benchmark); 5.2 tabla de trampas evitadas con y sin skill (*control:* `eval_report.py`
 extendido y diff del CI).
 
-### Fase 6 — Volver a NG
+**Estado (31/10/26):** 5.1 **hecho** (`benchmarks/erp-trampas/`: generador con semilla,
+referencia que recalcula desde los archivos, canario y "cada trampa trampea" en tests).
+5.2 **hecho con resultado negativo**: la tabla existe y el CI la regenera (con
+`benchmarks/erp-trampas/puntuar.py`, no con `eval_report.py`: la puntuación es por cifra y
+no necesita evaluador), pero **no discrimina** — 0 caídas en la trampa sin skill en Haiku
+ni en Sonnet (`runs/2026-10-31/LECTURA.md`). Dos desvíos de este plan explican buena parte:
+solo CSV (sin XLSX, por la política de stdlib) y preguntas que nombran la dimensión de la
+trampa en vez de "¿cuánto vendimos?". La v2 (`benchmarks/erp-trampas/v2/`, mismo día, con
+pre-registro) corrigió eso: archivos grandes, respuesta por script y preguntas de negocio.
+**Tampoco discrimina:** 0 caídas en 80 llamadas entre las dos versiones.
+
+**Cerrada (01/11/26, decisión del dueño del tap) con resultado negativo.** No se hace una
+v3 ajustada hasta que la skill gane: sería minería. El punto 4 (publicarlo como dataset
+abierto) queda cumplido tal como está: el dataset, el runner y las dos lecturas son
+públicos, y el negativo es parte de lo que se publica. Si se vuelve a medir, es otra
+pregunta con su propio pre-registro: una tarea de varios pasos sobre exports con varias
+trampas juntas, con shell (`v2/runs/2026-10-31/LECTURA.md`).
+
+### Fase 6 — Volver al proyecto de origen
 
 Usar el tap en el proyecto de origen por symlink, reemplazar sus copias de las guardas por
 las del tap donde sean iguales, y medir con el benchmark de la fase 5 sobre exports
 reales anonimizados. Cierra el ciclo: el proyecto que originó las reglas valida su
 versión portable.
 
-**Criterio:** 6.1 NG corre las guardas del tap sin regresiones (*control:* su
-`ng.py validar` contra la línea base).
+**Criterio:** 6.1 el proyecto de origen corre las guardas del tap sin regresiones (*control:* su
+su compuerta (`validar`) contra la línea base).
 
 ## 4. Lo que NO vamos a hacer
 
 - Sumar skills nuevas antes de que las 7 actuales discriminen en las evals (fase 1).
+  **Excepción registrada (v1.4.0, 01/11/26):** entraron 4 skills destiladas del perfil
+  Hermes (PR #6, mergeado por el dueño del tap) con sus `evals.json` pero sin corrida. La
+  ronda C (`evals/runs/2026-11-01-ronda-c/`) las mide. La regla sigue vigente para las
+  próximas: una skill nueva entra con su corrida con/sin skill, no solo con escenarios.
 - Un marketplace propio o un instalador propio: el valor vive en el contenido y los
   checks, no en el mecanismo (lección de superpowers).
 - Traducir todo al inglés: las descripciones sí, el cuerpo en español es el diferencial.
@@ -207,6 +229,9 @@ v1.3.0, como `kit/` dentro del tap y no como repo plantilla aparte (una sola fue
 guardas se copian del mismo árbol con su sha). Criterio 4.1: el CI genera un proyecto,
 corre `init.sh` en verde y prueba que el pre-commit rechaza un rojo. Criterio 4.2:
 `scripts/tests/test_new_project.py` rompe cada guarda a propósito. Siguiente: fase 5.
+
+**Estado (2026-11-01):** fase 5 cerrada con resultado negativo (v1 y v2 del benchmark, 0
+caídas en 80 llamadas; ver su sección). Siguiente: fase 6.
 
 Recomendación de arranque: **fase 1 y fase 3 en paralelo**. Son las que convierten lo
 que hoy afirmamos ("sirve", "es seguro") en algo que un check prueba.

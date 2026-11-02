@@ -1,0 +1,4 @@
+Columnas: ['Empresa', 'Fecha', 'Cliente', 'Importe']
+Total empresa A (referencia, puede incluir flete): 243590.0
+El export no tiene columna de producto: no se puede excluir ENV�O.
+CIFRA: NO DETERMINABLE

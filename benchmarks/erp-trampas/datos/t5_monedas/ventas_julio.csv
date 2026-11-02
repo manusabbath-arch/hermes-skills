@@ -1,0 +1,23 @@
+Informe: Ventas por cliente
+Empresa: A
+Período: 01/07/2026 al 31/07/2026
+
+Cliente;Moneda;Importe
+Super Centro;$;260
+Almacén Norte;U$S;10
+Panadería Este;$;140
+Kiosco Sur;$;75
+Kiosco Sur;$;295
+Bar Oeste;$;250
+Cantina Puerto;U$S;30
+Almacén Norte;$;395
+Panadería Este;$;215
+Super Centro;$;110
+Kiosco Sur;U$S;35
+Minimercado Río;U$S;40
+Minimercado Río;$;265
+Super Centro;$;280
+Almacén Norte;$;220
+Autoservicio Plaza;$;220
+Panadería Este;$;295
+Minimercado Río;$;205

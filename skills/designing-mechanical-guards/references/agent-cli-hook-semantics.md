@@ -70,6 +70,20 @@ Y cuando la guarda tiene un modo de medición (sombra: registra y no bloquea), e
 el modo sombra y la promesa de "no frena"; el mapeo de campos se cubre con un test puro de
 la función que traduce. No hace falta un caso end-to-end que fuerce el bloqueo.
 
+## Los permisos versionados también son una guarda
+
+La lista de comandos que un agente puede correr sin preguntar es código del repo: la leen todos
+los agentes que cargan ese archivo. Un patrón con comodín que **no nombra el script**
+(`python *`) es ejecución arbitraria: `python -c "…"` pasa sin que nadie lo apruebe. Medido en
+el proyecto de origen: el test que buscaba seis palabras peligrosas en esa lista no lo veía,
+porque un test que busca palabras prueba que esas palabras no están, no el criterio.
+
+- **El criterio mecanizable:** el patrón nombra lo que corre (`python -m pytest *`,
+  `python tool.py sql *`). Un detector chico, un corpus de patrones que tiene que rechazar y
+  otro que tiene que aceptar, y una aserción sobre el archivo real.
+- **Lo de la máquina va al archivo local ignorado:** el intérprete suelto o una ruta propia no
+  se versionan.
+
 ## Cuando la guarda te mira a vos
 
 Si tu entregable es un archivo que el propio gate del repo parsea (un plan, una validación,

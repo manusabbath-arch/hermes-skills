@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A sugiere un test con caso malo pero no pide que falle antes de existir el guard; B lo ordena explícitamente primero."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "A menciona chequeo en el gate (CI/pre-commit); B lo registra en el gate existente y verifica salida y exit code."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "A no menciona denominador ni árbol vacío; B muestra N inspeccionados y hace rojo el árbol vacío."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas rechazan el verde en el repo real como prueba."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "A pide un caso malo a propósito, no un fixture sintético con valor esperado inyectado; B pide fixture sintético con el defecto."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A pide crear el caso malo, ver rojo y revertir a verde; B pide fixture con defecto pero no voltear el defecto en el repo real."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A habla de probar que son previos pero no formula 'sin nuevo rojo'; B lo dice explícitamente."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "A no compara el conjunto de FAIL contra un baseline; B compara con el baseline."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "A sugiere bypass documentado pero deja la opción abierta y no es específico del paso; B usa el escape por paso y registra en el commit sin bypass global."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas rechazan || true."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna convierte el advisory en el sitio de llamada siguiendo advisory-to-enforcement."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": true,
+  "B": true,
+  "nota": "Ambas piden motivo documentado; B además marca no crítico con razón en el registro."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas responden directamente."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguna agrega guard ni gate; solo consejos propios del renombrado."
+ }
+]

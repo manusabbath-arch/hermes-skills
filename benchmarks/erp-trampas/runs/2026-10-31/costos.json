@@ -1,0 +1,246 @@
+{
+  "tope_usd": 5.0,
+  "gastado_usd": 0.6725,
+  "llamadas": [
+    {
+      "modelo": "haiku",
+      "condicion": "con-skill",
+      "caso": "t1_total_general",
+      "usd": 0.0032
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "con-skill",
+      "caso": "t2_columnas",
+      "usd": 0.0032
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "con-skill",
+      "caso": "t3_periodo",
+      "usd": 0.0039
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "con-skill",
+      "caso": "t4_empresas",
+      "usd": 0.0036
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "con-skill",
+      "caso": "t5_monedas",
+      "usd": 0.0046
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "con-skill",
+      "caso": "t6_campos_muertos",
+      "usd": 0.0032
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "con-skill",
+      "caso": "t7_encoding",
+      "usd": 0.0028
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "con-skill",
+      "caso": "t8_duplicados",
+      "usd": 0.0041
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "con-skill",
+      "caso": "n1_columnas",
+      "usd": 0.0027
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "con-skill",
+      "caso": "n2_primera_fila",
+      "usd": 0.0024
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "sin-skill",
+      "caso": "t1_total_general",
+      "usd": 0.0012
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "sin-skill",
+      "caso": "t2_columnas",
+      "usd": 0.0011
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "sin-skill",
+      "caso": "t3_periodo",
+      "usd": 0.0014
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "sin-skill",
+      "caso": "t4_empresas",
+      "usd": 0.0007
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "sin-skill",
+      "caso": "t5_monedas",
+      "usd": 0.0009
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "sin-skill",
+      "caso": "t6_campos_muertos",
+      "usd": 0.0009
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "sin-skill",
+      "caso": "t7_encoding",
+      "usd": 0.001
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "sin-skill",
+      "caso": "t8_duplicados",
+      "usd": 0.0012
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "sin-skill",
+      "caso": "n1_columnas",
+      "usd": 0.0005
+    },
+    {
+      "modelo": "haiku",
+      "condicion": "sin-skill",
+      "caso": "n2_primera_fila",
+      "usd": 0.0005
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "con-skill",
+      "caso": "t1_total_general",
+      "usd": 0.0574
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "con-skill",
+      "caso": "t2_columnas",
+      "usd": 0.0542
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "con-skill",
+      "caso": "t3_periodo",
+      "usd": 0.0498
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "con-skill",
+      "caso": "t4_empresas",
+      "usd": 0.0451
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "con-skill",
+      "caso": "t5_monedas",
+      "usd": 0.051
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "con-skill",
+      "caso": "t6_campos_muertos",
+      "usd": 0.05
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "con-skill",
+      "caso": "t7_encoding",
+      "usd": 0.0488
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "con-skill",
+      "caso": "t8_duplicados",
+      "usd": 0.0502
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "con-skill",
+      "caso": "n1_columnas",
+      "usd": 0.0457
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "con-skill",
+      "caso": "n2_primera_fila",
+      "usd": 0.0442
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "sin-skill",
+      "caso": "t1_total_general",
+      "usd": 0.0187
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "sin-skill",
+      "caso": "t2_columnas",
+      "usd": 0.0152
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "sin-skill",
+      "caso": "t3_periodo",
+      "usd": 0.0168
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "sin-skill",
+      "caso": "t4_empresas",
+      "usd": 0.0117
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "sin-skill",
+      "caso": "t5_monedas",
+      "usd": 0.014
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "sin-skill",
+      "caso": "t6_campos_muertos",
+      "usd": 0.0091
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "sin-skill",
+      "caso": "t7_encoding",
+      "usd": 0.0103
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "sin-skill",
+      "caso": "t8_duplicados",
+      "usd": 0.0164
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "sin-skill",
+      "caso": "n1_columnas",
+      "usd": 0.0092
+    },
+    {
+      "modelo": "sonnet",
+      "condicion": "sin-skill",
+      "caso": "n2_primera_fila",
+      "usd": 0.0116
+    }
+  ]
+}

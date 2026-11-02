@@ -1,0 +1,45 @@
+import os
+
+RUTA = os.path.join("datos", "t3", "Ventas 2026 YTD.csv")
+
+
+def leer_lineas(ruta):
+    with open(ruta, "rb") as f:
+        raw = f.read()
+    for enc in ("utf-8-sig", "cp1252", "latin-1"):
+        try:
+            return raw.decode(enc).splitlines()
+        except UnicodeDecodeError:
+            continue
+    return raw.decode("latin-1").splitlines()
+
+
+def main():
+    lineas = leer_lineas(RUTA)
+
+    clientes = set()
+    en_datos = False
+    for linea in lineas:
+        partes = linea.split(";")
+        if not en_datos:
+            # La fila de columnas es la que tiene "Cliente" en la segunda posición
+            if len(partes) >= 2 and partes[1].strip().lower() == "cliente":
+                en_datos = True
+            continue
+        if len(partes) < 3:
+            continue
+        cliente = " ".join(partes[1].split()).upper()
+        if not cliente:
+            continue
+        clientes.add(cliente)
+
+    if not clientes:
+        print("CIFRA: NO DETERMINABLE")
+        return
+
+    print(f"Clientes distintos: {len(clientes)}")
+    print(f"CIFRA: {len(clientes)}")
+
+
+if __name__ == "__main__":
+    main()

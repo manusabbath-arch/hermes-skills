@@ -1,0 +1,7 @@
+Julio vendió **$3.225** en pesos, sin contar los dólares.
+
+- El archivo es de la empresa A y su período declarado es 01/07/2026 al 31/07/2026. No tiene fila de total ni subtotales.
+- Mezcla dos monedas, `$` y `U$S`, así que no se pueden sumar sin separar. Sumé solo las 14 filas en `$`: 260+140+75+295+250+395+215+110+265+280+220+220+295+205 = 3225.
+- Hay 4 filas en `U$S` (10+30+35+40 = 115 dólares). No las convertí, porque en la carpeta no hay tipo de cambio. Se informan aparte y no suman a los pesos.
+
+CIFRA: 3225

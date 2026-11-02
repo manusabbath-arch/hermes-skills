@@ -1,0 +1,51 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A propone un tercer estado 'sin datos' pero no una línea base sellada que separe regresión de rojo conocido; B lo hace explícitamente."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "A pide dueño y plazo, no motivo y condición de salida, ni declarar el chequeo nuevo en el mismo commit; B pide motivo y condición de salida, y trata como bloqueante un rojo nuevo fuera de la base, aunque no menciona el mismo commit."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "B advierte que sellar debe mezclar y no reemplazar, y que un chequeo que desaparece también bloquea; A no lo menciona."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "Los dos sospechan del entorno (PATH, venv, CRLF) pero ninguno sospecha que otro agente integró o borró el worktree o cambió el árbol."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno propone verificar que el worktree exista, mirar el reflog ni repetir en un clon limpio; ambos sugieren probar en el commit anterior o en un worktree aparte."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos explican qué es un worktree y dan la sintaxis básica de forma breve."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguno agrega reglas de compuerta, líneas base ni procesos de integración; solo detalles propios de git worktree."
+ }
+]

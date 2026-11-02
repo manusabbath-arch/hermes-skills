@@ -1,0 +1,5 @@
+Sumé a mano las 11 filas con `Empresa = A` del archivo (líneas 6 a 24) en la columna `Importe`: 140 + 180 + 325 + 345 + 360 + 195 + 75 + 245 + 235 + 210 + 325 = 2635. Como control, las 9 filas de B suman 1990, y el total del archivo sería 4625.
+
+El preámbulo declara "Período: 01/06/2026 al 30/06/2026", así que el universo es junio. Lo que el archivo no declara es la moneda del `Importe` ni la hora del export, y no hay una fuente independiente para cruzar la cifra. Por eso la tomo como importe del archivo, sin confirmar moneda.
+
+CIFRA: 2635

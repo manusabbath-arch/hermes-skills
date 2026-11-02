@@ -1,0 +1,36 @@
+Informe: Ventas por día
+Empresa: A
+Período: 01/03/2026 al 31/03/2026
+
+Fecha;Cliente;Importe
+01/03/2026;Almacén Norte;60
+02/03/2026;Panadería Este;390
+03/03/2026;Kiosco Sur;195
+04/03/2026;Autoservicio Plaza;190
+05/03/2026;Kiosco Sur;205
+06/03/2026;Autoservicio Plaza;45
+07/03/2026;Autoservicio Plaza;365
+08/03/2026;Autoservicio Plaza;190
+09/03/2026;Bar Oeste;90
+10/03/2026;Super Centro;130
+11/03/2026;Almacén Norte;390
+12/03/2026;Panadería Este;165
+13/03/2026;Almacén Norte;305
+14/03/2026;Almacén Norte;205
+15/03/2026;Bar Oeste;195
+16/03/2026;Panadería Este;170
+17/03/2026;Bar Oeste;260
+18/03/2026;Bar Oeste;350
+19/03/2026;Minimercado Río;390
+20/03/2026;Panadería Este;215
+21/03/2026;Cantina Puerto;205
+22/03/2026;Panadería Este;285
+23/03/2026;Minimercado Río;360
+24/03/2026;Bar Oeste;395
+25/03/2026;Super Centro;225
+26/03/2026;Cantina Puerto;160
+27/03/2026;Panadería Este;255
+28/03/2026;Bar Oeste;330
+29/03/2026;Bar Oeste;110
+30/03/2026;Cantina Puerto;225
+31/03/2026;Panadería Este;315

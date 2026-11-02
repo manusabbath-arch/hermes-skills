@@ -1,0 +1,38 @@
+[
+  {
+    "skills": [
+      "erp-business-analysis"
+    ],
+    "query": "Corrí una consulta en DB2 que arma cada fila como NOMBRE || ';' || RUC || ';' || TELEFONO. La salida dice '20 record(s) selected.' pero cuento 16 líneas. ¿Se cortó el archivo?",
+    "files": [],
+    "expected_behavior": [
+      "Explica que una columna NULL dentro de || vuelve NULL toda la concatenación y la fila desaparece de la salida",
+      "Propone COALESCE(col, '') en cada operando que admite NULL, y aclara que no cambia los valores no nulos",
+      "Recomienda comparar filas declaradas contra filas impresas en cada corrida (y revisar también un NULLIF en un divisor)"
+    ]
+  },
+  {
+    "skills": [
+      "erp-business-analysis"
+    ],
+    "query": "Hice LEFT JOIN entre las líneas de venta y la tabla de productos de la base del ERP por PRODUCTOID contra el código del export, y ningún producto tiene proveedor. ¿El maestro de productos está vacío?",
+    "files": [],
+    "expected_behavior": [
+      "Lee el 0 de coincidencias como señal de clave equivocada, no como dato ausente",
+      "Sospecha de tipo/relleno de la clave (CHAR con espacios, otra columna de código) y propone TRIM o la columna de código correcta",
+      "Pide contar coincidencias del join antes de mirar resultados"
+    ]
+  },
+  {
+    "skills": [
+      "erp-business-analysis"
+    ],
+    "query": "¿Cómo se escribe en SQL un LEFT JOIN entre dos tablas?",
+    "files": [],
+    "negativo": true,
+    "expected_behavior": [
+      "Responde la sintaxis del LEFT JOIN de forma directa con un ejemplo",
+      "No agrega catálogos de campos muertos, canarios, sellos de procedencia ni advertencias del ERP que nadie pidió"
+    ]
+  }
+]

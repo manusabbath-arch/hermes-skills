@@ -1,7 +1,7 @@
 ---
 name: agent-ready-project
 description: "Use when setting up or hardening a project that AI agents will build and modify - any codebase, not just data or trading. Covers the non-eludible validation loop (pre-commit, CI, pre-push), turning a check on over a dirty codebase with a ratchet baseline, docs that verify their own numbers, measuring lint debt instead of sweeping it, guards on every surface that can run the action, and the failure modes specific to agent-written code: invented API signatures, unverified self-reports, phantom wiring, silent-green tasks. Also covers empty-green checks that approve over zero items, plans that declare how they fail, and several agents sharing one repo: worktree per session, detached HEAD, concurrent commits, per-agent guard coverage, and long-running work across sessions (feature list, progress file, separate evaluator)."
-version: 1.2.0
+version: 1.3.0
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
@@ -106,6 +106,9 @@ check mal escrito salía en verde con código 0.
 - **Un rojo permanente es la misma enfermedad:** si siempre está rojo, el próximo
   defecto real entra a la lista sin que nadie lo note. El check pregunta *"¿esto
   debería estar y no está?"*, no *"¿está?"*.
+- **Contrato completo de la línea base** (regresión vs rojo declarado con condición de
+  salida, chequeo desaparecido): `references/diseno-de-guardas.md` y
+  `scripts/check_baseline.py`.
 - **Sellar la línea base con una corrida filtrada mergea, no reemplaza.** Un
   `--seal` parcial que reescribe la base deja 1 entrada de 23 y convierte los rojos
   declarados en regresiones que bloquean a todos.
@@ -280,6 +283,8 @@ en `references/multi-agent-repo.md`:
   irreversible.
 - **Sesiones sin shell anotan lo que dejan sin commitear** con el requisito que le
   falta; la sesión con shell lo procesa primero, y la entrada vence.
+- **El disco de un worktree no es durable y una rama sin integrar es estado real:**
+  commitear temprano; antes de decir "qué falta", mirar las ramas vivas.
 
 ## Planes que declaran cómo fallan
 
@@ -470,14 +475,21 @@ Si no pasó ninguna de las tres, es un documento más que se lee y se olvida.
   `sql_clients` y `protected_paths` (`--config` o `PROD_GUARD_CONFIG`).
 - `scripts/worktree_guard.py` — rojo si un worktree detached tiene commits que
   ninguna rama alcanza. Uso: `python3 worktree_guard.py --repo . --base main`.
-- `scripts/tests/` — tests herméticos de los cuatro scripts.
+- `scripts/check_baseline.py` — compuerta contra una línea base sellada: regresión,
+  rojo declarado (motivo + condición de salida), chequeo desaparecido; sellar mezcla.
+  Uso: `python3 check_baseline.py --results r.json --baseline base.json [--seal]`.
+- `scripts/tests/` — tests herméticos de los cinco scripts.
+- `references/diseno-de-guardas.md` — catálogo de chequeos, línea base con rojos
+  declarados, denominador, perímetros con un dueño, una regla una implementación,
+  permisos del agente, compuerta en capas, guardas en sombra.
 - `references/diagnosis-and-review.md` — diagnóstico en cuatro fases y cómo
   recibir una revisión.
 - `references/casos.md` — los proyectos de origen y los incidentes completos
   detrás de las reglas.
 - `references/multi-agent-repo.md` — varios agentes sobre el mismo repo:
   worktrees, commits concurrentes, locks/EOL, guardas por consumidor, agentes que
-  se hablan, sesiones sin shell, tests bajo contención.
+  se hablan, sesiones sin shell, tests bajo contención, ramas vivas y worktrees que
+  desaparecen.
 
 ## Fuente canónica
 

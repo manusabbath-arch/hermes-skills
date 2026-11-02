@@ -1,3 +1,7 @@
 # LF en todas las plataformas: SHA256SUMS se genera en Linux y tiene que
 # verificar igual una instalación clonada en Windows (autocrlf la pasaría a CRLF).
 * text=auto eol=lf
+
+# Los exports del benchmark son datos crudos: los bytes (cp1252 incluido) son la trampa.
+benchmarks/erp-trampas/datos/** -text
+benchmarks/erp-trampas/v2/datos/** -text

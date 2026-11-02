@@ -1,0 +1,3 @@
+Sumé los importes de todas las filas de `ventas_agosto.csv` cuyo producto no es ENVÍO. El archivo tiene 18 filas de datos (líneas 6 a 23). Excluí las 4 de flete (25 + 35 + 20 + 30 = 110). Las 14 restantes suman 3105: 85 + 180 + 70 + 375 + 235 + 120 + 305 + 145 + 175 + 365 + 135 + 220 + 375 + 320. El período del encabezado es 01/08/2026 al 31/08/2026, así que todas las filas corresponden a agosto. Hay dos filas de "Cantina Puerto / Galletas 200g" (365 y 375), pero con importes distintos, así que las traté como ventas separadas y no como duplicados. El nombre de ENVÍO aparece con un carácter dañado por la codificación, pero se identifica sin ambigüedad.
+
+CIFRA: 3105

@@ -1,7 +1,10 @@
 # Auditing a check set for vacuous green
 ## Contents
 
-- See headings below. Load this file when SKILL.md points here.
+1. The three probes, cheapest first
+2. The error-into-pass path
+3. Why a green is not evidence, even when non-vacuous
+4. Reporting the findings
 
 
 For the question "do these checks actually check anything?" — reviewing an existing gate,

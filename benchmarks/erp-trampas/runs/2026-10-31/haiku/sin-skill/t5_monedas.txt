@@ -1,0 +1,3 @@
+Sumé a mano solo las filas con moneda `$` (14 filas), porque en este archivo `U$S` es dólar y no hay ninguna tabla de cotización en la carpeta para convertirlo. Las filas en `$` suman 260+140+75+295+250+395+215+110+265+280+220+220+295+205 = 3225. Las cuatro filas en `U$S` (10+30+35+40 = 115 dólares) quedan fuera del total porque no se pueden pasar a pesos con estos datos.
+
+CIFRA: 3225

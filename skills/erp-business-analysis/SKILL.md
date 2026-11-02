@@ -1,7 +1,7 @@
 ---
 name: erp-business-analysis
 description: "Use when analyzing a real business from its ERP or accounting system with AI agents - sales, margin, stock rotation, debt/collections, supplier scorecards, ABC classification - working from spreadsheet exports (.xls/.xlsx/.csv) or a read-only production database. Covers the eight ways an analysis publishes a wrong but plausible number, provenance seals, canary cross-checks against an independent source, NULL-vs-stored-zero fields, multiple legal entities in one ERP, declared period and export hour, currency and DECIMAL pitfalls, retractions that propagate, owner-declared premises, third-party data that must not be versioned, and decision notes with owner and review trigger."
-version: 1.0.0
+version: 1.1.0
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
@@ -96,6 +96,26 @@ Mantener en el proyecto un **libro de errores** propio con esta misma estructura
    pausado, no muerto). *Freno:* separar lo **declarado por el dueño** (manda) de lo
    **medido** (se revisa), y fechar las premisas.
 
+## Antes de calcular: ¿ya está medido?
+
+El fallo más repetido en las evals del proyecto de origen no fue calcular mal: fue
+**recalcular contra la base lo que una validación ya traía** con su fuente y su fecha.
+
+- Buscar primero en las validaciones (un buscador por palabras sobre `validaciones/`);
+  si la nota fue corregida, leer su bloque de corrección antes que su cifra.
+- **Una cifra heredada de otra medición no es una cifra medida.** "0 de 29 planes con
+  criterios de aceptación" era el 0 de **otra** sección; medida, era 1 de 29. Cada cifra
+  se mide cuando se escribe, sobre el campo exacto del que habla.
+- **Un chequeo de consistencia mira el componente, no la subcadena:** "la localidad está
+  en la dirección geocodificada" daba verde con el nombre de la localidad en la **calle**.
+  Antes de publicar el conteo, correr el chequeo sobre aciertos conocidos y exigir 0
+  falsos positivos.
+- **Un conteo que se mueve con cada unidad de trabajo se cita como propiedad**, no como
+  número ("ninguna validación mal formada", no "293 de 293"): el número envejece en horas.
+- **El estado real incluye las ramas sin integrar:** una rama tenía corregida una cifra
+  que `main` seguía publicando. Antes de responder "qué falta", mirar `git log main..<rama>`
+  de cada rama viva.
+
 ## Reglas de lectura del ERP
 
 - **Un `0.00` no es un dato hasta probar que lo es.** Campos que nadie carga
@@ -165,6 +185,10 @@ Mantener en el proyecto un **libro de errores** propio con esta misma estructura
   chequeo barato que habría frenado el `abs()` del tipo 7.
 
 ## La base productiva
+
+Detalle (catálogo de campos muertos, integridad que la base no declara, trampas de join,
+la fila que un `||` con NULL borra en DB2, leer la salida por contenido, el wrapper de
+solo lectura): `references/base-erp-legado.md`.
 
 - **Solo lectura, con guarda física**, no con prosa: un hook en **cada** agente
   que pueda ejecutar SQL o tocar la UI corta lo que modifica (`INSERT`, `UPDATE`,
@@ -262,6 +286,8 @@ La skill se está aplicando si, en la primera semana:
   obligatoria, cero filas, techo de `.xls`, período esperado). Uso:
   `python3 provenance_seal.py export.csv --entity SAS --encoding cp1252 --delimiter ";" --skip-regex TOTAL`.
 - `references/casos.md` — el proyecto de origen y los incidentes completos.
+- `references/base-erp-legado.md` — la base relacional de un ERP legado: modelo medido,
+  integridad, joins, universo de una suma, dialecto DB2, wrapper de solo lectura.
 - `scripts/doc_lifecycle.py` — retracciones que se propagan y decisiones con
   dueño, sobre el frontmatter de las plantillas. Uso:
   `python3 doc_lifecycle.py validaciones/ decisiones/ informes/`.

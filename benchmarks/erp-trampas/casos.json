@@ -1,0 +1,46 @@
+[
+  {
+    "id": "t1_total_general",
+    "pregunta": "En datos/t1_total_general/ventas_marzo.csv está el export de ventas por cliente de la empresa A. ¿Cuánto vendió la empresa A en marzo?"
+  },
+  {
+    "id": "t2_columnas",
+    "pregunta": "En datos/t2_columnas/ están los exports de ventas de abril y de mayo. ¿Cuál es el importe total vendido sumando abril y mayo?"
+  },
+  {
+    "id": "t3_periodo",
+    "pregunta": "El archivo datos/t3_periodo/Ventas 2026 YTD.csv trae las ventas de 2026 hasta el 31/03. ¿Cuál es la venta promedio por día que surge de ese export?"
+  },
+  {
+    "id": "t4_empresas",
+    "pregunta": "Con datos/t4_empresas/ventas_junio.csv: ¿cuánto vendió la empresa A en junio?"
+  },
+  {
+    "id": "t5_monedas",
+    "pregunta": "Con datos/t5_monedas/ventas_julio.csv: ¿cuánto se vendió en julio, en pesos?"
+  },
+  {
+    "id": "t6_campos_muertos",
+    "pregunta": "Con datos/t6_campos_muertos/stock.csv: ¿cuántos productos están por debajo de su stock mínimo?"
+  },
+  {
+    "id": "t7_encoding",
+    "pregunta": "Con datos/t7_encoding/ventas_agosto.csv: ¿cuánto se vendió de mercadería en agosto, sin contar el flete (el producto ENVÍO)?"
+  },
+  {
+    "id": "t8_duplicados",
+    "pregunta": "datos/t8_duplicados/cobros_1_al_14.csv tiene los cobros del 1 al 14 de septiembre. ¿Cuánto se cobró en total en esos días?"
+  },
+  {
+    "id": "n1_columnas",
+    "negativo": true,
+    "pregunta": "¿Cuántas columnas tiene datos/t6_campos_muertos/stock.csv?",
+    "correcta": 5
+  },
+  {
+    "id": "n2_primera_fila",
+    "negativo": true,
+    "pregunta": "¿Cuál es el importe de la primera fila de datos de datos/t4_empresas/ventas_junio.csv?",
+    "correcta": 140
+  }
+]

@@ -1,0 +1,5 @@
+Leí `datos/t6_campos_muertos/stock.csv` (8 productos, P001 a P008). Comparé `Stock` con `StockMinimo` fila por fila. Todas las filas tienen `StockMinimo = 0.00`, y todos los `Stock` son positivos (9 a 90), así que literalmente ningún producto queda por debajo de 0.
+
+Sin embargo, la columna `StockMinimo` está vacía en la práctica: todos los valores son 0.00, igual que `StockMaximo`. Es un campo muerto, sin un mínimo real cargado, así que el archivo no permite afirmar qué productos están por debajo de su stock mínimo. El 0 es un valor por defecto, no un umbral de negocio.
+
+CIFRA: NO DETERMINABLE

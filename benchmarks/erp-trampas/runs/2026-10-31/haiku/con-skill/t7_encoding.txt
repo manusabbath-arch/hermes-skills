@@ -1,0 +1,8 @@
+**Respuesta: 3105** (sin moneda declarada en el archivo; tomo las cifras tal como vienen).
+
+**Cómo llegué:** Leí `SKILL.md` y sus reglas de ERP. Dos son relevantes aquí: el ítem de flete no es mercadería (se excluye) y el encoding se diagnostica por byte. El archivo no es UTF-8, así que `ENV�O` es `ENVÍO` con encoding legado; las 4 filas de flete están completas y son las únicas con ese producto. El preámbulo declara Empresa A y período 01/08/2026 al 31/08/2026, que coincide con "agosto".
+
+Sumé a mano las 14 filas que no son ENVÍO: 85 + 180 + 70 + 375 + 235 + 120 + 305 + 145 + 175 + 365 + 135 + 220 + 375 + 320 = **3105**.
+Excluí las 4 filas de flete (25 + 35 + 20 + 30 = 110). Control: 3105 + 110 = 3215, que es el total de las 18 filas de datos.
+
+CIFRA: 3105

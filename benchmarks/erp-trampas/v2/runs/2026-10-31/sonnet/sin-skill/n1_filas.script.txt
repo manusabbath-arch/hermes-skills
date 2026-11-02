@@ -1,0 +1,11 @@
+import csv
+
+n = 0
+with open("datos/t6/stock.csv", encoding="utf-8-sig", newline="") as f:
+    r = csv.reader(f, delimiter=";")
+    next(r)  # encabezado
+    for row in r:
+        if row and row[0].strip():
+            n += 1
+
+print(f"CIFRA: {n}")

@@ -1,7 +1,13 @@
 # Working a CKAN open-data catalog
 ## Contents
 
-- See headings below. Load this file when SKILL.md points here.
+1. The action API
+2. `q` is free text; `fq` is the field filter
+3. Facets: the counts of the whole query, for free
+4. "How many datasets does the catalog have" has two answers
+5. `datastore_search`: rows without downloading the file
+6. Resources, and the URLs that move
+7. Sizing a source before committing to it
 
 
 Uruguay (`catalogodatos.gub.uy`), Argentina (`datos.gob.ar`) and most Latin American open-data

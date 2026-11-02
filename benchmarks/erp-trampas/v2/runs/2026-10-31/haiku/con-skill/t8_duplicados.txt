@@ -1,0 +1,5 @@
+cobros_01_al_10.csv: filas en rango=1572, suma 08/09 al 10/09=101200
+cobros_08_al_14.csv: filas en rango=1092, suma 08/09 al 10/09=101200
+Duplicados dentro de un archivo=0, duplicados entre archivos=464
+Cobros �nicos=2200
+CIFRA: 472430

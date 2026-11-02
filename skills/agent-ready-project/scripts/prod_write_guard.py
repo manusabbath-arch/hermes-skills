@@ -13,7 +13,7 @@ cuando la acción puede escribir en un sistema real:
     protegida. Se mira el destino, nunca el contenido: un documento que cita la
     ruta no escribe en ella.
 
-Origen: proyecto NG. El hook original en `sed` cortaba el valor de `command`
+Origen: el proyecto de la distribuidora. El hook original en `sed` cortaba el valor de `command`
 en la ÚLTIMA comilla del JSON; con el payload de Hermes o Antigravity, donde
 `command` va seguido de otros campos, el valor quedaba contaminado y una
 escritura pasaba sin bloquear. Acá el payload se parsea como JSON.

@@ -17,7 +17,7 @@ Claude/delegación para auditorías).
 
 **Tech Stack:** Hermes Skills (SKILL.md + templates/ + scripts/), engram MCP (`mem_*`),
 Hermes MCP resources, Claude Code CLI (delegación), los datos reales de
-`/home/mamba/polymarket-trading-bot` como fuente de validación empírica.
+`~/polymarket-trading-bot` como fuente de validación empírica.
 
 ---
 
@@ -57,7 +57,7 @@ copia-pega. Este plan cierra ese hueco.
 por ciclo.
 
 **Files:**
-- Create: `/home/mamba/hermes-skills/skills/empirical-system-invariants/SKILL.md`
+- Create: `~/hermes-skills/skills/empirical-system-invariants/SKILL.md`
 
 **Contenido (frontmatter + cuerpo):**
 - frontmatter: name, description "Use when auditing or operating an empirical/agent-built
@@ -83,7 +83,7 @@ por ciclo.
 **Objective:** guard agnóstico y copia-pega que un proyecto adapta declarando su contrato.
 
 **Files:**
-- Create: `/home/mamba/hermes-skills/skills/empirical-system-invariants/scripts/invariant_guard.py`
+- Create: `~/hermes-skills/skills/empirical-system-invariants/scripts/invariant_guard.py`
 
 **Comportamiento:**
 - Recibe un contrato (dict: etapa → {campo, condición}) vía JSON o hardcode de ejemplo.
@@ -100,7 +100,7 @@ por ciclo.
 **Objective:** cómo un proyecto declara sus contratos de datos por etapa.
 
 **Files:**
-- Create: `/home/mamba/hermes-skills/skills/empirical-system-invariants/templates/data-contracts.md`
+- Create: `~/hermes-skills/skills/empirical-system-invariants/templates/data-contracts.md`
 
 **Contenido:** tabla por etapa (etapa fuente → etapa consumidora → campo prometido →
 condición que atestigua que se pobló → query/log de PRODUCCIÓN que lo demuestra). Incluye
@@ -112,7 +112,7 @@ NULL y es la deuda documentada) y el "gemelo de frontera" para cada condición.
 **Objective:** que la skill esté instalada y cargable.
 
 **Files:**
-- Modify: `/home/mamba/hermes-skills/README.md` (agregar fila en tabla Skills)
+- Modify: `~/hermes-skills/README.md` (agregar fila en tabla Skills)
 
 **Pasos:**
 1. `git add` explícito de las rutas nuevas.
@@ -135,7 +135,7 @@ veredicto queda registrado, cada check nuevo se aprende, y las auditorías se de
 engram/Hermes/Claude.
 
 **Files:**
-- Modify: `/home/mamba/hermes-skills/skills/empirical-project-playbook/SKILL.md`
+- Modify: `~/hermes-skills/skills/empirical-project-playbook/SKILL.md`
   (agregar sección nueva, patch, no reescribir).
 
 **Contenido nuevo (data-driven, con números del fuente):**
@@ -162,7 +162,7 @@ engram/Hermes/Claude.
 **Objective:** documentar la ampliación.
 
 **Files:**
-- Modify: `/home/mamba/hermes-skills/README.md`
+- Modify: `~/hermes-skills/README.md`
 
 **Contenido:** fila/descripción de la nueva skill y la sección nueva del playbook; nota de
 que `empirical-system-invariants` trae la herramienta (script) + plantilla.
@@ -174,8 +174,8 @@ que `empirical-system-invariants` trae la herramienta (script) + plantilla.
 
 **Files:**
 - Create (borrador, NO tocar el repo del bot salvo leer): un contrato JSON de prueba en
-  `/home/mamba/hermes-skills/` o `/tmp` con los 2 contratos.
-- Solo lectura de `/home/mamba/polymarket-trading-bot` y de la DB de prod vía query.
+  `~/hermes-skills/` o `/tmp` con los 2 contratos.
+- Solo lectura de `~/polymarket-trading-bot` y de la DB de prod vía query.
 
 **Los 2 contratos a validar:**
 1. `sports_model` → `rejected_signals`: campo `edge_elo`/`edge_form`/`edge_casino` prometido

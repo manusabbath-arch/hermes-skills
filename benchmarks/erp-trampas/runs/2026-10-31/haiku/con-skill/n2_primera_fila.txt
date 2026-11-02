@@ -1,0 +1,3 @@
+La primera fila de datos es la línea 6 del archivo: `A;Almacén Norte;140`. Las líneas 1 a 4 son preámbulo (informe, empresa, período) y la línea 5 es el encabezado (`Empresa;Cliente;Importe`), así que la fila de datos empieza en la 6. El importe es la tercera columna, 140. El archivo no declara moneda ni unidad, así que el número sale tal cual está escrito.
+
+CIFRA: 140

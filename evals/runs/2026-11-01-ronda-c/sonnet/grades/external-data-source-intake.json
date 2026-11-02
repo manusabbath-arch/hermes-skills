@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "B pide comparar filas leídas por el lector contra filas crudas por hoja; A no menciona el lector propio."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "B propone barrido de radios y dice que el número mide la definición; A solo sugiere contrastar con un radio mayor, sin barrido ni declaración."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "B declara clientes sin coordenada, bases y haversine antes de cruzar; A solo habla de sesgos de muestreo y geocodificado."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "B dice sumar por vehículo y no entre vehículos; A suma total de flota dividido por vehículos×horas."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "B distingue solape dentro de un vehículo (defecto) de entre vehículos (depósito); A no lo hace."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "B pide citar suma por vehículo y unión de intervalos; A no habla de unión."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas dicen que count 0 no prueba ausencia de datos."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "A repite sin filtros y lista tags/grupos; B usa organización vs texto libre y facets."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna cita references/ckan-open-data-catalog.md."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna abre la hoja ni cita columnas; B pide la lista y A pide las columnas."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ambas dicen que el nombre y el conteo de filas no definen el grano."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "B rechaza una hoja de viajes sin destino, cliente ni coordenada como input de ruteo; A no lo plantea."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas responden con read_csv y parámetros."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguna agrega compuertas ni inventario."
+ }
+]

@@ -1,7 +1,14 @@
 # Guard perimeter: measuring what a check actually walks
 ## Contents
 
-- See headings below. Load this file when SKILL.md points here.
+1. Enumerate the should-be perimeter, then the actual one, and diff them
+2. Turn the perimeter into an assertion that cannot re-narrow
+3. The perimeter has a second dimension: the extensions it admits
+4. When a guard takes its subject list from a tuple, the tuple is the guard
+5. Exclusions must be scoped to what they mean, not to convenience
+6. The perimeter has a third dimension: what the ignore file removes
+7. A scanner that walks the filesystem never reads the ignore file
+8. The perimeter has a fourth dimension: which checkout it resolves to
 
 
 The most common structural defect in a check set is not a bug in a check — it is a check
@@ -29,15 +36,7 @@ def todo_el_python(raiz=RAIZ):
 
 
 # El perimetro REAL: lo que las guardas del proyecto recorren. Copiarlo de la fuente,
-## Contents
-
-- See headings below. Load this file when SKILL.md points here.
-
 # no reescribirlo de memoria — si cambia alla, esta medicion tiene que cambiar sola.
-## Contents
-
-- See headings below. Load this file when SKILL.md points here.
-
 def perimetro_de_las_guardas(raiz=RAIZ):
     recorridos = set()
     # Un glob por guarda que camina el arbol.

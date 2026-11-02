@@ -1,0 +1,58 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A explica que la fila NULL desaparece de la salida; B dice que la línea sale vacía y duda ('según cómo cuentes'), lo cual es impreciso."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ambos proponen COALESCE en cada operando; A aclara que no cambia valores no nulos, B solo dice que la fila sale completa, sin esa aclaración explícita."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A recomienda comparar filas declaradas vs impresas y menciona NULLIF en divisor; B no lo hace."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos interpretan 0 coincidencias como clave equivocada, no maestro vacío."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ambos sospechan CHAR con espacios u otra columna de código y proponen TRIM o la columna correcta."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": true,
+  "B": true,
+  "nota": "A pide contar coincidencias del join antes de ver resultados; B propone COUNT(p.PRODUCTOID) como diagnóstico."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos dan la sintaxis directa con ejemplo."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguno agrega catálogos de campos muertos, canarios ni advertencias del ERP en el pedido 3."
+ }
+]

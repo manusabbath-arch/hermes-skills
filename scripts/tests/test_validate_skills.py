@@ -3,6 +3,7 @@ import importlib.util
 import json
 import sys
 from pathlib import Path
+import pytest
 
 SCRIPT = Path(__file__).resolve().parents[1] / "validate_skills.py"
 spec = importlib.util.spec_from_file_location("validate_skills", SCRIPT)
@@ -115,6 +116,13 @@ def test_precise_amount_marked_ficticio_passes(tmp_path):
     assert vs.check_business_data(_doc(tmp_path, text), "d.md") == []
 
 
+def test_benchmark_amounts_are_synthetic_but_terms_still_checked(tmp_path):
+    f = _doc(tmp_path, "Sumé $3225 para AcmeSoft.")  # ficticio
+    errs = vs.check_business_data(f, "benchmarks/x/runs/a.txt", ["acmesoft"])
+    assert len(errs) == 1 and "término privado" in errs[0]
+    assert vs.check_business_data(f, "skills/x/a.md")  # fuera de benchmarks/ sigue rojo
+
+
 def test_private_term_is_red_case_insensitive(tmp_path):
     errs = vs.check_business_data(_doc(tmp_path, "El ERP era AcmeSoft."), "d.md", ["acmesoft"])
     assert "término privado" in errs[0] and "d.md:1" in errs[0]
@@ -124,6 +132,62 @@ def test_private_terms_load_from_file_and_skip_comments(tmp_path):
     f = tmp_path / ".private-terms"
     f.write_text("# nombres del cliente\nAcmeSoft\n\n  Foo Bar  \n", encoding="utf-8")
     assert vs.load_private_terms(f) == ["acmesoft", "foo bar"]
+
+
+@pytest.mark.parametrize("text", [
+    r"Medido sobre `C:\Users\jperez\proyecto\skills`.",  # ficticio
+    "Ver C:/Users/jperez/AppData/Local/Temp/x.",  # ficticio
+    "Create: `/home/jperez/repo/README.md`",  # ficticio
+])
+def test_personal_path_is_red_without_any_list(tmp_path, text):
+    # Sale en el CI aunque falte .private-terms: la ruta trae el usuario de la máquina.
+    errs = vs.check_business_data(_doc(tmp_path, text), "d.md")
+    assert len(errs) == 1 and "ruta personal" in errs[0], text
+
+
+@pytest.mark.parametrize("text", [
+    r"`%LOCALAPPDATA%\hermes\skills` y `C:\Users\<usuario>\repo`.",
+    "ln -sfn x ~/.hermes/skills/n; HOME=/home/runner en el CI.",
+    "Copiá a `<clon>/skills`; en benchmarks se tapa con `<tmp>`.",
+    # Medido en la ronda C: una respuesta elidió el usuario con puntos suspensivos.
+    r'Barras normales (`"C:/Users/.../archivo.csv"`) o raw (`r"C:\Users\...\archivo.csv"`).',
+    r"C:\Users\…\x, C:\Users\%USERNAME%\x, /home/$USER/x, /home/.../x",
+])
+def test_placeholder_paths_pass(tmp_path, text):
+    assert vs.check_business_data(_doc(tmp_path, text), "d.md") == []
+
+
+def test_personal_path_is_red_in_benchmarks_too(tmp_path):
+    f = _doc(tmp_path, r"cwd: C:\Users\jperez\AppData\Local\Temp\x")  # ficticio
+    assert vs.check_business_data(f, "benchmarks/x/runs/a.txt")
+
+
+# --- El índice de una referencia larga --------------------------------------------
+
+TOC_OK = "# T\n## Contents\n\n1. Uno\n2. Dos\n\n## Uno\n\n```python\n# comentario\nx = 1\n```\n## Dos\n"
+
+
+def test_real_toc_passes():
+    assert vs.check_toc(TOC_OK) == []
+
+
+def test_placeholder_toc_is_red():
+    # Medido en v1.4.0: 8 referencias abrían con un índice que no listaba nada.
+    texto = "# T\n## Contents\n\n- See headings below. Load this file when SKILL.md points here.\n\n## Uno\n"
+    assert vs.check_toc(texto)
+    # el relleno no cuenta como entrada aunque venga acompañado de una real
+    assert vs.check_toc(texto.replace("\n\n## Uno", "\n- Uno\n\n## Uno"))
+
+
+def test_toc_inside_code_block_is_red():
+    # Medido en v1.4.0: una herramienta metió el índice después de cada `# comentario` de Python.
+    texto = TOC_OK.replace("# comentario\n", "# comentario\n## Contents\n\n- a\n- b\n")
+    errs = vs.check_toc(texto)
+    assert errs and "bloque de código" in errs[0]
+
+
+def test_heading_comment_in_code_does_not_count_as_toc_entry_source():
+    assert vs.check_toc("# T\n## Contents\n\n- Uno\n\n```\n## Contents\n```\n") != []
 
 
 def test_missing_private_terms_file_is_none_not_empty(tmp_path):
@@ -215,3 +279,16 @@ def test_changelog_behind_plugin_is_red(tmp_path):
 def test_missing_plugin_manifest_is_red(tmp_path):
     (tmp_path / "CHANGELOG.md").write_text("# Changelog\n", encoding="utf-8")
     assert "plugin.json" in vs.check_plugin_versions(tmp_path)[0]
+
+
+def test_git_decodes_utf8_not_the_console_codepage(monkeypatch):
+    """En Windows, text=True sin encoding decodifica con cp1252 y un SKILL.md en UTF-8 lo rompe."""
+    seen = {}
+
+    def fake_run(cmd, **kw):
+        seen.update(kw)
+        return subprocess.CompletedProcess(cmd, 0, "", "")
+
+    monkeypatch.setattr(vs.subprocess, "run", fake_run)
+    vs._git(Path("."), "status")
+    assert seen.get("encoding") == "utf-8" and seen.get("errors") == "replace"

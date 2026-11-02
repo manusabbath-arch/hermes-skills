@@ -14,13 +14,26 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0  # validate_skills compara cada skill contra el último tag
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
+
+      # La lista de nombres del proyecto de origen no se versiona (el repo es público): vive
+      # en el secreto PRIVATE_TERMS. Sin él (forks, o mientras nadie lo cargó) el validador
+      # dice "NO chequeados" y acá queda un aviso visible: así se coló la v1.4.0.
+      - name: Private terms from the repo secret
+        env:
+          PRIVATE_TERMS: ${{ secrets.PRIVATE_TERMS }}
+        run: |
+          if [ -n "$PRIVATE_TERMS" ]; then
+            printf '%s\n' "$PRIVATE_TERMS" > .private-terms
+          else
+            echo "::warning::Sin el secreto PRIVATE_TERMS: los términos privados NO se chequean en este CI"
+          fi
 
       - name: Validate skill manifests and cited paths
         run: python scripts/validate_skills.py
@@ -30,6 +43,19 @@ jobs:
 
       - name: Phantom wiring audit over the tap's own code
         run: python skills/agent-ready-project/scripts/phantom_wiring.py scripts skills kit
+
+      - name: Published benchmark tables match the raw answers
+        run: |
+          for r in benchmarks/erp-trampas/runs/*/; do
+            [ -f "$r/results.md" ] || continue
+            python benchmarks/erp-trampas/puntuar.py --run "$r" > /tmp/results.md
+            diff -u "$r/results.md" /tmp/results.md
+          done
+          for r in benchmarks/erp-trampas/v2/runs/*/; do
+            [ -f "$r/results.md" ] || continue
+            python benchmarks/erp-trampas/puntuar.py --suite v2 --run "$r" > /tmp/results.md
+            diff -u "$r/results.md" /tmp/results.md
+          done
 
       - name: Published eval tables match the raw grades
         run: |
@@ -48,6 +74,11 @@ jobs:
           done
           python scripts/eval_report.py --grades "$v2/ronda-b/haiku/grades" --key "$v2/ronda-b/haiku/key.json" --evals "$v2/evals" > /tmp/results.md
           diff -u "$v2/ronda-b/haiku/results.md" /tmp/results.md
+          rc=evals/runs/2026-11-01-ronda-c
+          for m in haiku sonnet; do
+            python scripts/eval_report.py --grades "$rc/$m/grades" --key "$rc/$m/key.json" --evals "$rc/evals" > /tmp/results.md
+            diff -u "$rc/$m/results.md" /tmp/results.md
+          done
 
       - name: Install test deps
         # El stack que delta-lakehouse y data-medallion-architecture declaran
@@ -58,7 +89,7 @@ jobs:
         run: python -m pytest --version
 
       - name: Run shipped script and repo tests
-        run: python -m pytest skills scripts -q
+        run: python -m pytest skills scripts benchmarks -q
 
       - name: Checksum manifest round-trips (what a release would publish)
         run: |
@@ -74,11 +105,11 @@ jobs:
       run:
         shell: bash
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0  # validate_skills compara cada skill contra el último tag
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
 
@@ -92,7 +123,7 @@ jobs:
         run: python -m pytest --version
 
       - name: Run shipped script and repo tests
-        run: python -m pytest skills scripts -q
+        run: python -m pytest skills scripts benchmarks -q
 
       - name: A manifest built from git blobs (what Linux publishes) verifies this checkout
         run: |
@@ -107,15 +138,15 @@ jobs:
   install:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0  # validate_skills compara cada skill contra el último tag
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '22'
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
 

@@ -1,0 +1,9 @@
+Las columnas Importe y Cantidad están intercambiadas de lugar entre los dos archivos, así que tomé Importe según el encabezado de cada uno.
+
+Abril (Importe es la 4ª columna): 305+270=575; +110=685; +65=750; +110=860; +115=975; +145=1120; +50=1170; +375=1545; +385=1930; +395=2325; +135=2460.
+
+Mayo (Importe es la 5ª columna): 100+275=375; +230=605; +345=950; +45=995; +130=1125; +395=1520; +175=1695; +140=1835; +360=2195; +305=2500; +295=2795.
+
+Total: 2460 + 2795 = 5255.
+
+CIFRA: 5255

@@ -1,0 +1,2 @@
+Filas de datos (sin encabezado ni vac�as): 2200
+CIFRA: 2200

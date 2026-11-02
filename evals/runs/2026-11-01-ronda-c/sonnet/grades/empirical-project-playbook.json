@@ -1,0 +1,58 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A exige tope por llamada y por corrida; B solo sugiere un límite de costo/tiempo por corrida como recomendación, sin tope por llamada ni exigirlo antes."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": true,
+  "B": false,
+  "nota": "A trata el gasto programado como decisión escrita de una persona; B lo propone como camino por defecto."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A propone un test que falla si un lanzador no está en la lista con tope o si una tarea programada invoca un modelo sin autorización; B no."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas dicen que sin dato es STALE/sin datos y nunca verde."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ambas miden la antigüedad del último respaldo bueno con umbral de 26 h."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ninguna usa la idea de 'verde vacío' ni dice que un control que no miró nada no es un control; A habla de 'silencio traidor' y B de 'falso verde', que se acercan pero no equivalen a esa formulación."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambas responden 360 directamente."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguna agrega metodología ni pre-registro."
+ }
+]

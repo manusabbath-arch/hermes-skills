@@ -1,0 +1,3 @@
+Abrí la primera línea de `datos/t6_campos_muertos/stock.csv`. Es el encabezado, separado por punto y coma: `Codigo;Producto;Stock;StockMinimo;StockMaximo`. Eso da 5 columnas. Las filas de datos que vi (por ejemplo `P001;Galletas 200g;77;0.00;0.00`) también tienen 5 campos. No leí el resto del archivo.
+
+CIFRA: 5

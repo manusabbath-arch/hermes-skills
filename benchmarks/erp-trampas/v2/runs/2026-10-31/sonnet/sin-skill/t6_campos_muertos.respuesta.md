@@ -1,0 +1,55 @@
+Estoy revisando el export de stock. Hasta ahora, todos los mínimos que vi son 0.00. Mi búsqueda de mínimos distintos de cero no sirvió, así que el script lo comprueba. Cuenta los productos con stock menor al mínimo, solo cuando hay un mínimo cargado (mayor que 0). Si ningún producto tiene mínimo definido, devuelve NO DETERMINABLE.
+
+```python
+import csv, glob, os
+
+def num(s):
+    s = (s or "").strip().replace(" ", "")
+    if not s:
+        return None
+    if "," in s and "." in s:
+        if s.rfind(",") > s.rfind("."):
+            s = s.replace(".", "").replace(",", ".")
+        else:
+            s = s.replace(",", "")
+    elif "," in s:
+        s = s.replace(",", ".")
+    try:
+        return float(s)
+    except ValueError:
+        return None
+
+path = os.path.join("datos", "t6", "stock.csv")
+rows = {}
+for enc in ("utf-8-sig", "latin-1"):
+    try:
+        with open(path, encoding=enc, newline="") as f:
+            rd = csv.DictReader(f, delimiter=";")
+            tmp = {}
+            for r in rd:
+                cod = (r.get("Codigo") or "").strip()
+                if not cod:
+                    continue
+                tmp[cod] = r  # ante duplicados, queda la última fila
+            rows = tmp
+        break
+    except UnicodeDecodeError:
+        continue
+
+con_minimo = 0
+reponer = 0
+for r in rows.values():
+    st = num(r.get("Stock"))
+    mn = num(r.get("StockMinimo"))
+    if st is None or mn is None or mn <= 0:
+        continue
+    con_minimo += 1
+    if st < mn:
+        reponer += 1
+
+print("Productos:", len(rows), "con minimo definido:", con_minimo)
+if con_minimo == 0:
+    print("CIFRA: NO DETERMINABLE")
+else:
+    print("CIFRA: %d" % reponer)
+```

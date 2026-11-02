@@ -1,7 +1,11 @@
 # Changing a guard that already exists
 ## Contents
 
-- See headings below. Load this file when SKILL.md points here.
+1. Pre-flight: before touching a guard, find what depends on it
+2. Classify the change before writing it
+3. Narrowing: separate membership from presence
+4. Retrofitting a declared/known state onto a gate that is already red
+5. Re-deriving a red whose reported cause is disputed
 
 
 Adding a guard is the easy half. Most damage happens when an existing check is *edited* —

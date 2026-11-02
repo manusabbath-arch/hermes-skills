@@ -1,0 +1,7 @@
+Per�odo declarado: ['Per�odo: 01/06/2026 al 30/06/2026']
+Filas v�lidas: 2200
+Filas descartadas: 0
+Total empresa A : 243590
+Total empresa B : 238910
+Ventas empresa A en junio (pesos): 243590
+CIFRA: 243590

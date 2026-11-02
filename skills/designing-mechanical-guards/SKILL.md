@@ -1,7 +1,7 @@
 ---
 name: designing-mechanical-guards
 description: "Use when a rule keeps breaking and should become a check the machine runs - mechanical guards, pre-commit gates, vacuous greens, guard perimeters, ratchet baselines, declared reds, advisory-to-enforcement, and make-sure-this-never-happens-again. Covers writing the failing test first, wiring into the existing gate, proving no regression on a mature gate that already carries known reds, and the measured failure shapes of checks that look green while covering nothing."
-version: 1.0.0
+version: 1.1.0
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]

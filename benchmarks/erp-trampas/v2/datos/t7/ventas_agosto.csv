@@ -1,0 +1,2205 @@
+Informe: Ventas por producto
+Empresa: A
+Período: 01/08/2026 al 31/08/2026
+
+Fecha;Cliente;Producto;Importe
+05/08/2026;Cliente 081;Producto 0127;90
+12/08/2026;Cliente 168;Producto 0017;390
+31/08/2026;Cliente 087;Producto 0062;100
+02/08/2026;Cliente 111;Producto 0336;90
+12/08/2026;Cliente 054;Producto 0185;360
+06/08/2026;Cliente 060;Producto 0204;180
+10/08/2026;Cliente 037;Producto 0221;220
+28/08/2026;Cliente 009;Producto 0382;160
+18/08/2026;Cliente 009;ENVÍO;40
+27/08/2026;Cliente 080;Producto 0172;85
+16/08/2026;Cliente 034;Producto 0360;265
+27/08/2026;Cliente 070;Producto 0395;160
+29/08/2026;Cliente 172;Producto 0068;365
+01/08/2026;Cliente 106;Producto 0143;310
+18/08/2026;Cliente 065;Producto 0163;285
+08/08/2026;Cliente 144;Producto 0391;300
+13/08/2026;Cliente 068;Producto 0050;255
+05/08/2026;Cliente 129;Producto 0190;315
+11/08/2026;Cliente 177;Producto 0326;175
+02/08/2026;Cliente 017;Producto 0186;55
+08/08/2026;Cliente 026;Producto 0231;275
+24/08/2026;Cliente 025;ENVÍO;25
+16/08/2026;Cliente 099;Producto 0147;85
+18/08/2026;Cliente 037;Producto 0075;350
+29/08/2026;Cliente 171;ENVÍO;40
+08/08/2026;Cliente 034;Producto 0228;300
+05/08/2026;Cliente 120;Producto 0383;385
+05/08/2026;Cliente 088;Producto 0242;365
+13/08/2026;Cliente 065;Producto 0118;45
+16/08/2026;Cliente 037;Producto 0285;85
+22/08/2026;Cliente 016;Producto 0362;270
+05/08/2026;Cliente 166;Producto 0197;305
+11/08/2026;Cliente 054;ENVÍO;45
+16/08/2026;Cliente 152;Producto 0203;310
+14/08/2026;Cliente 174;Producto 0260;390
+05/08/2026;Cliente 113;Producto 0281;350
+19/08/2026;Cliente 133;Producto 0014;140
+06/08/2026;Cliente 053;Producto 0197;395
+04/08/2026;Cliente 032;Producto 0143;315
+23/08/2026;Cliente 115;Producto 0188;265
+09/08/2026;Cliente 031;Producto 0106;105
+19/08/2026;Cliente 090;Producto 0091;55
+12/08/2026;Cliente 079;Producto 0129;345
+28/08/2026;Cliente 109;Producto 0368;210
+31/08/2026;Cliente 142;Producto 0236;250
+16/08/2026;Cliente 073;Producto 0176;390
+19/08/2026;Cliente 127;Producto 0309;135
+25/08/2026;Cliente 171;Producto 0126;180
+06/08/2026;Cliente 018;Producto 0281;90
+18/08/2026;Cliente 103;Producto 0148;180
+08/08/2026;Cliente 020;Producto 0037;50
+04/08/2026;Cliente 087;Producto 0300;110
+28/08/2026;Cliente 038;Producto 0343;100
+10/08/2026;Cliente 129;Producto 0320;155
+21/08/2026;Cliente 130;Producto 0395;330
+17/08/2026;Cliente 114;Producto 0208;85
+30/08/2026;Cliente 135;Producto 0386;80
+13/08/2026;Cliente 136;Producto 0332;210
+19/08/2026;Cliente 048;Producto 0174;85
+25/08/2026;Cliente 095;Producto 0349;130
+22/08/2026;Cliente 020;Producto 0029;250
+29/08/2026;Cliente 049;Producto 0111;330
+27/08/2026;Cliente 176;Producto 0184;380
+06/08/2026;Cliente 061;Producto 0250;145
+28/08/2026;Cliente 100;Producto 0293;270
+08/08/2026;Cliente 004;Producto 0239;275
+27/08/2026;Cliente 146;Producto 0392;115
+18/08/2026;Cliente 105;Producto 0358;260
+03/08/2026;Cliente 149;Producto 0285;95
+25/08/2026;Cliente 077;ENVÍO;35
+03/08/2026;Cliente 038;Producto 0217;230
+15/08/2026;Cliente 104;ENVÍO;40
+07/08/2026;Cliente 173;Producto 0157;195
+28/08/2026;Cliente 069;Producto 0080;190
+29/08/2026;Cliente 157;Producto 0374;110
+20/08/2026;Cliente 163;Producto 0392;150
+13/08/2026;Cliente 086;Producto 0285;355
+06/08/2026;Cliente 036;Producto 0271;115
+22/08/2026;Cliente 091;Producto 0164;255
+27/08/2026;Cliente 038;Producto 0395;250
+22/08/2026;Cliente 176;Producto 0320;370
+17/08/2026;Cliente 158;Producto 0013;200
+13/08/2026;Cliente 158;Producto 0214;190
+31/08/2026;Cliente 068;Producto 0056;85
+24/08/2026;Cliente 021;Producto 0340;70
+14/08/2026;Cliente 081;Producto 0153;50
+09/08/2026;Cliente 013;ENVÍO;40
+31/08/2026;Cliente 157;Producto 0258;165
+09/08/2026;Cliente 041;Producto 0393;365
+14/08/2026;Cliente 010;Producto 0317;50
+02/08/2026;Cliente 050;Producto 0326;235
+08/08/2026;Cliente 028;ENVÍO;30
+03/08/2026;Cliente 163;Producto 0008;265
+28/08/2026;Cliente 072;ENVÍO;25
+26/08/2026;Cliente 116;Producto 0028;185
+01/08/2026;Cliente 119;Producto 0220;95
+12/08/2026;Cliente 103;Producto 0067;280
+07/08/2026;Cliente 140;Producto 0390;305
+21/08/2026;Cliente 088;Producto 0132;390
+14/08/2026;Cliente 161;Producto 0345;65
+17/08/2026;Cliente 144;Producto 0173;125
+10/08/2026;Cliente 101;Producto 0189;220
+12/08/2026;Cliente 162;Producto 0016;235
+03/08/2026;Cliente 169;Producto 0382;80
+20/08/2026;Cliente 167;Producto 0045;380
+12/08/2026;Cliente 138;Producto 0131;295
+30/08/2026;Cliente 016;Producto 0325;140
+09/08/2026;Cliente 097;Producto 0130;75
+04/08/2026;Cliente 015;Producto 0043;325
+03/08/2026;Cliente 118;Producto 0224;340
+11/08/2026;Cliente 175;Producto 0328;360
+13/08/2026;Cliente 149;Producto 0156;190
+23/08/2026;Cliente 089;Producto 0127;80
+07/08/2026;Cliente 139;Producto 0116;165
+02/08/2026;Cliente 126;Producto 0100;340
+23/08/2026;Cliente 158;Producto 0382;330
+15/08/2026;Cliente 017;Producto 0066;325
+31/08/2026;Cliente 176;ENVÍO;50
+13/08/2026;Cliente 109;Producto 0073;215
+19/08/2026;Cliente 086;Producto 0382;40
+24/08/2026;Cliente 089;Producto 0315;160
+28/08/2026;Cliente 065;Producto 0148;290
+22/08/2026;Cliente 107;Producto 0378;155
+06/08/2026;Cliente 149;Producto 0019;395
+04/08/2026;Cliente 136;Producto 0068;235
+16/08/2026;Cliente 136;Producto 0310;45
+13/08/2026;Cliente 086;Producto 0221;355
+31/08/2026;Cliente 115;ENVÍO;50
+03/08/2026;Cliente 054;Producto 0380;160
+27/08/2026;Cliente 005;Producto 0369;325
+14/08/2026;Cliente 067;Producto 0287;210
+30/08/2026;Cliente 041;Producto 0150;60
+15/08/2026;Cliente 175;Producto 0170;220
+16/08/2026;Cliente 015;Producto 0177;345
+09/08/2026;Cliente 049;Producto 0128;380
+13/08/2026;Cliente 120;Producto 0179;75
+17/08/2026;Cliente 111;Producto 0247;190
+03/08/2026;Cliente 064;Producto 0363;250
+25/08/2026;Cliente 010;Producto 0194;170
+29/08/2026;Cliente 011;Producto 0147;285
+26/08/2026;Cliente 018;Producto 0010;140
+02/08/2026;Cliente 128;Producto 0279;140
+13/08/2026;Cliente 048;Producto 0076;145
+31/08/2026;Cliente 164;Producto 0114;235
+01/08/2026;Cliente 180;Producto 0265;335
+16/08/2026;Cliente 092;Producto 0374;330
+02/08/2026;Cliente 076;Producto 0050;195
+25/08/2026;Cliente 085;Producto 0018;335
+20/08/2026;Cliente 045;Producto 0018;170
+04/08/2026;Cliente 114;Producto 0230;225
+01/08/2026;Cliente 129;Producto 0295;110
+12/08/2026;Cliente 095;Producto 0132;395
+29/08/2026;Cliente 103;Producto 0107;365
+26/08/2026;Cliente 107;Producto 0350;335
+25/08/2026;Cliente 046;Producto 0025;185
+10/08/2026;Cliente 066;Producto 0099;110
+07/08/2026;Cliente 063;Producto 0154;170
+21/08/2026;Cliente 146;Producto 0378;90
+05/08/2026;Cliente 173;Producto 0381;75
+03/08/2026;Cliente 064;Producto 0107;370
+04/08/2026;Cliente 062;Producto 0290;135
+18/08/2026;Cliente 031;ENVÍO;30
+15/08/2026;Cliente 146;Producto 0121;255
+03/08/2026;Cliente 137;Producto 0055;320
+24/08/2026;Cliente 080;Producto 0334;320
+02/08/2026;Cliente 024;ENVÍO;40
+25/08/2026;Cliente 052;Producto 0191;325
+24/08/2026;Cliente 071;Producto 0153;285
+12/08/2026;Cliente 059;Producto 0033;290
+27/08/2026;Cliente 036;Producto 0066;365
+03/08/2026;Cliente 114;ENVÍO;55
+02/08/2026;Cliente 164;Producto 0216;240
+31/08/2026;Cliente 103;Producto 0117;335
+14/08/2026;Cliente 006;Producto 0366;55
+29/08/2026;Cliente 066;Producto 0348;355
+07/08/2026;Cliente 011;Producto 0227;240
+20/08/2026;Cliente 081;Producto 0198;125
+26/08/2026;Cliente 105;Producto 0083;285
+15/08/2026;Cliente 025;Producto 0298;60
+23/08/2026;Cliente 110;Producto 0369;70
+06/08/2026;Cliente 143;Producto 0003;125
+27/08/2026;Cliente 084;Producto 0363;285
+03/08/2026;Cliente 157;Producto 0119;225
+31/08/2026;Cliente 031;Producto 0231;240
+24/08/2026;Cliente 156;ENVÍO;50
+06/08/2026;Cliente 140;Producto 0373;215
+10/08/2026;Cliente 043;Producto 0018;220
+14/08/2026;Cliente 068;Producto 0014;270
+30/08/2026;Cliente 057;Producto 0326;380
+26/08/2026;Cliente 117;Producto 0046;375
+07/08/2026;Cliente 018;ENVÍO;45
+29/08/2026;Cliente 112;Producto 0280;50
+29/08/2026;Cliente 160;Producto 0338;100
+19/08/2026;Cliente 132;Producto 0278;350
+18/08/2026;Cliente 042;ENVÍO;40
+06/08/2026;Cliente 127;Producto 0279;315
+15/08/2026;Cliente 014;Producto 0369;200
+26/08/2026;Cliente 072;Producto 0131;355
+31/08/2026;Cliente 044;Producto 0323;205
+17/08/2026;Cliente 117;Producto 0381;115
+29/08/2026;Cliente 153;ENVÍO;30
+07/08/2026;Cliente 019;Producto 0265;225
+17/08/2026;Cliente 061;ENVÍO;35
+03/08/2026;Cliente 097;Producto 0062;135
+07/08/2026;Cliente 154;ENVÍO;25
+09/08/2026;Cliente 111;Producto 0189;240
+26/08/2026;Cliente 105;Producto 0022;350
+10/08/2026;Cliente 016;Producto 0212;395
+22/08/2026;Cliente 093;Producto 0120;365
+26/08/2026;Cliente 001;Producto 0139;220
+11/08/2026;Cliente 152;Producto 0097;230
+13/08/2026;Cliente 009;ENVÍO;35
+03/08/2026;Cliente 136;Producto 0207;200
+11/08/2026;Cliente 144;Producto 0316;155
+21/08/2026;Cliente 102;Producto 0323;185
+01/08/2026;Cliente 125;ENVÍO;35
+20/08/2026;Cliente 006;Producto 0315;285
+08/08/2026;Cliente 151;Producto 0108;300
+13/08/2026;Cliente 157;Producto 0221;135
+21/08/2026;Cliente 083;Producto 0287;320
+15/08/2026;Cliente 036;Producto 0228;320
+31/08/2026;Cliente 116;Producto 0393;385
+11/08/2026;Cliente 044;ENVÍO;25
+28/08/2026;Cliente 157;Producto 0385;320
+15/08/2026;Cliente 064;Producto 0347;135
+13/08/2026;Cliente 163;Producto 0280;175
+06/08/2026;Cliente 120;Producto 0007;230
+15/08/2026;Cliente 164;Producto 0190;375
+04/08/2026;Cliente 177;Producto 0390;295
+21/08/2026;Cliente 015;Producto 0220;115
+29/08/2026;Cliente 001;Producto 0346;210
+22/08/2026;Cliente 114;Producto 0314;40
+20/08/2026;Cliente 087;Producto 0083;165
+03/08/2026;Cliente 167;Producto 0244;50
+06/08/2026;Cliente 174;Producto 0116;375
+31/08/2026;Cliente 026;Producto 0162;290
+29/08/2026;Cliente 040;Producto 0381;160
+23/08/2026;Cliente 069;Producto 0302;60
+17/08/2026;Cliente 073;Producto 0236;320
+25/08/2026;Cliente 173;Producto 0329;205
+16/08/2026;Cliente 090;Producto 0105;95
+28/08/2026;Cliente 087;Producto 0311;205
+24/08/2026;Cliente 168;Producto 0337;55
+16/08/2026;Cliente 041;Producto 0143;250
+03/08/2026;Cliente 111;Producto 0308;265
+28/08/2026;Cliente 054;Producto 0193;50
+26/08/2026;Cliente 146;Producto 0391;340
+28/08/2026;Cliente 049;Producto 0325;65
+11/08/2026;Cliente 022;Producto 0144;275
+23/08/2026;Cliente 123;Producto 0220;50
+08/08/2026;Cliente 128;Producto 0090;215
+12/08/2026;Cliente 023;Producto 0211;135
+27/08/2026;Cliente 088;ENVÍO;50
+07/08/2026;Cliente 042;Producto 0270;190
+16/08/2026;Cliente 155;Producto 0226;240
+23/08/2026;Cliente 042;Producto 0205;80
+17/08/2026;Cliente 112;Producto 0189;250
+14/08/2026;Cliente 171;Producto 0045;200
+13/08/2026;Cliente 115;Producto 0258;220
+01/08/2026;Cliente 152;Producto 0378;305
+11/08/2026;Cliente 105;Producto 0299;385
+01/08/2026;Cliente 160;Producto 0116;295
+28/08/2026;Cliente 054;Producto 0042;290
+24/08/2026;Cliente 131;Producto 0184;295
+25/08/2026;Cliente 057;Producto 0151;335
+30/08/2026;Cliente 094;Producto 0348;45
+19/08/2026;Cliente 003;Producto 0258;330
+02/08/2026;Cliente 131;Producto 0116;355
+05/08/2026;Cliente 145;ENVÍO;30
+06/08/2026;Cliente 010;ENVÍO;30
+26/08/2026;Cliente 051;ENVÍO;55
+10/08/2026;Cliente 096;Producto 0202;90
+11/08/2026;Cliente 122;Producto 0314;200
+13/08/2026;Cliente 072;Producto 0304;285
+07/08/2026;Cliente 086;Producto 0363;305
+29/08/2026;Cliente 149;Producto 0159;75
+23/08/2026;Cliente 072;Producto 0225;290
+01/08/2026;Cliente 112;Producto 0031;90
+09/08/2026;Cliente 179;Producto 0100;185
+09/08/2026;Cliente 001;Producto 0330;370
+15/08/2026;Cliente 003;Producto 0172;360
+01/08/2026;Cliente 157;Producto 0110;170
+19/08/2026;Cliente 024;Producto 0064;95
+23/08/2026;Cliente 062;Producto 0030;140
+07/08/2026;Cliente 005;Producto 0119;50
+18/08/2026;Cliente 102;Producto 0153;265
+09/08/2026;Cliente 051;Producto 0096;370
+13/08/2026;Cliente 174;Producto 0186;380
+14/08/2026;Cliente 152;ENVÍO;45
+13/08/2026;Cliente 158;Producto 0375;190
+27/08/2026;Cliente 034;Producto 0014;60
+14/08/2026;Cliente 003;Producto 0113;140
+06/08/2026;Cliente 057;Producto 0113;365
+19/08/2026;Cliente 171;Producto 0224;235
+26/08/2026;Cliente 141;Producto 0263;350
+13/08/2026;Cliente 025;ENVÍO;50
+28/08/2026;Cliente 158;Producto 0339;245
+07/08/2026;Cliente 168;ENVÍO;45
+20/08/2026;Cliente 155;ENVÍO;50
+12/08/2026;Cliente 064;Producto 0192;240
+07/08/2026;Cliente 063;Producto 0197;365
+01/08/2026;Cliente 130;Producto 0335;150
+25/08/2026;Cliente 072;Producto 0308;300
+12/08/2026;Cliente 041;ENVÍO;55
+10/08/2026;Cliente 144;Producto 0178;40
+28/08/2026;Cliente 169;Producto 0059;145
+30/08/2026;Cliente 085;Producto 0192;355
+21/08/2026;Cliente 033;Producto 0098;315
+07/08/2026;Cliente 019;ENVÍO;55
+09/08/2026;Cliente 164;ENVÍO;25
+09/08/2026;Cliente 066;ENVÍO;35
+27/08/2026;Cliente 174;Producto 0216;315
+17/08/2026;Cliente 032;Producto 0343;65
+03/08/2026;Cliente 064;Producto 0069;395
+21/08/2026;Cliente 125;Producto 0145;195
+01/08/2026;Cliente 063;ENVÍO;55
+05/08/2026;Cliente 066;Producto 0218;120
+28/08/2026;Cliente 074;Producto 0178;165
+15/08/2026;Cliente 065;ENVÍO;45
+25/08/2026;Cliente 075;Producto 0011;175
+20/08/2026;Cliente 153;Producto 0260;120
+25/08/2026;Cliente 179;Producto 0322;310
+28/08/2026;Cliente 158;Producto 0366;350
+12/08/2026;Cliente 063;Producto 0206;265
+22/08/2026;Cliente 039;Producto 0169;170
+21/08/2026;Cliente 050;Producto 0058;170
+08/08/2026;Cliente 052;Producto 0086;395
+03/08/2026;Cliente 137;Producto 0230;240
+20/08/2026;Cliente 174;Producto 0029;195
+14/08/2026;Cliente 129;Producto 0318;75
+02/08/2026;Cliente 027;Producto 0059;320
+22/08/2026;Cliente 059;Producto 0397;265
+28/08/2026;Cliente 141;ENVÍO;45
+16/08/2026;Cliente 033;Producto 0235;340
+18/08/2026;Cliente 092;ENVÍO;25
+30/08/2026;Cliente 070;ENVÍO;50
+27/08/2026;Cliente 166;ENVÍO;35
+14/08/2026;Cliente 104;Producto 0380;65
+13/08/2026;Cliente 015;Producto 0331;245
+07/08/2026;Cliente 167;Producto 0384;395
+27/08/2026;Cliente 038;Producto 0102;230
+23/08/2026;Cliente 059;Producto 0065;375
+09/08/2026;Cliente 006;ENVÍO;50
+16/08/2026;Cliente 102;Producto 0039;85
+06/08/2026;Cliente 121;Producto 0337;215
+26/08/2026;Cliente 044;Producto 0160;155
+03/08/2026;Cliente 076;Producto 0338;75
+26/08/2026;Cliente 050;Producto 0069;250
+03/08/2026;Cliente 008;ENVÍO;25
+22/08/2026;Cliente 085;Producto 0144;365
+24/08/2026;Cliente 173;Producto 0014;305
+02/08/2026;Cliente 109;Producto 0103;195
+27/08/2026;Cliente 080;Producto 0340;240
+02/08/2026;Cliente 099;Producto 0276;305
+23/08/2026;Cliente 024;Producto 0109;85
+29/08/2026;Cliente 043;Producto 0111;255
+29/08/2026;Cliente 056;Producto 0263;305
+25/08/2026;Cliente 166;ENVÍO;50
+02/08/2026;Cliente 105;Producto 0127;180
+09/08/2026;Cliente 074;Producto 0351;280
+09/08/2026;Cliente 024;Producto 0050;170
+07/08/2026;Cliente 103;ENVÍO;50
+11/08/2026;Cliente 147;Producto 0095;280
+16/08/2026;Cliente 052;Producto 0202;375
+30/08/2026;Cliente 149;Producto 0159;120
+05/08/2026;Cliente 143;Producto 0201;295
+26/08/2026;Cliente 059;Producto 0293;120
+03/08/2026;Cliente 003;Producto 0066;385
+21/08/2026;Cliente 035;ENVÍO;55
+31/08/2026;Cliente 093;Producto 0289;390
+20/08/2026;Cliente 145;Producto 0210;390
+01/08/2026;Cliente 021;Producto 0177;295
+02/08/2026;Cliente 074;ENVÍO;50
+17/08/2026;Cliente 029;Producto 0150;135
+24/08/2026;Cliente 030;Producto 0192;240
+20/08/2026;Cliente 008;Producto 0138;60
+22/08/2026;Cliente 086;Producto 0269;260
+13/08/2026;Cliente 173;Producto 0387;90
+16/08/2026;Cliente 102;Producto 0267;255
+01/08/2026;Cliente 040;Producto 0102;320
+26/08/2026;Cliente 116;Producto 0041;215
+03/08/2026;Cliente 121;Producto 0069;380
+19/08/2026;Cliente 049;Producto 0351;75
+01/08/2026;Cliente 011;Producto 0215;360
+28/08/2026;Cliente 083;Producto 0395;335
+28/08/2026;Cliente 121;Producto 0282;45
+10/08/2026;Cliente 042;Producto 0016;360
+11/08/2026;Cliente 054;ENVÍO;40
+25/08/2026;Cliente 081;Producto 0256;170
+19/08/2026;Cliente 040;Producto 0123;255
+18/08/2026;Cliente 100;Producto 0377;190
+13/08/2026;Cliente 021;Producto 0349;350
+13/08/2026;Cliente 175;Producto 0099;340
+04/08/2026;Cliente 018;Producto 0289;275
+06/08/2026;Cliente 090;Producto 0138;60
+26/08/2026;Cliente 047;Producto 0165;205
+25/08/2026;Cliente 167;Producto 0217;120
+07/08/2026;Cliente 083;Producto 0225;85
+06/08/2026;Cliente 041;ENVÍO;50
+01/08/2026;Cliente 069;Producto 0215;95
+28/08/2026;Cliente 044;Producto 0100;135
+05/08/2026;Cliente 168;Producto 0173;345
+18/08/2026;Cliente 115;Producto 0327;125
+09/08/2026;Cliente 111;Producto 0261;340
+26/08/2026;Cliente 177;Producto 0050;395
+12/08/2026;Cliente 083;Producto 0010;245
+12/08/2026;Cliente 107;Producto 0119;170
+13/08/2026;Cliente 080;Producto 0105;45
+13/08/2026;Cliente 083;Producto 0358;65
+10/08/2026;Cliente 004;Producto 0166;65
+13/08/2026;Cliente 081;Producto 0314;100
+08/08/2026;Cliente 091;Producto 0289;195
+31/08/2026;Cliente 129;Producto 0354;360
+22/08/2026;Cliente 125;Producto 0032;315
+17/08/2026;Cliente 112;Producto 0346;305
+13/08/2026;Cliente 165;ENVÍO;30
+23/08/2026;Cliente 114;Producto 0039;280
+16/08/2026;Cliente 097;Producto 0077;285
+25/08/2026;Cliente 002;Producto 0270;320
+22/08/2026;Cliente 122;Producto 0329;170
+01/08/2026;Cliente 003;Producto 0341;350
+12/08/2026;Cliente 035;Producto 0275;370
+17/08/2026;Cliente 082;Producto 0307;250
+30/08/2026;Cliente 042;Producto 0238;115
+10/08/2026;Cliente 111;Producto 0196;370
+21/08/2026;Cliente 008;Producto 0395;375
+03/08/2026;Cliente 164;Producto 0271;340
+08/08/2026;Cliente 055;Producto 0219;180
+14/08/2026;Cliente 091;Producto 0361;115
+05/08/2026;Cliente 105;Producto 0133;115
+23/08/2026;Cliente 123;Producto 0312;100
+12/08/2026;Cliente 020;ENVÍO;30
+05/08/2026;Cliente 140;Producto 0206;365
+18/08/2026;Cliente 165;Producto 0231;165
+17/08/2026;Cliente 135;Producto 0171;65
+02/08/2026;Cliente 005;Producto 0164;135
+07/08/2026;Cliente 110;Producto 0123;385
+29/08/2026;Cliente 031;Producto 0208;315
+26/08/2026;Cliente 117;Producto 0281;320
+12/08/2026;Cliente 027;Producto 0082;205
+09/08/2026;Cliente 018;Producto 0242;240
+29/08/2026;Cliente 159;Producto 0352;110
+12/08/2026;Cliente 039;Producto 0024;315
+21/08/2026;Cliente 147;Producto 0194;235
+02/08/2026;Cliente 077;Producto 0232;310
+05/08/2026;Cliente 058;Producto 0346;315
+17/08/2026;Cliente 058;Producto 0171;45
+31/08/2026;Cliente 150;Producto 0200;235
+31/08/2026;Cliente 125;Producto 0313;120
+05/08/2026;Cliente 097;ENVÍO;45
+20/08/2026;Cliente 086;Producto 0175;370
+17/08/2026;Cliente 019;Producto 0112;70
+06/08/2026;Cliente 134;Producto 0330;215
+01/08/2026;Cliente 130;Producto 0267;370
+12/08/2026;Cliente 122;Producto 0319;285
+29/08/2026;Cliente 146;ENVÍO;25
+11/08/2026;Cliente 081;Producto 0201;350
+23/08/2026;Cliente 118;Producto 0135;355
+12/08/2026;Cliente 098;Producto 0307;60
+24/08/2026;Cliente 035;Producto 0207;225
+01/08/2026;Cliente 028;Producto 0335;155
+09/08/2026;Cliente 136;Producto 0151;135
+11/08/2026;Cliente 048;ENVÍO;55
+18/08/2026;Cliente 105;Producto 0145;195
+06/08/2026;Cliente 039;Producto 0302;75
+11/08/2026;Cliente 111;Producto 0243;250
+06/08/2026;Cliente 056;Producto 0218;65
+15/08/2026;Cliente 134;Producto 0370;45
+26/08/2026;Cliente 116;Producto 0255;385
+17/08/2026;Cliente 107;Producto 0001;205
+07/08/2026;Cliente 127;Producto 0182;50
+16/08/2026;Cliente 172;ENVÍO;40
+17/08/2026;Cliente 063;Producto 0374;225
+06/08/2026;Cliente 113;Producto 0381;175
+09/08/2026;Cliente 098;Producto 0315;255
+03/08/2026;Cliente 032;Producto 0004;375
+13/08/2026;Cliente 082;ENVÍO;45
+01/08/2026;Cliente 148;Producto 0212;370
+27/08/2026;Cliente 119;Producto 0251;45
+25/08/2026;Cliente 038;Producto 0150;80
+23/08/2026;Cliente 019;ENVÍO;50
+09/08/2026;Cliente 117;Producto 0147;90
+21/08/2026;Cliente 149;Producto 0182;120
+06/08/2026;Cliente 056;Producto 0347;370
+15/08/2026;Cliente 124;Producto 0253;195
+12/08/2026;Cliente 172;Producto 0214;220
+26/08/2026;Cliente 162;Producto 0105;140
+29/08/2026;Cliente 144;Producto 0231;210
+06/08/2026;Cliente 132;Producto 0181;125
+16/08/2026;Cliente 082;Producto 0213;365
+02/08/2026;Cliente 093;Producto 0369;295
+08/08/2026;Cliente 165;Producto 0080;270
+29/08/2026;Cliente 180;Producto 0346;195
+11/08/2026;Cliente 124;Producto 0009;90
+08/08/2026;Cliente 139;Producto 0068;225
+03/08/2026;Cliente 025;Producto 0312;210
+01/08/2026;Cliente 154;Producto 0235;245
+27/08/2026;Cliente 175;Producto 0007;160
+18/08/2026;Cliente 150;Producto 0244;395
+25/08/2026;Cliente 107;Producto 0395;325
+04/08/2026;Cliente 127;Producto 0048;290
+09/08/2026;Cliente 164;Producto 0348;70
+19/08/2026;Cliente 095;Producto 0375;280
+30/08/2026;Cliente 031;Producto 0211;390
+10/08/2026;Cliente 076;Producto 0078;170
+08/08/2026;Cliente 155;Producto 0248;295
+20/08/2026;Cliente 059;Producto 0331;260
+21/08/2026;Cliente 017;Producto 0252;65
+02/08/2026;Cliente 017;Producto 0129;340
+24/08/2026;Cliente 037;Producto 0282;105
+04/08/2026;Cliente 108;Producto 0055;300
+23/08/2026;Cliente 046;Producto 0252;265
+29/08/2026;Cliente 178;Producto 0391;55
+29/08/2026;Cliente 068;Producto 0222;290
+10/08/2026;Cliente 025;Producto 0193;330
+01/08/2026;Cliente 020;Producto 0014;70
+25/08/2026;Cliente 058;Producto 0372;120
+20/08/2026;Cliente 008;Producto 0274;305
+11/08/2026;Cliente 132;Producto 0237;205
+28/08/2026;Cliente 018;ENVÍO;25
+17/08/2026;Cliente 156;Producto 0155;200
+12/08/2026;Cliente 046;ENVÍO;45
+01/08/2026;Cliente 143;Producto 0248;390
+23/08/2026;Cliente 076;Producto 0132;65
+29/08/2026;Cliente 073;Producto 0104;245
+18/08/2026;Cliente 148;Producto 0190;210
+11/08/2026;Cliente 113;Producto 0257;135
+06/08/2026;Cliente 144;Producto 0202;220
+17/08/2026;Cliente 071;ENVÍO;35
+25/08/2026;Cliente 172;Producto 0038;250
+25/08/2026;Cliente 081;Producto 0159;255
+29/08/2026;Cliente 167;Producto 0269;320
+22/08/2026;Cliente 137;ENVÍO;20
+27/08/2026;Cliente 123;Producto 0243;330
+15/08/2026;Cliente 180;Producto 0219;80
+30/08/2026;Cliente 041;Producto 0059;245
+02/08/2026;Cliente 012;Producto 0340;155
+29/08/2026;Cliente 079;Producto 0322;120
+13/08/2026;Cliente 135;Producto 0077;395
+26/08/2026;Cliente 086;Producto 0366;345
+03/08/2026;Cliente 042;Producto 0161;270
+10/08/2026;Cliente 070;ENVÍO;25
+27/08/2026;Cliente 001;Producto 0061;370
+12/08/2026;Cliente 155;Producto 0171;155
+12/08/2026;Cliente 063;Producto 0123;370
+20/08/2026;Cliente 022;Producto 0028;50
+07/08/2026;Cliente 047;Producto 0018;240
+30/08/2026;Cliente 143;ENVÍO;25
+03/08/2026;Cliente 120;Producto 0252;350
+13/08/2026;Cliente 071;Producto 0152;280
+01/08/2026;Cliente 161;Producto 0386;385
+14/08/2026;Cliente 021;ENVÍO;40
+28/08/2026;Cliente 148;Producto 0065;390
+20/08/2026;Cliente 142;Producto 0227;145
+10/08/2026;Cliente 135;Producto 0265;300
+05/08/2026;Cliente 140;Producto 0262;355
+29/08/2026;Cliente 137;Producto 0171;170
+15/08/2026;Cliente 172;Producto 0174;155
+30/08/2026;Cliente 055;Producto 0233;100
+29/08/2026;Cliente 117;Producto 0375;75
+27/08/2026;Cliente 063;Producto 0235;125
+23/08/2026;Cliente 013;Producto 0206;120
+31/08/2026;Cliente 147;Producto 0037;55
+25/08/2026;Cliente 169;Producto 0361;65
+10/08/2026;Cliente 137;Producto 0089;135
+18/08/2026;Cliente 020;Producto 0252;175
+24/08/2026;Cliente 011;ENVÍO;25
+04/08/2026;Cliente 025;ENVÍO;50
+22/08/2026;Cliente 004;Producto 0250;315
+04/08/2026;Cliente 133;Producto 0101;75
+25/08/2026;Cliente 011;Producto 0080;70
+26/08/2026;Cliente 078;Producto 0258;120
+26/08/2026;Cliente 087;Producto 0308;175
+21/08/2026;Cliente 034;ENVÍO;55
+27/08/2026;Cliente 089;ENVÍO;45
+05/08/2026;Cliente 014;Producto 0304;165
+29/08/2026;Cliente 027;Producto 0190;260
+06/08/2026;Cliente 005;Producto 0027;345
+30/08/2026;Cliente 175;Producto 0220;60
+02/08/2026;Cliente 034;Producto 0126;165
+24/08/2026;Cliente 039;Producto 0365;135
+06/08/2026;Cliente 069;ENVÍO;45
+25/08/2026;Cliente 003;Producto 0356;70
+23/08/2026;Cliente 093;Producto 0234;315
+09/08/2026;Cliente 109;Producto 0021;390
+27/08/2026;Cliente 153;Producto 0382;300
+28/08/2026;Cliente 015;Producto 0381;185
+18/08/2026;Cliente 161;Producto 0199;200
+19/08/2026;Cliente 037;Producto 0346;135
+24/08/2026;Cliente 145;Producto 0094;160
+01/08/2026;Cliente 095;Producto 0360;170
+09/08/2026;Cliente 089;Producto 0355;100
+24/08/2026;Cliente 144;Producto 0311;140
+30/08/2026;Cliente 078;Producto 0087;195
+26/08/2026;Cliente 127;ENVÍO;20
+22/08/2026;Cliente 070;Producto 0394;110
+12/08/2026;Cliente 109;Producto 0362;315
+03/08/2026;Cliente 116;Producto 0038;240
+03/08/2026;Cliente 112;ENVÍO;25
+24/08/2026;Cliente 016;Producto 0374;250
+14/08/2026;Cliente 160;Producto 0015;285
+08/08/2026;Cliente 051;Producto 0287;250
+18/08/2026;Cliente 163;Producto 0012;165
+27/08/2026;Cliente 035;Producto 0129;80
+14/08/2026;Cliente 143;Producto 0287;350
+27/08/2026;Cliente 038;Producto 0084;340
+09/08/2026;Cliente 020;Producto 0112;60
+28/08/2026;Cliente 075;Producto 0202;75
+04/08/2026;Cliente 104;Producto 0184;390
+12/08/2026;Cliente 120;Producto 0168;195
+24/08/2026;Cliente 078;Producto 0271;65
+26/08/2026;Cliente 031;Producto 0276;90
+30/08/2026;Cliente 005;Producto 0287;195
+30/08/2026;Cliente 048;Producto 0252;245
+02/08/2026;Cliente 103;ENVÍO;35
+21/08/2026;Cliente 053;Producto 0273;255
+29/08/2026;Cliente 050;Producto 0334;215
+21/08/2026;Cliente 162;Producto 0259;390
+12/08/2026;Cliente 004;Producto 0233;320
+02/08/2026;Cliente 031;Producto 0382;185
+12/08/2026;Cliente 083;ENVÍO;45
+20/08/2026;Cliente 140;Producto 0249;165
+02/08/2026;Cliente 011;ENVÍO;55
+10/08/2026;Cliente 159;Producto 0257;220
+13/08/2026;Cliente 150;Producto 0175;250
+16/08/2026;Cliente 156;Producto 0313;85
+09/08/2026;Cliente 076;Producto 0096;205
+11/08/2026;Cliente 125;Producto 0138;310
+09/08/2026;Cliente 086;Producto 0313;250
+08/08/2026;Cliente 080;Producto 0373;350
+05/08/2026;Cliente 054;Producto 0010;260
+19/08/2026;Cliente 051;ENVÍO;50
+18/08/2026;Cliente 119;Producto 0049;320
+19/08/2026;Cliente 145;ENVÍO;40
+24/08/2026;Cliente 134;Producto 0263;165
+04/08/2026;Cliente 043;Producto 0306;255
+06/08/2026;Cliente 151;ENVÍO;25
+25/08/2026;Cliente 167;ENVÍO;45
+22/08/2026;Cliente 092;Producto 0041;250
+30/08/2026;Cliente 044;Producto 0309;235
+15/08/2026;Cliente 113;Producto 0051;235
+19/08/2026;Cliente 044;ENVÍO;40
+25/08/2026;Cliente 043;Producto 0183;350
+01/08/2026;Cliente 089;Producto 0170;100
+20/08/2026;Cliente 031;Producto 0148;275
+29/08/2026;Cliente 051;Producto 0087;145
+25/08/2026;Cliente 065;Producto 0105;265
+27/08/2026;Cliente 091;Producto 0347;195
+10/08/2026;Cliente 084;Producto 0368;125
+09/08/2026;Cliente 161;Producto 0079;330
+04/08/2026;Cliente 116;Producto 0178;100
+06/08/2026;Cliente 024;Producto 0368;335
+23/08/2026;Cliente 150;Producto 0143;60
+30/08/2026;Cliente 117;Producto 0094;265
+10/08/2026;Cliente 048;Producto 0100;325
+08/08/2026;Cliente 117;Producto 0085;115
+15/08/2026;Cliente 035;Producto 0059;330
+12/08/2026;Cliente 066;Producto 0155;350
+30/08/2026;Cliente 008;Producto 0220;115
+16/08/2026;Cliente 163;Producto 0111;55
+04/08/2026;Cliente 127;Producto 0248;50
+09/08/2026;Cliente 149;ENVÍO;40
+19/08/2026;Cliente 130;ENVÍO;55
+12/08/2026;Cliente 091;Producto 0226;45
+19/08/2026;Cliente 075;Producto 0134;260
+27/08/2026;Cliente 145;Producto 0292;365
+28/08/2026;Cliente 133;Producto 0382;380
+17/08/2026;Cliente 130;ENVÍO;35
+18/08/2026;Cliente 041;Producto 0161;315
+31/08/2026;Cliente 006;Producto 0110;385
+21/08/2026;Cliente 060;Producto 0062;170
+23/08/2026;Cliente 161;Producto 0034;90
+15/08/2026;Cliente 151;Producto 0034;60
+12/08/2026;Cliente 086;Producto 0227;320
+09/08/2026;Cliente 051;ENVÍO;40
+08/08/2026;Cliente 055;Producto 0335;110
+20/08/2026;Cliente 141;Producto 0015;45
+31/08/2026;Cliente 126;Producto 0348;70
+30/08/2026;Cliente 152;Producto 0128;125
+05/08/2026;Cliente 140;Producto 0364;360
+30/08/2026;Cliente 042;Producto 0019;305
+12/08/2026;Cliente 127;Producto 0213;240
+14/08/2026;Cliente 171;Producto 0194;340
+14/08/2026;Cliente 050;Producto 0025;210
+18/08/2026;Cliente 069;Producto 0330;390
+06/08/2026;Cliente 102;Producto 0361;330
+09/08/2026;Cliente 095;Producto 0374;360
+18/08/2026;Cliente 098;Producto 0215;110
+09/08/2026;Cliente 155;Producto 0118;380
+01/08/2026;Cliente 043;Producto 0265;355
+01/08/2026;Cliente 135;Producto 0226;325
+22/08/2026;Cliente 125;Producto 0227;280
+10/08/2026;Cliente 068;Producto 0103;270
+15/08/2026;Cliente 157;Producto 0074;380
+05/08/2026;Cliente 151;Producto 0219;105
+07/08/2026;Cliente 061;Producto 0388;195
+18/08/2026;Cliente 092;ENVÍO;35
+06/08/2026;Cliente 126;ENVÍO;40
+14/08/2026;Cliente 111;Producto 0339;215
+21/08/2026;Cliente 086;Producto 0224;360
+06/08/2026;Cliente 032;Producto 0204;370
+05/08/2026;Cliente 040;Producto 0219;205
+21/08/2026;Cliente 064;Producto 0217;65
+08/08/2026;Cliente 021;Producto 0185;40
+21/08/2026;Cliente 082;Producto 0239;85
+28/08/2026;Cliente 114;ENVÍO;25
+02/08/2026;Cliente 170;Producto 0021;170
+18/08/2026;Cliente 154;Producto 0331;290
+19/08/2026;Cliente 001;Producto 0187;210
+12/08/2026;Cliente 152;ENVÍO;25
+26/08/2026;Cliente 118;Producto 0270;115
+20/08/2026;Cliente 007;ENVÍO;25
+18/08/2026;Cliente 014;ENVÍO;35
+18/08/2026;Cliente 165;Producto 0094;320
+24/08/2026;Cliente 091;Producto 0185;140
+02/08/2026;Cliente 165;Producto 0224;270
+13/08/2026;Cliente 014;Producto 0043;310
+19/08/2026;Cliente 173;Producto 0290;170
+10/08/2026;Cliente 106;Producto 0220;365
+26/08/2026;Cliente 147;Producto 0328;60
+31/08/2026;Cliente 039;Producto 0378;325
+04/08/2026;Cliente 146;Producto 0108;155
+13/08/2026;Cliente 077;Producto 0283;65
+07/08/2026;Cliente 002;Producto 0381;125
+28/08/2026;Cliente 129;Producto 0024;195
+02/08/2026;Cliente 143;Producto 0190;185
+20/08/2026;Cliente 032;Producto 0349;205
+08/08/2026;Cliente 005;Producto 0147;165
+12/08/2026;Cliente 139;Producto 0045;310
+22/08/2026;Cliente 166;ENVÍO;50
+07/08/2026;Cliente 115;Producto 0204;65
+13/08/2026;Cliente 025;Producto 0037;215
+13/08/2026;Cliente 109;Producto 0189;345
+17/08/2026;Cliente 052;Producto 0252;230
+13/08/2026;Cliente 076;Producto 0098;320
+16/08/2026;Cliente 011;ENVÍO;55
+09/08/2026;Cliente 109;Producto 0189;380
+12/08/2026;Cliente 163;Producto 0173;215
+22/08/2026;Cliente 178;Producto 0174;75
+09/08/2026;Cliente 157;ENVÍO;35
+11/08/2026;Cliente 021;ENVÍO;30
+19/08/2026;Cliente 179;Producto 0304;90
+09/08/2026;Cliente 164;ENVÍO;45
+20/08/2026;Cliente 113;Producto 0352;210
+03/08/2026;Cliente 087;Producto 0093;60
+17/08/2026;Cliente 010;Producto 0232;215
+12/08/2026;Cliente 083;Producto 0102;65
+29/08/2026;Cliente 041;ENVÍO;30
+04/08/2026;Cliente 157;Producto 0322;265
+11/08/2026;Cliente 053;ENVÍO;30
+08/08/2026;Cliente 157;Producto 0143;265
+21/08/2026;Cliente 038;Producto 0049;125
+22/08/2026;Cliente 049;Producto 0206;345
+25/08/2026;Cliente 113;Producto 0356;200
+21/08/2026;Cliente 035;Producto 0098;70
+28/08/2026;Cliente 027;ENVÍO;20
+30/08/2026;Cliente 044;Producto 0391;245
+15/08/2026;Cliente 090;ENVÍO;40
+14/08/2026;Cliente 037;ENVÍO;20
+20/08/2026;Cliente 112;Producto 0369;90
+13/08/2026;Cliente 114;Producto 0019;395
+25/08/2026;Cliente 047;Producto 0181;140
+14/08/2026;Cliente 002;Producto 0117;280
+02/08/2026;Cliente 100;Producto 0340;225
+05/08/2026;Cliente 101;Producto 0333;150
+16/08/2026;Cliente 060;Producto 0076;370
+04/08/2026;Cliente 154;Producto 0252;150
+24/08/2026;Cliente 047;Producto 0341;110
+28/08/2026;Cliente 119;Producto 0206;285
+16/08/2026;Cliente 055;Producto 0088;50
+14/08/2026;Cliente 130;Producto 0324;240
+06/08/2026;Cliente 010;ENVÍO;20
+09/08/2026;Cliente 119;Producto 0240;260
+30/08/2026;Cliente 160;Producto 0029;150
+21/08/2026;Cliente 110;Producto 0330;260
+10/08/2026;Cliente 167;Producto 0275;150
+13/08/2026;Cliente 073;Producto 0272;95
+24/08/2026;Cliente 085;Producto 0357;190
+24/08/2026;Cliente 096;Producto 0183;320
+15/08/2026;Cliente 172;Producto 0336;310
+23/08/2026;Cliente 151;Producto 0239;130
+05/08/2026;Cliente 114;Producto 0308;370
+02/08/2026;Cliente 163;ENVÍO;55
+14/08/2026;Cliente 081;Producto 0122;350
+07/08/2026;Cliente 087;ENVÍO;25
+28/08/2026;Cliente 087;Producto 0249;230
+14/08/2026;Cliente 076;Producto 0360;135
+22/08/2026;Cliente 127;Producto 0188;40
+20/08/2026;Cliente 083;ENVÍO;55
+21/08/2026;Cliente 060;ENVÍO;35
+11/08/2026;Cliente 170;Producto 0291;130
+25/08/2026;Cliente 013;Producto 0162;135
+05/08/2026;Cliente 118;Producto 0034;245
+16/08/2026;Cliente 158;Producto 0230;300
+23/08/2026;Cliente 130;Producto 0390;285
+29/08/2026;Cliente 123;Producto 0337;270
+28/08/2026;Cliente 047;Producto 0155;340
+03/08/2026;Cliente 135;Producto 0255;345
+09/08/2026;Cliente 095;Producto 0064;310
+12/08/2026;Cliente 095;Producto 0360;255
+03/08/2026;Cliente 087;Producto 0374;220
+31/08/2026;Cliente 118;Producto 0074;235
+05/08/2026;Cliente 059;Producto 0007;335
+25/08/2026;Cliente 005;ENVÍO;50
+15/08/2026;Cliente 058;Producto 0207;280
+03/08/2026;Cliente 041;Producto 0141;205
+19/08/2026;Cliente 145;Producto 0185;155
+12/08/2026;Cliente 035;ENVÍO;45
+02/08/2026;Cliente 103;Producto 0336;265
+16/08/2026;Cliente 157;Producto 0333;335
+08/08/2026;Cliente 179;Producto 0312;330
+23/08/2026;Cliente 056;Producto 0276;270
+29/08/2026;Cliente 049;Producto 0131;315
+10/08/2026;Cliente 112;Producto 0080;95
+10/08/2026;Cliente 085;Producto 0306;380
+17/08/2026;Cliente 165;Producto 0341;100
+10/08/2026;Cliente 099;Producto 0380;130
+01/08/2026;Cliente 094;Producto 0214;275
+04/08/2026;Cliente 071;Producto 0368;90
+15/08/2026;Cliente 030;Producto 0056;135
+18/08/2026;Cliente 023;Producto 0303;215
+02/08/2026;Cliente 172;Producto 0183;90
+21/08/2026;Cliente 170;Producto 0371;45
+24/08/2026;Cliente 081;ENVÍO;40
+19/08/2026;Cliente 156;Producto 0165;50
+12/08/2026;Cliente 026;Producto 0233;375
+27/08/2026;Cliente 015;ENVÍO;35
+31/08/2026;Cliente 066;Producto 0115;70
+21/08/2026;Cliente 083;Producto 0097;375
+21/08/2026;Cliente 108;Producto 0031;300
+16/08/2026;Cliente 162;Producto 0049;165
+03/08/2026;Cliente 046;Producto 0172;140
+01/08/2026;Cliente 116;Producto 0158;190
+10/08/2026;Cliente 152;Producto 0280;265
+16/08/2026;Cliente 102;Producto 0022;250
+30/08/2026;Cliente 131;Producto 0257;340
+19/08/2026;Cliente 063;ENVÍO;20
+12/08/2026;Cliente 027;Producto 0272;380
+15/08/2026;Cliente 073;Producto 0261;325
+14/08/2026;Cliente 164;Producto 0235;300
+28/08/2026;Cliente 102;Producto 0244;80
+11/08/2026;Cliente 083;Producto 0123;275
+17/08/2026;Cliente 142;Producto 0375;100
+14/08/2026;Cliente 038;Producto 0086;315
+02/08/2026;Cliente 093;Producto 0143;365
+02/08/2026;Cliente 140;ENVÍO;35
+22/08/2026;Cliente 086;Producto 0018;255
+03/08/2026;Cliente 001;ENVÍO;45
+16/08/2026;Cliente 147;Producto 0396;370
+04/08/2026;Cliente 078;Producto 0043;365
+10/08/2026;Cliente 025;Producto 0345;265
+10/08/2026;Cliente 031;ENVÍO;50
+16/08/2026;Cliente 076;Producto 0313;45
+19/08/2026;Cliente 122;Producto 0327;120
+13/08/2026;Cliente 166;Producto 0254;105
+03/08/2026;Cliente 165;Producto 0138;270
+11/08/2026;Cliente 006;Producto 0294;165
+03/08/2026;Cliente 170;Producto 0295;175
+31/08/2026;Cliente 057;Producto 0303;225
+18/08/2026;Cliente 034;Producto 0119;380
+08/08/2026;Cliente 105;Producto 0100;265
+28/08/2026;Cliente 147;Producto 0195;360
+15/08/2026;Cliente 028;Producto 0229;305
+24/08/2026;Cliente 145;Producto 0212;305
+30/08/2026;Cliente 170;Producto 0358;50
+05/08/2026;Cliente 180;Producto 0184;300
+14/08/2026;Cliente 120;Producto 0084;140
+12/08/2026;Cliente 125;Producto 0364;145
+24/08/2026;Cliente 080;Producto 0123;350
+29/08/2026;Cliente 167;Producto 0346;165
+13/08/2026;Cliente 097;Producto 0096;135
+22/08/2026;Cliente 064;Producto 0252;365
+24/08/2026;Cliente 067;Producto 0265;305
+21/08/2026;Cliente 077;Producto 0262;125
+19/08/2026;Cliente 038;Producto 0375;140
+25/08/2026;Cliente 168;Producto 0278;60
+31/08/2026;Cliente 063;Producto 0087;275
+16/08/2026;Cliente 048;Producto 0059;65
+19/08/2026;Cliente 091;Producto 0144;270
+04/08/2026;Cliente 112;Producto 0396;165
+13/08/2026;Cliente 137;Producto 0180;265
+05/08/2026;Cliente 052;Producto 0200;320
+09/08/2026;Cliente 109;Producto 0058;390
+13/08/2026;Cliente 083;Producto 0206;100
+07/08/2026;Cliente 029;Producto 0344;140
+12/08/2026;Cliente 045;Producto 0077;100
+22/08/2026;Cliente 081;Producto 0310;60
+18/08/2026;Cliente 043;ENVÍO;50
+18/08/2026;Cliente 136;Producto 0168;200
+08/08/2026;Cliente 161;Producto 0308;335
+24/08/2026;Cliente 028;Producto 0210;290
+05/08/2026;Cliente 110;ENVÍO;45
+09/08/2026;Cliente 118;Producto 0356;110
+04/08/2026;Cliente 050;ENVÍO;50
+14/08/2026;Cliente 121;Producto 0041;290
+29/08/2026;Cliente 051;Producto 0360;315
+27/08/2026;Cliente 175;Producto 0374;155
+09/08/2026;Cliente 032;Producto 0006;40
+04/08/2026;Cliente 071;Producto 0184;40
+06/08/2026;Cliente 071;Producto 0243;170
+30/08/2026;Cliente 003;Producto 0158;55
+04/08/2026;Cliente 055;Producto 0315;55
+26/08/2026;Cliente 101;Producto 0268;170
+15/08/2026;Cliente 012;Producto 0060;350
+10/08/2026;Cliente 139;Producto 0238;75
+15/08/2026;Cliente 012;Producto 0243;240
+20/08/2026;Cliente 001;Producto 0287;375
+23/08/2026;Cliente 179;Producto 0215;350
+26/08/2026;Cliente 075;Producto 0171;270
+09/08/2026;Cliente 005;Producto 0139;80
+12/08/2026;Cliente 060;Producto 0353;150
+12/08/2026;Cliente 028;Producto 0369;85
+12/08/2026;Cliente 076;Producto 0376;110
+28/08/2026;Cliente 005;ENVÍO;40
+01/08/2026;Cliente 117;Producto 0051;245
+24/08/2026;Cliente 086;Producto 0317;145
+17/08/2026;Cliente 171;Producto 0371;65
+30/08/2026;Cliente 099;Producto 0027;240
+20/08/2026;Cliente 114;Producto 0082;50
+25/08/2026;Cliente 028;Producto 0312;250
+30/08/2026;Cliente 022;Producto 0314;290
+19/08/2026;Cliente 110;Producto 0052;180
+20/08/2026;Cliente 066;Producto 0321;355
+29/08/2026;Cliente 095;ENVÍO;55
+23/08/2026;Cliente 107;Producto 0116;340
+18/08/2026;Cliente 057;Producto 0142;60
+18/08/2026;Cliente 080;Producto 0275;115
+29/08/2026;Cliente 163;Producto 0112;170
+30/08/2026;Cliente 162;Producto 0222;55
+11/08/2026;Cliente 173;Producto 0044;160
+22/08/2026;Cliente 063;Producto 0320;300
+18/08/2026;Cliente 068;Producto 0295;235
+24/08/2026;Cliente 039;Producto 0198;60
+01/08/2026;Cliente 010;Producto 0271;255
+19/08/2026;Cliente 094;Producto 0214;135
+23/08/2026;Cliente 079;Producto 0097;125
+26/08/2026;Cliente 130;Producto 0173;270
+08/08/2026;Cliente 074;Producto 0321;210
+13/08/2026;Cliente 176;Producto 0061;390
+26/08/2026;Cliente 008;Producto 0326;285
+11/08/2026;Cliente 067;Producto 0231;360
+23/08/2026;Cliente 088;Producto 0245;70
+26/08/2026;Cliente 128;Producto 0167;375
+05/08/2026;Cliente 124;Producto 0172;205
+21/08/2026;Cliente 178;Producto 0294;155
+21/08/2026;Cliente 055;Producto 0187;130
+26/08/2026;Cliente 173;Producto 0203;310
+29/08/2026;Cliente 112;Producto 0334;75
+19/08/2026;Cliente 032;Producto 0078;345
+19/08/2026;Cliente 065;ENVÍO;25
+04/08/2026;Cliente 052;Producto 0376;380
+05/08/2026;Cliente 027;Producto 0150;175
+31/08/2026;Cliente 006;Producto 0278;340
+10/08/2026;Cliente 002;Producto 0335;375
+15/08/2026;Cliente 109;Producto 0255;265
+05/08/2026;Cliente 052;Producto 0102;45
+16/08/2026;Cliente 069;Producto 0357;340
+02/08/2026;Cliente 056;Producto 0192;355
+10/08/2026;Cliente 154;Producto 0398;80
+25/08/2026;Cliente 135;Producto 0003;55
+31/08/2026;Cliente 016;Producto 0160;90
+19/08/2026;Cliente 126;Producto 0295;220
+02/08/2026;Cliente 174;Producto 0125;220
+27/08/2026;Cliente 176;Producto 0157;310
+06/08/2026;Cliente 126;Producto 0161;305
+12/08/2026;Cliente 010;Producto 0006;390
+01/08/2026;Cliente 110;Producto 0370;220
+21/08/2026;Cliente 053;Producto 0396;310
+23/08/2026;Cliente 014;ENVÍO;35
+01/08/2026;Cliente 104;Producto 0356;250
+13/08/2026;Cliente 136;Producto 0097;380
+09/08/2026;Cliente 069;ENVÍO;30
+03/08/2026;Cliente 180;Producto 0272;160
+02/08/2026;Cliente 145;Producto 0196;340
+06/08/2026;Cliente 153;Producto 0066;370
+02/08/2026;Cliente 080;Producto 0038;275
+20/08/2026;Cliente 054;Producto 0057;45
+21/08/2026;Cliente 081;Producto 0100;350
+06/08/2026;Cliente 015;Producto 0185;245
+10/08/2026;Cliente 108;Producto 0344;165
+10/08/2026;Cliente 137;ENVÍO;55
+11/08/2026;Cliente 076;ENVÍO;55
+14/08/2026;Cliente 039;Producto 0240;190
+13/08/2026;Cliente 128;Producto 0353;50
+28/08/2026;Cliente 090;Producto 0399;340
+31/08/2026;Cliente 118;ENVÍO;35
+26/08/2026;Cliente 164;Producto 0063;130
+06/08/2026;Cliente 094;Producto 0182;260
+12/08/2026;Cliente 150;Producto 0241;370
+05/08/2026;Cliente 153;Producto 0280;230
+07/08/2026;Cliente 160;Producto 0348;240
+29/08/2026;Cliente 119;Producto 0166;250
+11/08/2026;Cliente 078;Producto 0175;320
+01/08/2026;Cliente 034;ENVÍO;45
+26/08/2026;Cliente 076;Producto 0088;190
+27/08/2026;Cliente 125;Producto 0400;270
+26/08/2026;Cliente 002;Producto 0327;345
+11/08/2026;Cliente 016;ENVÍO;20
+07/08/2026;Cliente 097;Producto 0315;310
+08/08/2026;Cliente 117;Producto 0158;95
+05/08/2026;Cliente 071;ENVÍO;45
+18/08/2026;Cliente 003;Producto 0228;265
+26/08/2026;Cliente 105;Producto 0047;380
+07/08/2026;Cliente 134;ENVÍO;45
+24/08/2026;Cliente 016;Producto 0131;265
+15/08/2026;Cliente 057;Producto 0366;140
+11/08/2026;Cliente 074;Producto 0164;45
+15/08/2026;Cliente 165;Producto 0071;225
+17/08/2026;Cliente 024;Producto 0008;215
+30/08/2026;Cliente 157;ENVÍO;45
+10/08/2026;Cliente 026;ENVÍO;55
+14/08/2026;Cliente 047;Producto 0382;85
+16/08/2026;Cliente 124;Producto 0271;195
+05/08/2026;Cliente 107;Producto 0048;395
+26/08/2026;Cliente 093;Producto 0209;125
+18/08/2026;Cliente 036;Producto 0384;260
+24/08/2026;Cliente 011;ENVÍO;30
+09/08/2026;Cliente 160;Producto 0338;280
+27/08/2026;Cliente 066;Producto 0040;225
+25/08/2026;Cliente 126;ENVÍO;30
+29/08/2026;Cliente 030;Producto 0355;190
+16/08/2026;Cliente 062;Producto 0308;380
+14/08/2026;Cliente 032;Producto 0084;65
+22/08/2026;Cliente 081;Producto 0326;125
+15/08/2026;Cliente 086;Producto 0067;350
+09/08/2026;Cliente 078;Producto 0120;390
+11/08/2026;Cliente 168;Producto 0350;140
+06/08/2026;Cliente 150;Producto 0097;275
+06/08/2026;Cliente 118;Producto 0357;100
+26/08/2026;Cliente 071;Producto 0343;280
+17/08/2026;Cliente 119;Producto 0348;160
+07/08/2026;Cliente 180;Producto 0244;290
+24/08/2026;Cliente 139;ENVÍO;20
+28/08/2026;Cliente 098;Producto 0211;130
+16/08/2026;Cliente 110;Producto 0024;280
+21/08/2026;Cliente 109;Producto 0032;290
+10/08/2026;Cliente 084;Producto 0017;340
+27/08/2026;Cliente 082;ENVÍO;45
+23/08/2026;Cliente 097;Producto 0099;310
+27/08/2026;Cliente 105;Producto 0242;390
+10/08/2026;Cliente 126;Producto 0274;290
+04/08/2026;Cliente 001;Producto 0294;150
+17/08/2026;Cliente 112;Producto 0154;375
+26/08/2026;Cliente 110;ENVÍO;40
+18/08/2026;Cliente 011;ENVÍO;35
+30/08/2026;Cliente 053;Producto 0114;75
+10/08/2026;Cliente 009;Producto 0322;315
+06/08/2026;Cliente 037;Producto 0377;140
+11/08/2026;Cliente 037;ENVÍO;40
+25/08/2026;Cliente 038;ENVÍO;40
+08/08/2026;Cliente 169;Producto 0052;120
+16/08/2026;Cliente 134;Producto 0116;130
+30/08/2026;Cliente 051;Producto 0323;330
+07/08/2026;Cliente 086;Producto 0102;235
+27/08/2026;Cliente 038;ENVÍO;45
+25/08/2026;Cliente 034;Producto 0053;110
+24/08/2026;Cliente 152;Producto 0116;290
+06/08/2026;Cliente 064;Producto 0085;350
+06/08/2026;Cliente 150;Producto 0245;100
+12/08/2026;Cliente 010;Producto 0094;360
+16/08/2026;Cliente 140;Producto 0033;180
+24/08/2026;Cliente 159;Producto 0236;105
+30/08/2026;Cliente 166;Producto 0115;380
+12/08/2026;Cliente 164;Producto 0212;75
+21/08/2026;Cliente 076;Producto 0040;125
+08/08/2026;Cliente 025;Producto 0264;355
+12/08/2026;Cliente 095;Producto 0071;380
+08/08/2026;Cliente 043;Producto 0113;105
+14/08/2026;Cliente 072;Producto 0276;375
+02/08/2026;Cliente 058;Producto 0268;210
+30/08/2026;Cliente 089;Producto 0356;360
+05/08/2026;Cliente 130;Producto 0146;305
+16/08/2026;Cliente 051;Producto 0180;175
+09/08/2026;Cliente 072;ENVÍO;55
+18/08/2026;Cliente 051;Producto 0039;85
+28/08/2026;Cliente 178;Producto 0030;225
+26/08/2026;Cliente 115;Producto 0305;385
+18/08/2026;Cliente 025;ENVÍO;25
+14/08/2026;Cliente 133;Producto 0068;245
+01/08/2026;Cliente 020;Producto 0181;335
+13/08/2026;Cliente 144;Producto 0110;65
+11/08/2026;Cliente 034;Producto 0372;40
+14/08/2026;Cliente 122;Producto 0257;260
+10/08/2026;Cliente 143;Producto 0167;245
+09/08/2026;Cliente 174;Producto 0352;155
+11/08/2026;Cliente 159;Producto 0310;190
+11/08/2026;Cliente 093;ENVÍO;50
+13/08/2026;Cliente 095;Producto 0013;225
+20/08/2026;Cliente 135;Producto 0151;85
+19/08/2026;Cliente 076;Producto 0095;350
+26/08/2026;Cliente 051;Producto 0064;335
+15/08/2026;Cliente 061;Producto 0280;110
+03/08/2026;Cliente 107;Producto 0246;355
+11/08/2026;Cliente 044;ENVÍO;55
+18/08/2026;Cliente 086;Producto 0387;255
+16/08/2026;Cliente 128;Producto 0053;115
+13/08/2026;Cliente 011;Producto 0043;350
+24/08/2026;Cliente 082;Producto 0123;360
+05/08/2026;Cliente 094;Producto 0211;85
+07/08/2026;Cliente 144;Producto 0060;170
+24/08/2026;Cliente 038;Producto 0109;355
+09/08/2026;Cliente 078;Producto 0279;300
+22/08/2026;Cliente 101;Producto 0381;355
+25/08/2026;Cliente 175;Producto 0275;210
+11/08/2026;Cliente 164;Producto 0027;370
+21/08/2026;Cliente 178;Producto 0057;140
+27/08/2026;Cliente 073;Producto 0027;170
+05/08/2026;Cliente 034;Producto 0395;260
+19/08/2026;Cliente 015;ENVÍO;45
+07/08/2026;Cliente 098;Producto 0259;200
+14/08/2026;Cliente 141;Producto 0125;180
+24/08/2026;Cliente 161;Producto 0018;315
+18/08/2026;Cliente 075;Producto 0001;370
+13/08/2026;Cliente 103;Producto 0118;150
+13/08/2026;Cliente 134;Producto 0257;375
+04/08/2026;Cliente 072;Producto 0180;345
+06/08/2026;Cliente 062;Producto 0008;380
+08/08/2026;Cliente 016;Producto 0065;45
+13/08/2026;Cliente 028;Producto 0217;110
+17/08/2026;Cliente 103;ENVÍO;40
+17/08/2026;Cliente 158;Producto 0345;135
+07/08/2026;Cliente 151;Producto 0184;280
+08/08/2026;Cliente 128;Producto 0205;305
+16/08/2026;Cliente 062;Producto 0070;355
+21/08/2026;Cliente 132;Producto 0056;300
+12/08/2026;Cliente 084;Producto 0122;130
+28/08/2026;Cliente 075;Producto 0229;40
+15/08/2026;Cliente 077;Producto 0038;155
+09/08/2026;Cliente 087;Producto 0315;70
+23/08/2026;Cliente 013;Producto 0043;145
+19/08/2026;Cliente 099;Producto 0262;100
+08/08/2026;Cliente 122;Producto 0250;255
+17/08/2026;Cliente 118;Producto 0325;40
+23/08/2026;Cliente 045;Producto 0135;325
+16/08/2026;Cliente 151;Producto 0124;220
+01/08/2026;Cliente 075;Producto 0242;385
+01/08/2026;Cliente 093;Producto 0135;295
+28/08/2026;Cliente 070;ENVÍO;25
+08/08/2026;Cliente 071;Producto 0098;60
+21/08/2026;Cliente 130;Producto 0232;335
+28/08/2026;Cliente 166;Producto 0320;345
+06/08/2026;Cliente 065;Producto 0271;380
+08/08/2026;Cliente 152;Producto 0265;375
+19/08/2026;Cliente 004;Producto 0048;280
+26/08/2026;Cliente 034;Producto 0024;170
+06/08/2026;Cliente 160;Producto 0260;95
+16/08/2026;Cliente 173;Producto 0083;365
+14/08/2026;Cliente 035;Producto 0337;215
+21/08/2026;Cliente 122;Producto 0195;90
+01/08/2026;Cliente 122;Producto 0088;175
+11/08/2026;Cliente 117;Producto 0040;285
+14/08/2026;Cliente 034;Producto 0035;350
+04/08/2026;Cliente 173;Producto 0014;130
+02/08/2026;Cliente 019;Producto 0064;105
+14/08/2026;Cliente 153;Producto 0190;120
+30/08/2026;Cliente 071;Producto 0338;250
+16/08/2026;Cliente 040;Producto 0167;90
+11/08/2026;Cliente 087;Producto 0108;195
+12/08/2026;Cliente 026;Producto 0254;170
+18/08/2026;Cliente 122;Producto 0346;375
+13/08/2026;Cliente 073;Producto 0282;105
+03/08/2026;Cliente 034;Producto 0119;200
+23/08/2026;Cliente 158;Producto 0145;105
+26/08/2026;Cliente 087;Producto 0001;70
+08/08/2026;Cliente 175;Producto 0014;135
+03/08/2026;Cliente 082;Producto 0056;40
+06/08/2026;Cliente 100;Producto 0338;360
+30/08/2026;Cliente 172;Producto 0029;325
+09/08/2026;Cliente 010;ENVÍO;50
+05/08/2026;Cliente 153;Producto 0100;250
+05/08/2026;Cliente 168;Producto 0055;270
+02/08/2026;Cliente 138;Producto 0398;230
+01/08/2026;Cliente 141;Producto 0400;285
+24/08/2026;Cliente 008;ENVÍO;50
+19/08/2026;Cliente 065;Producto 0064;210
+22/08/2026;Cliente 079;Producto 0039;260
+04/08/2026;Cliente 094;Producto 0004;190
+18/08/2026;Cliente 170;ENVÍO;25
+17/08/2026;Cliente 056;Producto 0226;150
+04/08/2026;Cliente 030;Producto 0052;370
+08/08/2026;Cliente 067;Producto 0249;185
+27/08/2026;Cliente 136;Producto 0267;350
+29/08/2026;Cliente 086;ENVÍO;50
+27/08/2026;Cliente 136;Producto 0079;355
+03/08/2026;Cliente 108;Producto 0253;115
+05/08/2026;Cliente 044;ENVÍO;45
+09/08/2026;Cliente 097;Producto 0167;105
+18/08/2026;Cliente 113;Producto 0240;270
+06/08/2026;Cliente 095;Producto 0094;365
+31/08/2026;Cliente 096;Producto 0089;105
+10/08/2026;Cliente 035;Producto 0220;210
+21/08/2026;Cliente 141;Producto 0217;185
+08/08/2026;Cliente 106;Producto 0017;210
+25/08/2026;Cliente 064;Producto 0278;370
+09/08/2026;Cliente 137;Producto 0182;160
+01/08/2026;Cliente 155;Producto 0314;145
+26/08/2026;Cliente 173;Producto 0060;150
+12/08/2026;Cliente 020;Producto 0307;290
+19/08/2026;Cliente 099;Producto 0197;140
+09/08/2026;Cliente 038;Producto 0088;40
+19/08/2026;Cliente 060;Producto 0162;80
+26/08/2026;Cliente 030;Producto 0387;125
+30/08/2026;Cliente 153;Producto 0334;145
+31/08/2026;Cliente 113;Producto 0114;150
+01/08/2026;Cliente 162;Producto 0210;160
+28/08/2026;Cliente 086;Producto 0123;235
+14/08/2026;Cliente 111;Producto 0008;215
+05/08/2026;Cliente 003;Producto 0109;255
+20/08/2026;Cliente 092;Producto 0055;300
+23/08/2026;Cliente 148;Producto 0400;180
+18/08/2026;Cliente 022;Producto 0160;300
+20/08/2026;Cliente 081;Producto 0205;75
+04/08/2026;Cliente 022;Producto 0338;330
+25/08/2026;Cliente 126;Producto 0370;80
+18/08/2026;Cliente 098;Producto 0239;90
+23/08/2026;Cliente 128;Producto 0298;185
+29/08/2026;Cliente 167;ENVÍO;50
+26/08/2026;Cliente 109;Producto 0285;150
+08/08/2026;Cliente 137;Producto 0252;180
+15/08/2026;Cliente 071;Producto 0247;145
+28/08/2026;Cliente 156;Producto 0188;270
+24/08/2026;Cliente 011;Producto 0059;165
+11/08/2026;Cliente 134;Producto 0247;110
+03/08/2026;Cliente 012;Producto 0321;290
+04/08/2026;Cliente 013;Producto 0235;205
+01/08/2026;Cliente 155;Producto 0195;260
+14/08/2026;Cliente 049;Producto 0168;160
+30/08/2026;Cliente 117;Producto 0293;80
+17/08/2026;Cliente 106;Producto 0014;145
+19/08/2026;Cliente 128;Producto 0072;320
+21/08/2026;Cliente 163;Producto 0144;150
+13/08/2026;Cliente 128;ENVÍO;50
+15/08/2026;Cliente 058;Producto 0097;190
+10/08/2026;Cliente 088;Producto 0376;395
+14/08/2026;Cliente 065;Producto 0089;360
+05/08/2026;Cliente 016;Producto 0194;175
+08/08/2026;Cliente 055;Producto 0098;290
+06/08/2026;Cliente 083;Producto 0023;390
+02/08/2026;Cliente 064;Producto 0118;360
+19/08/2026;Cliente 171;ENVÍO;40
+07/08/2026;Cliente 135;Producto 0362;140
+10/08/2026;Cliente 024;Producto 0068;210
+18/08/2026;Cliente 101;Producto 0160;180
+22/08/2026;Cliente 060;Producto 0120;370
+17/08/2026;Cliente 144;Producto 0290;205
+22/08/2026;Cliente 064;Producto 0209;250
+11/08/2026;Cliente 014;ENVÍO;40
+19/08/2026;Cliente 125;Producto 0193;160
+09/08/2026;Cliente 084;Producto 0291;145
+17/08/2026;Cliente 112;ENVÍO;40
+16/08/2026;Cliente 127;Producto 0303;345
+05/08/2026;Cliente 122;ENVÍO;45
+28/08/2026;Cliente 024;Producto 0170;55
+01/08/2026;Cliente 160;Producto 0323;245
+08/08/2026;Cliente 049;Producto 0366;190
+07/08/2026;Cliente 048;Producto 0336;305
+09/08/2026;Cliente 013;Producto 0014;145
+13/08/2026;Cliente 071;ENVÍO;55
+08/08/2026;Cliente 054;Producto 0118;150
+31/08/2026;Cliente 058;Producto 0332;135
+16/08/2026;Cliente 116;Producto 0092;110
+07/08/2026;Cliente 005;Producto 0044;225
+09/08/2026;Cliente 036;Producto 0390;245
+05/08/2026;Cliente 071;Producto 0220;145
+28/08/2026;Cliente 002;Producto 0291;65
+03/08/2026;Cliente 105;Producto 0191;145
+02/08/2026;Cliente 088;Producto 0285;275
+21/08/2026;Cliente 145;Producto 0253;165
+31/08/2026;Cliente 171;ENVÍO;30
+14/08/2026;Cliente 060;Producto 0252;130
+14/08/2026;Cliente 089;ENVÍO;50
+21/08/2026;Cliente 080;Producto 0280;180
+01/08/2026;Cliente 138;Producto 0285;270
+10/08/2026;Cliente 093;Producto 0296;125
+02/08/2026;Cliente 003;Producto 0093;290
+19/08/2026;Cliente 021;ENVÍO;35
+11/08/2026;Cliente 004;Producto 0328;190
+13/08/2026;Cliente 178;Producto 0229;395
+15/08/2026;Cliente 043;Producto 0215;160
+17/08/2026;Cliente 073;Producto 0213;75
+15/08/2026;Cliente 044;Producto 0208;60
+23/08/2026;Cliente 038;Producto 0125;255
+05/08/2026;Cliente 083;ENVÍO;30
+27/08/2026;Cliente 025;Producto 0257;60
+12/08/2026;Cliente 170;Producto 0187;180
+26/08/2026;Cliente 031;Producto 0362;215
+09/08/2026;Cliente 158;Producto 0341;300
+04/08/2026;Cliente 049;Producto 0310;75
+08/08/2026;Cliente 110;Producto 0067;60
+04/08/2026;Cliente 083;ENVÍO;20
+18/08/2026;Cliente 058;Producto 0071;270
+15/08/2026;Cliente 086;Producto 0235;285
+13/08/2026;Cliente 042;Producto 0037;335
+24/08/2026;Cliente 045;Producto 0272;395
+21/08/2026;Cliente 155;Producto 0146;350
+19/08/2026;Cliente 175;Producto 0207;290
+02/08/2026;Cliente 066;Producto 0382;165
+10/08/2026;Cliente 141;Producto 0314;40
+16/08/2026;Cliente 035;Producto 0338;260
+15/08/2026;Cliente 022;Producto 0396;45
+13/08/2026;Cliente 099;Producto 0353;165
+11/08/2026;Cliente 156;Producto 0002;65
+23/08/2026;Cliente 121;Producto 0192;315
+11/08/2026;Cliente 015;Producto 0049;185
+01/08/2026;Cliente 056;Producto 0327;395
+08/08/2026;Cliente 102;Producto 0183;360
+11/08/2026;Cliente 169;Producto 0309;175
+05/08/2026;Cliente 116;Producto 0081;270
+07/08/2026;Cliente 022;Producto 0008;145
+26/08/2026;Cliente 055;Producto 0050;195
+12/08/2026;Cliente 064;Producto 0116;290
+16/08/2026;Cliente 129;Producto 0177;230
+23/08/2026;Cliente 070;Producto 0055;390
+16/08/2026;Cliente 019;Producto 0314;155
+21/08/2026;Cliente 031;Producto 0261;40
+31/08/2026;Cliente 063;Producto 0081;65
+02/08/2026;Cliente 114;Producto 0301;275
+31/08/2026;Cliente 075;Producto 0396;130
+21/08/2026;Cliente 087;Producto 0060;55
+04/08/2026;Cliente 139;ENVÍO;20
+20/08/2026;Cliente 120;Producto 0011;80
+24/08/2026;Cliente 178;Producto 0130;260
+10/08/2026;Cliente 130;Producto 0397;245
+17/08/2026;Cliente 022;Producto 0124;390
+23/08/2026;Cliente 161;Producto 0315;340
+11/08/2026;Cliente 049;Producto 0263;240
+01/08/2026;Cliente 117;Producto 0229;205
+05/08/2026;Cliente 044;Producto 0231;190
+28/08/2026;Cliente 019;ENVÍO;30
+14/08/2026;Cliente 128;Producto 0311;75
+23/08/2026;Cliente 157;Producto 0119;200
+31/08/2026;Cliente 010;Producto 0074;365
+28/08/2026;Cliente 170;Producto 0057;120
+06/08/2026;Cliente 070;Producto 0245;155
+25/08/2026;Cliente 023;Producto 0036;55
+05/08/2026;Cliente 092;Producto 0174;145
+12/08/2026;Cliente 123;Producto 0057;200
+11/08/2026;Cliente 087;Producto 0013;190
+09/08/2026;Cliente 089;ENVÍO;35
+24/08/2026;Cliente 015;ENVÍO;50
+28/08/2026;Cliente 160;Producto 0035;280
+31/08/2026;Cliente 029;Producto 0027;95
+19/08/2026;Cliente 133;Producto 0167;120
+19/08/2026;Cliente 094;Producto 0102;390
+22/08/2026;Cliente 061;Producto 0075;285
+21/08/2026;Cliente 058;Producto 0166;300
+23/08/2026;Cliente 071;Producto 0182;270
+17/08/2026;Cliente 123;Producto 0098;235
+15/08/2026;Cliente 103;Producto 0382;175
+06/08/2026;Cliente 148;Producto 0211;230
+30/08/2026;Cliente 124;Producto 0143;255
+26/08/2026;Cliente 040;Producto 0318;140
+07/08/2026;Cliente 055;Producto 0120;370
+05/08/2026;Cliente 005;Producto 0206;390
+10/08/2026;Cliente 011;Producto 0060;130
+09/08/2026;Cliente 121;Producto 0243;260
+06/08/2026;Cliente 088;Producto 0159;65
+03/08/2026;Cliente 162;Producto 0032;275
+13/08/2026;Cliente 064;Producto 0186;235
+31/08/2026;Cliente 032;Producto 0235;290
+12/08/2026;Cliente 078;Producto 0102;270
+08/08/2026;Cliente 097;ENVÍO;55
+09/08/2026;Cliente 129;Producto 0294;310
+29/08/2026;Cliente 025;Producto 0137;45
+30/08/2026;Cliente 104;Producto 0040;230
+17/08/2026;Cliente 105;Producto 0321;85
+05/08/2026;Cliente 044;Producto 0108;350
+03/08/2026;Cliente 071;ENVÍO;50
+12/08/2026;Cliente 095;Producto 0099;65
+27/08/2026;Cliente 113;Producto 0253;165
+14/08/2026;Cliente 109;Producto 0291;375
+21/08/2026;Cliente 106;Producto 0335;330
+16/08/2026;Cliente 005;Producto 0253;100
+07/08/2026;Cliente 041;Producto 0338;95
+23/08/2026;Cliente 015;Producto 0161;75
+22/08/2026;Cliente 156;Producto 0248;265
+24/08/2026;Cliente 173;Producto 0111;75
+24/08/2026;Cliente 020;Producto 0244;285
+26/08/2026;Cliente 089;Producto 0283;365
+01/08/2026;Cliente 155;Producto 0186;315
+12/08/2026;Cliente 113;Producto 0264;230
+04/08/2026;Cliente 062;Producto 0136;150
+30/08/2026;Cliente 064;Producto 0209;330
+17/08/2026;Cliente 140;Producto 0002;255
+24/08/2026;Cliente 040;Producto 0254;105
+19/08/2026;Cliente 128;ENVÍO;45
+19/08/2026;Cliente 080;Producto 0154;105
+29/08/2026;Cliente 095;Producto 0151;395
+04/08/2026;Cliente 031;Producto 0131;365
+28/08/2026;Cliente 030;Producto 0090;235
+02/08/2026;Cliente 136;Producto 0094;195
+09/08/2026;Cliente 033;Producto 0334;275
+08/08/2026;Cliente 026;Producto 0356;245
+02/08/2026;Cliente 127;Producto 0339;140
+12/08/2026;Cliente 013;Producto 0166;185
+29/08/2026;Cliente 160;Producto 0266;355
+19/08/2026;Cliente 080;Producto 0196;100
+01/08/2026;Cliente 077;Producto 0242;185
+31/08/2026;Cliente 099;ENVÍO;25
+11/08/2026;Cliente 137;Producto 0134;350
+19/08/2026;Cliente 021;Producto 0291;85
+29/08/2026;Cliente 148;Producto 0121;270
+04/08/2026;Cliente 014;ENVÍO;25
+26/08/2026;Cliente 132;Producto 0270;245
+07/08/2026;Cliente 153;Producto 0254;190
+24/08/2026;Cliente 112;Producto 0240;235
+13/08/2026;Cliente 075;Producto 0255;265
+24/08/2026;Cliente 166;Producto 0133;340
+04/08/2026;Cliente 078;Producto 0379;195
+13/08/2026;Cliente 061;Producto 0106;380
+09/08/2026;Cliente 075;Producto 0079;95
+03/08/2026;Cliente 100;Producto 0223;270
+25/08/2026;Cliente 077;Producto 0109;235
+22/08/2026;Cliente 128;Producto 0215;145
+28/08/2026;Cliente 023;Producto 0203;295
+29/08/2026;Cliente 103;Producto 0137;330
+03/08/2026;Cliente 094;Producto 0199;245
+12/08/2026;Cliente 098;Producto 0279;375
+11/08/2026;Cliente 156;Producto 0317;290
+22/08/2026;Cliente 058;Producto 0332;310
+19/08/2026;Cliente 050;Producto 0297;165
+01/08/2026;Cliente 085;ENVÍO;50
+27/08/2026;Cliente 091;Producto 0298;105
+21/08/2026;Cliente 018;Producto 0376;60
+06/08/2026;Cliente 071;Producto 0262;65
+26/08/2026;Cliente 124;Producto 0028;155
+28/08/2026;Cliente 021;Producto 0197;250
+29/08/2026;Cliente 160;Producto 0211;85
+12/08/2026;Cliente 128;Producto 0158;100
+04/08/2026;Cliente 056;Producto 0295;345
+05/08/2026;Cliente 060;Producto 0175;150
+09/08/2026;Cliente 034;Producto 0255;300
+31/08/2026;Cliente 004;Producto 0191;335
+08/08/2026;Cliente 033;Producto 0137;355
+02/08/2026;Cliente 034;ENVÍO;20
+09/08/2026;Cliente 009;Producto 0239;175
+27/08/2026;Cliente 033;Producto 0386;180
+28/08/2026;Cliente 003;Producto 0061;300
+20/08/2026;Cliente 037;Producto 0011;135
+04/08/2026;Cliente 098;Producto 0330;325
+20/08/2026;Cliente 129;Producto 0167;395
+23/08/2026;Cliente 041;Producto 0225;145
+01/08/2026;Cliente 075;ENVÍO;50
+06/08/2026;Cliente 150;Producto 0283;215
+31/08/2026;Cliente 110;ENVÍO;45
+18/08/2026;Cliente 122;Producto 0362;245
+06/08/2026;Cliente 102;Producto 0261;260
+24/08/2026;Cliente 021;Producto 0169;110
+09/08/2026;Cliente 152;Producto 0270;115
+17/08/2026;Cliente 005;Producto 0327;305
+24/08/2026;Cliente 153;Producto 0255;175
+18/08/2026;Cliente 082;Producto 0200;250
+03/08/2026;Cliente 151;Producto 0354;240
+17/08/2026;Cliente 107;Producto 0302;180
+31/08/2026;Cliente 159;Producto 0084;100
+10/08/2026;Cliente 122;Producto 0079;355
+27/08/2026;Cliente 159;Producto 0213;45
+02/08/2026;Cliente 180;Producto 0004;225
+26/08/2026;Cliente 037;Producto 0151;255
+26/08/2026;Cliente 006;Producto 0236;345
+27/08/2026;Cliente 036;ENVÍO;20
+08/08/2026;Cliente 174;Producto 0231;105
+23/08/2026;Cliente 055;Producto 0366;175
+15/08/2026;Cliente 119;Producto 0084;175
+26/08/2026;Cliente 094;Producto 0090;260
+17/08/2026;Cliente 022;Producto 0306;300
+14/08/2026;Cliente 040;Producto 0024;280
+08/08/2026;Cliente 163;Producto 0079;245
+15/08/2026;Cliente 068;Producto 0366;345
+02/08/2026;Cliente 093;Producto 0257;40
+11/08/2026;Cliente 126;Producto 0400;75
+31/08/2026;Cliente 143;Producto 0264;125
+20/08/2026;Cliente 085;Producto 0229;380
+11/08/2026;Cliente 062;Producto 0125;130
+15/08/2026;Cliente 086;Producto 0382;240
+23/08/2026;Cliente 148;Producto 0024;230
+19/08/2026;Cliente 171;Producto 0083;310
+24/08/2026;Cliente 127;Producto 0315;195
+01/08/2026;Cliente 054;ENVÍO;40
+28/08/2026;Cliente 117;Producto 0318;295
+05/08/2026;Cliente 120;Producto 0290;190
+17/08/2026;Cliente 115;Producto 0228;295
+29/08/2026;Cliente 049;Producto 0249;365
+24/08/2026;Cliente 075;Producto 0061;245
+02/08/2026;Cliente 027;Producto 0254;235
+06/08/2026;Cliente 014;Producto 0072;305
+04/08/2026;Cliente 175;Producto 0324;140
+28/08/2026;Cliente 006;Producto 0207;115
+30/08/2026;Cliente 074;Producto 0169;175
+17/08/2026;Cliente 032;Producto 0245;180
+21/08/2026;Cliente 158;ENVÍO;50
+02/08/2026;Cliente 066;Producto 0111;320
+30/08/2026;Cliente 017;ENVÍO;20
+15/08/2026;Cliente 044;Producto 0282;195
+18/08/2026;Cliente 017;Producto 0267;285
+05/08/2026;Cliente 094;Producto 0060;325
+27/08/2026;Cliente 019;Producto 0232;320
+12/08/2026;Cliente 098;ENVÍO;45
+21/08/2026;Cliente 115;Producto 0022;125
+09/08/2026;Cliente 050;Producto 0228;270
+15/08/2026;Cliente 015;Producto 0374;85
+12/08/2026;Cliente 068;Producto 0038;90
+12/08/2026;Cliente 134;Producto 0273;265
+01/08/2026;Cliente 026;Producto 0015;255
+24/08/2026;Cliente 054;Producto 0332;215
+08/08/2026;Cliente 096;Producto 0279;135
+12/08/2026;Cliente 042;Producto 0119;390
+21/08/2026;Cliente 030;Producto 0025;220
+10/08/2026;Cliente 026;Producto 0082;125
+05/08/2026;Cliente 037;Producto 0393;115
+07/08/2026;Cliente 170;ENVÍO;45
+15/08/2026;Cliente 077;Producto 0111;130
+13/08/2026;Cliente 150;Producto 0166;95
+31/08/2026;Cliente 117;Producto 0208;260
+26/08/2026;Cliente 127;Producto 0235;170
+14/08/2026;Cliente 161;Producto 0130;85
+29/08/2026;Cliente 161;Producto 0261;370
+12/08/2026;Cliente 159;Producto 0346;140
+17/08/2026;Cliente 021;Producto 0251;350
+09/08/2026;Cliente 177;Producto 0144;90
+22/08/2026;Cliente 077;Producto 0020;345
+17/08/2026;Cliente 107;Producto 0290;230
+22/08/2026;Cliente 057;Producto 0281;50
+10/08/2026;Cliente 120;Producto 0334;230
+02/08/2026;Cliente 100;Producto 0097;45
+30/08/2026;Cliente 144;Producto 0258;390
+07/08/2026;Cliente 115;Producto 0117;130
+31/08/2026;Cliente 105;Producto 0028;380
+14/08/2026;Cliente 076;Producto 0109;390
+30/08/2026;Cliente 061;Producto 0203;120
+02/08/2026;Cliente 112;Producto 0280;65
+28/08/2026;Cliente 075;Producto 0211;105
+05/08/2026;Cliente 051;Producto 0149;395
+12/08/2026;Cliente 130;Producto 0288;180
+22/08/2026;Cliente 078;Producto 0114;190
+28/08/2026;Cliente 027;Producto 0365;60
+14/08/2026;Cliente 141;Producto 0186;305
+15/08/2026;Cliente 101;Producto 0099;315
+24/08/2026;Cliente 078;Producto 0155;245
+15/08/2026;Cliente 082;Producto 0330;205
+02/08/2026;Cliente 113;Producto 0391;85
+21/08/2026;Cliente 139;Producto 0137;215
+13/08/2026;Cliente 123;Producto 0108;95
+05/08/2026;Cliente 164;Producto 0270;335
+11/08/2026;Cliente 133;Producto 0058;275
+19/08/2026;Cliente 044;Producto 0154;65
+01/08/2026;Cliente 163;Producto 0257;350
+20/08/2026;Cliente 109;Producto 0098;230
+04/08/2026;Cliente 177;Producto 0139;310
+17/08/2026;Cliente 157;Producto 0022;330
+27/08/2026;Cliente 066;Producto 0318;260
+10/08/2026;Cliente 072;Producto 0384;250
+13/08/2026;Cliente 125;ENVÍO;30
+18/08/2026;Cliente 149;Producto 0049;275
+27/08/2026;Cliente 030;Producto 0182;55
+25/08/2026;Cliente 119;Producto 0007;90
+14/08/2026;Cliente 140;ENVÍO;20
+13/08/2026;Cliente 174;Producto 0347;120
+30/08/2026;Cliente 151;Producto 0379;230
+04/08/2026;Cliente 110;Producto 0084;240
+01/08/2026;Cliente 048;Producto 0167;200
+05/08/2026;Cliente 053;Producto 0241;260
+02/08/2026;Cliente 123;Producto 0243;165
+01/08/2026;Cliente 087;Producto 0240;300
+27/08/2026;Cliente 090;Producto 0084;335
+19/08/2026;Cliente 131;ENVÍO;35
+28/08/2026;Cliente 088;Producto 0376;330
+04/08/2026;Cliente 127;Producto 0060;300
+17/08/2026;Cliente 177;Producto 0012;360
+05/08/2026;Cliente 170;ENVÍO;35
+22/08/2026;Cliente 014;Producto 0397;75
+07/08/2026;Cliente 087;Producto 0077;325
+24/08/2026;Cliente 140;Producto 0058;40
+24/08/2026;Cliente 053;Producto 0363;195
+26/08/2026;Cliente 096;Producto 0289;175
+14/08/2026;Cliente 135;Producto 0259;350
+06/08/2026;Cliente 109;Producto 0262;385
+29/08/2026;Cliente 178;Producto 0392;300
+31/08/2026;Cliente 146;Producto 0197;150
+30/08/2026;Cliente 177;Producto 0381;265
+19/08/2026;Cliente 165;Producto 0038;385
+06/08/2026;Cliente 008;Producto 0303;210
+27/08/2026;Cliente 111;ENVÍO;50
+10/08/2026;Cliente 087;Producto 0264;110
+28/08/2026;Cliente 057;Producto 0096;135
+05/08/2026;Cliente 062;Producto 0012;190
+27/08/2026;Cliente 141;Producto 0205;300
+31/08/2026;Cliente 084;Producto 0225;390
+20/08/2026;Cliente 053;Producto 0114;340
+21/08/2026;Cliente 149;Producto 0161;200
+11/08/2026;Cliente 092;Producto 0185;235
+01/08/2026;Cliente 023;Producto 0161;260
+16/08/2026;Cliente 056;ENVÍO;50
+30/08/2026;Cliente 093;Producto 0215;230
+22/08/2026;Cliente 011;Producto 0049;345
+20/08/2026;Cliente 163;Producto 0388;390
+01/08/2026;Cliente 001;Producto 0081;375
+16/08/2026;Cliente 166;Producto 0145;85
+08/08/2026;Cliente 114;ENVÍO;50
+21/08/2026;Cliente 113;Producto 0300;260
+18/08/2026;Cliente 141;Producto 0279;145
+12/08/2026;Cliente 141;Producto 0294;250
+21/08/2026;Cliente 113;Producto 0087;290
+21/08/2026;Cliente 053;Producto 0234;380
+28/08/2026;Cliente 141;Producto 0319;275
+07/08/2026;Cliente 077;Producto 0328;180
+26/08/2026;Cliente 124;Producto 0343;110
+21/08/2026;Cliente 124;Producto 0244;75
+30/08/2026;Cliente 111;Producto 0203;45
+20/08/2026;Cliente 014;Producto 0138;105
+15/08/2026;Cliente 179;ENVÍO;45
+07/08/2026;Cliente 133;Producto 0233;160
+06/08/2026;Cliente 115;Producto 0073;60
+28/08/2026;Cliente 059;Producto 0332;90
+04/08/2026;Cliente 074;ENVÍO;40
+05/08/2026;Cliente 141;Producto 0162;85
+24/08/2026;Cliente 003;Producto 0233;125
+14/08/2026;Cliente 053;ENVÍO;50
+08/08/2026;Cliente 156;ENVÍO;50
+08/08/2026;Cliente 123;ENVÍO;55
+23/08/2026;Cliente 125;ENVÍO;25
+19/08/2026;Cliente 174;Producto 0327;225
+20/08/2026;Cliente 070;Producto 0286;335
+15/08/2026;Cliente 090;Producto 0236;250
+23/08/2026;Cliente 153;Producto 0247;320
+26/08/2026;Cliente 002;Producto 0055;395
+29/08/2026;Cliente 144;Producto 0044;350
+17/08/2026;Cliente 090;Producto 0390;200
+14/08/2026;Cliente 070;ENVÍO;55
+31/08/2026;Cliente 074;ENVÍO;35
+19/08/2026;Cliente 036;Producto 0088;40
+14/08/2026;Cliente 103;Producto 0398;235
+10/08/2026;Cliente 162;Producto 0376;365
+18/08/2026;Cliente 130;Producto 0027;370
+21/08/2026;Cliente 125;Producto 0310;265
+08/08/2026;Cliente 011;Producto 0059;65
+07/08/2026;Cliente 065;Producto 0053;105
+27/08/2026;Cliente 125;ENVÍO;30
+05/08/2026;Cliente 087;Producto 0040;205
+25/08/2026;Cliente 074;Producto 0090;55
+31/08/2026;Cliente 046;Producto 0373;270
+20/08/2026;Cliente 132;Producto 0179;390
+08/08/2026;Cliente 087;Producto 0207;260
+24/08/2026;Cliente 091;Producto 0329;275
+29/08/2026;Cliente 113;Producto 0326;350
+09/08/2026;Cliente 075;ENVÍO;40
+18/08/2026;Cliente 132;Producto 0310;250
+09/08/2026;Cliente 062;Producto 0225;315
+03/08/2026;Cliente 098;Producto 0322;120
+06/08/2026;Cliente 167;Producto 0148;135
+12/08/2026;Cliente 154;Producto 0078;275
+17/08/2026;Cliente 005;Producto 0073;105
+26/08/2026;Cliente 139;ENVÍO;55
+12/08/2026;Cliente 054;Producto 0166;95
+20/08/2026;Cliente 080;Producto 0320;135
+29/08/2026;Cliente 027;Producto 0202;290
+21/08/2026;Cliente 034;Producto 0383;330
+02/08/2026;Cliente 067;Producto 0398;260
+15/08/2026;Cliente 017;Producto 0195;265
+13/08/2026;Cliente 157;Producto 0190;265
+03/08/2026;Cliente 022;Producto 0345;195
+18/08/2026;Cliente 057;Producto 0320;345
+01/08/2026;Cliente 022;Producto 0034;235
+03/08/2026;Cliente 067;Producto 0185;355
+11/08/2026;Cliente 051;Producto 0124;230
+28/08/2026;Cliente 139;Producto 0027;110
+19/08/2026;Cliente 037;ENVÍO;55
+12/08/2026;Cliente 170;Producto 0030;135
+21/08/2026;Cliente 060;ENVÍO;25
+10/08/2026;Cliente 003;Producto 0087;170
+20/08/2026;Cliente 074;Producto 0105;235
+28/08/2026;Cliente 115;Producto 0309;130
+12/08/2026;Cliente 076;Producto 0130;300
+17/08/2026;Cliente 077;ENVÍO;20
+29/08/2026;Cliente 018;Producto 0228;310
+06/08/2026;Cliente 094;Producto 0159;255
+02/08/2026;Cliente 037;Producto 0383;375
+19/08/2026;Cliente 060;Producto 0008;110
+20/08/2026;Cliente 162;Producto 0002;195
+22/08/2026;Cliente 122;Producto 0165;290
+24/08/2026;Cliente 020;Producto 0136;315
+01/08/2026;Cliente 053;Producto 0056;240
+08/08/2026;Cliente 066;Producto 0305;135
+01/08/2026;Cliente 011;Producto 0175;240
+29/08/2026;Cliente 152;Producto 0208;255
+21/08/2026;Cliente 100;ENVÍO;40
+28/08/2026;Cliente 099;Producto 0331;90
+26/08/2026;Cliente 114;Producto 0396;230
+30/08/2026;Cliente 011;ENVÍO;40
+25/08/2026;Cliente 009;Producto 0020;175
+13/08/2026;Cliente 175;Producto 0381;65
+04/08/2026;Cliente 027;Producto 0338;135
+26/08/2026;Cliente 157;Producto 0125;295
+27/08/2026;Cliente 175;Producto 0283;55
+05/08/2026;Cliente 153;Producto 0313;260
+06/08/2026;Cliente 030;Producto 0371;145
+22/08/2026;Cliente 047;Producto 0054;380
+28/08/2026;Cliente 155;Producto 0018;60
+06/08/2026;Cliente 111;ENVÍO;40
+07/08/2026;Cliente 071;Producto 0332;390
+13/08/2026;Cliente 109;Producto 0321;220
+22/08/2026;Cliente 053;Producto 0025;250
+06/08/2026;Cliente 143;Producto 0330;100
+24/08/2026;Cliente 136;ENVÍO;35
+17/08/2026;Cliente 025;Producto 0023;125
+31/08/2026;Cliente 107;Producto 0197;285
+28/08/2026;Cliente 139;Producto 0294;45
+04/08/2026;Cliente 052;Producto 0351;180
+26/08/2026;Cliente 048;Producto 0370;170
+10/08/2026;Cliente 144;ENVÍO;40
+04/08/2026;Cliente 132;Producto 0119;105
+09/08/2026;Cliente 135;Producto 0051;350
+31/08/2026;Cliente 140;Producto 0388;220
+29/08/2026;Cliente 030;Producto 0319;70
+06/08/2026;Cliente 160;Producto 0224;310
+01/08/2026;Cliente 052;ENVÍO;55
+20/08/2026;Cliente 043;Producto 0299;330
+25/08/2026;Cliente 111;Producto 0219;325
+12/08/2026;Cliente 170;Producto 0314;345
+21/08/2026;Cliente 009;Producto 0012;295
+27/08/2026;Cliente 171;Producto 0292;135
+29/08/2026;Cliente 150;Producto 0097;220
+28/08/2026;Cliente 127;Producto 0127;295
+13/08/2026;Cliente 149;Producto 0173;295
+10/08/2026;Cliente 109;Producto 0377;270
+07/08/2026;Cliente 157;Producto 0211;165
+26/08/2026;Cliente 072;Producto 0114;180
+23/08/2026;Cliente 166;Producto 0373;320
+08/08/2026;Cliente 164;Producto 0180;385
+25/08/2026;Cliente 116;Producto 0067;155
+09/08/2026;Cliente 077;Producto 0133;365
+25/08/2026;Cliente 162;Producto 0003;130
+08/08/2026;Cliente 052;Producto 0198;260
+21/08/2026;Cliente 075;Producto 0302;80
+20/08/2026;Cliente 070;Producto 0267;295
+01/08/2026;Cliente 137;Producto 0341;300
+02/08/2026;Cliente 107;Producto 0141;365
+22/08/2026;Cliente 083;Producto 0184;195
+25/08/2026;Cliente 012;Producto 0190;385
+21/08/2026;Cliente 011;ENVÍO;40
+02/08/2026;Cliente 133;Producto 0153;115
+26/08/2026;Cliente 071;Producto 0120;140
+03/08/2026;Cliente 078;Producto 0376;185
+25/08/2026;Cliente 138;Producto 0099;225
+16/08/2026;Cliente 166;Producto 0329;265
+24/08/2026;Cliente 040;ENVÍO;30
+29/08/2026;Cliente 127;Producto 0273;205
+16/08/2026;Cliente 028;Producto 0082;295
+16/08/2026;Cliente 153;Producto 0299;160
+30/08/2026;Cliente 003;Producto 0355;200
+06/08/2026;Cliente 110;Producto 0248;60
+04/08/2026;Cliente 136;Producto 0073;355
+29/08/2026;Cliente 104;Producto 0397;295
+06/08/2026;Cliente 059;Producto 0244;345
+12/08/2026;Cliente 164;Producto 0274;330
+18/08/2026;Cliente 041;Producto 0076;165
+31/08/2026;Cliente 088;Producto 0086;335
+10/08/2026;Cliente 123;Producto 0238;130
+17/08/2026;Cliente 123;Producto 0173;395
+15/08/2026;Cliente 136;Producto 0142;255
+03/08/2026;Cliente 012;Producto 0001;340
+15/08/2026;Cliente 050;Producto 0129;260
+23/08/2026;Cliente 046;Producto 0379;175
+02/08/2026;Cliente 018;ENVÍO;30
+26/08/2026;Cliente 094;ENVÍO;25
+13/08/2026;Cliente 056;Producto 0297;260
+25/08/2026;Cliente 048;Producto 0120;225
+06/08/2026;Cliente 138;Producto 0137;150
+27/08/2026;Cliente 164;Producto 0262;340
+28/08/2026;Cliente 146;Producto 0157;305
+02/08/2026;Cliente 066;Producto 0102;380
+10/08/2026;Cliente 032;Producto 0066;370
+05/08/2026;Cliente 146;Producto 0290;380
+21/08/2026;Cliente 071;ENVÍO;25
+01/08/2026;Cliente 102;Producto 0077;370
+02/08/2026;Cliente 065;Producto 0238;275
+26/08/2026;Cliente 017;Producto 0222;160
+24/08/2026;Cliente 152;Producto 0058;75
+19/08/2026;Cliente 008;Producto 0017;315
+30/08/2026;Cliente 006;Producto 0319;390
+14/08/2026;Cliente 031;Producto 0272;275
+01/08/2026;Cliente 061;Producto 0394;200
+07/08/2026;Cliente 134;Producto 0354;315
+16/08/2026;Cliente 095;Producto 0207;305
+06/08/2026;Cliente 128;ENVÍO;45
+14/08/2026;Cliente 002;ENVÍO;50
+26/08/2026;Cliente 153;Producto 0053;155
+01/08/2026;Cliente 047;Producto 0314;330
+15/08/2026;Cliente 010;Producto 0296;300
+12/08/2026;Cliente 077;Producto 0279;220
+23/08/2026;Cliente 107;Producto 0376;205
+18/08/2026;Cliente 114;ENVÍO;20
+13/08/2026;Cliente 156;Producto 0193;225
+19/08/2026;Cliente 110;Producto 0313;220
+02/08/2026;Cliente 168;Producto 0334;275
+03/08/2026;Cliente 007;Producto 0181;290
+15/08/2026;Cliente 039;Producto 0023;260
+04/08/2026;Cliente 028;Producto 0311;50
+19/08/2026;Cliente 031;Producto 0143;155
+02/08/2026;Cliente 135;Producto 0269;50
+08/08/2026;Cliente 049;Producto 0107;370
+19/08/2026;Cliente 097;Producto 0242;305
+09/08/2026;Cliente 150;Producto 0362;140
+16/08/2026;Cliente 051;Producto 0039;395
+20/08/2026;Cliente 170;Producto 0169;45
+22/08/2026;Cliente 138;Producto 0007;235
+20/08/2026;Cliente 163;Producto 0143;270
+29/08/2026;Cliente 006;Producto 0365;155
+16/08/2026;Cliente 011;Producto 0356;215
+14/08/2026;Cliente 154;Producto 0331;60
+06/08/2026;Cliente 151;Producto 0246;115
+13/08/2026;Cliente 106;Producto 0267;90
+20/08/2026;Cliente 111;ENVÍO;35
+29/08/2026;Cliente 169;Producto 0358;355
+14/08/2026;Cliente 028;ENVÍO;20
+31/08/2026;Cliente 135;Producto 0039;160
+12/08/2026;Cliente 032;Producto 0024;50
+02/08/2026;Cliente 008;Producto 0124;225
+25/08/2026;Cliente 128;Producto 0226;95
+13/08/2026;Cliente 155;Producto 0292;220
+23/08/2026;Cliente 072;Producto 0079;115
+14/08/2026;Cliente 092;Producto 0108;45
+14/08/2026;Cliente 026;Producto 0249;105
+24/08/2026;Cliente 153;Producto 0118;265
+09/08/2026;Cliente 116;Producto 0373;60
+27/08/2026;Cliente 154;Producto 0268;165
+30/08/2026;Cliente 069;Producto 0326;345
+19/08/2026;Cliente 116;Producto 0192;315
+26/08/2026;Cliente 083;Producto 0331;60
+09/08/2026;Cliente 082;ENVÍO;50
+01/08/2026;Cliente 109;Producto 0058;360
+06/08/2026;Cliente 074;Producto 0311;205
+12/08/2026;Cliente 116;Producto 0364;395
+16/08/2026;Cliente 177;Producto 0220;240
+17/08/2026;Cliente 156;Producto 0325;155
+27/08/2026;Cliente 180;Producto 0283;245
+04/08/2026;Cliente 165;Producto 0263;315
+03/08/2026;Cliente 036;Producto 0272;390
+10/08/2026;Cliente 060;Producto 0122;245
+10/08/2026;Cliente 135;Producto 0069;305
+11/08/2026;Cliente 019;Producto 0290;210
+15/08/2026;Cliente 168;Producto 0002;290
+18/08/2026;Cliente 165;Producto 0303;60
+28/08/2026;Cliente 016;ENVÍO;40
+12/08/2026;Cliente 087;Producto 0395;70
+18/08/2026;Cliente 115;Producto 0183;190
+08/08/2026;Cliente 121;Producto 0112;120
+22/08/2026;Cliente 120;Producto 0063;110
+31/08/2026;Cliente 004;ENVÍO;55
+20/08/2026;Cliente 072;Producto 0140;390
+13/08/2026;Cliente 002;Producto 0303;115
+17/08/2026;Cliente 072;Producto 0252;245
+26/08/2026;Cliente 147;Producto 0017;175
+31/08/2026;Cliente 025;Producto 0263;195
+12/08/2026;Cliente 080;Producto 0320;170
+19/08/2026;Cliente 120;Producto 0380;325
+05/08/2026;Cliente 125;Producto 0214;365
+31/08/2026;Cliente 078;Producto 0355;395
+25/08/2026;Cliente 141;Producto 0038;215
+06/08/2026;Cliente 082;Producto 0106;330
+18/08/2026;Cliente 140;Producto 0373;65
+26/08/2026;Cliente 160;Producto 0136;40
+26/08/2026;Cliente 052;Producto 0219;355
+17/08/2026;Cliente 132;Producto 0377;140
+06/08/2026;Cliente 142;ENVÍO;25
+25/08/2026;Cliente 100;Producto 0256;210
+09/08/2026;Cliente 107;Producto 0114;50
+28/08/2026;Cliente 091;Producto 0190;360
+02/08/2026;Cliente 120;Producto 0123;195
+16/08/2026;Cliente 137;Producto 0146;275
+14/08/2026;Cliente 034;Producto 0305;125
+13/08/2026;Cliente 103;Producto 0354;390
+17/08/2026;Cliente 173;Producto 0119;225
+30/08/2026;Cliente 080;Producto 0016;360
+22/08/2026;Cliente 155;Producto 0237;190
+10/08/2026;Cliente 065;Producto 0022;295
+28/08/2026;Cliente 069;Producto 0268;140
+12/08/2026;Cliente 046;Producto 0201;45
+12/08/2026;Cliente 128;Producto 0116;325
+22/08/2026;Cliente 120;Producto 0327;110
+19/08/2026;Cliente 151;Producto 0203;145
+05/08/2026;Cliente 133;Producto 0058;70
+11/08/2026;Cliente 126;Producto 0343;135
+18/08/2026;Cliente 171;Producto 0112;350
+03/08/2026;Cliente 103;Producto 0151;325
+16/08/2026;Cliente 155;Producto 0114;220
+03/08/2026;Cliente 107;Producto 0248;130
+01/08/2026;Cliente 126;Producto 0163;80
+26/08/2026;Cliente 053;Producto 0070;50
+18/08/2026;Cliente 180;Producto 0079;285
+21/08/2026;Cliente 108;Producto 0324;275
+03/08/2026;Cliente 032;Producto 0372;85
+21/08/2026;Cliente 042;Producto 0241;350
+16/08/2026;Cliente 021;Producto 0122;270
+11/08/2026;Cliente 142;Producto 0006;395
+24/08/2026;Cliente 135;Producto 0298;305
+06/08/2026;Cliente 038;Producto 0068;160
+08/08/2026;Cliente 112;Producto 0295;230
+14/08/2026;Cliente 147;Producto 0238;210
+31/08/2026;Cliente 093;Producto 0305;150
+26/08/2026;Cliente 057;Producto 0066;75
+14/08/2026;Cliente 141;Producto 0306;130
+22/08/2026;Cliente 142;Producto 0185;50
+24/08/2026;Cliente 058;Producto 0025;105
+20/08/2026;Cliente 101;ENVÍO;30
+23/08/2026;Cliente 020;Producto 0274;295
+06/08/2026;Cliente 150;Producto 0112;320
+06/08/2026;Cliente 089;Producto 0177;65
+18/08/2026;Cliente 004;Producto 0013;365
+06/08/2026;Cliente 039;Producto 0104;190
+11/08/2026;Cliente 159;Producto 0171;330
+30/08/2026;Cliente 090;Producto 0336;230
+14/08/2026;Cliente 063;Producto 0082;75
+16/08/2026;Cliente 150;Producto 0244;75
+05/08/2026;Cliente 045;Producto 0175;240
+30/08/2026;Cliente 161;Producto 0110;205
+04/08/2026;Cliente 006;Producto 0338;350
+22/08/2026;Cliente 169;Producto 0372;365
+29/08/2026;Cliente 082;Producto 0032;315
+15/08/2026;Cliente 147;Producto 0077;360
+13/08/2026;Cliente 093;Producto 0211;180
+08/08/2026;Cliente 127;Producto 0377;360
+08/08/2026;Cliente 041;Producto 0074;385
+01/08/2026;Cliente 123;Producto 0203;205
+14/08/2026;Cliente 127;ENVÍO;50
+26/08/2026;Cliente 157;Producto 0057;260
+16/08/2026;Cliente 009;Producto 0176;50
+06/08/2026;Cliente 081;Producto 0130;320
+15/08/2026;Cliente 112;ENVÍO;30
+27/08/2026;Cliente 045;Producto 0209;210
+30/08/2026;Cliente 010;ENVÍO;40
+11/08/2026;Cliente 171;Producto 0237;315
+31/08/2026;Cliente 132;Producto 0122;85
+03/08/2026;Cliente 116;Producto 0268;395
+30/08/2026;Cliente 093;Producto 0260;245
+19/08/2026;Cliente 150;Producto 0370;95
+18/08/2026;Cliente 162;Producto 0156;280
+14/08/2026;Cliente 123;Producto 0060;325
+08/08/2026;Cliente 054;ENVÍO;20
+17/08/2026;Cliente 152;Producto 0166;365
+17/08/2026;Cliente 076;ENVÍO;50
+06/08/2026;Cliente 089;Producto 0224;115
+22/08/2026;Cliente 165;Producto 0129;395
+03/08/2026;Cliente 176;ENVÍO;25
+26/08/2026;Cliente 139;ENVÍO;40
+03/08/2026;Cliente 157;Producto 0377;105
+14/08/2026;Cliente 043;Producto 0268;215
+13/08/2026;Cliente 118;Producto 0367;40
+01/08/2026;Cliente 137;Producto 0398;70
+15/08/2026;Cliente 168;Producto 0082;205
+21/08/2026;Cliente 095;Producto 0288;180
+17/08/2026;Cliente 076;Producto 0064;140
+17/08/2026;Cliente 145;Producto 0167;155
+10/08/2026;Cliente 156;ENVÍO;25
+28/08/2026;Cliente 069;Producto 0347;230
+18/08/2026;Cliente 053;Producto 0142;265
+23/08/2026;Cliente 131;ENVÍO;40
+10/08/2026;Cliente 105;Producto 0314;305
+09/08/2026;Cliente 165;ENVÍO;55
+07/08/2026;Cliente 111;Producto 0351;80
+07/08/2026;Cliente 003;Producto 0201;330
+28/08/2026;Cliente 092;Producto 0286;170
+26/08/2026;Cliente 085;Producto 0069;60
+12/08/2026;Cliente 073;ENVÍO;55
+08/08/2026;Cliente 138;Producto 0193;290
+20/08/2026;Cliente 014;Producto 0327;300
+25/08/2026;Cliente 002;Producto 0268;105
+23/08/2026;Cliente 030;ENVÍO;35
+24/08/2026;Cliente 023;Producto 0065;135
+25/08/2026;Cliente 104;Producto 0099;130
+24/08/2026;Cliente 103;ENVÍO;50
+18/08/2026;Cliente 010;Producto 0136;325
+01/08/2026;Cliente 093;ENVÍO;20
+09/08/2026;Cliente 081;Producto 0183;230
+05/08/2026;Cliente 158;Producto 0119;200
+12/08/2026;Cliente 080;Producto 0010;205
+01/08/2026;Cliente 142;Producto 0192;285
+28/08/2026;Cliente 119;Producto 0358;305
+26/08/2026;Cliente 021;Producto 0087;255
+24/08/2026;Cliente 002;Producto 0395;160
+19/08/2026;Cliente 027;Producto 0295;365
+18/08/2026;Cliente 094;Producto 0018;380
+05/08/2026;Cliente 055;Producto 0348;155
+05/08/2026;Cliente 073;Producto 0133;325
+19/08/2026;Cliente 122;ENVÍO;45
+20/08/2026;Cliente 031;Producto 0117;265
+06/08/2026;Cliente 170;ENVÍO;45
+09/08/2026;Cliente 141;Producto 0018;190
+01/08/2026;Cliente 096;Producto 0336;215
+23/08/2026;Cliente 031;Producto 0098;75
+23/08/2026;Cliente 024;Producto 0205;100
+24/08/2026;Cliente 006;Producto 0355;340
+29/08/2026;Cliente 040;Producto 0321;370
+21/08/2026;Cliente 063;Producto 0207;315
+15/08/2026;Cliente 033;Producto 0380;55
+18/08/2026;Cliente 137;Producto 0188;210
+24/08/2026;Cliente 102;Producto 0319;350
+29/08/2026;Cliente 153;Producto 0081;290
+01/08/2026;Cliente 074;Producto 0328;215
+31/08/2026;Cliente 141;ENVÍO;55
+16/08/2026;Cliente 119;Producto 0174;60
+08/08/2026;Cliente 060;Producto 0039;260
+14/08/2026;Cliente 170;ENVÍO;35
+26/08/2026;Cliente 176;Producto 0049;220
+11/08/2026;Cliente 149;Producto 0260;160
+06/08/2026;Cliente 095;Producto 0397;265
+06/08/2026;Cliente 011;Producto 0148;40
+22/08/2026;Cliente 087;Producto 0234;70
+15/08/2026;Cliente 121;Producto 0168;380
+30/08/2026;Cliente 162;Producto 0207;270
+22/08/2026;Cliente 118;Producto 0063;155
+31/08/2026;Cliente 124;Producto 0091;375
+30/08/2026;Cliente 055;Producto 0356;135
+05/08/2026;Cliente 180;Producto 0075;260
+29/08/2026;Cliente 015;Producto 0170;325
+27/08/2026;Cliente 094;Producto 0025;140
+04/08/2026;Cliente 075;Producto 0117;265
+12/08/2026;Cliente 084;Producto 0383;155
+23/08/2026;Cliente 066;Producto 0134;180
+22/08/2026;Cliente 112;Producto 0146;180
+06/08/2026;Cliente 174;Producto 0296;105
+15/08/2026;Cliente 029;Producto 0316;305
+25/08/2026;Cliente 063;Producto 0358;370
+17/08/2026;Cliente 008;Producto 0322;190
+29/08/2026;Cliente 058;Producto 0064;145
+21/08/2026;Cliente 130;Producto 0113;395
+23/08/2026;Cliente 024;Producto 0177;210
+03/08/2026;Cliente 019;Producto 0381;295
+24/08/2026;Cliente 031;Producto 0328;270
+02/08/2026;Cliente 100;Producto 0244;325
+03/08/2026;Cliente 069;Producto 0091;230
+27/08/2026;Cliente 005;Producto 0189;140
+07/08/2026;Cliente 062;Producto 0047;180
+29/08/2026;Cliente 164;Producto 0261;370
+14/08/2026;Cliente 054;Producto 0123;330
+23/08/2026;Cliente 102;Producto 0065;140
+11/08/2026;Cliente 100;Producto 0316;375
+22/08/2026;Cliente 131;Producto 0167;250
+30/08/2026;Cliente 069;Producto 0115;195
+25/08/2026;Cliente 024;Producto 0326;230
+22/08/2026;Cliente 056;Producto 0257;330
+24/08/2026;Cliente 014;Producto 0366;385
+13/08/2026;Cliente 170;Producto 0276;270
+11/08/2026;Cliente 137;Producto 0351;360
+21/08/2026;Cliente 164;Producto 0037;210
+06/08/2026;Cliente 007;Producto 0256;245
+31/08/2026;Cliente 178;Producto 0129;285
+03/08/2026;Cliente 011;Producto 0126;250
+05/08/2026;Cliente 141;Producto 0155;355
+06/08/2026;Cliente 083;ENVÍO;50
+02/08/2026;Cliente 019;Producto 0225;50
+19/08/2026;Cliente 079;Producto 0325;150
+27/08/2026;Cliente 033;Producto 0090;50
+10/08/2026;Cliente 168;Producto 0041;95
+05/08/2026;Cliente 133;Producto 0290;250
+07/08/2026;Cliente 037;Producto 0173;280
+10/08/2026;Cliente 112;Producto 0104;210
+23/08/2026;Cliente 137;Producto 0335;60
+13/08/2026;Cliente 136;Producto 0276;220
+14/08/2026;Cliente 072;Producto 0335;200
+29/08/2026;Cliente 030;Producto 0254;115
+17/08/2026;Cliente 138;Producto 0081;375
+18/08/2026;Cliente 091;Producto 0350;200
+25/08/2026;Cliente 116;Producto 0230;205
+05/08/2026;Cliente 027;Producto 0241;40
+10/08/2026;Cliente 155;Producto 0298;175
+31/08/2026;Cliente 013;Producto 0179;205
+22/08/2026;Cliente 159;Producto 0064;250
+12/08/2026;Cliente 060;Producto 0232;370
+16/08/2026;Cliente 047;Producto 0305;335
+02/08/2026;Cliente 035;Producto 0383;180
+03/08/2026;Cliente 176;Producto 0357;75
+14/08/2026;Cliente 164;Producto 0183;290
+22/08/2026;Cliente 005;Producto 0119;90
+26/08/2026;Cliente 029;Producto 0372;315
+16/08/2026;Cliente 167;Producto 0260;155
+05/08/2026;Cliente 154;Producto 0130;225
+16/08/2026;Cliente 112;Producto 0322;130
+02/08/2026;Cliente 172;Producto 0061;145
+21/08/2026;Cliente 042;Producto 0003;390
+28/08/2026;Cliente 033;Producto 0209;300
+11/08/2026;Cliente 159;Producto 0128;160
+06/08/2026;Cliente 077;ENVÍO;55
+31/08/2026;Cliente 173;Producto 0253;55
+30/08/2026;Cliente 118;Producto 0193;120
+23/08/2026;Cliente 173;ENVÍO;45
+21/08/2026;Cliente 087;Producto 0118;385
+27/08/2026;Cliente 054;Producto 0208;355
+15/08/2026;Cliente 058;Producto 0152;320
+13/08/2026;Cliente 033;Producto 0007;315
+31/08/2026;Cliente 152;ENVÍO;25
+10/08/2026;Cliente 155;Producto 0026;60
+27/08/2026;Cliente 131;Producto 0112;155
+12/08/2026;Cliente 163;Producto 0344;45
+17/08/2026;Cliente 016;Producto 0236;355
+25/08/2026;Cliente 169;Producto 0292;340
+11/08/2026;Cliente 065;Producto 0213;355
+12/08/2026;Cliente 064;Producto 0024;350
+17/08/2026;Cliente 083;Producto 0002;210
+05/08/2026;Cliente 083;Producto 0299;155
+06/08/2026;Cliente 010;Producto 0249;160
+04/08/2026;Cliente 014;Producto 0006;80
+18/08/2026;Cliente 158;Producto 0109;125
+21/08/2026;Cliente 080;Producto 0258;65
+16/08/2026;Cliente 144;Producto 0179;150
+16/08/2026;Cliente 150;Producto 0058;50
+14/08/2026;Cliente 050;Producto 0373;330
+16/08/2026;Cliente 059;Producto 0172;45
+12/08/2026;Cliente 053;Producto 0169;140
+18/08/2026;Cliente 135;Producto 0176;245
+30/08/2026;Cliente 111;Producto 0024;330
+11/08/2026;Cliente 096;Producto 0036;370
+28/08/2026;Cliente 151;Producto 0213;185
+25/08/2026;Cliente 064;Producto 0067;290
+24/08/2026;Cliente 002;Producto 0133;340
+20/08/2026;Cliente 164;Producto 0384;215
+15/08/2026;Cliente 111;Producto 0388;370
+26/08/2026;Cliente 043;ENVÍO;40
+21/08/2026;Cliente 180;ENVÍO;25
+21/08/2026;Cliente 153;Producto 0166;330
+12/08/2026;Cliente 093;Producto 0184;140
+07/08/2026;Cliente 053;Producto 0286;125
+09/08/2026;Cliente 012;Producto 0282;190
+23/08/2026;Cliente 128;Producto 0262;150
+09/08/2026;Cliente 126;Producto 0386;70
+26/08/2026;Cliente 055;Producto 0096;165
+03/08/2026;Cliente 044;ENVÍO;30
+17/08/2026;Cliente 139;Producto 0276;70
+16/08/2026;Cliente 128;Producto 0022;240
+16/08/2026;Cliente 050;Producto 0091;70
+06/08/2026;Cliente 147;Producto 0030;315
+20/08/2026;Cliente 136;Producto 0333;385
+02/08/2026;Cliente 074;Producto 0204;110
+12/08/2026;Cliente 098;Producto 0208;130
+20/08/2026;Cliente 024;Producto 0218;350
+09/08/2026;Cliente 156;Producto 0084;150
+23/08/2026;Cliente 012;Producto 0295;40
+27/08/2026;Cliente 020;Producto 0347;335
+13/08/2026;Cliente 146;Producto 0181;120
+26/08/2026;Cliente 091;Producto 0048;340
+11/08/2026;Cliente 146;Producto 0303;215
+29/08/2026;Cliente 157;Producto 0354;260
+22/08/2026;Cliente 146;Producto 0340;385
+30/08/2026;Cliente 031;Producto 0180;75
+29/08/2026;Cliente 133;Producto 0176;195
+10/08/2026;Cliente 116;Producto 0116;330
+03/08/2026;Cliente 057;ENVÍO;55
+26/08/2026;Cliente 100;ENVÍO;40
+08/08/2026;Cliente 170;Producto 0269;70
+04/08/2026;Cliente 130;ENVÍO;45
+03/08/2026;Cliente 155;Producto 0254;125
+05/08/2026;Cliente 131;ENVÍO;55
+29/08/2026;Cliente 154;Producto 0137;380
+03/08/2026;Cliente 131;Producto 0389;210
+05/08/2026;Cliente 089;Producto 0119;290
+28/08/2026;Cliente 125;Producto 0241;240
+08/08/2026;Cliente 095;Producto 0092;390
+16/08/2026;Cliente 097;Producto 0054;165
+29/08/2026;Cliente 124;Producto 0108;360
+11/08/2026;Cliente 154;Producto 0117;370
+07/08/2026;Cliente 161;Producto 0171;295
+27/08/2026;Cliente 054;Producto 0039;140
+21/08/2026;Cliente 010;Producto 0224;300
+08/08/2026;Cliente 042;Producto 0291;75
+21/08/2026;Cliente 044;Producto 0046;190
+04/08/2026;Cliente 153;Producto 0387;220
+16/08/2026;Cliente 002;ENVÍO;55
+13/08/2026;Cliente 030;Producto 0173;325
+19/08/2026;Cliente 125;Producto 0207;105
+31/08/2026;Cliente 171;Producto 0095;95
+25/08/2026;Cliente 166;Producto 0350;210
+28/08/2026;Cliente 050;Producto 0260;265
+23/08/2026;Cliente 008;Producto 0309;370
+15/08/2026;Cliente 033;Producto 0129;250
+29/08/2026;Cliente 165;Producto 0294;180
+25/08/2026;Cliente 045;Producto 0284;375
+28/08/2026;Cliente 023;Producto 0373;185
+31/08/2026;Cliente 064;Producto 0184;275
+09/08/2026;Cliente 004;Producto 0139;350
+31/08/2026;Cliente 036;Producto 0257;340
+15/08/2026;Cliente 032;Producto 0389;165
+25/08/2026;Cliente 099;Producto 0391;140
+12/08/2026;Cliente 023;Producto 0075;330
+21/08/2026;Cliente 156;Producto 0111;285
+04/08/2026;Cliente 052;Producto 0173;160
+18/08/2026;Cliente 071;Producto 0392;285
+04/08/2026;Cliente 060;Producto 0010;270
+12/08/2026;Cliente 178;ENVÍO;20
+24/08/2026;Cliente 047;Producto 0112;105
+18/08/2026;Cliente 117;Producto 0141;235
+20/08/2026;Cliente 008;Producto 0078;80
+16/08/2026;Cliente 099;Producto 0335;75
+29/08/2026;Cliente 073;ENVÍO;30
+29/08/2026;Cliente 069;Producto 0368;210
+09/08/2026;Cliente 021;Producto 0346;335
+27/08/2026;Cliente 157;Producto 0301;390
+26/08/2026;Cliente 019;Producto 0097;235
+24/08/2026;Cliente 083;Producto 0154;145
+25/08/2026;Cliente 153;Producto 0163;355
+01/08/2026;Cliente 081;Producto 0387;310

@@ -1,0 +1,86 @@
+Lo que hace el script: ubica `datos/t3/Ventas 2026 YTD.csv`, toma el período del encabezado (01/03/2026 al 31/03/2026, 31 días), suma todos los importes de las filas con fecha dentro de ese período y divide por la cantidad de días del período. No hay filas de ENVÍO ni fechas fuera de marzo en el archivo, así que no hace falta filtrarlas. Las filas idénticas se cuentan todas, porque el export no trae número de comprobante. El script no se ejecutó en esta sesión.
+
+```python
+import os
+import re
+from datetime import date
+
+NOMBRE = "Ventas 2026 YTD.csv"
+
+
+def encontrar_archivo():
+    p = os.path.join("datos", "t3", NOMBRE)
+    if os.path.isfile(p):
+        return p
+    for raiz, _, archivos in os.walk("."):
+        if NOMBRE in archivos and os.path.basename(raiz) == "t3":
+            return os.path.join(raiz, NOMBRE)
+    raise SystemExit("No encontré el archivo " + NOMBRE)
+
+
+def parsear_importe(texto):
+    t = texto.strip()
+    if "," in t:
+        t = t.replace(".", "").replace(",", ".")
+    return float(t)
+
+
+ruta = encontrar_archivo()
+with open(ruta, encoding="latin-1") as f:
+    lineas = [l.rstrip("\r\n") for l in f]
+
+# Período desde el encabezado: "Período: dd/mm/aaaa al dd/mm/aaaa"
+re_periodo = re.compile(r"(\d{2})/(\d{2})/(\d{4})\s+al\s+(\d{2})/(\d{2})/(\d{4})")
+re_fecha = re.compile(r"^(\d{2})/(\d{2})/(\d{4})$")
+
+inicio = fin = None
+for l in lineas[:10]:
+    m = re_periodo.search(l)
+    if m:
+        d1, m1, a1, d2, m2, a2 = map(int, m.groups())
+        inicio = date(a1, m1, d1)
+        fin = date(a2, m2, d2)
+        break
+
+# Filas de datos: Fecha;Cliente;Importe
+filas = []
+for l in lineas:
+    partes = l.split(";")
+    if len(partes) != 3:
+        continue
+    f_txt, cliente, imp_txt = [p.strip() for p in partes]
+    m = re_fecha.match(f_txt)
+    if not m:
+        continue
+    try:
+        fecha = date(int(m.group(3)), int(m.group(2)), int(m.group(1)))
+        importe = parsear_importe(imp_txt)
+    except ValueError:
+        continue
+    if inicio is not None and not (inicio <= fecha <= fin):
+        continue
+    filas.append((fecha, cliente, importe))
+
+if not filas:
+    print("CIFRA: NO DETERMINABLE")
+    raise SystemExit(0)
+
+if inicio is not None:
+    dias = (fin - inicio).days + 1
+else:
+    dias = (max(f[0] for f in filas) - min(f[0] for f in filas)).days + 1
+
+total = sum(f[2] for f in filas)
+promedio = total / dias
+
+print("Archivo:", ruta)
+print("Filas de venta consideradas:", len(filas))
+print("Días del período:", dias)
+print("Venta total ($):", round(total, 2))
+print("CIFRA: {:.2f}".format(promedio))
+```
+
+Decisiones que tomé:
+- **Denominador:** divido por los 31 días calendario del período, incluidos los días sin ventas. Si lo que querés es el promedio solo sobre días con venta, cambia `dias` por la cantidad de fechas distintas.
+- **Duplicados:** no los quito. Si el ERP los generó por error de exportación, la cifra cambia.
+- **Formato:** la cifra sale con dos decimales y punto decimal, en pesos.

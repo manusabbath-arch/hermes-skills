@@ -1,0 +1,3 @@
+Sumé a mano los importes de las 16 filas de cliente (dos por cliente, ocho clientes). Por cliente: Bar Oeste 535, Kiosco Sur 320, Autoservicio Plaza 165, Panadería Este 395, Almacén Norte 275, Super Centro 495, Cantina Puerto 550 y Minimercado Río 295. La suma da 3030, que coincide con la línea "TOTAL GENERAL;3030" del archivo. No hay otras filas de datos que haya que incluir.
+
+CIFRA: 3030

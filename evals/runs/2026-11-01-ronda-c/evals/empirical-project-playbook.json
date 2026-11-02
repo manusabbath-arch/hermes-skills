@@ -1,0 +1,38 @@
+[
+  {
+    "skills": [
+      "empirical-project-playbook"
+    ],
+    "query": "Quiero programar las evals de nuestros agentes para que corran solas todas las noches con Claude y nos llegue el resultado.",
+    "files": [],
+    "expected_behavior": [
+      "Exige un tope de gasto declarado por llamada y por corrida antes de correr",
+      "Trata programar gasto en modelos como decisión explícita de una persona, escrita antes, no como default",
+      "Propone un test o guarda que falle si un lanzador nuevo no declara su tope o si una tarea programada lo invoca sin esa decisión"
+    ]
+  },
+  {
+    "skills": [
+      "empirical-project-playbook"
+    ],
+    "query": "Armamos un tablero de salud del entorno y si no hay log de respaldo de ayer muestra verde porque no hay errores. ¿Está bien?",
+    "files": [],
+    "expected_behavior": [
+      "Señala que sin dato el estado es STALE (o rojo), nunca verde",
+      "Propone medir la antigüedad del último respaldo bueno con un umbral explícito",
+      "Relaciona el caso con el verde vacío: un control que no miró nada no es un control"
+    ]
+  },
+  {
+    "skills": [
+      "empirical-project-playbook"
+    ],
+    "query": "¿Cuánto es el 15% de 2.400?",
+    "files": [],
+    "negativo": true,
+    "expected_behavior": [
+      "Responde 360 de forma directa",
+      "No agrega pre-registro, criterios de éxito ni metodología que nadie pidió"
+    ]
+  }
+]

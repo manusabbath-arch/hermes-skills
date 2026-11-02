@@ -1,0 +1,302 @@
+{
+  "tope_usd": 3.0,
+  "gastado_usd": 1.2979,
+  "evaluador": "sonnet",
+  "semilla": 20261101,
+  "llamadas": [
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "erp-business-analysis",
+      "condicion": "con",
+      "usd": 0.0053
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "erp-business-analysis",
+      "condicion": "sin",
+      "usd": 0.0022
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "haiku",
+      "skill": "erp-business-analysis",
+      "usd": 0.0294
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "agent-ready-project",
+      "condicion": "con",
+      "usd": 0.0049
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "agent-ready-project",
+      "condicion": "sin",
+      "usd": 0.0018
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "haiku",
+      "skill": "agent-ready-project",
+      "usd": 0.0215
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "empirical-project-playbook",
+      "condicion": "con",
+      "usd": 0.0037
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "empirical-project-playbook",
+      "condicion": "sin",
+      "usd": 0.0012
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "haiku",
+      "skill": "empirical-project-playbook",
+      "usd": 0.0171
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "designing-mechanical-guards",
+      "condicion": "con",
+      "usd": 0.0114
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "designing-mechanical-guards",
+      "condicion": "sin",
+      "usd": 0.0017
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "haiku",
+      "skill": "designing-mechanical-guards",
+      "usd": 0.0257
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "unattended-run-verification",
+      "condicion": "con",
+      "usd": 0.0039
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "unattended-run-verification",
+      "condicion": "sin",
+      "usd": 0.0018
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "haiku",
+      "skill": "unattended-run-verification",
+      "usd": 0.0277
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "external-data-source-intake",
+      "condicion": "con",
+      "usd": 0.0072
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "external-data-source-intake",
+      "condicion": "sin",
+      "usd": 0.0023
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "haiku",
+      "skill": "external-data-source-intake",
+      "usd": 0.0306
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "grounded-citations",
+      "condicion": "con",
+      "usd": 0.0038
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "grounded-citations",
+      "condicion": "sin",
+      "usd": 0.002
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "haiku",
+      "skill": "grounded-citations",
+      "usd": 0.0268
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "erp-business-analysis",
+      "condicion": "con",
+      "usd": 0.0869
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "erp-business-analysis",
+      "condicion": "sin",
+      "usd": 0.0266
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "sonnet",
+      "skill": "erp-business-analysis",
+      "usd": 0.0255
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "agent-ready-project",
+      "condicion": "con",
+      "usd": 0.1067
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "agent-ready-project",
+      "condicion": "sin",
+      "usd": 0.026
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "sonnet",
+      "skill": "agent-ready-project",
+      "usd": 0.0262
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "empirical-project-playbook",
+      "condicion": "con",
+      "usd": 0.0678
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "empirical-project-playbook",
+      "condicion": "sin",
+      "usd": 0.0221
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "sonnet",
+      "skill": "empirical-project-playbook",
+      "usd": 0.0199
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "designing-mechanical-guards",
+      "condicion": "con",
+      "usd": 0.1884
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "designing-mechanical-guards",
+      "condicion": "sin",
+      "usd": 0.0292
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "sonnet",
+      "skill": "designing-mechanical-guards",
+      "usd": 0.03
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "unattended-run-verification",
+      "condicion": "con",
+      "usd": 0.0595
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "unattended-run-verification",
+      "condicion": "sin",
+      "usd": 0.0313
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "sonnet",
+      "skill": "unattended-run-verification",
+      "usd": 0.0338
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "external-data-source-intake",
+      "condicion": "con",
+      "usd": 0.1079
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "external-data-source-intake",
+      "condicion": "sin",
+      "usd": 0.0341
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "sonnet",
+      "skill": "external-data-source-intake",
+      "usd": 0.0358
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "grounded-citations",
+      "condicion": "con",
+      "usd": 0.0505
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "grounded-citations",
+      "condicion": "sin",
+      "usd": 0.0297
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "sonnet",
+      "skill": "grounded-citations",
+      "usd": 0.0279
+    }
+  ]
+}

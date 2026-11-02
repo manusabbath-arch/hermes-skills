@@ -1,0 +1,10 @@
+**Respuesta: venta promedio de $237,74 por día** (7.370 / 31 días), en la hoja Empresa A, período 01/03/2026 al 31/03/2026.
+
+Cómo llegué:
+- Leí `skill/SKILL.md`. Su regla 3 dice que el período se toma del preámbulo del export, no del nombre del archivo. El nombre dice "YTD", pero el preámbulo dice 01/03 al 31/03, así que son 31 días y no un acumulado de todo el año.
+- Sumé a mano las 31 filas (una por día, del 01/03 al 31/03), desde 60 (01/03) hasta 315 (31/03). El total da 7.370.
+- Promedio: 7.370 / 31 = 237,74.
+
+Limitación: el export tiene una sola línea por día con un cliente cada una. Solo puedo afirmar que ese es el promedio de lo que trae el archivo. Si el informe no incluye todas las ventas del día, la cifra sería menor a la real, y eso no lo puedo verificar con este archivo.
+
+CIFRA: 237.74

@@ -1,7 +1,7 @@
 # Inventario: perfil Hermes vs tap
 
 Medido el 2026-10-31 (ola 1) y recontado el 2026-11-01 (ola 2) sobre
-`%LOCALAPPDATA%\hermes\skills` y `C:\Users\Usuario\hermes-skills\skills` (este
+`%LOCALAPPDATA%\hermes\skills` y `<clon>\skills` (este
 repo). El tap publicaba 7 skills antes de ola 1 y 11 antes de ola 2.
 
 ## Cómo se leyó
@@ -14,7 +14,7 @@ hermanas con otro nombre.
 ## Ola 1 (esta rama): destilar al tap
 
 Elegidas porque caben (o se recortan) bajo el tope de 500 líneas del validador,
-no copian skills `ng-*` de cliente, y sirven al primer proyecto de dogfood
+no copian skills propias del repo de cliente, y sirven al primer proyecto de dogfood
 (`rastro-publico`: cron, fuentes públicas, citas).
 
 | Skill | Origen en el perfil | Líneas origen | Qué se hizo |
@@ -26,7 +26,7 @@ no copian skills `ng-*` de cliente, y sirven al primer proyecto de dogfood
 
 ## Ola 2 (esta rama): destilar al tap
 
-Elegidas porque caben bajo 500 líneas, no copian `ng-*`, y el dogfood de rastro
+Elegidas porque caben bajo 500 líneas, no copian skills propias del repo de cliente, y el dogfood de rastro
 las usa (tests de fixtures, ntfy apagado por defecto). `documentation-drift-audit`
 entra al tap; el dogfood no duplica el candado README↔`TAREAS` de rastro.
 
@@ -56,7 +56,7 @@ es de otro producto o ya tiene skill oficial. No se destila acá.
 
 ## Qué no se copia nunca a este tap
 
-- Skills `ng-*` del repo de cliente (apuntan al vault, no se publican).
+- Skills propias del repo de cliente (apuntan al vault, no se publican).
 - Cifras de negocio, razones sociales, rutas de planificador de un cliente.
 - `production-database-queries` sin partir y sin pasar el escáner de montos /
   `.private-terms`.
