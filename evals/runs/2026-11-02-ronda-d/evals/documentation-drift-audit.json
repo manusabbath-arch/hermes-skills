@@ -1,0 +1,62 @@
+[
+  {
+    "skills": [
+      "documentation-drift-audit"
+    ],
+    "query": "Leé la wiki y actualizala. Hay varios números viejos.",
+    "files": [],
+    "expected_behavior": [
+      "Inventaria el árbol y corre el check mecánico de wikilinks/huérfanos antes de editar prosa",
+      "Verifica cada cifra contra el comando que la produce, no re-derivándola a mano",
+      "Corrige con rastro (tachar + fecha), no pisa en silencio"
+    ]
+  },
+  {
+    "skills": [
+      "documentation-drift-audit"
+    ],
+    "query": "El check de links dio 0 rotos y 0 huérfanos. ¿Está todo bien?",
+    "files": [],
+    "expected_behavior": [
+      "Pide el denominador (notas escaneadas, links resueltos) antes de leer el cero como limpio",
+      "Un árbol vacío o ilegible produce el mismo cero que uno sano",
+      "Vuelve a correr el check al final de la pasada"
+    ]
+  },
+  {
+    "skills": [
+      "documentation-drift-audit"
+    ],
+    "query": "El README dice 8 checks y el registry tiene 16. Dejá 16 y borramos el README viejo.",
+    "files": [],
+    "expected_behavior": [
+      "Prefiere escribir el comando que produce el número, no el 16 de hoy",
+      "No borra historia para que quede consistente",
+      "Si el proyecto ya tiene un comparador, apunta al comando en vez de un segundo registro"
+    ]
+  },
+  {
+    "skills": [
+      "documentation-drift-audit"
+    ],
+    "query": "Hay un TODO que dice «correr OCR sobre los PDFs escaneados». Dejalo, es trabajo pendiente.",
+    "files": [],
+    "expected_behavior": [
+      "Audita el consejo, no solo el hecho: si la premisa ya se desmintió, lo marca como no hacer",
+      "Grep de cierre posterior en el mismo archivo o en notas más nuevas antes de recomendarlo",
+      "Un ítem inalcanzable se declara latente, no pendiente"
+    ]
+  },
+  {
+    "skills": [
+      "documentation-drift-audit"
+    ],
+    "query": "¿Cómo se escribe un wikilink de Obsidian a una nota en otra carpeta?",
+    "files": [],
+    "expected_behavior": [
+      "Responde la pregunta concreta de sintaxis [[Nota]]",
+      "No abre el procedimiento de auditoría, huérfanos, denominador ni tachado de cifras"
+    ],
+    "negativo": true
+  }
+]

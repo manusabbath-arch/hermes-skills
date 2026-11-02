@@ -1,0 +1,176 @@
+{
+  "tope_usd": 1.5,
+  "gastado_usd": 0.6656,
+  "evaluador": "sonnet",
+  "semilla": 20261102,
+  "llamadas": [
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "tests-over-changing-data-exports",
+      "condicion": "con",
+      "usd": 0.0039
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "tests-over-changing-data-exports",
+      "condicion": "sin",
+      "usd": 0.0017
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "haiku",
+      "skill": "tests-over-changing-data-exports",
+      "usd": 0.0326
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "outbound-notification-channels",
+      "condicion": "con",
+      "usd": 0.0047
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "outbound-notification-channels",
+      "condicion": "sin",
+      "usd": 0.0016
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "haiku",
+      "skill": "outbound-notification-channels",
+      "usd": 0.0264
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "recurring-report-design",
+      "condicion": "con",
+      "usd": 0.0042
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "recurring-report-design",
+      "condicion": "sin",
+      "usd": 0.0014
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "haiku",
+      "skill": "recurring-report-design",
+      "usd": 0.0219
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "documentation-drift-audit",
+      "condicion": "con",
+      "usd": 0.0043
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "documentation-drift-audit",
+      "condicion": "sin",
+      "usd": 0.0016
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "haiku",
+      "skill": "documentation-drift-audit",
+      "usd": 0.0244
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "tests-over-changing-data-exports",
+      "condicion": "con",
+      "usd": 0.0649
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "tests-over-changing-data-exports",
+      "condicion": "sin",
+      "usd": 0.0337
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "sonnet",
+      "skill": "tests-over-changing-data-exports",
+      "usd": 0.0374
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "outbound-notification-channels",
+      "condicion": "con",
+      "usd": 0.0707
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "outbound-notification-channels",
+      "condicion": "sin",
+      "usd": 0.0217
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "sonnet",
+      "skill": "outbound-notification-channels",
+      "usd": 0.0275
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "recurring-report-design",
+      "condicion": "con",
+      "usd": 0.1015
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "recurring-report-design",
+      "condicion": "sin",
+      "usd": 0.0246
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "sonnet",
+      "skill": "recurring-report-design",
+      "usd": 0.0294
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "documentation-drift-audit",
+      "condicion": "con",
+      "usd": 0.073
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "documentation-drift-audit",
+      "condicion": "sin",
+      "usd": 0.0273
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "sonnet",
+      "skill": "documentation-drift-audit",
+      "usd": 0.0253
+    }
+  ]
+}

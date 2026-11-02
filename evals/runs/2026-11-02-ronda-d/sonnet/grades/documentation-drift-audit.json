@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A no describe inventariar ni correr el check; B lo lista como pasos 1-2 antes de editar."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "A habla de fuente de verdad pero no de medir con el comando; B mide con el comando que produce la cifra."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "A no menciona tachado con fecha; B sí."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A no pide el denominador; B pide documentos escaneados y links resueltos."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "A no señala que un árbol vacío da el mismo cero; B lo dice explícitamente."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno vuelve a correr el check en este pedido; B solo lo menciona en el Pedido 1."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A sugiere contar pero no escribir el comando en el README; B propone el comando en el README."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "A acepta borrar con backup; B se niega a borrar y propone tachar con fecha."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno menciona un comparador existente del proyecto."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "A acepta dejarlo sin auditar la premisa; B la audita y propone marcar como no hacer."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "A no busca cierre posterior; B pide buscar en otras notas."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "A no habla de latente; B lo declara latente si nada lo consume."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos dan la sintaxis correcta."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguno abre procedimiento de auditoría en esta respuesta."
+ }
+]

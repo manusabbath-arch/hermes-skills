@@ -1,0 +1,18 @@
+{
+ "documentation-drift-audit": {
+  "with_skill": "B",
+  "without_skill": "A"
+ },
+ "outbound-notification-channels": {
+  "with_skill": "A",
+  "without_skill": "B"
+ },
+ "recurring-report-design": {
+  "with_skill": "A",
+  "without_skill": "B"
+ },
+ "tests-over-changing-data-exports": {
+  "with_skill": "B",
+  "without_skill": "A"
+ }
+}

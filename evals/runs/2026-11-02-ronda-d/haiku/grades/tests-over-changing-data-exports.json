@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A rechaza subir el literal; B en el paso 3 actualiza el valor esperado al número nuevo y fija un período, aunque con filtro."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": true,
+  "B": false,
+  "nota": "A separa relaciones estructurales (suma de hojas, Total declarado, hoja agregada excluida) del insumo fijo; B no separa forma de vintage."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A compara el lector contra la fila Total del propio archivo; B no propone verificación independiente."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos rechazan resolver el más nuevo como sujeto del test."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ambos piden ruta explícita por argumento o variable de entorno; B menciona fixture."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": true,
+  "B": true,
+  "nota": "Ambos señalan que el resultado depende de quién bajó último o cambia con cada archivo nuevo."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A acepta el skip local para el commit que no tocó la fuente; B no lo acepta (ofrece xfail o fallo)."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": true,
+  "B": false,
+  "nota": "A propone --requiere-datos en el chequeo de push/CI; B sugiere fallo explícito genérico sin flag ni tramo."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": true,
+  "B": true,
+  "nota": "Ambos dicen que un skip no equivale a verde medido."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": true,
+  "B": false,
+  "nota": "A cuestiona la comparación fría/caliente por el caché del SO; B no cuestiona el cronómetro."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "A pide contador de aciertos pero no copia estructural; B no pide ninguno."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": true,
+  "B": false,
+  "nota": "A lo activa solo en tests 'requiere insumo'; B lo deja por defecto condicionado a claves/limpieza."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos dan skipif con sys.platform."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguno agrega procedimiento de fixtures, caché ni --requiere-datos."
+ }
+]

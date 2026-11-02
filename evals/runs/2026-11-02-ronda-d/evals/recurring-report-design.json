@@ -1,0 +1,62 @@
+[
+  {
+    "skills": [
+      "recurring-report-design"
+    ],
+    "query": "El parte de las 7:30 está quedando corto. Sumale una hoja más con todo lo que vimos esta semana.",
+    "files": [],
+    "expected_behavior": [
+      "Rechaza acumular temas: rota una página temática con presupuesto fijo",
+      "Pide consumidor y denominador de cada ítem nuevo",
+      "Mide el recuento de páginas en todas las variantes del ciclo, no solo en la de hoy"
+    ]
+  },
+  {
+    "skills": [
+      "recurring-report-design"
+    ],
+    "query": "La lista de 278 ítems no se ejecuta. Imprimila completa así se ve el atraso.",
+    "files": [],
+    "expected_behavior": [
+      "Imprime una dosis topeada, no la cola entera",
+      "La dosis toma un ítem de cada peldaño, no el top N de un ranking",
+      "El reporte registra lo que imprimió para que la rotación no se resetee al día siguiente"
+    ]
+  },
+  {
+    "skills": [
+      "recurring-report-design"
+    ],
+    "query": "Hoy no hubo excepciones. ¿Mandamos el reporte igual o lo salteamos para no molestar?",
+    "files": [],
+    "expected_behavior": [
+      "El heartbeat sale siempre; su ausencia es la alarma",
+      "Exit 0 si se midió (aunque el día haya sido malo); distinto de no poder medir",
+      "El ítem de latido declara los ceros en el texto"
+    ]
+  },
+  {
+    "skills": [
+      "recurring-report-design"
+    ],
+    "query": "La corrida de las 17:55 salió a las 19:56. Poné 17:55 en el encabezado, que es la hora nominal.",
+    "files": [],
+    "expected_behavior": [
+      "El reloj del reporte es la hora real de la corrida, no la nominal",
+      "Si el atraso es material, lo imprime",
+      "El corte de cada cifra es cuando se leyó el dato"
+    ]
+  },
+  {
+    "skills": [
+      "recurring-report-design"
+    ],
+    "query": "¿Qué márgenes usa A4 en milímetros?",
+    "files": [],
+    "expected_behavior": [
+      "Responde la pregunta concreta de papel/márgenes",
+      "No agrega rotación, dosis, heartbeat ni retiro de ítems de esta skill"
+    ],
+    "negativo": true
+  }
+]
