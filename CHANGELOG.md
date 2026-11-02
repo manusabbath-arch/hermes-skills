@@ -4,6 +4,18 @@ Una entrada por tag. Cada skill lleva su propia `version` en el frontmatter, y
 `scripts/validate_skills.py` falla si una skill cambió desde el último tag sin subirla.
 Cada release adjunta `SHA256SUMS` para verificar lo instalado (ver `SECURITY.md`).
 
+## v1.6.2 — 2026-11-02
+
+Límites de activación entre skills que se pisan (decisión del dueño del tap).
+
+- **Descriptions con "Not for X: use Y"** en `designing-mechanical-guards` 1.1.1,
+  `unattended-run-verification` 1.0.1, `agent-ready-project` 1.3.1,
+  `empirical-project-playbook` 1.2.1 y `empirical-system-invariants` 1.1.1. La de
+  `empirical-project-playbook` ahora dice que cubre operar el entorno (gasto con tope, salud
+  sin dato = STALE), que la skill trae desde v1.6.0.
+- **Activación medida otra vez con la misma semilla**
+  (`evals/runs/2026-11-02-activacion-limites/`, pre-registrada en el mismo commit).
+
 ## v1.6.1 — 2026-11-02
 
 Mediciones de las skills que entraron sin corrida, y criterios que se pueden medir.

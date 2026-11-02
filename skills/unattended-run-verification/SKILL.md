@@ -1,7 +1,7 @@
 ---
 name: unattended-run-verification
-description: "Use when verifying an unattended run, a scheduled task, a cron job, or a Windows Task Scheduler job: whether it actually fires alone, whether a log that says done proves the artifact exists, print spooler versus exit 0, orphaned headless processes, listeners that look alive, and health items that measure the wrong leg of the job."
-version: 1.0.0
+description: "Use when verifying an unattended run, a scheduled task, a cron job, or a Windows Task Scheduler job: whether it actually fires alone, whether a log that says done proves the artifact exists, print spooler versus exit 0, orphaned headless processes, listeners that look alive, and health items that measure the wrong leg of the job. Not for deciding whether model or eval spend may be scheduled, nor for what a health panel shows when data is missing (use empirical-project-playbook), nor for a pipeline that must prove every cycle what it measured (use empirical-system-invariants)."
+version: 1.0.1
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]

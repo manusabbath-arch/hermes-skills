@@ -1,7 +1,7 @@
 ---
 name: empirical-system-invariants
-description: "Use when a system must prove, every cycle, that it measures what it claims - auditing a data pipeline for phantom wiring, silent empty getters, or unpopulated fields. Provides per-cycle data contracts, a RED-light rule naming the exact broken link, NULL-not-zero semantics, and a project-agnostic guard script that fails the build. Not for judging an experiment or a business metric (use empirical-project-playbook) nor for CI checks on code (use agent-ready-project)."
-version: 1.1.0
+description: "Use when a system must prove, every cycle, that it measures what it claims - auditing a data pipeline for phantom wiring, silent empty getters, or unpopulated fields. Provides per-cycle data contracts, a RED-light rule naming the exact broken link, NULL-not-zero semantics, and a project-agnostic guard script that fails the build. Not for judging an experiment or a business metric (use empirical-project-playbook) nor for CI checks on code (use agent-ready-project). Also for silence that reads as success, such as a job that only logs its count when it is non-zero."
+version: 1.1.1
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
