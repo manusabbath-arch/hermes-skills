@@ -20,6 +20,7 @@ build falla.
 10. Ronda D: skills de v1.5.0
 11. Activación con las 15 skills
 12. Ronda E: criterios medibles
+13. Activación con límites entre skills
 
 ## 1. Método
 
@@ -231,3 +232,21 @@ En Sonnet, `grounded-citations` pasa de +5 a +10 cuando el criterio se vuelve me
 Haiku no cambia la respuesta: lee la skill y contesta en modo conversación, sin el
 procedimiento. Esa hipótesis falla y queda escrita así. Lectura completa en el `LECTURA.md`
 de la corrida.
+
+## 13. Activación con límites entre skills
+
+Después de §11 se agregaron límites "Not for X: use Y" a 5 descriptions (v1.6.2), y se midió
+de nuevo con la misma semilla, así que con los mismos pedidos (02/11/26,
+`evals/runs/2026-11-02-activacion-limites/`, pre-registrada en el mismo commit; 0,15 USD).
+
+| | Haiku | Sonnet | Opus |
+|---|---|---|---|
+| Las 7 viejas (de 41), antes → después | 31 → 33 | 33 → 36 | 35 → 34 |
+| Las 8 nuevas (de 32), antes → después | 28 → 27 | 28 → 27 | 30 → 30 |
+| No positivos vacíos (de 25) | 25 | 25 | 25 |
+
+Las tres hipótesis se cumplen en los tres modelos. El límite de
+`unattended-run-verification` recuperó sus pedidos en los tres modelos; el de
+`designing-mechanical-guards` no, y le costó uno propio: entre esa skill y
+`agent-ready-project` el terreno se pisa en serio. Lectura completa en el `LECTURA.md` de la
+corrida.
