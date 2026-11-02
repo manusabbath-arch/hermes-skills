@@ -18,7 +18,9 @@ Las guardas, separadas en dos skills con dueño claro (decisión del dueño del 
   `empirical-project-playbook` 1.2.2 pasan a `designing-mechanical-guards`, con los mismos
   criterios.
 - **Activación medida otra vez** (`evals/runs/2026-11-02-activacion-separadas/`,
-  pre-registrada en el mismo commit).
+  pre-registrada en el mismo commit, 0,15 USD): `designing-mechanical-guards` 8 de 8 en los
+  tres modelos, `agent-ready-project` 3, 4 y 4 de 4, y el total de 60/63/64 a 64/70/68 de 73.
+  Las tres hipótesis se cumplen.
 
 ## v1.6.2 — 2026-11-02
 
