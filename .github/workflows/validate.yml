@@ -118,6 +118,16 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Private terms from the repo secret
+        env:
+          PRIVATE_TERMS: ${{ secrets.PRIVATE_TERMS }}
+        run: |
+          if [ -n "$PRIVATE_TERMS" ]; then
+            printf '%s\n' "$PRIVATE_TERMS" > .private-terms
+          else
+            echo "::warning::Sin el secreto PRIVATE_TERMS: los términos privados NO se chequean en este CI"
+          fi
+
       - name: Validate skill manifests, trust policy and business data
         run: python scripts/validate_skills.py
 
