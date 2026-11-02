@@ -1,7 +1,7 @@
 ---
 name: grounded-citations
 description: "Use when grounding answers and documents in cited, verifiable sources: inline numbered citations, a ledger that maps url to [n] from retrieval not memory, Perplexity-style Sources blocks, fact-checking with verbatim quotes, and verify --evidence. Covers chat answers, markdown, PDF, docx, slides, and multi-platform sweeps."
-version: 1.0.0
+version: 1.0.1
 author: Hermes Agent + Teknium
 license: MIT
 platforms: [linux, macos, windows]
