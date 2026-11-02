@@ -1,0 +1,92 @@
+{
+  "tope_usd": 0.5,
+  "gastado_usd": 0.3031,
+  "evaluador": "sonnet",
+  "semilla": 20261103,
+  "llamadas": [
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "grounded-citations",
+      "condicion": "con",
+      "usd": 0.0035
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "grounded-citations",
+      "condicion": "sin",
+      "usd": 0.002
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "haiku",
+      "skill": "grounded-citations",
+      "usd": 0.0337
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "documentation-drift-audit",
+      "condicion": "con",
+      "usd": 0.0047
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "haiku",
+      "skill": "documentation-drift-audit",
+      "condicion": "sin",
+      "usd": 0.0015
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "haiku",
+      "skill": "documentation-drift-audit",
+      "usd": 0.0235
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "grounded-citations",
+      "condicion": "con",
+      "usd": 0.0526
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "grounded-citations",
+      "condicion": "sin",
+      "usd": 0.0268
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "sonnet",
+      "skill": "grounded-citations",
+      "usd": 0.0283
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "documentation-drift-audit",
+      "condicion": "con",
+      "usd": 0.0732
+    },
+    {
+      "rol": "sujeto",
+      "modelo": "sonnet",
+      "skill": "documentation-drift-audit",
+      "condicion": "sin",
+      "usd": 0.0268
+    },
+    {
+      "rol": "evaluador",
+      "modelo": "sonnet",
+      "de": "sonnet",
+      "skill": "documentation-drift-audit",
+      "usd": 0.0265
+    }
+  ]
+}

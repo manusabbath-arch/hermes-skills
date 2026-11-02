@@ -1,0 +1,100 @@
+[
+ {
+  "pedido": 1,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "B menciona registrar cada fuente en el ledger al recuperarla; A no menciona ledger."
+ },
+ {
+  "pedido": 1,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "B menciona citar con [n]; no menciona render explícitamente, pero lo plantea de forma aproximada."
+ },
+ {
+  "pedido": 1,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "B dice verificar el borrador antes de entregarlo; A no."
+ },
+ {
+  "pedido": 2,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "B plantea cita textual copiada de la página recuperada; A solo contrasta con texto pegado, sin modo quote --from."
+ },
+ {
+  "pedido": 2,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno menciona verify --evidence ni render --style evidence."
+ },
+ {
+  "pedido": 2,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "B dice que marcará [unverified] lo no respaldado; A dice que marcará las que no figuran, pero no usa [unverified]."
+ },
+ {
+  "pedido": 3,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "B rechaza arreglarlo a mano; A propone renumerar manualmente."
+ },
+ {
+  "pedido": 3,
+  "criterio": 2,
+  "A": false,
+  "B": true,
+  "nota": "B propone sources.py render --replace-in; A no."
+ },
+ {
+  "pedido": 3,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "A renumera a mano; B regenera desde el ledger y no renumera a mano."
+ },
+ {
+  "pedido": 4,
+  "criterio": 1,
+  "A": false,
+  "B": true,
+  "nota": "B plantea una ruta por plataforma; A solo sugiere pasos manuales al usuario."
+ },
+ {
+  "pedido": 4,
+  "criterio": 2,
+  "A": false,
+  "B": false,
+  "nota": "Ninguno propone registrar las URLs en un mismo ledger en este pedido."
+ },
+ {
+  "pedido": 4,
+  "criterio": 3,
+  "A": false,
+  "B": true,
+  "nota": "B presenta los hilos como lo que los usuarios reportan, no como hechos."
+ },
+ {
+  "pedido": 5,
+  "criterio": 1,
+  "A": true,
+  "B": true,
+  "nota": "Ambos responden la sintaxis directamente."
+ },
+ {
+  "pedido": 5,
+  "criterio": 2,
+  "A": true,
+  "B": true,
+  "nota": "Ninguno abre ledger ni agrega bloque Sources."
+ }
+]

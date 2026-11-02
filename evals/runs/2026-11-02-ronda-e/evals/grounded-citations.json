@@ -1,0 +1,62 @@
+[
+  {
+    "skills": [
+      "grounded-citations"
+    ],
+    "query": "Investigá el estado actual de Sentinel-2 NDCI y armame un informe con fuentes.",
+    "files": [],
+    "expected_behavior": [
+      "Propone registrar cada URL en el ledger (sources.py add o ingest) en el momento de recuperarla, antes de escribir prosa",
+      "Plantea citar inline con [n] por oración y cerrar con sources.py render, no con URLs retipeadas",
+      "Incluye correr sources.py verify sobre el borrador antes de entregar"
+    ]
+  },
+  {
+    "skills": [
+      "grounded-citations"
+    ],
+    "query": "Esto es médico: confirmá cada cifra con evidencia verbatim.",
+    "files": [],
+    "expected_behavior": [
+      "Plantea modo fact-checking: citar con quote --from el texto extraído, no el snippet de búsqueda",
+      "Incluye verify --evidence y render --style evidence antes de entregar",
+      "Dice que marcará [unverified] las afirmaciones de conocimiento propio que no se puedan sustentar"
+    ]
+  },
+  {
+    "skills": [
+      "grounded-citations"
+    ],
+    "query": "El Sources del draft no coincide con los [n] del texto. Arreglalo a mano.",
+    "files": [],
+    "expected_behavior": [
+      "Rechaza editar a mano el bloque Sources",
+      "Propone sources.py render --replace-in sobre el draft en vez de editarlo",
+      "No renumera ids a mano: los ids son identidades del ledger"
+    ]
+  },
+  {
+    "skills": [
+      "grounded-citations"
+    ],
+    "query": "¿Qué está diciendo la gente de esto en Reddit, RSS y YouTube?",
+    "files": [],
+    "expected_behavior": [
+      "Propone un fan-out multiplataforma (una ruta por plataforma), no un solo web_search",
+      "Propone registrar cada URL de cada ruta en el mismo ledger",
+      "Separa opinión (un hilo reporta) de medición (fuente primaria)"
+    ]
+  },
+  {
+    "skills": [
+      "grounded-citations"
+    ],
+    "query": "¿Cuál es la sintaxis de un f-string en Python 3.12?",
+    "files": [],
+    "expected_behavior": [
+      "Responde la pregunta de sintaxis de forma directa",
+      "No abre un ledger, no cita inline ni agrega un bloque Sources"
+    ],
+    "negativo": true
+  }
+]

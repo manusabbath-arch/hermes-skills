@@ -18,6 +18,10 @@ Mediciones de las skills que entraron sin corrida, y criterios que se pueden med
 - **Criterios medibles:** `grounded-citations` 1.0.1 (9 criterios) y
   `documentation-drift-audit` 1.0.1 (2) pedían ejecutar comandos que el protocolo de evals
   no permite; ahora piden proponerlo. Lo que se exige saber no cambia.
+- **Ronda E** (`evals/runs/2026-11-02-ronda-e/`, pre-registrada): las dos skills con los
+  criterios nuevos, 0,30 USD. `documentation-drift-audit` +8 y +10; `grounded-citations` +10
+  en Sonnet (era +5 con los criterios viejos) y +1 en Haiku, que lee la skill y no aplica el
+  procedimiento sin herramientas.
 
 ## v1.6.0 — 2026-11-01
 
