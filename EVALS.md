@@ -18,6 +18,7 @@ build falla.
 8. Benchmark de trampas de ERP
 9. Ronda C: escenarios nuevos y skills de v1.4.0
 10. Ronda D: skills de v1.5.0
+11. Activación con las 15 skills
 
 ## 1. Método
 
@@ -194,3 +195,21 @@ con `recurring-report-design` a una pregunta simple sobre márgenes A4 trajo con
 skill. Dos criterios de `documentation-drift-audit` están redactados como acciones que los
 sujetos no pueden ejecutar, y esa skill puede estar subcontada. Lectura completa:
 `evals/runs/2026-11-02-ronda-d/LECTURA.md`.
+
+## 11. Activación con las 15 skills
+
+Corrida del 02/11/26 (`evals/runs/2026-11-02-ronda-d/activation/`, pre-registro commiteado
+antes; runner `evals/activacion.py`): 98 pedidos y las 15 descriptions juntas, Haiku, Sonnet
+y Opus, 0,15 USD.
+
+| | Haiku | Sonnet | Opus |
+|---|---|---|---|
+| Las 8 nuevas, elegidas en sus positivos (de 32) | 28 | 28 | 30 |
+| Las 7 viejas, elegidas en sus positivos (de 41) | 31 | 33 | 35 |
+| Pedidos no positivos con la lista vacía (de 25) | 25 | 25 | 25 |
+
+Las nuevas se eligen solas y ninguna skill se carga en un pedido ajeno. **H2 falla en Haiku:**
+las nuevas se quedan con pedidos de las viejas, y son los mismos pedidos en los tres
+modelos, porque `designing-mechanical-guards` y `unattended-run-verification` cubren terreno
+de `agent-ready-project`, `empirical-project-playbook` y `empirical-system-invariants` sin
+un "Not for X: use Y" que marque el límite. Lectura completa en el `LECTURA.md` de la corrida.

@@ -1,0 +1,19 @@
+{
+  "tope_usd": 0.6,
+  "gastado_usd": 0.1466,
+  "semilla": 20261102,
+  "llamadas": [
+    {
+      "modelo": "haiku",
+      "usd": 0.0045
+    },
+    {
+      "modelo": "sonnet",
+      "usd": 0.0466
+    },
+    {
+      "modelo": "opus",
+      "usd": 0.0955
+    }
+  ]
+}
