@@ -26,17 +26,6 @@
     "skills": [
       "empirical-project-playbook"
     ],
-    "query": "Un bug que ya documentamos dos veces en el README volvió a aparecer.",
-    "files": [],
-    "expected_behavior": [
-      "Propone convertir el patrón en un check que falla el build en vez de más prosa",
-      "Si no es mecanizable, pide registrarlo como deuda explícita con fecha y evidencia"
-    ]
-  },
-  {
-    "skills": [
-      "empirical-project-playbook"
-    ],
     "query": "El A/B dio +12% de conversión con 40 usuarios por brazo. ¿Lo escalamos a todos?",
     "files": [],
     "expected_behavior": [

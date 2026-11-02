@@ -4,6 +4,22 @@ Una entrada por tag. Cada skill lleva su propia `version` en el frontmatter, y
 `scripts/validate_skills.py` falla si una skill cambió desde el último tag sin subirla.
 Cada release adjunta `SHA256SUMS` para verificar lo instalado (ver `SECURITY.md`).
 
+## v1.7.0 — 2026-11-02
+
+Las guardas, separadas en dos skills con dueño claro (decisión del dueño del tap).
+
+- **`agent-ready-project` 1.4.0:** queda con el arnés del proyecto (loop de validación,
+  superficies, varios agentes en un repo, trabajo entre sesiones). Las secciones de verde
+  vacío y línea base con trinquete pasan a dos reglas y un puntero.
+- **`designing-mechanical-guards` 1.2.0:** es la dueña del diseño de cada guarda. Recibe
+  `references/diseno-de-guardas.md` (con la sección de la línea base con trinquete),
+  `scripts/check_baseline.py` y sus tests.
+- **Escenarios que cambian de dueño:** 3 de `agent-ready-project` y 1 de
+  `empirical-project-playbook` 1.2.2 pasan a `designing-mechanical-guards`, con los mismos
+  criterios.
+- **Activación medida otra vez** (`evals/runs/2026-11-02-activacion-separadas/`,
+  pre-registrada en el mismo commit).
+
 ## v1.6.2 — 2026-11-02
 
 Límites de activación entre skills que se pisan (decisión del dueño del tap).

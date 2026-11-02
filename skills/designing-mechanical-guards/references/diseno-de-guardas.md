@@ -1,17 +1,15 @@
 # Diseño de guardas — referencia
 
-Detalle de "El verde vacío", "Guards" y "Baseline con trinquete" de `agent-ready-project`:
-cómo se diseña una guarda para que siga mirando lo que dice mirar seis semanas después.
+El catálogo de un proyecto concreto: cómo se diseñó cada guarda para que siga mirando lo que
+dice mirar seis semanas después, y qué la rompió.
 **Origen:** la distribuidora del proyecto de origen, con ~180 chequeos registrados, una
 línea base sellada, siete agentes sobre el mismo repo y una regla de trabajo: *cuando un
 agente falla, falla un chequeo* (test primero, o el motivo escrito de por qué no se puede).
 
-**Relación con `designing-mechanical-guards`:** esa skill es el procedimiento general para
-convertir una regla en guarda (test en rojo, cableado, no-regresión sobre una compuerta
-madura); esta referencia es el catálogo de un proyecto concreto: qué forma tomó cada guarda y
-qué la rompió. Cada sección termina con un **Procedimiento:** que apunta a la referencia de
-esa skill que lo desarrolla. Las dos salen del mismo origen y no se contradicen (revisado
-el 01/11/26); lo que solo estaba acá se llevó allá en su versión 1.1.0.
+**Cómo se lee:** las demás referencias de esta skill dan el procedimiento general; esta
+cuenta qué forma tomó en un proyecto real. Cada sección termina con un **Procedimiento:** que
+nombra la referencia que lo generaliza. El arnés del proyecto (qué checks lleva, dónde corren,
+varios agentes en un repo) es de `agent-ready-project`.
 
 ## Contents
 
@@ -25,6 +23,7 @@ el 01/11/26); lo que solo estaba acá se llevó allá en su versión 1.1.0.
 8. La compuerta en capas, y medir antes de optimizar
 9. Documentos que el código obliga a mantener
 10. Guardas nuevas: primero en sombra
+11. Prender un check sobre código que ya lo viola: baseline con trinquete
 
 ## 1. Un catálogo de chequeos, no scripts sueltos
 
@@ -66,7 +65,7 @@ el 01/11/26); lo que solo estaba acá se llevó allá en su versión 1.1.0.
 - **Una declaración que sobra** (el chequeo volvió a verde) se avisa con el comando exacto
   para quitarla, no con "limpiar el registro".
 
-**Procedimiento:** skill `designing-mechanical-guards`: *exception-registers*, *exception-registry-lifecycle* y *changing-existing-guards* (agregarle a una guarda que ya existe el estado declarado).
+**Procedimiento:** *exception-registers*, *exception-registry-lifecycle* y *changing-existing-guards* (agregarle a una guarda que ya existe el estado declarado).
 
 ## 3. El denominador, siempre
 
@@ -83,7 +82,7 @@ el 01/11/26); lo que solo estaba acá se llevó allá en su versión 1.1.0.
   escribe en la página de códigos) se ve igual que una falla del producto. El harness también
   necesita su denominador: que la aserción haya corrido.
 
-**Procedimiento:** skill `designing-mechanical-guards`: *vacuous-green-detection* (las tres sondas: caminos de éxito, sujeto vacío, denominador) y *corruption-harness*.
+**Procedimiento:** *vacuous-green-detection* (las tres sondas: caminos de éxito, sujeto vacío, denominador) y *corruption-harness*.
 
 ## 4. Perímetros y listas con un solo dueño
 
@@ -98,7 +97,7 @@ el 01/11/26); lo que solo estaba acá se llevó allá en su versión 1.1.0.
 - **Lo declarado no protege si el consumidor no lee la declaración:** el escaneo de secretos
   recorría el disco, no `git ls-files`, y el `.gitignore` no lo frenaba.
 
-**Procedimiento:** skill `designing-mechanical-guards`: *guard-perimeter* (perímetro que debería ser contra el real, extensiones, ignore file, checkout) y *agent-cli-hook-semantics* (verificar un hook corriéndolo).
+**Procedimiento:** *guard-perimeter* (perímetro que debería ser contra el real, extensiones, ignore file, checkout) y *agent-cli-hook-semantics* (verificar un hook corriéndolo).
 
 ## 5. Una regla, una implementación
 
@@ -114,7 +113,7 @@ el 01/11/26); lo que solo estaba acá se llevó allá en su versión 1.1.0.
 - `getattr(obj, "x", default)` sobre un atributo que nadie escribe es **cableado fantasma**:
   el default se lleva toda la carga en silencio (ver `scripts/phantom_wiring.py`).
 
-**Procedimiento:** skill `designing-mechanical-guards`: *text-vs-measurement-guards* (prosa contra el valor medido) y *guards-over-machine-state*.
+**Procedimiento:** *text-vs-measurement-guards* (prosa contra el valor medido) y *guards-over-machine-state*.
 
 ## 6. La guarda que pagaba el costo de lo que rechaza
 
@@ -127,7 +126,7 @@ vuelve a dar vuelta. El mismo
 principio ordena la compuerta (§8) y el hook del ERP: un camino rápido por palabras clave,
 y el análisis completo solo si alguna aparece.
 
-**Procedimiento:** skill `designing-mechanical-guards`: *tiered-gates*, sección del rechazo barato.
+**Procedimiento:** *tiered-gates*, sección del rechazo barato.
 
 ## 7. Los permisos del agente son código
 
@@ -140,7 +139,7 @@ y el análisis completo solo si alguna aparece.
   tiene que aceptar, y una aserción sobre el archivo real.
 - Lo de la máquina (el intérprete suelto) va al archivo local ignorado, no al versionado.
 
-**Procedimiento:** skill `designing-mechanical-guards`: *agent-cli-hook-semantics*, sección de permisos versionados.
+**Procedimiento:** *agent-cli-hook-semantics*, sección de permisos versionados.
 
 ## 8. La compuerta en capas, y medir antes de optimizar
 
@@ -153,7 +152,7 @@ y el análisis completo solo si alguna aparece.
   fallas). La hipótesis "el escaneo tarda por recorrer el árbol" era falsa. Con varios
   agentes en la máquina, comparar CPU y alternar el orden: el tiempo de pared es ruido.
 
-**Procedimiento:** skill `designing-mechanical-guards`: *tiered-gates* (nivel elegido desde el grafo de imports, fallback ruidoso, guarda de deriva).
+**Procedimiento:** *tiered-gates* (nivel elegido desde el grafo de imports, fallback ruidoso, guarda de deriva).
 
 ## 9. Documentos que el código obliga a mantener
 
@@ -165,7 +164,7 @@ y el análisis completo solo si alguna aparece.
   se exige **por fecha de corte**: exigirla pareja nace roja sobre todo lo anterior.
 - **El panel no cita conteos que se mueven:** cita propiedades (ver §5).
 
-**Procedimiento:** skill `designing-mechanical-guards`: *promoting-advisory-checks*, sección de la fecha de corte.
+**Procedimiento:** *promoting-advisory-checks*, sección de la fecha de corte.
 
 ## 10. Guardas nuevas: primero en sombra
 
@@ -174,4 +173,27 @@ Un hook de cierre de sesión ("código sin test, cifra sin validación, trabajo 
 falsos positivos medida es aceptable. Una guarda que bloquea mal el primer día se desactiva el
 segundo, y con ella la confianza en las demás.
 
-**Procedimiento:** skill `designing-mechanical-guards`: *promoting-advisory-checks*, *tuning-a-noisy-guard* y *advisory-to-enforcement*.
+**Procedimiento:** *promoting-advisory-checks*, *tuning-a-noisy-guard* y *advisory-to-enforcement*.
+
+## 11. Prender un check sobre código que ya lo viola: baseline con trinquete
+
+El motivo número uno por el que un check útil nunca se prende es que el codebase ya tiene
+200 violaciones y nadie va a parar todo para limpiarlas. La salida no es suprimir el check:
+es **congelar la deuda conocida y fallar solo si crece**.
+
+```
+.incident_baseline.json
+{ "acknowledged": [ {"file": "src/foo.py", "attr": "cached_prices"}, ... ] }
+```
+
+- El check reporta `nuevos` (falla el build) y `conocidos` (informa).
+- **Indexar la baseline por identidad estable, no por línea.** Si la clave incluye el
+  número de línea, editar cualquier cosa arriba inventa un hallazgo "nuevo" y el equipo
+  aprende a ignorar el check. Una clave que funciona: `file + attribute`.
+- Reportar también las claves **stale** (en la baseline pero ya inexistentes): es deuda que
+  se pagó y hay que sacar del archivo, o el trinquete afloja.
+
+Esto convierte "algún día lo limpiamos" en una curva que solo puede bajar.
+
+**Procedimiento:** *changing-existing-guards* (agregarle un estado conocido a una guarda que
+ya existe) y la sección de la línea base de esta skill.

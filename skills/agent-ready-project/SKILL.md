@@ -1,7 +1,7 @@
 ---
 name: agent-ready-project
-description: "Use when setting up or hardening a project that AI agents will build and modify - any codebase, not just data or trading. Covers the non-eludible validation loop (pre-commit, CI, pre-push), turning a check on over a dirty codebase with a ratchet baseline, docs that verify their own numbers, measuring lint debt instead of sweeping it, guards on every surface that can run the action, and the failure modes specific to agent-written code: invented API signatures, unverified self-reports, phantom wiring, silent-green tasks. Also covers empty-green checks that approve over zero items, plans that declare how they fail, and several agents sharing one repo: worktree per session, detached HEAD, concurrent commits, per-agent guard coverage, and long-running work across sessions (feature list, progress file, separate evaluator). For writing one specific guard (failing test first, wiring, no-regression proof), use designing-mechanical-guards."
-version: 1.3.1
+description: "Use when setting up or hardening a project that AI agents will build and modify - any codebase, not just data or trading. Covers the non-eludible validation loop (pre-commit, CI, pre-push), docs that verify their own numbers, measuring lint debt instead of sweeping it, guards on every surface that can run the action, and the failure modes specific to agent-written code: invented API signatures, unverified self-reports, phantom wiring, silent-green tasks. Also covers plans that declare how they fail, and several agents sharing one repo: worktree per session, detached HEAD, concurrent commits, per-agent guard coverage, and long-running work across sessions (feature list, progress file, separate evaluator). For designing a guard itself - empty-green checks that approve over zero items, turning a check on over a dirty codebase with a ratchet baseline, declared reds - use designing-mechanical-guards."
+version: 1.4.0
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
@@ -32,7 +32,9 @@ necesita el arnés igual.
 
 - Arrancar un proyecto que va a construirse mayormente con agentes.
 - Endurecer uno existente que ya acumuló código de agente sin red de seguridad.
-- Prender un check nuevo sobre un codebase que ya viola la regla.
+- Decidir qué checks lleva el proyecto y dónde corren. Cómo se diseña cada uno
+  (verde vacío, línea base con trinquete, rojos declarados) es de la skill
+  `designing-mechanical-guards`.
 - Diagnosticar por qué "los tests pasan" y aun así llegan bugs a producción.
 
 ## Cuándo NO aplicarla
@@ -82,57 +84,20 @@ Reglas que hacen que el loop sirva de verdad:
   `FORCE_DEPLOY`, `ALLOW_DRIFT`). Un gate sin escape se termina desactivando
   entero; uno con escape nombrado deja rastro de quién lo usó y por qué.
 
-## El verde vacío: un check que no miró nada está apagado
+## El verde vacío y la línea base: los diseña `designing-mechanical-guards`
 
-El gemelo del gate que no puede fallar es el que **aprueba sin haber mirado**. Una
-auditoría encontró nueve checks en verde sobre cero elementos — tres críticos,
-uno con una cifra que ya había salido a la gente que la usaba. Un nombre de
-check mal escrito salía en verde con código 0.
+Dos reglas del arnés que este proyecto no puede saltear, y cuyo diseño vive en la skill
+`designing-mechanical-guards`:
 
-- **Todo verde lleva su denominador.** "0 hallazgos" sobre 0 sitios no es lo mismo
-  que sobre 10. Un check que **no pudo medir** (archivo faltante, error de la
-  auditoría) sale rojo, no `ok=True` con el error como mensaje.
-- **Un archivo ilegible no puede salir del universo y del denominador a la vez.**
-  Un parser que se traga `SyntaxError` da `(0, 0)`, lo mismo que un directorio
-  limpio.
-- **El perímetro del check vive en un solo lugar.** Una guarda de datos personales
-  que miraba `*.csv` dejó pasar un `.json` con el mismo dato: verde con el sujeto
-  recortado.
-- **Se audita vaciando el universo de cada check y mirando el veredicto**, no
-  leyendo el código. La regla escrita frena en el check donde se la escribe; el día
-  después se encontró violada en seis más.
-- **Un check no tiene su propia copia de la regla que verifica.** Si la regla vive
-  en un módulo, el check la importa.
-- **Un rojo permanente es la misma enfermedad:** si siempre está rojo, el próximo
-  defecto real entra a la lista sin que nadie lo note. El check pregunta *"¿esto
-  debería estar y no está?"*, no *"¿está?"*.
-- **Contrato completo de la línea base** (regresión vs rojo declarado con condición de
-  salida, chequeo desaparecido): `references/diseno-de-guardas.md` y
-  `scripts/check_baseline.py`.
-- **Sellar la línea base con una corrida filtrada mergea, no reemplaza.** Un
-  `--seal` parcial que reescribe la base deja 1 entrada de 23 y convierte los rojos
-  declarados en regresiones que bloquean a todos.
+- **Un check que no miró nada está apagado.** Todo verde lleva su denominador, y un check
+  que no pudo medir sale rojo. Una auditoría encontró nueve checks en verde sobre cero
+  elementos, uno con una cifra que ya había salido a la gente que la usaba.
+- **Un check nuevo sobre código que ya lo viola se prende con una línea base con
+  trinquete**, no se suprime: congela la deuda conocida y falla solo si crece.
 
-## Prender un check sobre código que ya lo viola: baseline con trinquete
-
-El motivo #1 por el que un check útil nunca se prende es que el codebase ya tiene
-200 violaciones y nadie va a parar todo para limpiarlas. La salida no es
-suprimir el check: es **congelar la deuda conocida y fallar solo si crece**.
-
-```
-.incident_baseline.json
-{ "acknowledged": [ {"file": "src/foo.py", "attr": "cached_prices"}, ... ] }
-```
-
-- El check reporta `nuevos` (falla el build) y `conocidos` (informa).
-- **Indexar la baseline por identidad estable, NO por línea.** Si la clave
-  incluye el número de línea, editar cualquier cosa arriba inventa un hallazgo
-  "nuevo" y el equipo aprende a ignorar el check. Una clave que funciona:
-  `file + attribute`.
-- Reportar también las claves **stale** (en la baseline pero ya inexistentes):
-  es deuda que se pagó y hay que sacar del archivo, o el trinquete afloja.
-
-Esto convierte "algún día lo limpiamos" en una curva que solo puede bajar.
+Cómo se construye cada uno (la sonda de universo vacío, el perímetro, los rojos declarados
+con condición de salida, sellar que mezcla, `check_baseline.py` y el catálogo de un proyecto
+real): skill `designing-mechanical-guards`.
 
 ## La doc que verifica sus propios números
 
@@ -444,7 +409,7 @@ que la rompe a propósito.
 3. **Medir la deuda de lint** y prender las familias que hoy dan cero — atrapan
    bugs futuros a costo cero.
 4. **Un check propio** del patrón que más te mordió, con **baseline con
-   trinquete** para no bloquear el trabajo.
+   trinquete** para no bloquear el trabajo (cómo: `designing-mechanical-guards`).
 5. **Verify blocks** en los 3 números que la doc afirma y que más rápido envejecen.
 6. **Characterization tests** antes del primer refactor de un módulo crítico:
    congelar el comportamiento actual, verificado por mutación (alterar un valor
@@ -475,13 +440,7 @@ Si no pasó ninguna de las tres, es un documento más que se lee y se olvida.
   `sql_clients` y `protected_paths` (`--config` o `PROD_GUARD_CONFIG`).
 - `scripts/worktree_guard.py` — rojo si un worktree detached tiene commits que
   ninguna rama alcanza. Uso: `python3 worktree_guard.py --repo . --base main`.
-- `scripts/check_baseline.py` — compuerta contra una línea base sellada: regresión,
-  rojo declarado (motivo + condición de salida), chequeo desaparecido; sellar mezcla.
-  Uso: `python3 check_baseline.py --results r.json --baseline base.json [--seal]`.
-- `scripts/tests/` — tests herméticos de los cinco scripts.
-- `references/diseno-de-guardas.md` — catálogo de chequeos, línea base con rojos
-  declarados, denominador, perímetros con un dueño, una regla una implementación,
-  permisos del agente, compuerta en capas, guardas en sombra.
+- `scripts/tests/` — tests herméticos de los cuatro scripts.
 - `references/diagnosis-and-review.md` — diagnóstico en cuatro fases y cómo
   recibir una revisión.
 - `references/casos.md` — los proyectos de origen y los incidentes completos

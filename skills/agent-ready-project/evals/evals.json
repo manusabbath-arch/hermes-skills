@@ -15,18 +15,6 @@
     "skills": [
       "agent-ready-project"
     ],
-    "query": "Quiero prender un check de lint nuevo pero el repo ya tiene 180 violaciones y no puedo arreglarlas todas hoy.",
-    "files": [],
-    "expected_behavior": [
-      "Propone una baseline con trinquete que falla solo con violaciones nuevas",
-      "Indexa la baseline por identidad estable (archivo + símbolo), no por número de línea",
-      "Reporta también las claves stale de la baseline para que la deuda solo pueda bajar"
-    ]
-  },
-  {
-    "skills": [
-      "agent-ready-project"
-    ],
     "query": "Tres agentes (Claude Code, Hermes y OpenCode) van a trabajar a la vez en este repo. ¿Cómo lo organizamos para no pisarnos?",
     "files": [],
     "expected_behavior": [
@@ -34,18 +22,6 @@
       "Advierte que un worktree creado por la herramienta puede estar en HEAD detached y que el primer paso es `git switch -c`; menciona `scripts/worktree_guard.py`",
       "Pide commits con pathspec y nunca `--amend` sobre un commit ajeno",
       "Propone que cada agente tenga su guarda física (p. ej. `scripts/prod_write_guard.py`) y que la cobertura se mida con un comando"
-    ]
-  },
-  {
-    "skills": [
-      "agent-ready-project"
-    ],
-    "query": "Nuestro check `validar` imprime '0 problemas' y sale con 0. Un agente renombró el directorio que escanea y nadie lo notó en semanas. ¿Qué cambiamos?",
-    "files": [],
-    "expected_behavior": [
-      "Explica que el check no miró nada y por eso dio verde (verde vacío)",
-      "Pide que el mensaje lleve su denominador (cuántos archivos o elementos revisó) y que cero revisados sea rojo",
-      "Propone auditar los checks vaciando su universo a propósito y verificando que se pongan en rojo"
     ]
   },
   {
@@ -70,18 +46,6 @@
       "No agrega procesos, chequeos ni herramientas del dominio de la skill que el pedido no pide"
     ],
     "negativo": true
-  },
-  {
-    "skills": [
-      "agent-ready-project"
-    ],
-    "query": "Nuestra compuerta tiene 120 chequeos y siempre hay 5 o 6 en rojo por datos que faltan; el equipo ya ignora el rojo. ¿Bajamos esos chequeos a warning?",
-    "files": [],
-    "expected_behavior": [
-      "Propone una línea base sellada que distinga regresión (bloquea) de rojo conocido",
-      "Pide declarar cada rojo con motivo y condición de salida, y que un chequeo nuevo que nace rojo se declare en el mismo commit",
-      "Advierte que sellar debe mezclar, no reemplazar, y que un chequeo que deja de correr también bloquea"
-    ]
   },
   {
     "skills": [
